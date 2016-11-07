@@ -168,14 +168,14 @@ Failure Threshold와 Request Interval은 매 Request Interval 마다 위에서 �
 
 # Report
 
-Report는 현재 동작하고 있는 Hosted Zone에 대한 통계 정보를 조회할 수 있습니다. 지정한 Host Zone, Record Type, Routing Policy에 따라 조회가 가능합니다.
+Statistics는 현재 동작하고 있는 Hosted Zone에 대한 통계 정보를 조회할 수 있습니다. 지정한 Host Zone, Record Type, Routing Policy에 따라 조회가 가능합니다.
 
 
 <br>
 <center>
 <img src="http://static.toastoven.net/prod_dnsplus/img-013.png"/>
 <br>
-[그림 13] Report 조회
+[그림 13] Statistics 조회
 </center>
 <br>
 
