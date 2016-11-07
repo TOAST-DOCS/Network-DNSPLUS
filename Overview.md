@@ -4,12 +4,14 @@ DNS(Domain Name Service)는 192.168.0.12와 같이 숫자로 되어 있는 IPv4 
 가령 www.toast.com을 이용한다고 하면 www은 호스트이고 toast.com은 Domain 혹은 Hosted Zone이라고 합니다.
 
 ## 특/장점
+
 * DNS Server를 간편하게 설정할 수 있습니다.
 * 접속 지역에 따라 지리적으로 가까운 서버를 지정할 수 있습니다.
 * 정책을 이용하여 여러 서버에 부하를 나눠서 서비스 할 수 있습니다.
 
 ## 주요기능
 다음과 같은 기능을 제공합니다.
+
 * Host Zone 서비스 및 관리
 * Record Set 관리
 * Health Check 에 의한 서비스 안전성 향상
