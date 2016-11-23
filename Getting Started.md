@@ -34,7 +34,7 @@ Hosted Zone이 생성되면 SOA, NS 레코드가 기본으로 생성됩니다. S
 </center>
 <br>
 
-생성 이후에는 Hosted Zone에 새로 추가한 “toast.com”이 조회됩니다. SOA, NS 가 Hosted Zone과 함께 생성 되었기 때문에 Record Set Count는 2가 됩니다. Hosted Zone 삭제는 여러 개를 선택하여 삭제할 수 있으나 수정의 경우에는 하나만 선택하여 수정할 수 있습니다.
+생성 이후에는 Hosted Zone에 새로 추가한 "toast.com"가 조회됩니다. SOA, NS 가 Hosted Zone과 함께 생성 되었기 때문에 Record Set Count는 2가 됩니다. Hosted Zone 삭제는 여러 개를 선택하여 삭제할 수 있으나 수정의 경우에는 하나만 선택하여 수정할 수 있습니다.
 
 <br>
 <center>
@@ -59,7 +59,7 @@ Hosted Zone을 삭제하면 Record Set까지 함께 삭제되기 때문에 주�
 
 ## Record Set의 관리
 
-Record Set이라는 것은 Hosted Zone에 포함되는 호스트들에 대한 목록, 서비스 타입에 해당하는 호스트를 의미합니다. 같은 호스트라도 서비스 타입에 따라 다른 동작을 할 수 있습니다. 각각 생성된 Hosted Zone에 대해 “관리” 버튼을 누르거나 “Record Sets” 탭을 선택하게 되면 해당 Hosted Zone에 포함되는 Record Set을 관리할 수 있습니다.
+Record Set은 Hosted Zone에 포함되는 호스트들에 대한 목록, 서비스 타입에 해당하는 호스트를 의미합니다. 같은 호스트라도 서비스 타입에 따라 다른 동작을 할 수 있습니다. 각각 생성된 Hosted Zone에 대해 "관리" 버튼을 누르거나 "Record Sets" 탭을 선택하게 되면 해당 Hosted Zone에 포함되는 Record Set을 관리할 수 있습니다.
 
 
 <br>
@@ -71,7 +71,7 @@ Record Set이라는 것은 Hosted Zone에 포함되는 호스트들에 대한 �
 <br>
 
 
-새로운 Record Set을 생성을 하기 위해서 “Record Set” 생성 버튼을 클릭합니다.
+새로운 Record Set을 생성을 하기 위해서 "Record Set" 생성 버튼을 클릭합니다.
 
 <br>
 <center>
@@ -84,7 +84,7 @@ Record Set이라는 것은 Hosted Zone에 포함되는 호스트들에 대한 �
 
 
 
-Record Name에 호스트 이름을 입력한다. 예제와 같이 “www”이라 입력하면, 외부에서 조회가 되는 전체 이름은 “www.toast.com”과 같다. Type은 Service Type이며 아래 표와 같습니다.
+Record Name에 호스트 이름을 입력합니다. 예제와 같이 "www"이라 입력하면, 외부에서 조회가 되는 전체 이름은 "www.toast.com"와 같습니다. Type은 Service Type이며 아래 표와 같습니다.
 
 
 |Service Type|설명|
@@ -97,7 +97,7 @@ Record Name에 호스트 이름을 입력한다. 예제와 같이 “www”이�
 |SRV|Location Service|
 |SPF|Sender Policy Framework|
 
-Alias의 경우 해당 Host가 다른 Host를 대신하게 되는 경우에 사용한다. 각 Service Type에 대해서 값들이 존재하는데 “A”인 경우 IPv4 Address를 입력한다. 복수로 입력이 가능하며 이는 DNS Query 응답에 포함되어 전달됩니다.
+Alias의 경우 해당 Host가 다른 Host를 대신하게 되는 경우에 사용합니다. 각 Service Type에 대해서 값들이 존재하는데 "A"인 경우 IPv4 Address를 입력한다. 복수로 입력이 가능하며 이는 DNS Query 응답에 포함되어 전달됩니다.
 
 
 <br>
@@ -108,7 +108,7 @@ Alias의 경우 해당 Host가 다른 Host를 대신하게 되는 경우에 사�
 </center>
 <br>
 
-수정은 생성과 동일하다. 수정을 하기 위해서는 Record Set을 한 개만 선택해야 하지만 삭제를 하기 위해서는 여러 개를 선택할 수 있습니다.
+수정은 생성과 동일합니다. 수정을 하기 위해서는 Record Set을 한 개만 선택해야 하지만 삭제를 하기 위해서는 여러 개를 선택할 수 있습니다.
 
 
 <br>
@@ -119,7 +119,7 @@ Alias의 경우 해당 Host가 다른 Host를 대신하게 되는 경우에 사�
 </center>
 <br>
 
-Record Set에는 “Import Record Set”이라는 특별한 기능이 있는데, 이 기능은 Record Set이 없는 경우에만 사용할 수 있다. 이미 추가되어 있다면 삭제 이후에 기능 사용이 가능합니다.. 이 기능은 Zone File을 읽어서 Record Set 에 일괄로 추가해주는 기능으로, 기존에 DNS를 운영하던 Zone File이 있다면 Import해서 일괄 적용할 수 있습니다.
+Record Set에는 "Import Record Set"이라는 특별한 기능이 있는데, 이 기능은 Record Set이 없는 경우에만 사용할 수 있습니다. 이미 추가되어 있다면 삭제 이후에 기능 사용이 가능합니다. 이 기능은 Zone File을 읽어서 Record Set 에 일괄로 추가해주는 기능으로, 기존에 DNS를 운영하던 Zone File이 있다면 Import해서 일괄 적용할 수 있습니다.
 
 ## Health Check
 
@@ -147,7 +147,7 @@ Health Check 기능은 이미 입력된 Record Set에 한정하여 동작합니�
 
 
 
-위 예제의 경우 “www”에 속한 각 호스트들에 대해서 Protocol 별로 연결을 시도하여 연결이 되거나 “200 OK” 응답을 받는다면 DNS Query에 응답을 하고 그렇지 않은 경우 응답에서 제외합니다. Path는 HTTP/HTTPS의 경우에만 적용하고 해당 URL Path에 접속을 시도합니다. Port는 TCP/HTTP/HTTPS로 접근하는 TCP 포트를 의미합니다.
+위 예제의 경우 "www"에 속한 각 호스트들에 대해서 Protocol 별로 연결을 시도하여 연결이 되거나 "200 OK" 응답을 받는다면 DNS Query에 응답을 하고 그렇지 않은 경우 응답에서 제외합니다. Path는 HTTP/HTTPS의 경우에만 적용하고 해당 URL Path에 접속을 시도합니다. Port는 TCP/HTTP/HTTPS로 접근하는 TCP 포트를 의미합니다.
 Failure Threshold와 Request Interval은 매 Request Interval 마다 위에서 지정한 접속을 시도합니다. 이때 Failure Threshold에서 지정한 횟수 만큼 실패하게 되면, 서비스에 제외합니다.
 만약 Record Set에 등록된 모든 호스트가 응답하지 않는다면 DNS Query의 응답으로 전체 Record Set을 응답합니다.
 
