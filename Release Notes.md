@@ -1,5 +1,10 @@
 ## Upcoming Products > DNS+ > Release Notes
 
+### 2016.12.08
+#### 개발자 가이드 수정
+* [Getting Started] 잘못된 큰따옴표 표기를 올바른 표기 방법으로 변경
+* [Getting Started] 일부 단락에 평어체로 작성되어 있는 문구를 경어체로 변경
+
 ### 2016.11.24
 #### 신규 상품 출시
 * DNS+ 상품 출시
