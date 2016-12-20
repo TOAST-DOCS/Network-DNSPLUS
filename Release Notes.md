@@ -1,5 +1,9 @@
 ## Upcoming Products > DNS+ > Release Notes
 
+### 2016.12.22
+#### 기능 개선/변경
+* DNS Engine 서버가 3대 이상일 시, DNS 메모리 캐시 문제로 Engine 서버가 일부 정상적으로 작동하지 않았던 버그 수정
+
 ### 2016.12.08
 #### 개발자 가이드 수정
 * [Getting Started] 잘못된 큰따옴표 표기를 올바른 표기 방법으로 변경
