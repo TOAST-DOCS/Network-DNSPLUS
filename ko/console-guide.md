@@ -1,1 +1,2 @@
-## Network > DNS+ > 콘솔 사용 가이드
+## Network > DNS Plus > 콘솔 사용 가이드
+
