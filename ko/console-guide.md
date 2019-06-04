@@ -6,11 +6,11 @@
 
 메뉴의 'DNS Plus' 화면에서 DNS Zone을 관리할 수 있습니다.
 
-![image_01_20190625](https://static.toastoven.net/prod_dnsplus/image_01_20190625.png)
+![image_01_20190604](https://static.toastoven.net/prod_dnsplus/image_01_20190604.png)
 
 ### DNS Zone 생성
 
-![image_02_20190625](https://static.toastoven.net/prod_dnsplus/image_02_20190625.png)
+![image_02_20190604](https://static.toastoven.net/prod_dnsplus/image_02_20190604.png)
 
 1.DNS Zone은 레코드셋의 컨테이너로 DNS가 서비스하는 호스트에 대한 도메인 영역이며, **DNS Zone 생성** 버튼을 클릭하여 생성합니다.
 
@@ -23,7 +23,7 @@
 
 ### DNS Zone 수정
 
-![image_03_20190625](https://static.toastoven.net/prod_dnsplus/image_03_20190625.png)
+![image_03_20190604](https://static.toastoven.net/prod_dnsplus/image_03_20190604.png)
 
 1.수정할 DNS Zone을 선택한 후, **DNS Plus 수정** 버튼을 클릭합니다.
 
@@ -31,7 +31,7 @@
 
 ### DNS Zone 삭제
 
-![image_04_20190625](https://static.toastoven.net/prod_dnsplus/image_04_20190625.png)
+![image_04_20190604](https://static.toastoven.net/prod_dnsplus/image_04_20190604.png)
 
 1.삭제할 DNS Zone을 모두 선택한 후, **DNS Plus 삭제** 버튼을 클릭합니다.
 
@@ -41,7 +41,7 @@
 
 ## 레코드셋 관리
 
-![image_05_20190625](https://static.toastoven.net/prod_dnsplus/image_05_20190625.png)
+![image_05_20190604](https://static.toastoven.net/prod_dnsplus/image_05_20190604.png)
 
 메뉴의 'DNS Plus' 화면에서 선택한 DNS Zone에 대한 레코드셋을 관리할 수 있습니다.
 
@@ -51,7 +51,7 @@
 
 ### 레코드셋 생성
 
-![image_06_20190625](https://static.toastoven.net/prod_dnsplus/image_06_20190625.png)
+![image_06_20190604](https://static.toastoven.net/prod_dnsplus/image_06_20190604.png)
 
 1.레코드셋은 서비스되는 호스트 정보이며, **레코드셋 생성** 버튼을 클릭하여 생성합니다.
 
@@ -70,7 +70,7 @@
 
 ### 레코드셋 수정
 
-![image_07_20190625](https://static.toastoven.net/prod_dnsplus/image_07_20190625.png)
+![image_07_20190604](https://static.toastoven.net/prod_dnsplus/image_07_20190604.png)
 
 1.수정할 레코드셋을 선택한 후, **레코드셋 수정** 버튼을 클릭합니다.
 
@@ -80,7 +80,7 @@
 
 ### 레코드셋 삭제
 
-![image_08_20190625](https://static.toastoven.net/prod_dnsplus/image_08_20190625.png)
+![image_08_20190604](https://static.toastoven.net/prod_dnsplus/image_08_20190604.png)
 
 1.삭제할 레코드셋을 모두 선택한 후, **레코드셋 삭제** 버튼을 클릭합니다.
 
@@ -88,7 +88,7 @@
 
 ### 레코드셋 통계
 
-![image_09_20190625](https://static.toastoven.net/prod_dnsplus/image_09_20190625.png)
+![image_09_20190604](https://static.toastoven.net/prod_dnsplus/image_09_20190604.png)
 
 1.확인 할 레코드셋을 선택한 후, **레코드셋 통계** 버튼을 클릭합니다.
 
@@ -97,7 +97,7 @@
 
 ### 조회 및 목록 보기
 
-![image_10_20190625](https://static.toastoven.net/prod_dnsplus/image_10_20190625.png)
+![image_10_20190604](https://static.toastoven.net/prod_dnsplus/image_10_20190604.png)
 
 1.'타입 필터'를 이용하여 선택한 레코드셋 타입으로 필터링하여 볼 수 있습니다.
 
