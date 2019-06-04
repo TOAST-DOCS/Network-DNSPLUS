@@ -18,11 +18,11 @@ DNS Plus 서비스의 API를 설명합니다.
 
 ```
 {
-	"header": {
-		"isSuccessful": true,
-		"resultCode": 0,
-		"resultMessage": "Success"
-	}
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
+    }
 }
 ```
 
@@ -71,8 +71,8 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 | engineId | String | | 선택 |  | DNS 서버 ID |
 | page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
 | limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
-| sortKey | String |  | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>ZONE_NAME: DNS Zone 이름, <br>ZONE_STATUS: DNS Zone 상태, <br>RECORDSET_COUNT: 레코드셋 개수) |
 | sortDirection | String |  | 선택 | DESC | 정렬 방향 (DESC: 내림차순, ASC: 올름차순) |
+| sortKey | String |  | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>ZONE_NAME: DNS Zone 이름, <br>ZONE_STATUS: DNS Zone 상태, <br>RECORDSET_COUNT: 레코드셋 개수) |
 
 #### 응답
 
@@ -80,9 +80,9 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 ```
 {
-	"header": {
-		// 생략
-	},
+    "header": {
+        // 생략
+    },
     "totalCount": 1,
     "zoneList": [
         {
@@ -132,7 +132,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X POST 'https://alpha-api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appkeys/9SpMLmHn1O91RM8b/zones' \
+curl -X POST 'https://api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appkeys/{appkey}/zones' \
 -H 'Content-Type: application/json' \
 --data '{ "zone": { "zoneName": "test.dnsplus.com.", "description": "test" }}'
 ```
@@ -141,8 +141,9 @@ curl -X POST 'https://alpha-api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appke
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| zoneName | String | 최대 254자 | 필수 |  | 생성할 DNS Zone 이름 |
-| description | String | 최대 255자 | 선택 |  | DNS Zone 설명 |
+| zone | Object |  | 필수 |  | DNS Zone |
+| zone.zoneName | String | 최대 254자 | 필수 |  | 생성할 DNS Zone 이름 |
+| zone.description | String | 최대 255자 | 선택 |  | DNS Zone 설명 |
 
 #### 응답
 
@@ -157,6 +158,7 @@ curl -X POST 'https://alpha-api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appke
     }
 }
 ```
+
 
 ### DNS Zone 수정
 
@@ -176,7 +178,7 @@ curl -X POST 'https://alpha-api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appke
 - {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#_5)를 통해서 알 수 있습니다.
 
 ```
-curl -X PUT 'https://alpha-api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appkeys/9SpMLmHn1O91RM8b/zones' \
+curl -X PUT 'https://api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appkeys/{appkey}/zones' \
 -H 'Content-Type: application/json' \
 --data '{ "zone": { "description": "test" }}'
 ```
@@ -185,7 +187,8 @@ curl -X PUT 'https://alpha-api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appkey
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| description | String | 최대 255자 | 선택 |  | DNS Zone 설명 |
+| zone | Object |  | 필수 |  | DNS Zone |
+| zone.description | String | 최대 255자 | 선택 |  | DNS Zone 설명 |
 
 #### 응답
 
@@ -200,6 +203,7 @@ curl -X PUT 'https://alpha-api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appkey
     }
 }
 ```
+
 
 ### DNS Zone 삭제 (비동기)
 
@@ -244,4 +248,185 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 }
 ```
 
+
 ## 레코드셋 API
+
+### 레코드셋 조회
+
+- 레코드셋 목록을 조회합니다.
+
+#### 요청
+
+[URI]
+
+| 메서드 | URI |
+|---|---|
+| GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
+
+[요청 본문]
+
+- {appKey}는 콘솔에서 확인한 값으로 변경합니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#_5)를 통해서 알 수 있습니다.
+
+```
+curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
+```
+
+[옵션]
+
+| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+|---|---|---|---|---|---|
+| recordsetIdList | List | 최대 3,000 | 선택 |  | 레코드셋 목록 |
+| recordsetTypeList | List |  | 선택 | | 레코드셋 타입 목록 <br>(A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS, SOA) |
+| searchRecordsetName | String |  | 선택 |  | 검색할 레코드셋 이름 |
+| page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
+| limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
+| sortDirection | String |  | 선택 | DESC | 정렬 방향 (DESC: 내림차순, ASC: 올름차순) |
+| sortKey | String |  | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>RECORDSET_NAME: 레코드셋 이름, <br>RECORDSET_TYPE: 레코드셋 타입, <br>RECORDSET_TTL: TTL(초)) |
+
+#### 응답
+
+[응답 본문]
+
+```
+{
+    "header": {
+        // 생략
+    },
+    "totalCount": 2,
+    "recordsetList": [
+        {
+            "recordsetId": "9e92b547-e2c1-4398-8904-552e0ca465e2",
+            "recordsetName": "test.dnsplus.com.",
+            "recordsetType": "SOA",
+            "recordsetTtl": 1500,
+            "recordsetStatus": "USE",
+            "createdAt": "2019-06-04T12:32:50.000+09:00",
+            "updatedAt": "2019-06-04T12:32:50.000+09:00",
+            "recordList": [
+                {
+                    "recordDisabled": false,
+                    "recordContent": "ns1.dnsplus.com. hostmaster.dnsplus.com. 2019060401 10800 3600 604800 1200",
+                    // 생략: 레코드셋 타입에 따라 다름
+                }
+            ]
+        },
+        {
+            "recordsetId": "edb9512b-6e62-409c-99ee-092d340e0adf",
+            "recordsetName": "test.dnsplus.com.",
+            "recordsetType": "NS",
+            "recordsetTtl": 1500,
+            "recordsetStatus": "USE",
+            "createdAt": "2019-06-04T12:32:50.000+09:00",
+            "updatedAt": "2019-06-04T12:32:50.000+09:00",
+            "recordList": [
+                {
+                    "recordDisabled": false,
+                    "recordContent": "ns.toastdns-jin.com.",
+                    // 생략: 레코드셋 타입에 따라 다름
+                },
+                {
+                    "recordDisabled": false,
+                    "recordContent": "ns.toastdns-jin.net.",
+                    // 생략: 레코드셋 타입에 따라 다름
+                }
+            ]
+        }
+    ]
+}
+```
+
+[필드]
+
+| 이름 | 타입 | 설명 |
+|---|---|---|
+| totalCount | long | 전체 레코드셋 개수 |
+| recordsetList | List | 레코드셋 목록 |
+| recordsetList[0].zoneId | String | 레코드셋 ID |
+| recordsetList[0].recordsetName | String | 레코드셋 이름 |
+| recordsetList[0].recordsetType | String | 레코드셋 타입 |
+| recordsetList[0].recordsetTtl | DateTime | 네임서버에서 레코드셋 정보의 갱신 주기 |
+| recordsetList[0].recordsetStatus | String | 레코드셋 상태 |
+| recordsetList[0].createdAt | DateTime | 생성일 |
+| recordsetList[0].updatedAt | DateTime | 수정일 |
+| recordsetList[0].recordList | List | 레코드 목록 |
+| recordsetList[0].recordList[0].recordDisabled | boolean | 레코드 비활성화 여부 |
+| recordsetList[0].recordList[0].recordContent | String | 레코드 값이며 레코드셋 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
+
+
+### 레코드셋 생성
+
+- 레코드셋을 생성합니다.
+- 레코드셋 타입으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA를 지원합니다. 
+- SOA 레코드셋은 생성 및 수정이 불가능하며, NS 레코드셋은 'DNS Zone 이름'의 하위 이름으로 생성 및 수정이 가능합니다.
+
+#### 요청
+
+[URI]
+
+| 메서드 | URI |
+|---|---|
+| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
+
+[요청 본문]
+
+- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#_5)를 통해서 알 수 있습니다.
+- recordset.recordList[0].recordContent 대신 레코드셋 타입에 따라 필드를 상세하게 나누어 입력할 수 있습니다.
+- 상세 필드와 recordContent를 동시에 입력하면 recordContent를 기준으로 생성됩니다.
+
+```
+curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
+-H 'Content-Type: application/json' \
+--data '{ "recordset": { "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": "86400", "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
+```
+
+[필드]
+
+| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+|---|---|---|---|---|---|
+| recordset | Object |  | 필수 |  | 레코드셋 |
+| recordset.recordsetName | String | 최대 254자<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드셋 이름 |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드셋 타입 |
+| recordset.recordsetTtl | String | 최소 1, 최대 2147483647 | 필수 |  | 네임서버에서 레코드셋 정보의 갱신 주기 |
+| recordset.recordList | Object |  | 필수 |  | 레코드 목록 |
+| recordset.recordList[0].recordDisabled | boolean |  | 필수 |  | 레코드 비활성화 여부 |
+| recordset.recordList[0].recordContent | String |  | 필수 |  | 레코드셋 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
+
+[레코드셋 타입에 따른 상세 필드]
+
+- A 레코드셋
+
+| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| recordset.recordList[0].ipV4 | String |  | 필수 |  |  |
+
+- AAAA 레코드셋
+
+| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| recordset.recordList[0].ipV4 | String |  | 필수 |  |  |
+
+- CAA 레코드셋
+
+| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| recordset.recordList[0].ipV4 | String |  | 필수 |  |  |
+
+- CNAME 레코드셋
+
+| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| recordset.recordList[0].ipV4 | String |  | 필수 |  |  |
+
+
+#### 응답
+
+[응답 본문]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
+
