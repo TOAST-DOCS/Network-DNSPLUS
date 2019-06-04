@@ -16,8 +16,8 @@
 
 2.'DNS Zone 이름'과 '설명'을 입력하고 **확인** 버튼을 클릭합니다.  
 
-- 'DNS Zone 이름'에 사용자가 소유한 도메인 또는 하위 도메인을 ![FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력합니다.
-- 생성이 완료되면 기본으로 생성되는 NS 레코드셋의 네임서버 정보를 도메인에 설정해야 합니다.
+- 'DNS Zone 이름'에 사용자가 소유한 도메인 또는 하위 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력합니다.
+- 생성이 완료되면 기본으로 생성되는 NS 레코드셋의 네임서버 정보를 도메인에 설정해야 합니다. 기본으로 생성되는 레코드셋은 [레코드셋 관리](./console-guide/#_1)에서 확인 할 수 있습니다.
 	- 신규로 등록한 도메인으로 생성한 경우 도메인 등록기관에 네임서버 정보를 해당 네임서버로 설정해야 합니다.
 	- 운영 중인 도메인의 하위 도메인으로 생성한 경우 운영 중인 도메인에 NS 레코드셋을 하위 도메인 이름과 해당 네임서버로 생성해야 합니다.
 
@@ -57,7 +57,7 @@
 
 2.레코드셋 정보를 입력합니다.
 
-- 레코드셋 이름: 서비스할 호스트 이름으로 'DNS Zone 이름' 또는 하위 이름이 될 수 있도록 ![FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력합니다.
+- 레코드셋 이름: 서비스할 호스트 이름으로 'DNS Zone 이름' 또는 하위 이름이 될 수 있도록 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력합니다.
 - 레코드셋 타입: 호스트의 유형으로 사용 목적에 따라 유형을 선택합니다.
 - TTL(초): Time to live로 데이터의 유효 기간을 나타냅니다. 네임서버에서 레코드셋 정보의 갱신 주기를 초 단위로 입력합니다. 우측 버튼을 클릭하여 간단하게 입력할 수 있습니다.
 
