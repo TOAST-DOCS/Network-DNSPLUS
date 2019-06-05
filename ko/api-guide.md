@@ -12,7 +12,7 @@ DNS Plus 서비스의 API를 설명합니다.
 
 ### 응답 공통 정보
 
-- 모든 API 요청에 '200 OK'로 응답합니다. 자세한 응답 결과는 응답 본문의 헤더를 참고합니다.
+- 모든 API 요청에 '200 OK'로 응답합니다. 자세한 응답 결과는 응답 본문의 헤더를 참고하세요.
 
 [성공 응답 본문]
 
@@ -65,14 +65,14 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| zoneIdList | List | 최대 3,000 | 선택 |  | DNS Zone ID 목록 |
-| zoneStatusList | List |  | 선택 | | DNS Zone 상태 목록 <br>(CREATING: 생성중, <br>DELETING: 삭제중, <br>DELETING_FAIL: 삭제실패, <br>USE: 사용) |
+| zoneIdList | List | 최대 3,000개 | 선택 |  | DNS Zone ID 목록 |
+| zoneStatusList | List | CREATING, <br>DELETING, <br>DELETING_FAIL, <br> USE | 선택 | | DNS Zone 상태 목록 <br>(CREATING: 생성중, <br>DELETING: 삭제중, <br>DELETING_FAIL: 삭제실패, <br>USE: 사용) |
 | searchZoneName | String |  | 선택 |  | 검색할 DNS Zone 이름 |
 | engineId | String | | 선택 |  | DNS 서버 ID |
 | page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
 | limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
-| sortDirection | String |  | 선택 | DESC | 정렬 방향 (DESC: 내림차순, ASC: 올름차순) |
-| sortKey | String |  | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>ZONE_NAME: DNS Zone 이름, <br>ZONE_STATUS: DNS Zone 상태, <br>RECORDSET_COUNT: 레코드셋 개수) |
+| sortDirection | String | DESC, ASC | 선택 | DESC | 정렬 방향 (DESC: 내림차순, ASC: 오름차순) |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>ZONE_NAME, <br>ZONE_STATUS, <br>RECORDSET_COUNT | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>ZONE_NAME: DNS Zone 이름, <br>ZONE_STATUS: DNS Zone 상태, <br>RECORDSET_COUNT: 레코드셋 개수) |
 
 #### 응답
 
@@ -109,7 +109,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 | zoneList[0].zoneId | String | DNS Zone ID |
 | zoneList[0].zoneName | String | DNS Zone 이름 |
 | zoneList[0].zoneStatus | String | DNS Zone 상태 |
-| zoneList[0].description | DateTime | 설명 |
+| zoneList[0].description | String | 설명 |
 | zoneList[0].createdAt | DateTime | 생성일 |
 | zoneList[0].updatedAt | DateTime | 수정일 |
 | zoneList[0].recordsetCount | long | 레코드셋 개수 |
@@ -119,7 +119,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 - DNS Zone를 생성합니다.
 - 'DNS Zone 이름'은 DNS 서버에서 유일해야 합니다.
-- 동일한 'DNS Zone 이름'은 DNS 서버 개수 만큼 생성 가능합니다. DNS 서버 개수는 3개 입니다.
+- 동일한 'DNS Zone 이름'은 DNS 서버 수만큼 생성 가능합니다. DNS 서버는 3대입니다.
 
 #### 요청
 
@@ -180,7 +180,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
 
 ```
-curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones' \
+curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}' \
 -H 'Content-Type: application/json' \
 --data '{ "zone": { "description": "test" }}'
 ```
@@ -218,7 +218,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 | 메서드 | URI |
 |---|---|
-| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones |
+| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/async |
 
 [요청 본문]
 
@@ -234,7 +234,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| zoneIdList | List | 최소 1, 최대 3,000 | 필수 |  | DNS Zone ID 목록 |
+| zoneIdList | List | 최소 1개, 최대 3,000개 | 필수 |  | DNS Zone ID 목록 |
 
 #### 응답
 
@@ -278,13 +278,13 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| recordsetIdList | List | 최대 3,000 | 선택 |  | 레코드셋 목록 |
-| recordsetTypeList | List |  | 선택 | | 레코드셋 타입 목록 <br>(A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS, SOA) |
+| recordsetIdList | List | 최대 3,000개 | 선택 |  | 레코드셋 목록 |
+| recordsetTypeList | List | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS, SOA | 선택 | | 레코드셋 타입 목록 |
 | searchRecordsetName | String |  | 선택 |  | 검색할 레코드셋 이름 |
 | page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
 | limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
-| sortDirection | String |  | 선택 | DESC | 정렬 방향 (DESC: 내림차순, ASC: 올름차순) |
-| sortKey | String |  | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>RECORDSET_NAME: 레코드셋 이름, <br>RECORDSET_TYPE: 레코드셋 타입, <br>RECORDSET_TTL: TTL(초)) |
+| sortDirection | String | DESC, ASC | 선택 | DESC | 정렬 방향 (DESC: 내림차순, ASC: 오름차순) |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>RECORDSET_NAME, <br>RECORDSET_TYPE, <br>RECORDSET_TTL | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>RECORDSET_NAME: 레코드셋 이름, <br>RECORDSET_TYPE: 레코드셋 타입, <br>RECORDSET_TTL: TTL(초)) |
 
 #### 응답
 
@@ -344,7 +344,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 |---|---|---|
 | totalCount | long | 전체 레코드셋 개수 |
 | recordsetList | List | 레코드셋 목록 |
-| recordsetList[0].zoneId | String | 레코드셋 ID |
+| recordsetList[0].recordsetId | String | 레코드셋 ID |
 | recordsetList[0].recordsetName | String | 레코드셋 이름 |
 | recordsetList[0].recordsetType | String | 레코드셋 타입 |
 | recordsetList[0].recordsetTtl | int | 네임서버에서 레코드셋 정보의 갱신 주기 |
@@ -360,8 +360,8 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 - 레코드셋을 생성합니다.
 - '레코드셋 타입'으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA를 지원합니다. 
-- SOA 레코드셋과 '레코드셋 이름'이 'DNS Zone 이름'인 NS 레코드셋은 생성 및 수정, 삭제가 불가능합니다.
-- 레코드셋 내의 레코드 목록의 길이는 최대 512 bytes 입니다.
+- SOA 레코드셋은 생성/수정/삭제가 불가능하며, NS 레코드셋은 'DNS Zone 이름'으로 생성/수정/삭제가 불가능합니다.
+- 레코드셋 내의 레코드 목록의 길이는 최대 512bytes 입니다.
 
 #### 요청
 
@@ -381,7 +381,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
 -H 'Content-Type: application/json' \
---data '{ "recordset": { "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": "86400", "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
+--data '{ "recordset": { "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
 
 [필드]
@@ -391,8 +391,8 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset | Object |  | 필수 |  | 레코드셋 |
 | recordset.recordsetName | String | 최대 254자<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드셋 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 | recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드셋 타입 |
-| recordset.recordsetTtl | String | 최소 1, 최대 2147483647 | 필수 |  | 네임서버에서 레코드셋 정보의 갱신 주기 |
-| recordset.recordList | Object |  | 필수 |  | 레코드 목록 |
+| recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임서버에서 레코드셋 정보의 갱신 주기 |
+| recordset.recordList | List |  | 필수 |  | 레코드 목록 |
 | recordset.recordList[0].recordDisabled | boolean |  | 선택 | false | 레코드 비활성화 여부 |
 | recordset.recordList[0].recordContent | String |  | 필수 |  | 레코드셋 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
 
@@ -433,7 +433,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 |---|---|---|---|---|---|
 | recordset.recordList[0].flags | int | 0 또는 128 | 필수 |  | 정의된 태그인 경우 0, <br>사용자 지정 태그인 경우 128 |
 | recordset.recordList[0].tag | String | TAG_ISSUE, <br>TAG_ISSUEWILD, <br>TAG_IODEF, <br>사용자 지정 태그 최대 15 | 필수 |  | TAG_ISSUE: issue 태그, <br>TAG_ISSUEWILD: issuewild 태그, <br>TAG_IODEF: iodef 태그, <br>사용자 지정 태그 |
-| recordset.recordList[0].stringValue | String | 최대 512(인용부호 포함) | 필수 |  | 태그에 따른 내용 |
+| recordset.recordList[0].stringValue | String | 최대 512자(인용부호 포함) | 필수 |  | 태그에 따른 내용 |
 
 
 - CNAME 레코드셋
@@ -443,7 +443,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 최대 255 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 
 
 - MX 레코드셋
@@ -452,8 +452,8 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].priority | String | 최소 0, 최대 65535 | 필수 |  | 우선순위 |
-| recordset.recordList[0].domainName | String | 최대 255 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].priority | int | 최소 0, 최대 65535 | 필수 |  | 우선순위 |
+| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 
 
 - NAPTR 레코드셋
@@ -473,10 +473,10 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 |---|---|---|---|---|---|
 | recordset.recordList[0].order | int | 최소 0, 최대 65535 | 필수 |  | 순서 |
 | recordset.recordList[0].preference | int | 최소 0, 최대 65535 | 필수 |  | 선호 순서 |
-| recordset.recordList[0].flags | String | 최대 3(인용부호 포함) | 필수 |  | 구분 |
-| recordset.recordList[0].service | String | 최대 257(인용부호 포함) | 필수 |  | 서비스 |
-| recordset.recordList[0].regexp | String | 최대 257(인용부호 포함) | 필수 |  | 정규식 |
-| recordset.recordList[0].replacement | String | 최대 255 | 필수 |  | 대체값으로 '.' 또는 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].flags | String | 최대 3자(인용부호 포함) | 필수 |  | 구분 |
+| recordset.recordList[0].service | String | 최대 257자(인용부호 포함) | 필수 |  | 서비스 |
+| recordset.recordList[0].regexp | String | 최대 257자(인용부호 포함) | 필수 |  | 정규식 |
+| recordset.recordList[0].replacement | String | 최대 255자 | 필수 |  | 대체값으로 '.' 또는 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 
 
 - PTR 레코드셋
@@ -486,7 +486,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 최대 255 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 
 
 - TXT 레코드셋
@@ -495,7 +495,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 최대 255(인용부포 포함) | 필수 |  | 임의의 텍스트 내용 |
+| recordset.recordList[0].stringValue | String | 최대 255bytes(인용부포 포함) | 필수 |  | 임의의 텍스트 내용 |
 
 
 - SRV 레코드셋
@@ -507,7 +507,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset.recordList[0].priority | int | 최소 0, 최대 65535 | 필수 |  | 우선순위 |
 | recordset.recordList[0].weight | int | 최소 0, 최대 65535 | 필수 |  | 가중치 |
 | recordset.recordList[0].port | int | 최소 0, 최대 65535 | 필수 |  | 포트 |
-| recordset.recordList[0].domainName | String | 최대 255 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 
 
 - SPF 레코드셋
@@ -527,7 +527,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 최대 255(인용부포 포함) | 필수 |  | SPF 형식에 따른 내용 |
+| recordset.recordList[0].stringValue | String | 최대 255bytes(인용부포 포함) | 필수 |  | SPF 형식에 따른 내용 |
 
 
 - NS 레코드셋
@@ -537,7 +537,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 최대 255 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 
 
 #### 응답
@@ -558,9 +558,9 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### 레코드셋 수정
 
 - 레코드셋을 수정합니다.
-- '레코드셋 이름'과 '레코드셋 타입'은 수정할 수 없으며, 'TTL(초)'와 '레코드 값'은 수정할 수 있습니다.
-- SOA 레코드셋과 '레코드셋 이름'이 'DNS Zone 이름'인 NS 레코드셋은 생성 및 수정, 삭제가 불가능합니다.
-- 레코드셋 내의 레코드 목록의 길이는 최대 512 byte 입니다.
+- '레코드셋 이름'과 '레코드셋 타입'은 수정할 수 없으며, 'TTL(초)'과 '레코드 값'은 수정할 수 있습니다.
+- SOA 레코드셋은 생성/수정/삭제가 불가능하며, NS 레코드셋은 'DNS Zone 이름'으로 생성/수정/삭제가 불가능합니다.
+- 레코드셋 내의 레코드 목록의 길이는 최대 512byte 입니다.
 
 #### 요청
 
@@ -582,7 +582,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
 -H 'Content-Type: application/json' \
---data '{ "recordset": { "recordsetType": "A", "recordsetTtl": "86400", "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
+--data '{ "recordset": { "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
 
 [필드]
@@ -591,8 +591,8 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 |---|---|---|---|---|---|
 | recordset | Object |  | 필수 |  | 레코드셋 |
 | recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드셋 ID에 대한 레코드셋 타입 |
-| recordset.recordsetTtl | String | 최소 1, 최대 2147483647 | 필수 |  | 네임서버에서 레코드셋 정보의 갱신 주기 |
-| recordset.recordList | Object |  | 필수 |  | 레코드 목록 |
+| recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임서버에서 레코드셋 정보의 갱신 주기 |
+| recordset.recordList | List |  | 필수 |  | 레코드 목록 |
 | recordset.recordList[0].recordDisabled | boolean |  | 필수 |  | 레코드 비활성화 여부 |
 | recordset.recordList[0].recordContent | String |  | 필수 |  | 레코드셋 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
 
@@ -615,7 +615,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### 레코드셋 삭제
 
 - 여러 개의 레코드셋을 삭제하며, 레코드셋의 레코드도 함께 삭제합니다.
-- SOA 레코드셋과 '레코드셋 이름'이 'DNS Zone 이름'인 NS 레코드셋은 생성 및 수정, 삭제가 불가능합니다.
+- SOA 레코드셋은 생성/수정/삭제가 불가능하며, NS 레코드셋은 'DNS Zone 이름'으로 생성/수정/삭제가 불가능합니다.
 
 #### 요청
 
@@ -640,7 +640,7 @@ recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
-| recordsetIdList | List | 최소 1, 최대 3,000 | 필수 |  | 레코드셋 ID 목록 |
+| recordsetIdList | List | 최소 1개, 최대 3,000개 | 필수 |  | 레코드셋 ID 목록 |
 
 #### 응답
 
