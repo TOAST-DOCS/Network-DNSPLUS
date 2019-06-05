@@ -55,7 +55,7 @@ DNS Plus 서비스의 API를 설명합니다.
 
 [요청 본문]
 
-- {appKey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones'
@@ -66,7 +66,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | zoneIdList | List | 최대 3,000 | 선택 |  | DNS Zone ID 목록 |
-| zoneStatusList | List |  | 선택 | | DNS Zone 상태 목록 <br>(CREATING: 생성중, <br>DELETING: 삭제중, <br>DELETING_FAIL: <br>삭제실패, <br>USE: 사용) |
+| zoneStatusList | List |  | 선택 | | DNS Zone 상태 목록 <br>(CREATING: 생성중, <br>DELETING: 삭제중, <br>DELETING_FAIL: 삭제실패, <br>USE: 사용) |
 | searchZoneName | String |  | 선택 |  | 검색할 DNS Zone 이름 |
 | engineId | String | | 선택 |  | DNS 서버 ID |
 | page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
@@ -118,6 +118,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 ### DNS Zone 생성
 
 - DNS Zone를 생성합니다.
+- 'DNS Zone 이름'은 DNS 서버에서 유일해야 합니다.
 - 동일한 'DNS Zone 이름'은 DNS 서버 개수 만큼 생성 가능합니다. DNS 서버 개수는 3개 입니다.
 
 #### 요청
@@ -133,7 +134,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X POST 'https://api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appkeys/{appkey}/zones' \
+curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones' \
 -H 'Content-Type: application/json' \
 --data '{ "zone": { "zoneName": "test.dnsplus.com.", "description": "test" }}'
 ```
@@ -143,7 +144,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appkeys/{ap
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | zone | Object |  | 필수 |  | DNS Zone |
-| zone.zoneName | String | 최대 254자 | 필수 |  | 생성할 DNS Zone 이름, 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| zone.zoneName | String | 최대 254자 | 필수 |  | 생성할 DNS Zone 이름<br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 | zone.description | String | 최대 255자 | 선택 |  | DNS Zone 설명 |
 
 #### 응답
@@ -176,10 +177,10 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appkeys/{ap
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#_5)를 통해서 알 수 있습니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
 
 ```
-curl -X PUT 'https://api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appkeys/{appkey}/zones' \
+curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones' \
 -H 'Content-Type: application/json' \
 --data '{ "zone": { "description": "test" }}'
 ```
@@ -222,7 +223,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com:10443/dnsplus/v1.0/appkeys/{app
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- DNS Zone ID는 [DNS Zone 조회](./api-guide/#_5)를 통해서 알 수 있습니다.
+- DNS Zone ID는 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/async?
@@ -266,8 +267,8 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 
 [요청 본문]
 
-- {appKey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#_5)를 통해서 알 수 있습니다.
+- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
@@ -346,7 +347,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 | recordsetList[0].zoneId | String | 레코드셋 ID |
 | recordsetList[0].recordsetName | String | 레코드셋 이름 |
 | recordsetList[0].recordsetType | String | 레코드셋 타입 |
-| recordsetList[0].recordsetTtl | DateTime | 네임서버에서 레코드셋 정보의 갱신 주기 |
+| recordsetList[0].recordsetTtl | int | 네임서버에서 레코드셋 정보의 갱신 주기 |
 | recordsetList[0].recordsetStatus | String | 레코드셋 상태 |
 | recordsetList[0].createdAt | DateTime | 생성일 |
 | recordsetList[0].updatedAt | DateTime | 수정일 |
@@ -358,9 +359,9 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 ### 레코드셋 생성
 
 - 레코드셋을 생성합니다.
-- 레코드셋 타입으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA를 지원합니다. 
-- SOA 레코드셋은 생성 및 수정이 불가능하며, NS 레코드셋은 'DNS Zone 이름'의 하위 이름으로 생성 및 수정이 가능합니다.
-- 레코드셋 내의 레코드 목록의 길이는 최대 512 byte 입니다.
+- '레코드셋 타입'으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA를 지원합니다. 
+- SOA 레코드셋과 '레코드셋 이름'이 'DNS Zone 이름'인 NS 레코드셋은 생성 및 수정, 삭제가 불가능합니다.
+- 레코드셋 내의 레코드 목록의 길이는 최대 512 bytes 입니다.
 
 #### 요청
 
@@ -373,7 +374,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#_5)를 통해서 알 수 있습니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
 - recordset.recordList[0].recordContent 대신 레코드셋 타입에 따라 필드를 상세하게 나누어 입력할 수 있습니다.
 - 상세 필드와 recordContent를 동시에 입력하면 recordContent를 기준으로 생성됩니다.
 
@@ -388,7 +389,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | recordset | Object |  | 필수 |  | 레코드셋 |
-| recordset.recordsetName | String | 최대 254자<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드셋 이름, 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordsetName | String | 최대 254자<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드셋 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 | recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드셋 타입 |
 | recordset.recordsetTtl | String | 최소 1, 최대 2147483647 | 필수 |  | 네임서버에서 레코드셋 정보의 갱신 주기 |
 | recordset.recordList | Object |  | 필수 |  | 레코드 목록 |
@@ -431,7 +432,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | recordset.recordList[0].flags | int | 0 또는 128 | 필수 |  | 정의된 태그인 경우 0, <br>사용자 지정 태그인 경우 128 |
-| recordset.recordList[0].tag | String | TAG_ISSUE, TAG_ISSUEWILD, TAG_IODEF, 사용자 지정 태그 최대 15 | 필수 |  | TAG_ISSUE: issue 태그, TAG_ISSUEWILD: issuewild 태그, TAG_IODEF: iodef 태그, 사용자 지정 태그 |
+| recordset.recordList[0].tag | String | TAG_ISSUE, <br>TAG_ISSUEWILD, <br>TAG_IODEF, <br>사용자 지정 태그 최대 15 | 필수 |  | TAG_ISSUE: issue 태그, <br>TAG_ISSUEWILD: issuewild 태그, <br>TAG_IODEF: iodef 태그, <br>사용자 지정 태그 |
 | recordset.recordList[0].stringValue | String | 최대 512(인용부호 포함) | 필수 |  | 태그에 따른 내용 |
 
 
@@ -571,11 +572,11 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#_5)를 통해서 알 수 있습니다.
-- {recordsetId}는 레코드셋 ID이며 [레코드셋 조회](./api-guide/#_10)를 통해서 알 수 있습니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
+- {recordsetId}는 레코드셋 ID이며 [레코드셋 조회](./api-guide/#_11)를 통해서 알 수 있습니다.
 - recordset.recordList[0].recordContent 대신 레코드셋 타입에 따라 필드를 상세하게 나누어 입력할 수 있습니다.
 - 상세 필드와 recordContent를 동시에 입력하면 recordContent를 기준으로 수정됩니다.
-- 상세 필드는 [레코드셋 생성](./api-guide/#_11)과 동일합니다.
+- 상세 필드는 [레코드셋 생성](./api-guide/#_14)과 동일합니다.
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
@@ -625,12 +626,12 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#_5)를 통해서 알 수 있습니다.
-- 레코드셋 ID는 [레코드셋 조회](./api-guide/#_10)를 통해서 알 수 있습니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
+- 레코드셋 ID는 [레코드셋 조회](./api-guide/#_11)를 통해서 알 수 있습니다.
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
-recordsetIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab24188dc4'
+recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092d340e0adf'
 ```
 
 [필드]
