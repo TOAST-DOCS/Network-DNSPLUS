@@ -144,7 +144,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | zone | Object |  | 필수 |  | DNS Zone |
-| zone.zoneName | String | 최대 254자 | 필수 |  | 생성할 DNS Zone 이름<br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| zone.zoneName | String | 최대 254자 | 필수 |  | 생성할 DNS Zone 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 | zone.description | String | 최대 255자 | 선택 |  | DNS Zone 설명 |
 
 #### 응답
@@ -559,6 +559,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 - 레코드셋을 수정합니다.
 - '레코드셋 이름'과 '레코드셋 타입'은 수정할 수 없으며, 'TTL(초)'와 '레코드 값'은 수정할 수 있습니다.
+- SOA 레코드셋과 '레코드셋 이름'이 'DNS Zone 이름'인 NS 레코드셋은 생성 및 수정, 삭제가 불가능합니다.
 - 레코드셋 내의 레코드 목록의 길이는 최대 512 byte 입니다.
 
 #### 요청
@@ -614,6 +615,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### 레코드셋 삭제
 
 - 여러 개의 레코드셋을 삭제하며, 레코드셋의 레코드도 함께 삭제합니다.
+- SOA 레코드셋과 '레코드셋 이름'이 'DNS Zone 이름'인 NS 레코드셋은 생성 및 수정, 삭제가 불가능합니다.
 
 #### 요청
 
