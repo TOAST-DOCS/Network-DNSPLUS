@@ -438,7 +438,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 - CNAME 레코드셋
     - 하나의 레코드를 입력할 수 있습니다.
-    - 레코드셋 이름을 별칭(canonical) 이름의 별칭으로 정의합니다.
+    - 레코드셋 이름을 정규 이름의 별칭(canonical)으로 정의합니다.
     - A 레코드를 먼저 설정하고 CNAME을 설정해야 합니다.
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
