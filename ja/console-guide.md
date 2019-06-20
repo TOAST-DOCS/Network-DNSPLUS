@@ -1,4 +1,5 @@
-﻿## Network > DNS Plus > コンソール使用ガイド
+﻿
+## Network > DNS Plus > コンソール使用ガイド
 
 ここではコンソールでDNS Zoneとレコードセットを管理する方法を説明します。
 

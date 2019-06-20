@@ -1,4 +1,5 @@
-﻿## Network > DNS Plus > APIガイド
+﻿
+## Network > DNS Plus > APIガイド
 
 DNS PlusサービスのAPIを説明します。
 
