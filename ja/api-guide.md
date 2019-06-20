@@ -1,20 +1,20 @@
-## Network > DNS Plus > API 가이드
+## Network > DNS Plus > APIガイド
 
-DNS Plus 서비스의 API를 설명합니다.
+DNS PlusサービスのAPIを説明します。
 
 
-## API 공통 정보
+## API共通情報
 
-### 사전 준비
+### 事前準備
 
-- API를 사용하려면 앱키가 필요합니다.
-- 앱키는 콘솔 상단 **URL & Appkey** 메뉴에서 확인이 가능합니다.
+- APIを使用するにはアプリケーションキーが必要です。
+- アプリケーションキーは、コンソールの下にある**URL & Appkey**メニューで確認できます。
 
-### 응답 공통 정보
+### レスポンス共通情報
 
-- 모든 API 요청에 '200 OK'로 응답합니다. 자세한 응답 결과는 응답 본문의 헤더를 참고하세요.
+- すべてのAPIリクエストに'200 OK'でレスポンスします。詳細なレスポンス結果は、レスポンス本文のヘッダを参照してください。
 
-[성공 응답 본문]
+[成功レスポンス本文]
 
 ```
 {
@@ -26,7 +26,7 @@ DNS Plus 서비스의 API를 설명합니다.
 }
 ```
 
-[실패 응답 본문]
+[失敗レスポンス本文]
 
 ```
 {
@@ -41,47 +41,47 @@ DNS Plus 서비스의 API를 설명합니다.
 
 ## DNS Zone API
 
-### DNS Zone 조회
+### DNS Zone照会
 
-- DNS Zone 목록을 조회합니다.
+- DNS Zoneリストを照会します。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}は、コンソールで確認した値に変更します。
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones'
 ```
 
-[옵션]
+[オプション]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| zoneIdList | List | 최대 3,000개 | 선택 |  | DNS Zone ID 목록 |
-| zoneStatusList | List | CREATING, <br>DELETING, <br>DELETING_FAIL, <br> USE | 선택 | | DNS Zone 상태 목록 <br>(CREATING: 생성 중, <br>DELETING: 삭제 중, <br>DELETING_FAIL: 삭제 실패, <br>USE: 사용) |
-| searchZoneName | String |  | 선택 |  | 검색할 DNS Zone 이름 |
-| engineId | String | | 선택 |  | DNS 서버 ID |
-| page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
-| limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
-| sortDirection | String | DESC, ASC | 선택 | DESC | 정렬 방향(DESC: 내림차순, ASC: 오름차순) |
-| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>ZONE_NAME, <br>ZONE_STATUS, <br>RECORDSET_COUNT | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>ZONE_NAME: DNS Zone 이름, <br>ZONE_STATUS: DNS Zone 상태, <br>RECORDSET_COUNT: 레코드 세트 개수) |
+| zoneIdList | List | 最大3,000個 | 任意 |  | DNS Zone IDリスト |
+| zoneStatusList | List | CREATING, <br>DELETING, <br>DELETING_FAIL, <br> USE | 任意 | | DNS Zone状態リスト <br>(CREATING：作成中、 <br>DELETING：削除中、<br>DELETING_FAIL：削除失敗、 <br>USE：使用) |
+| searchZoneName | String |  | 任意 |  | 検索するDNS Zone名 |
+| engineId | String | | 任意 |  | DNSサーバーID |
+| page | int | 最小1 | 任意 | 1 | ページ番号 |
+| limit | int | 最小1、最大3,000 | 任意 | 50 | 照会数 |
+| sortDirection | String | DESC, ASC | 任意 | DESC | ソート方向(DESC：降順、ASC：昇順) |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>ZONE_NAME, <br>ZONE_STATUS, <br>RECORDSET_COUNT | 任意 | CREATED_AT | ソート対象 <br>(CREATED_AT：作成日、 <br>UPDATED_AT：修正日、 <br>ZONE_NAME： DNS Zone名、 <br>ZONE_STATUS： DNS Zone状態、 <br>RECORDSET_COUNT：レコードセット数) |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
     "header": {
-        // 생략
+        // 省略
     },
     "totalCount": 1,
     "zoneList": [
@@ -90,7 +90,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
             "zoneId": "bff20a9a-24cf-4670-8b34-007622ec010e",
             "zoneName": "test.dnsplus.com.",
             "zoneStatus": "USE",
-            "description": "테스트",
+            "description": "テスト",
             "createdAt": "2019-06-04T12:32:50.000+09:00",
             "updatedAt": "2019-06-04T12:32:50.000+09:00",
             "recordsetCount": 2
@@ -99,39 +99,39 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 }
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 설명 |
+| 名前 | タイプ | 説明 |
 |---|---|---|
-| totalCount | long | 전체 DNS Zone 개수 |
-| zoneList | List | DNS Zone 목록 |
-| zoneList[0].engineId | boolean | DNS 서버 ID |
+| totalCount | long | 全DNS Zone数 |
+| zoneList | List | DNS Zoneリスト |
+| zoneList[0].engineId | boolean | DNSサーバーID |
 | zoneList[0].zoneId | String | DNS Zone ID |
-| zoneList[0].zoneName | String | DNS Zone 이름 |
-| zoneList[0].zoneStatus | String | DNS Zone 상태 |
-| zoneList[0].description | String | 설명 |
-| zoneList[0].createdAt | DateTime | 생성일 |
-| zoneList[0].updatedAt | DateTime | 수정일 |
-| zoneList[0].recordsetCount | long | 레코드 세트 개수 |
+| zoneList[0].zoneName | String | DNS Zone名 |
+| zoneList[0].zoneStatus | String | DNS Zone状態 |
+| zoneList[0].description | String | 説明 |
+| zoneList[0].createdAt | DateTime | 作成日 |
+| zoneList[0].updatedAt | DateTime | 修正日 |
+| zoneList[0].recordsetCount | long | レコードセット数 |
 
 
-### DNS Zone 생성
+### DNS Zone作成
 
-- DNS Zone을 생성합니다.
-- **DNS Zone 이름**은 DNS 서버에서 유일해야 합니다.
-- 동일한 **DNS Zone 이름**은 DNS 서버 수만큼 생성 가능합니다. DNS 서버는 3대입니다.
+- DNS Zoneを作成します。
+- **DNS Zone名**は、DNSサーバーで唯一のものにする必要があります。
+- 同じ**DNS Zone名**は、DNSサーバーの数だけ作成可能です。DNSサーバーは3台です。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}はコンソールで確認した値に変更します。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones' \
@@ -139,45 +139,45 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 --data '{ "zone": { "zoneName": "test.dnsplus.com.", "description": "test" }}'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| zone | Object |  | 필수 |  | DNS Zone |
-| zone.zoneName | String | 최대 254자 | 필수 |  | 생성할 DNS Zone 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
-| zone.description | String | 최대 255자 | 선택 |  | DNS Zone 설명 |
+| zone | Object |  | 必須 |  | DNS Zone |
+| zone.zoneName | String | 最大254文字 | 必須 |  | 作成するDNS Zone名、<br>ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
+| zone.description | String | 最大255文字 | 任意 |  | DNS Zoneの説明 |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "SUCCESS"
+        "resultMessage": "Success"
     }
 }
 ```
 
 
-### DNS Zone 수정
+### DNS Zone修正
 
-- DNS Zone을 수정합니다.
+- DNS Zoneを修正します。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId} |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
+- {appkey}はコンソールで確認した値に変更します。
+- {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
 
 ```
 curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}' \
@@ -185,115 +185,115 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 --data '{ "zone": { "description": "test" }}'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| zone | Object |  | 필수 |  | DNS Zone |
-| zone.description | String | 최대 255자 | 선택 |  | DNS Zone 설명 |
+| zone | Object |  | 必須 |  | DNS Zone |
+| zone.description | String | 最大255文字 | 任意 |  | DNS Zoneの説明 |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "SUCCESS"
+        "resultMessage": "Success"
     }
 }
 ```
 
 
-### DNS Zone 삭제 (비동기)
+### DNS Zone削除(非同期)
 
-- 여러 개의 DNS Zone을 삭제하며, DNS Zone의 레코드 세트도 함께 삭제합니다.
-- 실제 데이터 삭제는 비동기로 처리됩니다.
+- 複数のDNS Zoneを削除し、DNS Zoneのレコードセットも一緒に削除します。
+- 実際のデータ削除は、非同期で処理されます。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/async |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- DNS Zone ID는 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
+- {appkey}はコンソールで確認した値に変更します。
+- DNS Zone IDは、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/async?
 zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab24188dc4'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| zoneIdList | List | 최소 1개, 최대 3,000개 | 필수 |  | DNS Zone ID 목록 |
+| zoneIdList | List | 最小1個、最大3,000個 | 必須 |  | DNS Zone IDリスト |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "SUCCESS"
+        "resultMessage": "Success"
     }
 }
 ```
 
 
-## 레코드 세트 API
+## レコードセットAPI
 
-### 레코드 세트 조회
+### レコードセット照会
 
-- 레코드 세트 목록을 조회합니다.
+- レコードセットリストを照会します。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
+- {appkey}はコンソールで確認した値に変更します。
+- {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
 ```
 
-[옵션]
+[オプション]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordsetIdList | List | 최대 3,000개 | 선택 |  | 레코드 세트 목록 |
-| recordsetTypeList | List | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS, SOA | 선택 | | 레코드 세트 타입 목록 |
-| searchRecordsetName | String |  | 선택 |  | 검색할 레코드 세트 이름 |
-| page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
-| limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
-| sortDirection | String | DESC, ASC | 선택 | DESC | 정렬 방향(DESC: 내림차순, ASC: 오름차순) |
-| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>RECORDSET_NAME, <br>RECORDSET_TYPE, <br>RECORDSET_TTL | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>RECORDSET_NAME: 레코드 세트 이름, <br>RECORDSET_TYPE: 레코드 세트 타입, <br>RECORDSET_TTL: TTL(초)) |
+| recordsetIdList | List | 最大3,000個 | 任意 |  | レコードセットリスト |
+| recordsetTypeList | List | A、AAAA、CAA、CNAME、MX、<br>NAPTR、PTR、TXT、SRV、SPF、NS、SOA | 任意 | | レコードセットタイプリスト |
+| searchRecordsetName | String |  | 任意 |  | 検索するレコードセット名 |
+| page | int | 最小1 | 任意 | 1 | ページ番号 |
+| limit | int | 最小1、最大3,000 | 任意 | 50 | 照会数 |
+| sortDirection | String | DESC, ASC | 任意 | DESC | ソート方向(DESC：降順、ASC：昇順) |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>RECORDSET_NAME, <br>RECORDSET_TYPE, <br>RECORDSET_TTL | 任意 | CREATED_AT | ソート対象<br>(CREATED_AT：作成日、 <br>UPDATED_AT：修正日、 <br>RECORDSET_NAME：レコードセット名、 <br>RECORDSET_TYPE：レコードセットタイプ、 <br>RECORDSET_TTL： TTL(秒)) |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
     "header": {
-        // 생략
+        // 省略
     },
     "totalCount": 2,
     "recordsetList": [
@@ -309,7 +309,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
                 {
                     "recordDisabled": false,
                     "recordContent": "ns1.dnsplus.com. hostmaster.dnsplus.com. 2019060401 10800 3600 604800 1200",
-                    // 생략: 레코드 세트 타입에 따라 다름
+                    // 省略：レコードセットタイプによって異なる
                 }
             ]
         },
@@ -325,12 +325,12 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
                 {
                     "recordDisabled": false,
                     "recordContent": "ns.toastdns-jin.com.",
-                    // 생략: 레코드 세트 타입에 따라 다름
+                    // 省略：レコードセットタイプによって異なる
                 },
                 {
                     "recordDisabled": false,
                     "recordContent": "ns.toastdns-jin.net.",
-                    // 생략: 레코드 세트 타입에 따라 다름
+                    // 省略：レコードセットタイプによって異なる
                 }
             ]
         }
@@ -338,45 +338,45 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 }
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 설명 |
+| 名前 | タイプ | 説明 |
 |---|---|---|
-| totalCount | long | 전체 레코드 세트 개수 |
-| recordsetList | List | 레코드 세트 목록 |
-| recordsetList[0].recordsetId | String | 레코드 세트 ID |
-| recordsetList[0].recordsetName | String | 레코드 세트 이름 |
-| recordsetList[0].recordsetType | String | 레코드 세트 타입 |
-| recordsetList[0].recordsetTtl | int | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
-| recordsetList[0].recordsetStatus | String | 레코드 세트 상태 |
-| recordsetList[0].createdAt | DateTime | 생성일 |
-| recordsetList[0].updatedAt | DateTime | 수정일 |
-| recordsetList[0].recordList | List | 레코드 목록 |
-| recordsetList[0].recordList[0].recordDisabled | boolean | 레코드 비활성화 여부 |
-| recordsetList[0].recordList[0].recordContent | String | 레코드값이며 레코드 세트 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
+| totalCount | long | 全レコードセット数 |
+| recordsetList | List | レコードセットリスト |
+| recordsetList[0].recordsetId | String | レコードセットID |
+| recordsetList[0].recordsetName | String | レコードセット名 |
+| recordsetList[0].recordsetType | String | レコードセットタイプ |
+| recordsetList[0].recordsetTtl | int | ネームサーバーでレコードセット情報の更新周期 |
+| recordsetList[0].recordsetStatus | String | レコードセット状態 |
+| recordsetList[0].createdAt | DateTime | 作成日 |
+| recordsetList[0].updatedAt | DateTime | 修正日 |
+| recordsetList[0].recordList | List | レコードリスト |
+| recordsetList[0].recordList[0].recordDisabled | boolean | レコードを無効にするかどうか |
+| recordsetList[0].recordList[0].recordContent | String | レコード値。レコードセットタイプによって複数のフィールドを1行で表示した内容 |
 
 
-### 레코드 세트 생성
+### レコードセット作成
 
-- 레코드 세트를 생성합니다.
-- **레코드 세트 타입**으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA를 지원합니다.
-- SOA 레코드 세트는 생성/수정/삭제할 수 없으며, NS 레코드 세트는 **DNS Zone 이름**으로 생성/수정/삭제할 수 없습니다.
-- 레코드 세트 내의 레코드 목록의 길이는 최대 512바이트입니다.
+- レコードセットを作成します。
+- **レコードセットタイプ**としてA、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、SPF、NS、SOAをサポートします。
+- SOAレコードセットは、作成/修正/削除できず、NSレコードセットは、**DNS Zone名**で作成/修正/削除できません。
+- レコードセット内のレコードリストの長さは、最大512バイトです。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
-- recordset.recordList[0].recordContent 대신 레코드 세트 타입에 따라 필드를 상세하게 나누어 입력할 수 있습니다.
-- 상세 필드와 recordContent를 동시에 입력하면 recordContent를 기준으로 생성됩니다.
+- {appkey}はコンソールで確認した値に変更します。
+- {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
+- recordset.recordList[0].recordContentの代わりに、レコードセットタイプによってフィールドを詳細に分けて入力できます。
+- 詳細フィールドとrecordContentを同時に入力すると、recordContentを基準に作成されます。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
@@ -384,200 +384,200 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 --data '{ "recordset": { "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset | Object |  | 필수 |  | 레코드 세트 |
-| recordset.recordsetName | String | 최대 254자<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드 세트 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드 세트 타입 |
-| recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
-| recordset.recordList | List |  | 필수 |  | 레코드 목록 |
-| recordset.recordList[0].recordDisabled | boolean |  | 선택 | false | 레코드 비활성화 여부 |
-| recordset.recordList[0].recordContent | String |  | 필수 |  | 레코드 세트 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
+| recordset | Object |  | 必須 |  | レコードセット |
+| recordset.recordsetName | String | 最大254文字<br>(DNS Zone名含む) | 必須 |  | 作成するレコードセット名、<br>ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
+| recordset.recordsetType | String | A、AAAA、CAA、CNAME、MX、<br>NAPTR、PTR、TXT、SRV、SPF、NS | 必須 |  | レコードセットタイプ |
+| recordset.recordsetTtl | int | 最小1、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
+| recordset.recordList | List |  | 必須 |  | レコードリスト |
+| recordset.recordList[0].recordDisabled | boolean |  | 任意 | false | レコードを無効にするかどうか |
+| recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプによって複数のフィールドを1行で表示した内容 |
 
-[레코드 세트 타입에 따른 상세 필드]
+[レコードセットタイプ別の詳細フィールド]
 
-- A 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 하나의 도메인명에 여러 개의 IPv4 주소를 등록할 수 있습니다.
+- Aレコードセット
+    - 複数のレコードを入力できます。
+    - 1つのドメイン名に複数のIPv4アドレスを登録できます。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].ipV4 | String |  | 필수 |  | IPv4 형식의 주소 |
+| recordset.recordList[0].ipV4 | String |  | 必須 |  | IPv4形式のアドレス |
 
 
-- AAAA 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 하나의 도메인명에 여러 개의 IPv6 주소를 등록할 수 있습니다
+- AAAAレコードセット
+    - 複数のレコードを入力できます。
+    - 1つのドメイン名に複数のIPv6アドレスを登録できます
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].ipV6 | String |  | 필수 |  | IPv6 형식의 주소 |
+| recordset.recordList[0].ipV6 | String |  | 必須 |  | IPv6形式のアドレス |
 
 
-- CAA 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 도메인에 발급이 허용된 인증 기관(CA)을 지정하면 허용되지 않은 인증 기관(CA)이 인증서를 발급하는 것을 방지할 수 있습니다.
-    - issue 태그는 도메인 또는 하위 도메인에 대한 인증서 발행 권한입니다.
-    - issuewild 태그는 도메인 또는 하위 도메인에 대한 와일드카드 인증서 발행 권한입니다.
-        - issue 태그와 issuewild 태그의 설정 방법은 동일합니다.
-        - 인증서 발행 허용: 인증 기관 주소 입력, 부가 설정이 필요한 경우 세미콜론(;)으로 분리하고 '이름=값' 쌍으로 지정
-        - 인증서 발행 금지: 세미콜론(;) 입력
-    - iodef 태그는 인증 기관(CA)이 잘 못 된 요청을 받을 경우 설정된 이메일 또는 URL 주소로 알립니다.
-        - 메일 입력 형식: "mailto:*email-address*"
-        - URL 주소 입력 형식: "http://*URL*" 또는 "https://*URL*"
-    - 사용자 지정 태그는 인증 기관(CA)에서 RFC 표준 외의 부가 기능을 지원하는 경우의 설정입니다.
+- CAAレコードセット
+    - 複数のレコードを入力できます。
+    - ドメインに発行が許可されている認証機関(CA)を指定すると、許可されていない認証機関(CA)が証明書を発行することを防止できます。
+    - issueタグは、ドメインまたはサブドメインに対する証明書発行権限です。
+    - issuewildタグは、ドメインまたはサブドメインに対するワイルドカード証明書発行権限です。
+        - issueタグとissuewildタグの設定方法は同じです。
+        - 証明書発行許可：認証機関アドレスの入力、付加設定が必要な場合は、セミコロン(;)で区切って'名前=値'のペアで指定
+        - 証明書発行禁止：セミコロン(;)入力
+    - iodefタグは、認証機関(CA)が無効なリクエストを受け取った場合、設定されたメールまたはURLに通知します。
+        - メール入力形式："mailto:*email-address*"
+        - URL入力形式："http://*URL*"または"https://*URL*"
+    - ユーザー指定タグは、認証機関(CA)でRFC標準外の付加機能をサポートする場合の設定です。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].flags | int | 0 또는 128 | 필수 |  | 정의된 태그인 경우 0, <br>사용자 지정 태그인 경우 128 |
-| recordset.recordList[0].tag | String | TAG_ISSUE, <br>TAG_ISSUEWILD, <br>TAG_IODEF, <br>사용자 지정 태그 최대 15 | 필수 |  | TAG_ISSUE: issue 태그, <br>TAG_ISSUEWILD: issuewild 태그, <br>TAG_IODEF: iodef 태그, <br>사용자 지정 태그 |
-| recordset.recordList[0].stringValue | String | 최대 512자(인용부호 포함) | 필수 |  | 태그에 따른 내용 |
+| recordset.recordList[0].flags | int | 0または128 | 必須 |  | 定義されたタグの場合0、<br>ユーザー指定タグの場合128 |
+| recordset.recordList[0].tag | String | TAG_ISSUE, <br>TAG_ISSUEWILD, <br>TAG_IODEF, <br>ユーザー指定タグ最大15 | 必須 |  | TAG_ISSUE：issueタグ、 <br>TAG_ISSUEWILD：issuewildタグ、 <br>TAG_IODEF：iodefタグ、 <br>ユーザー指定タグ |
+| recordset.recordList[0].stringValue | String | 最大512文字(引用符号含む) | 必須 |  | タグに応じた内容 |
 
 
-- CNAME 레코드 세트
-    - 하나의 레코드를 입력할 수 있습니다.
-    - 레코드 세트 이름을 정규 이름의 별칭(canonical)으로 정의합니다.
-    - A 레코드를 먼저 설정하고 CNAME을 설정해야 합니다.
+- CNAMEレコードセット
+    - 1つのレコードを入力できます。
+    - レコードセット名を正規名のカノニカル(canonical)で定義します。
+    - Aレコードを先に設定してから、CNAMEを設定する必要があります。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].domainName | String | 最大255文字 | 必須 |  | ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
 
 
-- MX 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 도메인에 대한 메일 서버를 지정합니다.
+- MXレコードセット
+    - 複数のレコードを入力できます。
+    - ドメインに対するメールサーバーを指定します。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].priority | int | 최소 0, 최대 65535 | 필수 |  | 우선순위 |
-| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].priority | int | 最小0、最大65535 | 必須 |  | 優先順位 |
+| recordset.recordList[0].domainName | String | 最大255文字 | 必須 |  | ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
 
 
-- NAPTR 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - DDDS(Dynamic Delegation Discovery System) 애플리케이션에서 하나의 값을 다른 값으로 변환하거나 대체하기 위해 사용합니다.
-    - 순서 항목은 DDDS 애플리케이션이 레코드를 평가하는 순서입니다.
-    - 선호 순서 항목은 두 개 이상의 레코드가 순서 항목이 동일한 경우 우선하여 평가하는 순서입니다.
-    - 구분 항목은 DDDS 애플리케이션 설정으로 공백, 'S', 'A', 'U', 'P'를 사용할 수 있으며 그 외의 문자는 예약되어 있습니다.
-    - 서비스 항목은 DDDS 애플리케이션 설정으로 상세 정의는 RFC 문서에서 확인할 수 있습니다.
-        - URI DDDS 애플리케이션 [RFC 3404#section-4.4](https://tools.ietf.org/html/rfc3404#section-4.4)
-        - S-NAPTR DDDS 애플리케이션 [RFC 3958#section-6.5](https://tools.ietf.org/html/rfc3958#section-6.5)
-        - U-NAPTR DDDS 애플리케이션 [RFC 4848#section-4.5](https://tools.ietf.org/html/rfc4848#section-4.5)
-    - 정규식 항목은 DDDS 애플리케이션에서 입력값을 출력값으로 변환하는 데 사용합니다. 상세 정의는 [RFC 3402#section-3.2](https://tools.ietf.org/html/rfc3402#section-3.2)에서 확인할 수 있습니다.
-    - 대체값 항목은 DDDS 애플리케이션이 DNS 쿼리를 제출할 도메인 이름으로 입력값을 대체합니다. 정규식 항목을 설정하는 경우 '.'로 설정합니다.
+- NAPTRレコードセット
+    - 複数のレコードを入力できます。
+    - DDDS(Dynamic Delegation Discovery System)アプリケーションで、1つの値を別の値に変換または代替するために使用します。
+    - 順序項目は、DDDSアプリケーションがレコードを評価する順序です。
+    - 優先順序項目は、2個以上のレコードの順序項目が同じ場合、優先して評価する順序です。
+    - 区分項目は、DDDSアプリケーション設定で空白、'S', 'A', 'U', 'P'を使用でき、それ以外の文字は予約されています。
+    - サービス項目はDDDSアプリケーション設定で、詳細定義はRFC文書で確認できます。
+        - URI DDDSアプリケーション[RFC 3404#section-4.4](https://tools.ietf.org/html/rfc3404#section-4.4)
+        - S-NAPTR DDDSアプリケーション[RFC 3958#section-6.5](https://tools.ietf.org/html/rfc3958#section-6.5)
+        - U-NAPTR DDDSアプリケーション[RFC 4848#section-4.5](https://tools.ietf.org/html/rfc4848#section-4.5)
+    - 正規表現項目は、DDDSアプリケーションで入力値を出力値に変換するのに使用します。詳細定義は、[RFC 3402#section-3.2](https://tools.ietf.org/html/rfc3402#section-3.2)で確認できます。
+    - 代替値項目は、DDDSアプリケーションがDNSクエリーを提出するドメイン名で入力値を代替します。正規表現項目を設定する場合は、'.'に設定します。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].order | int | 최소 0, 최대 65535 | 필수 |  | 순서 |
-| recordset.recordList[0].preference | int | 최소 0, 최대 65535 | 필수 |  | 선호 순서 |
-| recordset.recordList[0].flags | String | 최대 3자(인용부호 포함) | 필수 |  | 구분 |
-| recordset.recordList[0].service | String | 최대 257자(인용부호 포함) | 필수 |  | 서비스 |
-| recordset.recordList[0].regexp | String | 최대 257자(인용부호 포함) | 필수 |  | 정규식 |
-| recordset.recordList[0].replacement | String | 최대 255자 | 필수 |  | 대체값으로 '.' 또는 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].order | int | 最小0、最大65535 | 必須 |  | 順序 |
+| recordset.recordList[0].preference | int | 最小0、最大65535 | 必須 |  | 優先順序 |
+| recordset.recordList[0].flags | String | 最大3文字(引用符号含む) | 必須 |  | 区分 |
+| recordset.recordList[0].service | String | 最大257文字(引用符号含む) | 必須 |  | サービス |
+| recordset.recordList[0].regexp | String | 最大257文字(引用符号含む) | 必須 |  | 正規表現 |
+| recordset.recordList[0].replacement | String | 最大255文字 | 必須 |  | 代替値に'.'またはドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
 
 
-- PTR 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - IP 주소를 이용해서 도메인 정보를 조회하는 역방향 질의 기능입니다. ISP 업체에 요청하여 설정해야 합니다.
-    - IP 주소는 역순으로 레코드 세트 이름에 입력해야 합니다. (예제) 127.0.0.1, 1.0.0.127.in-addr.arpa
+- PTRレコードセット
+    - 複数のレコードを入力できます。
+    - IPアドレスを利用してドメイン情報を照会する逆方向クエリ機能です。ISP業者にリクエストして設定する必要があります。
+    - IPアドレスは、逆順でレコードセット名に入力する必要があります。(例) 127.0.0.1, 1.0.0.127.in-addr.arpa
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].domainName | String | 最大255文字 | 必須 |  | ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
 
 
-- TXT 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 레코드 세트 이름에 대한 텍스트 내용을 입력합니다.
+- TXTレコードセット
+    - 複数のレコードを入力できます。
+    - レコードセット名に対するテキストの内容を入力します。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 최대 255바이트(인용부포 포함) | 필수 |  | 텍스트 내용 |
+| recordset.recordList[0].stringValue | String | 最大255バイト(引用符号含む) | 必須 |  | テキスト内容 |
 
 
-- SRV 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 유사한 TCP/IP 기반 서비스를 제공하는 여러 서버를 단일 DNS 쿼리 동작을 사용하여 찾을 수 있습니다.
+- SRVレコードセット
+    - 複数のレコードを入力できます。
+    - 類似したTCP/IP基盤サービスを提供する複数のサーバーを、単一DNSクエリー動作を使用して検索できます。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].priority | int | 최소 0, 최대 65535 | 필수 |  | 우선순위 |
-| recordset.recordList[0].weight | int | 최소 0, 최대 65535 | 필수 |  | 가중치 |
-| recordset.recordList[0].port | int | 최소 0, 최대 65535 | 필수 |  | 포트 |
-| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].priority | int | 最小0、最大65535 | 必須 |  | 優先順位 |
+| recordset.recordList[0].weight | int | 最小0、最大65535 | 必須 |  | 重み |
+| recordset.recordList[0].port | int | 最小0、最大65535 | 必須 |  | ポート |
+| recordset.recordList[0].domainName | String | 最大255文字 | 必須 |  | ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
 
 
-- SPF 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 이메일 발신자 도메인 인증 방식으로 수신 메일 서버가 발송 메일 서버와 메일 주소가 일치하는지 확인하는 기능입니다.
-    - 아래와 같은 형태로 입력 가능하며 상세 정의는 [RFC4408](https://tools.ietf.org/html/rfc4408)에서 확인할 수 있습니다.
-    - 수식자의 기본값은 '+'이며 메커니즘에 따라 IP, 도메인 이름 등을 추가로 입력합니다.
-        - 형태: "v=spf1 {수식자}{메커니즘}{내용} {변경자}={내용}"
-        - 수식자: '+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
-        - 메커니즘: all, include, a, mx, prt, ip4, ip6, exists
-        - 변경자: redirect, exp, 사용자 지정
-        - (예제)
+- SPFレコードセット
+    - 複数のレコードを入力できます。
+    - メール送信者のドメイン認証方式です。受信メールサーバーが送信メールサーバーとメールアドレスが一致しているかを確認する機能です。
+    - 下記のような形式で入力でき、詳細定義は[RFC4408](https://tools.ietf.org/html/rfc4408)で確認できます。
+    - 修飾子のデフォルト値は'+'で、メカニズムによってIP、ドメイン名などを追加で入力します。
+        - 形式："v=spf1 {修飾子}{メカニズム}{内容} {変更者}={内容}"
+        - 修飾子: '+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
+        - メカニズム：all、include、a、mx、prt、ip4、ip6、exists
+        - 変更者：redirect、exp、ユーザー指定
+        - (例)
             - "v=spf1 mx -all"
             - "v=spf1 ip4:192.168.0.1/16 -all"
             - "v=spf1 a:toast.com -all"
             - "v=spf1 redirect=toast.com"
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 최대 255바이트(인용부포 포함) | 필수 |  | SPF 형식에 따른 내용 |
+| recordset.recordList[0].stringValue | String | 最大255バイト(引用符号含む) | 必須 |  | SPF形式に応じた内容 |
 
 
-- NS 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 레코드 세트 이름에 대한 네임 서버를 지정합니다.
-    - 레코드 세트 이름은 DNS Zone 이름의 하위 도메인으로만 생성이나 수정할 수 있습니다.
+- NSレコードセット
+    - 複数のレコードを入力できます。
+    - レコードセット名に対するネームサーバーを指定します。
+    - レコードセット名はDNS Zone名のサブドメインでのみ、作成や修正ができます。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].domainName | String | 最大255文字 | 必須 |  | ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
 
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "SUCCESS"
+        "resultMessage": "Success"
     }
 }
 ```
 
 
-### 레코드 세트 수정
+### レコードセット修正
 
-- 레코드 세트를 수정합니다.
-- **레코드 세트 이름**과 **레코드 세트 타입**은 수정할 수 없으며, **TTL(초)**과 **레코드값**은 수정할 수 있습니다.
-- SOA 레코드 세트는 생성/수정/삭제할 수 없으며, NS 레코드 세트는 **DNS Zone 이름**으로 생성/수정/삭제할 수 없습니다.
-- 레코드 세트 내의 레코드 목록의 길이는 최대 512바이트입니다.
+- レコードセットを修正します。
+- **レコードセット名**と**レコードセットタイプ**は修正できず、**TTL(秒)**と**レコード値**は修正できます。
+- SOAレコードセットは作成/修正/削除できず、NSレコードセットは**DNS Zone名**で作成/修正/削除できません。
+- レコードセット内のレコードリストの長さは、最大512バイトです。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId} |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
-- {recordsetId}는 레코드 세트 ID이며 [레코드 세트 조회](./api-guide/#_11)를 통해서 알 수 있습니다.
-- recordset.recordList[0].recordContent 대신 레코드 세트 타입에 따라 필드를 상세하게 나누어 입력할 수 있습니다.
-- 상세 필드와 recordContent를 동시에 입력하면 recordContent를 기준으로 수정됩니다.
-- 상세 필드는 [레코드 세트 생성](./api-guide/#_14)과 동일합니다.
+- {appkey}はコンソールで確認した値に変更します。
+- {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
+- {recordsetId}はレコードセットIDで、[レコードセット照会](./api-guide/#_11)を通して確認できます。
+- recordset.recordList[0].recordContentの代わりに、レコードセットタイプによってフィールドを詳細に分けて入力できます。
+- 詳細フィールドとrecordContentを同時に入力した場合、recordContentを基準に修正されます。
+- 詳細フィールドは[レコードセット作成](./api-guide/#_14)と同じです。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
@@ -585,73 +585,73 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 --data '{ "recordset": { "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordset | Object |  | 필수 |  | 레코드 세트 |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드 세트 ID에 대한 레코드 세트 타입 |
-| recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
-| recordset.recordList | List |  | 필수 |  | 레코드 목록 |
-| recordset.recordList[0].recordDisabled | boolean |  | 필수 |  | 레코드 비활성화 여부 |
-| recordset.recordList[0].recordContent | String |  | 필수 |  | 레코드 세트 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
+| recordset | Object |  | 必須 |  | レコードセット |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 必須 |  | レコードセットIDに対するレコードセットタイプ |
+| recordset.recordsetTtl | int | 最小1、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
+| recordset.recordList | List |  | 必須 |  | レコードリスト |
+| recordset.recordList[0].recordDisabled | boolean |  | 必須 |  | レコードを無効にするかどうか |
+| recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプによって複数のフィールドを1行で表示した内容 |
 
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "SUCCESS"
+        "resultMessage": "Success"
     }
 }
 ```
 
 
-### 레코드 세트 삭제
+### レコードセット削除
 
-- 여러 개의 레코드 세트를 삭제하며, 레코드 세트의 레코드도 함께 삭제합니다.
-- SOA 레코드 세트는 생성/수정/삭제할 수 없으며, NS 레코드 세트는 **DNS Zone 이름**으로 생성/수정/삭제할 수 없습니다.
+- 複数のレコードセットを削除し、レコードセットのレコードも一緒に削除します。
+- SOAレコードセットは作成/修正/削除できず、NSレコードセットは**DNS Zone名**で作成/修正/削除できません。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
-- 레코드 세트 ID는 [레코드 세트 조회](./api-guide/#_11)를 통해서 알 수 있습니다.
+- {appkey}はコンソールで確認した値に変更します。
+- {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
+- レコードセットIDは、[レコードセット照会](./api-guide/#_11)を通して確認できます。
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
 recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092d340e0adf'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| recordsetIdList | List | 최소 1개, 최대 3,000개 | 필수 |  | 레코드 세트 ID 목록 |
+| recordsetIdList | List | 最小1個、最大3,000個 | 必須 |  | レコードセットIDリスト |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "SUCCESS"
+        "resultMessage": "Success"
     }
 }
 ```
