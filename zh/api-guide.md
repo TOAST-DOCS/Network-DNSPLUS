@@ -1,20 +1,20 @@
-## Network > DNS Plus > API 가이드
+## Network > DNS Plus > API指南
 
-DNS Plus 서비스의 API를 설명합니다.
+介绍DNS Plus服务的API。
 
 
-## API 공통 정보
+## API通用信息
 
-### 사전 준비
+### 提前准备
 
-- API를 사용하려면 앱키가 필요합니다.
-- 앱키는 콘솔 상단 **URL & Appkey** 메뉴에서 확인이 가능합니다.
+- 若欲使用API，需要Appkey。
+- Appkey可在控制台上端**URL & Appkey**菜单中确认。
 
-### 응답 공통 정보
+### 响应通用信息
 
-- 모든 API 요청에 '200 OK'로 응답합니다. 자세한 응답 결과는 응답 본문의 헤더를 참고하세요.
+- 对于所有API请求，以“200 OK”响应。详细响应结果请参考响应正文的标头。
 
-[성공 응답 본문]
+[成功响应正文]
 
 ```
 {
@@ -26,14 +26,14 @@ DNS Plus 서비스의 API를 설명합니다.
 }
 ```
 
-[실패 응답 본문]
+[失败响应正文]
 
 ```
 {
     "header": {
         "isSuccessful": false,
         "resultCode": 4010001,
-        "resultMessage": "Invalid appKey. "
+        "resultMessage": "Invalid appKey."
     }
 }
 ```
@@ -41,47 +41,47 @@ DNS Plus 서비스의 API를 설명합니다.
 
 ## DNS Zone API
 
-### DNS Zone 조회
+### 查询DNS Zone
 
-- DNS Zone 목록을 조회합니다.
+- 查询DNS Zone列表。
 
-#### 요청
+#### 请求
 
 [URI]
 
-| 메서드 | URI |
+| 方法 | URI |
 |---|---|
 | GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones |
 
-[요청 본문]
+[请求正文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}更改为在控制台中确认的值。
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones'
 ```
 
-[옵션]
+[选项]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| zoneIdList | List | 최대 3,000개 | 선택 |  | DNS Zone ID 목록 |
-| zoneStatusList | List | CREATING, <br>DELETING, <br>DELETING_FAIL, <br> USE | 선택 | | DNS Zone 상태 목록 <br>(CREATING: 생성 중, <br>DELETING: 삭제 중, <br>DELETING_FAIL: 삭제 실패, <br>USE: 사용) |
-| searchZoneName | String |  | 선택 |  | 검색할 DNS Zone 이름 |
-| engineId | String | | 선택 |  | DNS 서버 ID |
-| page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
-| limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
-| sortDirection | String | DESC, ASC | 선택 | DESC | 정렬 방향(DESC: 내림차순, ASC: 오름차순) |
-| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>ZONE_NAME, <br>ZONE_STATUS, <br>RECORDSET_COUNT | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>ZONE_NAME: DNS Zone 이름, <br>ZONE_STATUS: DNS Zone 상태, <br>RECORDSET_COUNT: 레코드 세트 개수) |
+| zoneIdList | List | 最大3,000个 | 选择 |  | DNS Zone ID列表 |
+| zoneStatusList | List | CREATING, <br>DELETING, <br>DELETING_FAIL, <br> USE | 选择 | | DNS Zone状态列表 <br>（CREATING：正在创建，<br>DELETING：正在删除，<br>DELETING_FAIL：删除失败，<br>USE：使用） |
+| searchZoneName | String |  | 选择 |  | 要搜索的DNS Zone名 |
+| engineId | String | | 选择 |  | DNS服务器ID |
+| page | int | 最小1 | 选择 | 1 | 页面编号 |
+| limit | int | 最小1，最大3,000 | 选择 | 50 | 查询个数 |
+| sortDirection | String | DESC, ASC | 选择 | DESC | 排列方向（DESC：降序，ASC：升序） |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>ZONE_NAME, <br>ZONE_STATUS, <br>RECORDSET_COUNT | 选择 | CREATED_AT | 排列对象 <br>（CREATED_AT：创建日，<br>UPDATED_AT：修改日，<br>ZONE_NAME：DNS Zone名，<br>ZONE_STATUS：DNS Zone状态，<br>RECORDSET_COUNT：记录集合个数） |
 
-#### 응답
+#### 响应
 
-[응답 본문]
+[响应正文]
 
 ```
 {
     "header": {
-        // 생략
+        // 省略
     },
     "totalCount": 1,
     "zoneList": [
@@ -90,7 +90,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
             "zoneId": "bff20a9a-24cf-4670-8b34-007622ec010e",
             "zoneName": "test.dnsplus.com.",
             "zoneStatus": "USE",
-            "description": "테스트",
+            “description”: “文本",
             "createdAt": "2019-06-04T12:32:50.000+09:00",
             "updatedAt": "2019-06-04T12:32:50.000+09:00",
             "recordsetCount": 2
@@ -99,57 +99,57 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 }
 ```
 
-[필드]
+[字段]
 
-| 이름 | 타입 | 설명 |
+| 名称 | 类型 | 说明 |
 |---|---|---|
-| totalCount | long | 전체 DNS Zone 개수 |
-| zoneList | List | DNS Zone 목록 |
-| zoneList[0].engineId | boolean | DNS 서버 ID |
+| totalCount | long | 全部DNS Zone个数 |
+| zoneList | List | DNS Zone列表 |
+| zoneList[0].engineId | boolean | DNS服务器ID |
 | zoneList[0].zoneId | String | DNS Zone ID |
-| zoneList[0].zoneName | String | DNS Zone 이름 |
-| zoneList[0].zoneStatus | String | DNS Zone 상태 |
-| zoneList[0].description | String | 설명 |
-| zoneList[0].createdAt | DateTime | 생성일 |
-| zoneList[0].updatedAt | DateTime | 수정일 |
-| zoneList[0].recordsetCount | long | 레코드 세트 개수 |
+| zoneList[0].zoneName | String | DNS Zone名 |
+| zoneList[0].zoneStatus | String | DNS Zone状态 |
+| zoneList[0].description | String | 说明 |
+| zoneList[0].createdAt | DateTime | 创建日 |
+| zoneList[0].updatedAt | DateTime | 修改日 |
+| zoneList[0].recordsetCount | long | 记录集合个数 |
 
 
-### DNS Zone 생성
+### 创建DNS Zone
 
-- DNS Zone을 생성합니다.
-- **DNS Zone 이름**은 DNS 서버에서 유일해야 합니다.
-- 동일한 **DNS Zone 이름**은 DNS 서버 수만큼 생성 가능합니다. DNS 서버는 3대입니다.
+- 创建DNS Zone。
+- **DNS Zone名**在DNS服务器中应唯一。
+- 可按照DNS服务器数创建相同的**DNS Zone名**。DNS服务器为3台。
 
-#### 요청
+#### 请求
 
 [URI]
 
-| 메서드 | URI |
+| 方法 | URI |
 |---|---|
 | POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones |
 
-[요청 본문]
+[请求正文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}更改为在控制台中确认的值。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones' \
--H 'Content-Type: application/json' \
+-H 'Content-Type:application/json' \
 --data '{ "zone": { "zoneName": "test.dnsplus.com.", "description": "test" }}'
 ```
 
-[필드]
+[字段]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| zone | Object |  | 필수 |  | DNS Zone |
-| zone.zoneName | String | 최대 254자 | 필수 |  | 생성할 DNS Zone 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
-| zone.description | String | 최대 255자 | 선택 |  | DNS Zone 설명 |
+| zone | Object |  | 必需 |  | DNS Zone |
+| zone.zoneName | String | 最大254个字符 | 必需 |  | 要创建的DNS Zone名，<br>域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
+| zone.description | String | 最大255个字符 | 选择 |  | DNS Zone说明 |
 
-#### 응답
+#### 响应
 
-[응답 본문]
+[响应正文]
 
 ```
 {
@@ -162,39 +162,39 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 
 
-### DNS Zone 수정
+### 修改DNS Zone
 
-- DNS Zone을 수정합니다.
+- 修改DNS Zone。
 
-#### 요청
+#### 请求
 
 [URI]
 
-| 메서드 | URI |
+| 方法 | URI |
 |---|---|
 | PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId} |
 
-[요청 본문]
+[请求正文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
+- {appkey}更改为在控制台中确认的值。
+- {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
 
 ```
 curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}' \
--H 'Content-Type: application/json' \
+-H 'Content-Type:application/json' \
 --data '{ "zone": { "description": "test" }}'
 ```
 
-[필드]
+[字段]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| zone | Object |  | 필수 |  | DNS Zone |
-| zone.description | String | 최대 255자 | 선택 |  | DNS Zone 설명 |
+| zone | Object |  | 必需 |  | DNS Zone |
+| zone.description | String | 最大255个字符 | 选择 |  | DNS Zone说明 |
 
-#### 응답
+#### 响应
 
-[응답 본문]
+[响应正文]
 
 ```
 {
@@ -207,38 +207,38 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 ```
 
 
-### DNS Zone 삭제 (비동기)
+### 删除DNS Zone（非同步）
 
-- 여러 개의 DNS Zone을 삭제하며, DNS Zone의 레코드 세트도 함께 삭제합니다.
-- 실제 데이터 삭제는 비동기로 처리됩니다.
+- 删除多个DNS Zone，DNS Zone的记录集合也同时删除。
+- 实际数据删除非同步处理。
 
-#### 요청
+#### 请求
 
 [URI]
 
-| 메서드 | URI |
+| 方法 | URI |
 |---|---|
 | DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/async |
 
-[요청 본문]
+[请求正文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- DNS Zone ID는 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
+- {appkey}更改为在控制台确认的值。
+- DNS Zone ID可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/async?
 zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab24188dc4'
 ```
 
-[필드]
+[字段]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| zoneIdList | List | 최소 1개, 최대 3,000개 | 필수 |  | DNS Zone ID 목록 |
+| zoneIdList | List | 最小1个，最大3,000个 | 必需 |  | DNS Zone ID列表 |
 
-#### 응답
+#### 响应
 
-[응답 본문]
+[响应正文]
 
 ```
 {
@@ -251,49 +251,49 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 ```
 
 
-## 레코드 세트 API
+## 记录集合API
 
-### 레코드 세트 조회
+### 查询记录集合
 
-- 레코드 세트 목록을 조회합니다.
+- 查询记录集合列表。
 
-#### 요청
+#### 请求
 
 [URI]
 
-| 메서드 | URI |
+| 方法 | URI |
 |---|---|
 | GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
-[요청 본문]
+[请求正文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
+- {appkey}更改为在控制台中确认的值。
+- {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
 ```
 
-[옵션]
+[选项]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordsetIdList | List | 최대 3,000개 | 선택 |  | 레코드 세트 목록 |
-| recordsetTypeList | List | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS, SOA | 선택 | | 레코드 세트 타입 목록 |
-| searchRecordsetName | String |  | 선택 |  | 검색할 레코드 세트 이름 |
-| page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
-| limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
-| sortDirection | String | DESC, ASC | 선택 | DESC | 정렬 방향(DESC: 내림차순, ASC: 오름차순) |
-| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>RECORDSET_NAME, <br>RECORDSET_TYPE, <br>RECORDSET_TTL | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>RECORDSET_NAME: 레코드 세트 이름, <br>RECORDSET_TYPE: 레코드 세트 타입, <br>RECORDSET_TTL: TTL(초)) |
+| recordsetIdList | List | 最大3,000个 | 选择 |  | 记录集合列表 |
+| recordsetTypeList | List | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS, SOA | 选择 | | 记录集合类型列表 |
+| searchRecordsetName | String |  | 选择 |  | 要搜索的记录集合名 |
+| page | int | 最小1 | 选择 | 1 | 页面编号 |
+| limit | int | 最小1，最大3,000 | 选择 | 50 | 查询个数 |
+| sortDirection | String | DESC, ASC | 选择 | DESC | 排列方向（DESC：降序，ASC：升序） |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>RECORDSET_NAME, <br>RECORDSET_TYPE, <br>RECORDSET_TTL | 选择 | CREATED_AT | 排列对象<br>（CREATED_AT：创建日，<br>UPDATED_AT：修改日，<br>RECORDSET_NAME：记录集合名，<br>RECORDSET_TYPE：记录集合类型，<br>RECORDSET_TTL：TTL（秒）） |
 
-#### 응답
+#### 响应
 
-[응답 본문]
+[响应正文]
 
 ```
 {
     "header": {
-        // 생략
+        // 省略
     },
     "totalCount": 2,
     "recordsetList": [
@@ -308,8 +308,8 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
             "recordList": [
                 {
                     "recordDisabled": false,
-                    "recordContent": "ns1.dnsplus.com. hostmaster.dnsplus.com. 2019060401 10800 3600 604800 1200",
-                    // 생략: 레코드 세트 타입에 따라 다름
+                    "recordContent": "ns1.dnsplus.com.hostmaster.dnsplus.com.2019060401 10800 3600 604800 1200",
+                    // 省略：根据记录集合类型有所不同
                 }
             ]
         },
@@ -325,12 +325,12 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
                 {
                     "recordDisabled": false,
                     "recordContent": "ns.toastdns-jin.com.",
-                    // 생략: 레코드 세트 타입에 따라 다름
+                    // 省略：根据记录集合类型有所不同
                 },
                 {
                     "recordDisabled": false,
                     "recordContent": "ns.toastdns-jin.net.",
-                    // 생략: 레코드 세트 타입에 따라 다름
+                    // 省略：根据记录集合类型有所不同
                 }
             ]
         }
@@ -338,212 +338,212 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 }
 ```
 
-[필드]
+[字段]
 
-| 이름 | 타입 | 설명 |
+| 名称 | 类型 | 说明 |
 |---|---|---|
-| totalCount | long | 전체 레코드 세트 개수 |
-| recordsetList | List | 레코드 세트 목록 |
-| recordsetList[0].recordsetId | String | 레코드 세트 ID |
-| recordsetList[0].recordsetName | String | 레코드 세트 이름 |
-| recordsetList[0].recordsetType | String | 레코드 세트 타입 |
-| recordsetList[0].recordsetTtl | int | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
-| recordsetList[0].recordsetStatus | String | 레코드 세트 상태 |
-| recordsetList[0].createdAt | DateTime | 생성일 |
-| recordsetList[0].updatedAt | DateTime | 수정일 |
-| recordsetList[0].recordList | List | 레코드 목록 |
-| recordsetList[0].recordList[0].recordDisabled | boolean | 레코드 비활성화 여부 |
-| recordsetList[0].recordList[0].recordContent | String | 레코드값이며 레코드 세트 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
+| totalCount | long | 全部记录集合个数 |
+| recordsetList | List | 记录集合列表 |
+| recordsetList[0].recordsetId | String | 记录集合ID |
+| recordsetList[0].recordsetName | String | 记录集合名 |
+| recordsetList[0].recordsetType | String | 记录集合类型 |
+| recordsetList[0].recordsetTtl | int | 名称服务器中记录集合信息的更新周期 |
+| recordsetList[0].recordsetStatus | String | 记录集合状态 |
+| recordsetList[0].createdAt | DateTime | 创建日 |
+| recordsetList[0].updatedAt | DateTime | 修改日 |
+| recordsetList[0].recordList | List | 记录列表 |
+| recordsetList[0].recordList[0].recordDisabled | boolean | 记录是否禁用 |
+| recordsetList[0].recordList[0].recordContent | String | 为记录值，且根据记录集合类型以一行显示多个字段的内容 |
 
 
-### 레코드 세트 생성
+### 创建记录集合
 
-- 레코드 세트를 생성합니다.
-- **레코드 세트 타입**으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA를 지원합니다.
-- SOA 레코드 세트는 생성/수정/삭제할 수 없으며, NS 레코드 세트는 **DNS Zone 이름**으로 생성/수정/삭제할 수 없습니다.
-- 레코드 세트 내의 레코드 목록의 길이는 최대 512바이트입니다.
+- 创建记录集合。
+- 以**记录集合类型**支持 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA。
+- SOA的记录集合无法创建/修改/删除，NS记录集合无法以**DNS Zone名**创建/修改/删除。
+- 记录集合内的记录列表的长度最大为512个字节。
 - DNS Zone당 레코드 세트는 최대 5,000개까지 생성할 수 있습니다.
 
-#### 요청
+#### 请求
 
 [URI]
 
-| 메서드 | URI |
+| 方法 | URI |
 |---|---|
 | POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
-[요청 본문]
+[请求正文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
-- recordset.recordList[0].recordContent 대신 레코드 세트 타입에 따라 필드를 상세하게 나누어 입력할 수 있습니다.
-- 상세 필드와 recordContent를 동시에 입력하면 recordContent를 기준으로 생성됩니다.
+- {appkey}更改为在控制台中确认的值。
+- {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
+- 可取代recordset.recordList[0].recordContent，根据记录集合类型具体分字段输入。
+- 若同时输入具体字段与recordContent，则以recordContent为基准创建。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
--H 'Content-Type: application/json' \
+-H 'Content-Type:application/json' \
 --data '{ "recordset": { "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
 
-[필드]
+[字段]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset | Object |  | 필수 |  | 레코드 세트 |
-| recordset.recordsetName | String | 최대 254자<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드 세트 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드 세트 타입 |
-| recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
-| recordset.recordList | List |  | 필수 |  | 레코드 목록 |
-| recordset.recordList[0].recordDisabled | boolean |  | 선택 | false | 레코드 비활성화 여부 |
-| recordset.recordList[0].recordContent | String |  | 필수 |  | 레코드 세트 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
+| recordset | Object |  | 必需 |  | 记录集合 |
+| recordset.recordsetName | String | 最大254个字符<br>（含DNS Zone名） | 必需 |  | 要创建的记录集合名，<br>域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 必需 |  | 记录集合类型 |
+| recordset.recordsetTtl | int | 最小1，最大2147483647 | 必需 |  | 名称服务器中记录集合信息的更新周期 |
+| recordset.recordList | List |  | 必需 |  | 记录列表 |
+| recordset.recordList[0].recordDisabled | boolean |  | 选择 | false | 记录是否禁用 |
+| recordset.recordList[0].recordContent | String |  | 必需 |  | 根据记录集合类型以一行显示多个字段的内容 |
 
-[레코드 세트 타입에 따른 상세 필드]
+[根据记录集合类型的具体字段]
 
-- A 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 하나의 도메인명에 여러 개의 IPv4 주소를 등록할 수 있습니다.
+- A记录集合
+    - 可以输入多个记录。
+    - 一个域名可绑定多个IPv4地址。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].ipV4 | String |  | 필수 |  | IPv4 형식의 주소 |
+| recordset.recordList[0].ipV4 | String |  | 必需 |  | IPv4格式的地址 |
 
 
-- AAAA 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 하나의 도메인명에 여러 개의 IPv6 주소를 등록할 수 있습니다
+- AAAA记录集合
+    - 可以输入多个记录。
+    - 一个域名可绑定多个IPv6地址
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].ipV6 | String |  | 필수 |  | IPv6 형식의 주소 |
+| recordset.recordList[0].ipV6 | String |  | 必需 |  | IPv6格式的地址 |
 
 
-- CAA 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 도메인에 발급이 허용된 인증 기관(CA)을 지정하면 허용되지 않은 인증 기관(CA)이 인증서를 발급하는 것을 방지할 수 있습니다.
-    - issue 태그는 도메인 또는 하위 도메인에 대한 인증서 발행 권한입니다.
-    - issuewild 태그는 도메인 또는 하위 도메인에 대한 와일드카드 인증서 발행 권한입니다.
-        - issue 태그와 issuewild 태그의 설정 방법은 동일합니다.
-        - 인증서 발행 허용: 인증 기관 주소 입력, 부가 설정이 필요한 경우 세미콜론(;)으로 분리하고 '이름=값' 쌍으로 지정
-        - 인증서 발행 금지: 세미콜론(;) 입력
-    - iodef 태그는 인증 기관(CA)이 잘 못 된 요청을 받을 경우 설정된 이메일 또는 URL 주소로 알립니다.
-        - 메일 입력 형식: "mailto:*email-address*"
-        - URL 주소 입력 형식: "http://*URL*" 또는 "https://*URL*"
-    - 사용자 지정 태그는 인증 기관(CA)에서 RFC 표준 외의 부가 기능을 지원하는 경우의 설정입니다.
+- CAA记录集合
+    - 可以输入多个记录。
+    - 域名若指定允许发放证书的认证机构(CA)，则可防止未经许可的认证机构(CA)发放证书。
+    - issue标签是发放与域名或下级域名相关的证书的权限。
+    - issuewild标签是发放与域名或下级域名相关的通配符证书的权限。
+        - issue标签与issuewild标签的设置方法相同。
+        - 允许签发认证书：输入认证机构地址，若需要附加设置，以分号(;)隔开，指定成对“名=值”
+        - 禁止签发认证书：输入分号(;)
+    - iodef标签在认证机构(CA)收到错误请求时，向设置的邮箱或URL地址进行通知。
+        - 邮箱输入格式："mailto:*email-address*"
+        - URL地址输入格式：“http://*URL*”或"https://*URL*"
+    - 用户指定标签是认证机构(CA)支持除RFC标准外的附加功能时的设置。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].flags | int | 0 또는 128 | 필수 |  | 정의된 태그인 경우 0, <br>사용자 지정 태그인 경우 128 |
-| recordset.recordList[0].tag | String | TAG_ISSUE, <br>TAG_ISSUEWILD, <br>TAG_IODEF, <br>사용자 지정 태그 최대 15 | 필수 |  | TAG_ISSUE: issue 태그, <br>TAG_ISSUEWILD: issuewild 태그, <br>TAG_IODEF: iodef 태그, <br>사용자 지정 태그 |
-| recordset.recordList[0].stringValue | String | 최대 512자(인용부호 포함) | 필수 |  | 태그에 따른 내용 |
+| recordset.recordList[0].flags | int | 0或128 | 必需 |  | 为已定义标签时为0,<br>为用户指定标签时为128 |
+| recordset.recordList[0].tag | String | TAG_ISSUE, <br>TAG_ISSUEWILD, <br>TAG_IODEF, <br>用户指定标签最大15 | 必需 |  | TAG_ISSUE: issue标签，<br>TAG_ISSUEWILD：issuewild标签，<br>TAG_IODEF：iodef标签，<br>用户指定标签 |
+| recordset.recordList[0].stringValue | String | 最大512个字符（含引用符号） | 必需 |  | 以标签为准的内容 |
 
 
-- CNAME 레코드 세트
-    - 하나의 레코드를 입력할 수 있습니다.
-    - 레코드 세트 이름을 정규 이름의 별칭(canonical)으로 정의합니다.
-    - A 레코드를 먼저 설정하고 CNAME을 설정해야 합니다.
+- CNAME记录集合
+    - 可以输入一个记录。
+    - 记录集合名定义为正规名的别名(canonical)。
+    - 应首先设置A记录后再设置CNAME。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].domainName | String | 最大255个字符 | 必需 |  | 域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
 
 
-- MX 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 도메인에 대한 메일 서버를 지정합니다.
+- MX记录集合
+    - 可以输入多个记录。
+    - 指定域名相关邮件服务器。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].priority | int | 최소 0, 최대 65535 | 필수 |  | 우선순위 |
-| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].priority | int | 最小0，最大65535 | 必需 |  | 优先顺序 |
+| recordset.recordList[0].domainName | String | 最大255个字符 | 必需 |  | 域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
 
 
-- NAPTR 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - DDDS(Dynamic Delegation Discovery System) 애플리케이션에서 하나의 값을 다른 값으로 변환하거나 대체하기 위해 사용합니다.
-    - 순서 항목은 DDDS 애플리케이션이 레코드를 평가하는 순서입니다.
-    - 선호 순서 항목은 두 개 이상의 레코드가 순서 항목이 동일한 경우 우선하여 평가하는 순서입니다.
-    - 구분 항목은 DDDS 애플리케이션 설정으로 공백, 'S', 'A', 'U', 'P'를 사용할 수 있으며 그 외의 문자는 예약되어 있습니다.
-    - 서비스 항목은 DDDS 애플리케이션 설정으로 상세 정의는 RFC 문서에서 확인할 수 있습니다.
-        - URI DDDS 애플리케이션 [RFC 3404#section-4.4](https://tools.ietf.org/html/rfc3404#section-4.4)
-        - S-NAPTR DDDS 애플리케이션 [RFC 3958#section-6.5](https://tools.ietf.org/html/rfc3958#section-6.5)
-        - U-NAPTR DDDS 애플리케이션 [RFC 4848#section-4.5](https://tools.ietf.org/html/rfc4848#section-4.5)
-    - 정규식 항목은 DDDS 애플리케이션에서 입력값을 출력값으로 변환하는 데 사용합니다. 상세 정의는 [RFC 3402#section-3.2](https://tools.ietf.org/html/rfc3402#section-3.2)에서 확인할 수 있습니다.
-    - 대체값 항목은 DDDS 애플리케이션이 DNS 쿼리를 제출할 도메인 이름으로 입력값을 대체합니다. 정규식 항목을 설정하는 경우 '.'로 설정합니다.
+- NAPTR记录集合
+    - 可以输入多个记录。
+    - 用于在DDDS(Dynamic Delegation Discovery System)应用程序中将一个值更改或替代为其他值。
+    - 顺序项目是DDDS应用程序评估记录的顺序。
+    - 偏好顺序项目是两个以上记录的顺序项目相同时优先评估的顺序。
+    - 分类项目作为DDDS应用程序设置，可使用空白、’S’、’A’、’U’、’P’，其他文字为预约。
+    - 服务项目为DDDS应用程序设置，具体定义可在RFC文件中确认。
+        - URI DDDS应用程序[RFC 3404#section-4.4](https://tools.ietf.org/html/rfc3404#section-4.4)
+        - S-NAPTR DDDS应用程序[RFC 3958#section-6.5](https://tools.ietf.org/html/rfc3958#section-6.5)
+        - U-NAPTR DDDS应用程序[RFC 4848#section-4.5](https://tools.ietf.org/html/rfc4848#section-4.5)
+    - 正规式项目用于在DDDS应用程序中将输入值转换为输出值。具体定义可在[RFC 3402#section-3.2](https://tools.ietf.org/html/rfc3402#section-3.2)中确认。
+    - 替代值项目以DDDS应用程序提交DNS Query的域名替代输入值。设置正规式项目时，设置为‘.’。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].order | int | 최소 0, 최대 65535 | 필수 |  | 순서 |
-| recordset.recordList[0].preference | int | 최소 0, 최대 65535 | 필수 |  | 선호 순서 |
-| recordset.recordList[0].flags | String | 최대 3자(인용부호 포함) | 필수 |  | 구분 |
-| recordset.recordList[0].service | String | 최대 257자(인용부호 포함) | 필수 |  | 서비스 |
-| recordset.recordList[0].regexp | String | 최대 257자(인용부호 포함) | 필수 |  | 정규식 |
-| recordset.recordList[0].replacement | String | 최대 255자 | 필수 |  | 대체값으로 '.' 또는 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].order | int | 最小0，最大65535 | 必需 |  | 顺序 |
+| recordset.recordList[0].preference | int | 最小0，最大65535 | 必需 |  | 偏好顺序 |
+| recordset.recordList[0].flags | String | 最大3个字符（含引用符号） | 必需 |  | 分类 |
+| recordset.recordList[0].service | String | 最大257个字符（含引用符号） | 必需 |  | 服务 |
+| recordset.recordList[0].regexp | String | 最大257个字符（含引用符号） | 必需 |  | 正规式 |
+| recordset.recordList[0].replacement | String | 最大255个字符 | 必需 |  | 替代值 '.'或域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
 
 
-- PTR 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - IP 주소를 이용해서 도메인 정보를 조회하는 역방향 질의 기능입니다. ISP 업체에 요청하여 설정해야 합니다.
-    - IP 주소는 역순으로 레코드 세트 이름에 입력해야 합니다. (예제) 127.0.0.1, 1.0.0.127.in-addr.arpa
+- PTR记录集合
+    - 可以输入多个记录。
+    - 是使用IP地址查询域名信息的逆向答疑功能应向ISP企业申请设置。
+    - IP地址应逆序输入到记录集合名中。（范例）127.0.0.1, 1.0.0.127.in-addr.arpa
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].domainName | String | 最大255个字符 | 必需 |  | 域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
 
 
-- TXT 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 레코드 세트 이름에 대한 텍스트 내용을 입력합니다.
+- TXT记录集合
+    - 可以输入多个记录。
+    - 输入与记录集合名相关的文本内容。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 최대 255바이트(인용부포 포함) | 필수 |  | 텍스트 내용 |
+| recordset.recordList[0].stringValue | String | 最大255字节（含引用符号） | 必需 |  | 文本内容 |
 
 
-- SRV 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 유사한 TCP/IP 기반 서비스를 제공하는 여러 서버를 단일 DNS 쿼리 동작을 사용하여 찾을 수 있습니다.
+- SRV记录集合
+    - 可以输入多个记录。
+    - 可使用单一DNS Query操作查找提供类似基于TCP/IP服务的多种服务器。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].priority | int | 최소 0, 최대 65535 | 필수 |  | 우선순위 |
-| recordset.recordList[0].weight | int | 최소 0, 최대 65535 | 필수 |  | 가중치 |
-| recordset.recordList[0].port | int | 최소 0, 최대 65535 | 필수 |  | 포트 |
-| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].priority | int | 最小0，最大65535 | 必需 |  | 优先顺序 |
+| recordset.recordList[0].weight | int | 最小0，最大65535 | 必需 |  | 加权值 |
+| recordset.recordList[0].port | int | 最小0，最大65535 | 必需 |  | 端口 |
+| recordset.recordList[0].domainName | String | 最大255个字符 | 必需 |  | 域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
 
 
-- SPF 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 이메일 발신자 도메인 인증 방식으로 수신 메일 서버가 발송 메일 서버와 메일 주소가 일치하는지 확인하는 기능입니다.
-    - 아래와 같은 형태로 입력 가능하며 상세 정의는 [RFC4408](https://tools.ietf.org/html/rfc4408)에서 확인할 수 있습니다.
-    - 수식자의 기본값은 '+'이며 메커니즘에 따라 IP, 도메인 이름 등을 추가로 입력합니다.
-        - 형태: "v=spf1 {수식자}{메커니즘}{내용} {변경자}={내용}"
-        - 수식자: '+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
-        - 메커니즘: all, include, a, mx, prt, ip4, ip6, exists
-        - 변경자: redirect, exp, 사용자 지정
-        - (예제)
+- SPF记录集合
+    - 可以输入多个记录。
+    - 利用邮件发送人域名认证方式，确认收件服务器与发件服务器的邮箱地址是否一致的功能。
+    - 可以如下形式输入，具体定义可在[RFC4408](https://tools.ietf.org/html/rfc4408)中确认。
+    - 限定符的默认值为‘+’，根据机制可补充输入IP、域名等。
+        - 形态：“v=spf1 {限定符}{机制}{内容} {更正符}={内容}"
+        - 限定符：'+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
+        - 机制：all, include, a, mx, prt, ip4, ip6, exists
+        - 更正符：redirect, exp, 用户指定
+        -（范例）
             - "v=spf1 mx -all"
             - "v=spf1 ip4:192.168.0.1/16 -all"
             - "v=spf1 a:toast.com -all"
             - "v=spf1 redirect=toast.com"
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 최대 255바이트(인용부포 포함) | 필수 |  | SPF 형식에 따른 내용 |
+| recordset.recordList[0].stringValue | String | 最大255字节（含引用符号） | 必需 |  | 以SPF格式为准内容 |
 
 
-- NS 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 레코드 세트 이름에 대한 네임 서버를 지정합니다.
-    - 레코드 세트 이름은 DNS Zone 이름의 하위 도메인으로만 생성이나 수정할 수 있습니다.
+- NS记录集合
+    - 可以输入多个记录。
+    - 指定与记录集合名相关的名称服务器。
+    - 记录集合名仅可以DNS Zone名的下级域名创建或修改。
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordList[0].domainName | String | 最大255个字符 | 必需 |  | 域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
 
 
-#### 응답
+#### 响应
 
-[응답 본문]
+[响应正文]
 
 ```
 {
@@ -556,51 +556,51 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 
 
-### 레코드 세트 수정
+### 修改记录集合
 
-- 레코드 세트를 수정합니다.
-- **레코드 세트 이름**과 **레코드 세트 타입**은 수정할 수 없으며, **TTL(초)**과 **레코드값**은 수정할 수 있습니다.
-- SOA 레코드 세트는 생성/수정/삭제할 수 없으며, NS 레코드 세트는 **DNS Zone 이름**으로 생성/수정/삭제할 수 없습니다.
-- 레코드 세트 내의 레코드 목록의 길이는 최대 512바이트입니다.
+- 修改记录集合。
+- **记录集合名**与**记录集合类型**无法修改，**TTL（秒）**与**记录值**可修改。
+- SOA的记录集合无法创建/修改/删除，NS记录集合无法以**DNS Zone名**创建/修改/删除。
+- 记录集合内记录列表的长度最大为512个字节。
 
-#### 요청
+#### 请求
 
 [URI]
 
-| 메서드 | URI |
+| 方法 | URI |
 |---|---|
 | PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId} |
 
-[요청 본문]
+[请求正文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
-- {recordsetId}는 레코드 세트 ID이며 [레코드 세트 조회](./api-guide/#_11)를 통해서 알 수 있습니다.
-- recordset.recordList[0].recordContent 대신 레코드 세트 타입에 따라 필드를 상세하게 나누어 입력할 수 있습니다.
-- 상세 필드와 recordContent를 동시에 입력하면 recordContent를 기준으로 수정됩니다.
-- 상세 필드는 [레코드 세트 생성](./api-guide/#_14)과 동일합니다.
+- {appkey}更改为在控制台中确认的值。
+- {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
+- {recordsetId}为记录集合ID，可通过[查询记录集合](./api-guide/#_11)确认。
+- 可取代recordset.recordList[0].recordContent，根据记录集合类型具体分字段输入。
+- 若同时输入具体字段与recordContent，则以recordContent为基准修改。
+- 具体字段与[创建记录集合](./api-guide/#_14)相同。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
--H 'Content-Type: application/json' \
+-H 'Content-Type:application/json' \
 --data '{ "recordset": { "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
 
-[필드]
+[字段]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset | Object |  | 필수 |  | 레코드 세트 |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드 세트 ID에 대한 레코드 세트 타입 |
-| recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
-| recordset.recordList | List |  | 필수 |  | 레코드 목록 |
-| recordset.recordList[0].recordDisabled | boolean |  | 필수 |  | 레코드 비활성화 여부 |
-| recordset.recordList[0].recordContent | String |  | 필수 |  | 레코드 세트 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
+| recordset | Object |  | 必需 |  | 记录集合 |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 必需 |  | 与记录集合ID相关的记录集合类型 |
+| recordset.recordsetTtl | int | 最小1，最大2147483647 | 必需 |  | 名称服务器中记录集合信息的更新周期 |
+| recordset.recordList | List |  | 必需 |  | 记录列表 |
+| recordset.recordList[0].recordDisabled | boolean |  | 必需 |  | 记录是否禁用 |
+| recordset.recordList[0].recordContent | String |  | 必需 |  | 根据记录集合类型以一行显示多个字段的内容 |
 
 
-#### 응답
+#### 响应
 
-[응답 본문]
+[响应正文]
 
 ```
 {
@@ -613,39 +613,39 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 
 
-### 레코드 세트 삭제
+### 删除记录集合
 
-- 여러 개의 레코드 세트를 삭제하며, 레코드 세트의 레코드도 함께 삭제합니다.
-- SOA 레코드 세트는 생성/수정/삭제할 수 없으며, NS 레코드 세트는 **DNS Zone 이름**으로 생성/수정/삭제할 수 없습니다.
+- 删除多个记录集合，记录集合的记录也一同删除。
+- SOA的记录集合无法创建/修改/删除，NS记录集合无法以**DNS Zone名**创建/修改/删除。
 
-#### 요청
+#### 请求
 
 [URI]
 
-| 메서드 | URI |
+| 方法 | URI |
 |---|---|
 | DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
-[요청 본문]
+[请求正文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
-- 레코드 세트 ID는 [레코드 세트 조회](./api-guide/#_11)를 통해서 알 수 있습니다.
+- {appkey}更改为在控制台中确认的值。
+- {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
+- 记录集合ID可通过[查询记录集合](./api-guide/#_11)确认。
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
 recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092d340e0adf'
 ```
 
-[필드]
+[字段]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordsetIdList | List | 최소 1개, 최대 3,000개 | 필수 |  | 레코드 세트 ID 목록 |
+| recordsetIdList | List | 最小1个，最大3,000个 | 必需 |  | 记录集合ID列表 |
 
-#### 응답
+#### 响应
 
-[응답 본문]
+[响应正文]
 
 ```
 {
