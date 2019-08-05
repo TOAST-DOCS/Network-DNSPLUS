@@ -66,13 +66,13 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 | 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
 | zoneIdList | List | 最大3,000个 | 选择 |  | DNS Zone ID列表 |
-| zoneStatusList | List | CREATING, <br>DELETING, <br>DELETING_FAIL, <br> USE | 选择 | | DNS Zone状态列表 <br>（CREATING：正在创建，<br>DELETING：正在删除，<br>DELETING_FAIL：删除失败，<br>USE：使用） |
+| zoneStatusList | List | CREATING, <br>DELETING, <br>DELETING_FAIL, <br> USE | 选择 | | DNS Zone状态列表 <br>(CREATING：正在创建，<br>DELETING：正在删除，<br>DELETING_FAIL：删除失败，<br>USE：使用) |
 | searchZoneName | String |  | 选择 |  | 要搜索的DNS Zone名 |
 | engineId | String | | 选择 |  | DNS服务器ID |
 | page | int | 最小1 | 选择 | 1 | 页面编号 |
 | limit | int | 最小1，最大3,000 | 选择 | 50 | 查询个数 |
-| sortDirection | String | DESC, ASC | 选择 | DESC | 排列方向（DESC：降序，ASC：升序） |
-| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>ZONE_NAME, <br>ZONE_STATUS, <br>RECORDSET_COUNT | 选择 | CREATED_AT | 排列对象 <br>（CREATED_AT：创建日，<br>UPDATED_AT：修改日，<br>ZONE_NAME：DNS Zone名，<br>ZONE_STATUS：DNS Zone状态，<br>RECORDSET_COUNT：记录集合个数） |
+| sortDirection | String | DESC, ASC | 选择 | DESC | 排列方向(DESC：降序，ASC：升序) |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>ZONE_NAME, <br>ZONE_STATUS, <br>RECORDSET_COUNT | 选择 | CREATED_AT | 排列对象 <br>(CREATED_AT：创建日，<br>UPDATED_AT：修改日，<br>ZONE_NAME：DNS Zone名，<br>ZONE_STATUS：DNS Zone状态，<br>RECORDSET_COUNT：记录集合个数) |
 
 #### 响应
 
@@ -207,7 +207,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 ```
 
 
-### 删除DNS Zone（非同步）
+### 删除DNS Zone (非同步)
 
 - 删除多个DNS Zone，DNS Zone的记录集合也同时删除。
 - 实际数据删除非同步处理。
@@ -283,8 +283,8 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 | searchRecordsetName | String |  | 选择 |  | 要搜索的记录集合名 |
 | page | int | 最小1 | 选择 | 1 | 页面编号 |
 | limit | int | 最小1，最大3,000 | 选择 | 50 | 查询个数 |
-| sortDirection | String | DESC, ASC | 选择 | DESC | 排列方向（DESC：降序，ASC：升序） |
-| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>RECORDSET_NAME, <br>RECORDSET_TYPE, <br>RECORDSET_TTL | 选择 | CREATED_AT | 排列对象<br>（CREATED_AT：创建日，<br>UPDATED_AT：修改日，<br>RECORDSET_NAME：记录集合名，<br>RECORDSET_TYPE：记录集合类型，<br>RECORDSET_TTL：TTL（秒）） |
+| sortDirection | String | DESC, ASC | 选择 | DESC | 排列方向(DESC：降序，ASC：升序) |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>RECORDSET_NAME, <br>RECORDSET_TYPE, <br>RECORDSET_TTL | 选择 | CREATED_AT | 排列对象<br>(CREATED_AT：创建日，<br>UPDATED_AT：修改日，<br>RECORDSET_NAME：记录集合名，<br>RECORDSET_TYPE：记录集合类型，<br>RECORDSET_TTL：TTL(秒)) |
 
 #### 响应
 
@@ -390,7 +390,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
 | recordset | Object |  | 必需 |  | 记录集合 |
-| recordset.recordsetName | String | 最大254个字符<br>（含DNS Zone名） | 必需 |  | 要创建的记录集合名，<br>域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
+| recordset.recordsetName | String | 最大254个字符<br>(含DNS Zone名) | 必需 |  | 要创建的记录集合名，<br>域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
 | recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 必需 |  | 记录集合类型 |
 | recordset.recordsetTtl | int | 最小1，最大2147483647 | 必需 |  | 名称服务器中记录集合信息的更新周期 |
 | recordset.recordList | List |  | 必需 |  | 记录列表 |
@@ -434,7 +434,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 |---|---|---|---|---|---|
 | recordset.recordList[0].flags | int | 0或128 | 必需 |  | 为已定义标签时为0,<br>为用户指定标签时为128 |
 | recordset.recordList[0].tag | String | TAG_ISSUE, <br>TAG_ISSUEWILD, <br>TAG_IODEF, <br>用户指定标签最大15 | 必需 |  | TAG_ISSUE: issue标签，<br>TAG_ISSUEWILD：issuewild标签，<br>TAG_IODEF：iodef标签，<br>用户指定标签 |
-| recordset.recordList[0].stringValue | String | 最大512个字符（含引用符号） | 必需 |  | 以标签为准的内容 |
+| recordset.recordList[0].stringValue | String | 最大512个字符(含引用符号) | 必需 |  | 以标签为准的内容 |
 
 
 - CNAME记录集合
@@ -474,16 +474,16 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 |---|---|---|---|---|---|
 | recordset.recordList[0].order | int | 最小0，最大65535 | 必需 |  | 顺序 |
 | recordset.recordList[0].preference | int | 最小0，最大65535 | 必需 |  | 偏好顺序 |
-| recordset.recordList[0].flags | String | 最大3个字符（含引用符号） | 必需 |  | 分类 |
-| recordset.recordList[0].service | String | 最大257个字符（含引用符号） | 必需 |  | 服务 |
-| recordset.recordList[0].regexp | String | 最大257个字符（含引用符号） | 必需 |  | 正规式 |
+| recordset.recordList[0].flags | String | 最大3个字符(含引用符号) | 必需 |  | 分类 |
+| recordset.recordList[0].service | String | 最大257个字符(含引用符号) | 必需 |  | 服务 |
+| recordset.recordList[0].regexp | String | 最大257个字符(含引用符号) | 必需 |  | 正规式 |
 | recordset.recordList[0].replacement | String | 最大255个字符 | 必需 |  | 替代值 '.'或域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
 
 
 - PTR记录集合
     - 可以输入多个记录。
     - 是使用IP地址查询域名信息的逆向答疑功能应向ISP企业申请设置。
-    - IP地址应逆序输入到记录集合名中。（范例）127.0.0.1, 1.0.0.127.in-addr.arpa
+    - IP地址应逆序输入到记录集合名中。(范例) 127.0.0.1, 1.0.0.127.in-addr.arpa
 
 | 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
@@ -496,7 +496,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 最大255字节（含引用符号） | 必需 |  | 文本内容 |
+| recordset.recordList[0].stringValue | String | 最大255字节(含引用符号) | 必需 |  | 文本内容 |
 
 
 - SRV记录集合
@@ -520,7 +520,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
         - 限定符：'+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
         - 机制：all, include, a, mx, prt, ip4, ip6, exists
         - 更正符：redirect, exp, 用户指定
-        -（范例）
+        - (范例)
             - "v=spf1 mx -all"
             - "v=spf1 ip4:192.168.0.1/16 -all"
             - "v=spf1 a:toast.com -all"
@@ -528,7 +528,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 最大255字节（含引用符号） | 必需 |  | 以SPF格式为准内容 |
+| recordset.recordList[0].stringValue | String | 最大255字节(含引用符号) | 必需 |  | 以SPF格式为准内容 |
 
 
 - NS记录集合
@@ -559,7 +559,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### 修改记录集合
 
 - 修改记录集合。
-- **记录集合名**与**记录集合类型**无法修改，**TTL（秒）**与**记录值**可修改。
+- **记录集合名**与**记录集合类型**无法修改，**TTL(秒)**与**记录值**可修改。
 - SOA的记录集合无法创建/修改/删除，NS记录集合无法以**DNS Zone名**创建/修改/删除。
 - 记录集合内记录列表的长度最大为512个字节。
 
