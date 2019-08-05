@@ -362,7 +362,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 - **レコードセットタイプ**としてA、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、SPF、NS、SOAをサポートします。
 - SOAレコードセットは、作成/修正/削除できず、NSレコードセットは、**DNS Zone名**で作成/修正/削除できません。
 - レコードセット内のレコードリストの長さは、最大512バイトです。
-- DNS Zone당 레코드 세트는 최대 5,000개까지 생성할 수 있습니다.
+- DNS Zoneつ当たり、レコードセットは最大5,000個まで作成できます。
 
 #### リクエスト
 
