@@ -376,8 +376,9 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 - {appkey}はコンソールで確認した値に変更します。
 - {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
-- recordset.recordList[0].recordContentの代わりに、レコードセットタイプによってフィールドを詳細に分けて入力できます。
-- 詳細フィールドとrecordContentを同時に入力すると、recordContentを基準に作成されます。
+- 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
+- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 **[レコードセットタイプ別の詳細フィールド]**에서 확인할 수 있습니다.
+- 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 생성됩니다.
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
@@ -576,9 +577,9 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - {appkey}はコンソールで確認した値に変更します。
 - {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
 - {recordsetId}はレコードセットIDで、[レコードセット照会](./api-guide/#_11)を通して確認できます。
-- recordset.recordList[0].recordContentの代わりに、レコードセットタイプによってフィールドを詳細に分けて入力できます。
-- 詳細フィールドとrecordContentを同時に入力した場合、recordContentを基準に修正されます。
-- 詳細フィールドは[レコードセット作成](./api-guide/#_14)と同じです。
+- 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
+- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [レコードセット作成](./api-guide/#_14)에 **[レコードセットタイプ別の詳細フィールド]**에서 확인할 수 있습니다.
+- 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 수정됩니다.
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \

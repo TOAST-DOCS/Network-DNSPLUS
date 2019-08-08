@@ -376,8 +376,9 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 - {appkey}更改为在控制台中确认的值。
 - {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
-- 可取代recordset.recordList[0].recordContent，根据记录集合类型具体分字段输入。
-- 若同时输入具体字段与recordContent，则以recordContent为基准创建。
+- 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
+- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 **[根据记录集合类型的具体字段]**에서 확인할 수 있습니다.
+- 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 생성됩니다.
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
@@ -576,9 +577,9 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - {appkey}更改为在控制台中确认的值。
 - {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
 - {recordsetId}为记录集合ID，可通过[查询记录集合](./api-guide/#_11)确认。
-- 可取代recordset.recordList[0].recordContent，根据记录集合类型具体分字段输入。
-- 若同时输入具体字段与recordContent，则以recordContent为基准修改。
-- 具体字段与[创建记录集合](./api-guide/#_14)相同。
+- 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
+- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [创建记录集合](./api-guide/#_14)에 **[根据记录集合类型的具体字段]**에서 확인할 수 있습니다.
+- 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 수정됩니다.
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \

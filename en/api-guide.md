@@ -353,7 +353,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 | recordsetList[0].updatedAt | DateTime | 수정일 |
 | recordsetList[0].recordList | List | 레코드 목록 |
 | recordsetList[0].recordList[0].recordDisabled | boolean | 레코드 비활성화 여부 |
-| recordsetList[0].recordList[0].recordContent | String | 레코드값이며 레코드 세트 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
+| recordsetList[0].recordList[0].recordContent | String | 레코드값이며 레코드 세트 타입에 따른 상세 필드를 한 줄로 표시한 내용 |
 
 
 ### 레코드 세트 생성
@@ -376,8 +376,9 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 - {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
-- recordset.recordList[0].recordContent 대신 레코드 세트 타입에 따라 필드를 상세하게 나누어 입력할 수 있습니다.
-- 상세 필드와 recordContent를 동시에 입력하면 recordContent를 기준으로 생성됩니다.
+- 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
+- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 **[레코드 세트 타입에 따른 상세 필드]**에서 확인할 수 있습니다.
+- 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 생성됩니다.
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
@@ -395,7 +396,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
 | recordset.recordList | List |  | 필수 |  | 레코드 목록 |
 | recordset.recordList[0].recordDisabled | boolean |  | 선택 | false | 레코드 비활성화 여부 |
-| recordset.recordList[0].recordContent | String |  | 필수 |  | 레코드 세트 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
+| recordset.recordList[0].recordContent | String |  | 필수 |  | 레코드 세트 타입에 따른 상세 필드를 한 줄로 표시한 내용 |
 
 [레코드 세트 타입에 따른 상세 필드]
 
@@ -576,9 +577,9 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 - {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
 - {recordsetId}는 레코드 세트 ID이며 [레코드 세트 조회](./api-guide/#_11)를 통해서 알 수 있습니다.
-- recordset.recordList[0].recordContent 대신 레코드 세트 타입에 따라 필드를 상세하게 나누어 입력할 수 있습니다.
-- 상세 필드와 recordContent를 동시에 입력하면 recordContent를 기준으로 수정됩니다.
-- 상세 필드는 [레코드 세트 생성](./api-guide/#_14)과 동일합니다.
+- 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
+- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [레코드 세트 생성](./api-guide/#_14)에 **[레코드 세트 타입에 따른 상세 필드]**에서 확인할 수 있습니다.
+- 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 수정됩니다.
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
@@ -595,7 +596,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
 | recordset.recordList | List |  | 필수 |  | 레코드 목록 |
 | recordset.recordList[0].recordDisabled | boolean |  | 필수 |  | 레코드 비활성화 여부 |
-| recordset.recordList[0].recordContent | String |  | 필수 |  | 레코드 세트 타입에 따른 여러 필드를 한 줄로 표시한 내용 |
+| recordset.recordList[0].recordContent | String |  | 필수 |  | 레코드 세트 타입에 따른 상세 필드를 한 줄로 표시한 내용 |
 
 
 #### 응답
