@@ -353,7 +353,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 | recordsetList[0].updatedAt | DateTime | 修正日 |
 | recordsetList[0].recordList | List | レコードリスト |
 | recordsetList[0].recordList[0].recordDisabled | boolean | レコードを無効にするかどうか |
-| recordsetList[0].recordList[0].recordContent | String | レコード値。レコードセットタイプによって複数のフィールドを1行で表示した内容 |
+| recordsetList[0].recordList[0].recordContent | String | レコード値。レコードセットタイプに応じて詳細フィールドを1行で表示した内容 |
 
 
 ### レコードセット作成
@@ -376,9 +376,9 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 - {appkey}はコンソールで確認した値に変更します。
 - {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
-- 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
-- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [レコードセットタイプ別の詳細フィールド]에서 확인할 수 있습니다.
-- 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 생성됩니다.
+- レコード値は必須で、入力方法にrecordset.recordList[0].recordContentフィールドまたは詳細フィールドを選択できます。
+- recordContentフィールドは、空白を区切り文字にして詳細フィールドを1行で表示した内容です。詳細フィールドは、[レコードセットタイプ別の詳細フィールド]で確認できます。
+- 詳細フィールドとrecordContentフィールドを同時に入力すると、recordContentフィールドを基準に作成されます。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
@@ -396,7 +396,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset.recordsetTtl | int | 最小1、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
 | recordset.recordList | List |  | 必須 |  | レコードリスト |
 | recordset.recordList[0].recordDisabled | boolean |  | 任意 | false | レコードを無効にするかどうか |
-| recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプによって複数のフィールドを1行で表示した内容 |
+| recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプに応じて詳細フィールドを1行で表示した内容 |
 
 [レコードセットタイプ別の詳細フィールド]
 
@@ -577,9 +577,9 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - {appkey}はコンソールで確認した値に変更します。
 - {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
 - {recordsetId}はレコードセットIDで、[レコードセット照会](./api-guide/#_11)を通して確認できます。
-- 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
-- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [レコードセット作成](./api-guide/#_14)에 [レコードセットタイプ別の詳細フィールド]에서 확인할 수 있습니다.
-- 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 수정됩니다.
+- レコード値は必須で、入力方法にrecordset.recordList[0].recordContentフィールドまたは詳細フィールドを選択できます。
+- recordContentフィールドは、空白を区切り文字にして詳細フィールドを1行で表示した内容です。詳細フィールドは、[レコードセット作成](./api-guide/#_14)に[レコードセットタイプ別の詳細フィールド]で確認できます。
+- 詳細フィールドとrecordContentフィールドを同時に入力すると、recordContentフィールドを基準に修正されます。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
@@ -596,7 +596,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset.recordsetTtl | int | 最小1、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
 | recordset.recordList | List |  | 必須 |  | レコードリスト |
 | recordset.recordList[0].recordDisabled | boolean |  | 必須 |  | レコードを無効にするかどうか |
-| recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプによって複数のフィールドを1行で表示した内容 |
+| recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプに応じて詳細フィールドを1行で表示した内容 |
 
 
 #### レスポンス
