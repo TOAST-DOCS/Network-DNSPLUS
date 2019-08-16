@@ -353,7 +353,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 | recordsetList[0].updatedAt | DateTime | 修正日 |
 | recordsetList[0].recordList | List | レコードリスト |
 | recordsetList[0].recordList[0].recordDisabled | boolean | レコードを無効にするかどうか |
-| recordsetList[0].recordList[0].recordContent | String | レコード値。レコードセットタイプによって複数のフィールドを1行で表示した内容 |
+| recordsetList[0].recordList[0].recordContent | String | レコード値。レコードセットタイプに応じて詳細フィールドを1行で表示した内容 |
 
 
 ### レコードセット作成
@@ -362,6 +362,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 - **レコードセットタイプ**としてA、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、SPF、NS、SOAをサポートします。
 - SOAレコードセットは、作成/修正/削除できず、NSレコードセットは、**DNS Zone名**で作成/修正/削除できません。
 - レコードセット内のレコードリストの長さは、最大512バイトです。
+- DNS Zoneつ当たり、レコードセットは最大5,000個まで作成できます。
 
 #### リクエスト
 
@@ -375,8 +376,9 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 - {appkey}はコンソールで確認した値に変更します。
 - {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
-- recordset.recordList[0].recordContentの代わりに、レコードセットタイプによってフィールドを詳細に分けて入力できます。
-- 詳細フィールドとrecordContentを同時に入力すると、recordContentを基準に作成されます。
+- レコード値は必須で、入力方法にrecordset.recordList[0].recordContentフィールドまたは詳細フィールドを選択できます。
+- recordContentフィールドは、空白を区切り文字にして詳細フィールドを1行で表示した内容です。詳細フィールドは、[レコードセットタイプ別の詳細フィールド]で確認できます。
+- 詳細フィールドとrecordContentフィールドを同時に入力すると、recordContentフィールドを基準に作成されます。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
@@ -394,7 +396,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset.recordsetTtl | int | 最小1、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
 | recordset.recordList | List |  | 必須 |  | レコードリスト |
 | recordset.recordList[0].recordDisabled | boolean |  | 任意 | false | レコードを無効にするかどうか |
-| recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプによって複数のフィールドを1行で表示した内容 |
+| recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプに応じて詳細フィールドを1行で表示した内容 |
 
 [レコードセットタイプ別の詳細フィールド]
 
@@ -575,9 +577,9 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - {appkey}はコンソールで確認した値に変更します。
 - {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
 - {recordsetId}はレコードセットIDで、[レコードセット照会](./api-guide/#_11)を通して確認できます。
-- recordset.recordList[0].recordContentの代わりに、レコードセットタイプによってフィールドを詳細に分けて入力できます。
-- 詳細フィールドとrecordContentを同時に入力した場合、recordContentを基準に修正されます。
-- 詳細フィールドは[レコードセット作成](./api-guide/#_14)と同じです。
+- レコード値は必須で、入力方法にrecordset.recordList[0].recordContentフィールドまたは詳細フィールドを選択できます。
+- recordContentフィールドは、空白を区切り文字にして詳細フィールドを1行で表示した内容です。詳細フィールドは、[レコードセット作成](./api-guide/#_14)に[レコードセットタイプ別の詳細フィールド]で確認できます。
+- 詳細フィールドとrecordContentフィールドを同時に入力すると、recordContentフィールドを基準に修正されます。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
@@ -594,7 +596,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset.recordsetTtl | int | 最小1、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
 | recordset.recordList | List |  | 必須 |  | レコードリスト |
 | recordset.recordList[0].recordDisabled | boolean |  | 必須 |  | レコードを無効にするかどうか |
-| recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプによって複数のフィールドを1行で表示した内容 |
+| recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプに応じて詳細フィールドを1行で表示した内容 |
 
 
 #### レスポンス
