@@ -21,7 +21,7 @@ DNS PlusサービスのAPIを説明します。
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "Success"
+        "resultMessage": "SUCCESS"
     }
 }
 ```
@@ -156,7 +156,19 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "Success"
+        "resultMessage": "SUCCESS"
+    },
+    "zone": {
+        {
+            "engineId": "e13a1bcf0aa8e07f6a4fae94ed869c39",
+            "zoneId": "bff20a9a-24cf-4670-8b34-007622ec010e",
+            "zoneName": "test.dnsplus.com.",
+            "zoneStatus": "USE",
+            "description": "test",
+            "createdAt": "2019-06-04T12:32:50.000+09:00",
+            "updatedAt": "2019-06-04T12:32:50.000+09:00",
+            "recordsetCount": 2
+        }
     }
 }
 ```
@@ -201,7 +213,19 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "Success"
+        "resultMessage": "SUCCESS"
+    },
+    "zone": {
+        {
+            "engineId": "e13a1bcf0aa8e07f6a4fae94ed869c39",
+            "zoneId": "bff20a9a-24cf-4670-8b34-007622ec010e",
+            "zoneName": "test.dnsplus.com.",
+            "zoneStatus": "USE",
+            "description": "test",
+            "createdAt": "2019-06-04T12:32:50.000+09:00",
+            "updatedAt": "2019-06-04T12:42:00.000+09:00",
+            "recordsetCount": 2
+        }
     }
 }
 ```
@@ -245,7 +269,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "Success"
+        "resultMessage": "SUCCESS"
     }
 }
 ```
@@ -551,7 +575,25 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "Success"
+        "resultMessage": "SUCCESS"
+    },
+    "recordset": {
+        {
+            "recordsetId": "d0b7ee57-8e41-438f-ad04-d4b316793d42",
+            "recordsetName": "sub.test.dnsplus.com.",
+            "recordsetType": "A",
+            "recordsetTtl": 86400,
+            "recordsetStatus": "USE",
+            "createdAt": "2019-06-04T12:32:50.000+09:00",
+            "updatedAt": "2019-06-04T12:32:50.000+09:00",
+            "recordList": [
+                {
+                    "recordDisabled": false,
+                    "recordContent": "1.1.1.1",
+                    "ipV4": "1.1.1.1"
+                }
+            ]
+        }
     }
 }
 ```
@@ -608,7 +650,25 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "Success"
+        "resultMessage": "SUCCESS"
+    },
+    "recordset": {
+        {
+            "recordsetId": "d0b7ee57-8e41-438f-ad04-d4b316793d42",
+            "recordsetName": "sub.test.dnsplus.com.",
+            "recordsetType": "A",
+            "recordsetTtl": 86400,
+            "recordsetStatus": "USE",
+            "createdAt": "2019-06-04T12:32:50.000+09:00",
+            "updatedAt": "2019-06-04T12:42:00.000+09:00",
+            "recordList": [
+                {
+                    "recordDisabled": false,
+                    "recordContent": "1.1.1.1",
+                    "ipV4": "1.1.1.1"
+                }
+            ]
+        }
     }
 }
 ```
@@ -653,7 +713,7 @@ recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092
     "header": {
         "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage": "Success"
+        "resultMessage": "SUCCESS"
     }
 }
 ```
