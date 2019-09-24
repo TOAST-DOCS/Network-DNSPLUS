@@ -382,7 +382,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 - 以**记录集合类型**支持 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA。
 - SOA的记录集合无法创建/修改/删除，NS记录集合无法以**DNS Zone名**创建/修改/删除。
 - 记录集合内的记录列表的长度最大为512个字节。
-- DNS Zone당 레코드 세트는 최대 5,000개까지 생성할 수 있습니다.
+- 每个DNS区域最多可以创建5,000个记录集。
 
 #### 请求
 
