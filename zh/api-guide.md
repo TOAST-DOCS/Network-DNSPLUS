@@ -373,7 +373,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 | recordsetList[0].updatedAt | DateTime | 修改日 |
 | recordsetList[0].recordList | List | 记录列表 |
 | recordsetList[0].recordList[0].recordDisabled | boolean | 记录是否禁用 |
-| recordsetList[0].recordList[0].recordContent | String | 为记录值，且根据记录集合类型以一行显示多个字段的内容 |
+| recordsetList[0].recordList[0].recordContent | String | 为记录值，且以一行显示的不同记录集合类型的具体字段内容 |
 
 
 ### 创建记录集合
@@ -382,7 +382,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 - 以**记录集合类型**支持 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA。
 - SOA的记录集合无法创建/修改/删除，NS记录集合无法以**DNS Zone名**创建/修改/删除。
 - 记录集合内的记录列表的长度最大为512个字节。
-- DNS Zone당 레코드 세트는 최대 5,000개까지 생성할 수 있습니다.
+- 每个DNS区域最多可以创建5,000个记录集。
 
 #### 请求
 
@@ -396,9 +396,9 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 - {appkey}更改为在控制台中确认的值。
 - {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
-- 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
-- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [根据记录集合类型的具体字段]에서 확인할 수 있습니다.
-- 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 생성됩니다.
+- 记录值为必需，输入方法可选择recordset.recordList[0].recordContent字段或具体字段。
+- recordContent字段是将空格作为区分字符，以一行显示具体字段的内容。具体字段可在 [不同记录集合类型的具体字段] 中确认。
+- 若同时输入具体字段与recordContent字段，以recordContent字段为准创建。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
@@ -416,9 +416,9 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset.recordsetTtl | int | 最小1，最大2147483647 | 必需 |  | 名称服务器中记录集合信息的更新周期 |
 | recordset.recordList | List |  | 必需 |  | 记录列表 |
 | recordset.recordList[0].recordDisabled | boolean |  | 选择 | false | 记录是否禁用 |
-| recordset.recordList[0].recordContent | String |  | 必需 |  | 根据记录集合类型以一行显示多个字段的内容 |
+| recordset.recordList[0].recordContent | String |  | 必需 |  | 以一行显示的不同记录集合类型的具体字段内容 |
 
-[根据记录集合类型的具体字段]
+[不同记录集合类型的具体字段]
 
 - A记录集合
     - 可以输入多个记录。
@@ -613,9 +613,9 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - {appkey}更改为在控制台中确认的值。
 - {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
 - {recordsetId}为记录集合ID，可通过[查询记录集合](./api-guide/#_11)确认。
-- 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
-- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [创建记录集合](./api-guide/#_14)에 [根据记录集合类型的具体字段]에서 확인할 수 있습니다.
-- 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 수정됩니다.
+- 记录值为必需，输入方法可选择recordset.recordList[0].recordContent字段或具体字段。
+- recordContent字段是将空格作为区分字符，以一行显示具体字段的内容。具体字段可在 [创建记录集合](./api-guide/#_14) 的 [不同记录集合类型的具体字段] 中确认。
+- 若同时输入具体字段与recordContent字段，以recordContent字段为准修改。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
@@ -632,7 +632,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset.recordsetTtl | int | 最小1，最大2147483647 | 必需 |  | 名称服务器中记录集合信息的更新周期 |
 | recordset.recordList | List |  | 必需 |  | 记录列表 |
 | recordset.recordList[0].recordDisabled | boolean |  | 必需 |  | 记录是否禁用 |
-| recordset.recordList[0].recordContent | String |  | 必需 |  | 根据记录集合类型以一行显示多个字段的内容 |
+| recordset.recordList[0].recordContent | String |  | 必需 |  | 以一行显示的不同记录集合类型的具体字段内容 |
 
 
 #### 响应
