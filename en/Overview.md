@@ -1,24 +1,25 @@
-## Network > DNS Plus > 개요
+﻿## Network > DNS Plus > Overview
 
-DNS Plus는 전 세계 사용자들이 안정적이고 빠르게 접속할 수 있는 DNS입니다. 애니캐스트 네트워크를 지원해 어디서든 안정적이고 빠르게 DNS에 접속할 수 있으며, 별도의 DNS 솔루션이나 서버 없이 웹 콘솔에서 바로 DNS 서비스를 할 수 있습니다.
+DNS Plus is a type of DNS that allows users all around the world to access their networks in a fast and reliable way. It supports Anycast network for fast and reliable access to DNS from anywhere. In addition, DNS services are directly available in the web console without separate DNS solutions or servers.
 
-## 주요 기능
+## Key features
 
-- 별도의 DNS 서버를 설치하지 않고, 웹 콘솔에서 DNS 작업을 할 수 있습니다.
-- 애니캐스트 네트워크를 지원하여, 국내뿐 아니라 해외에서도 빠른 속도로 서비스할 수 있습니다.
-- 대규모 DNS 질의를 받을 수 있도록 설계되었기 때문에, 대규모 DNS 질의 처리와 DNS를 대상으로 한 DDoS 공격도 완화할 수 있습니다.
+- DNS services are directly available in the web console without separate DNS solutions or servers.
+- It supports Anycast network so that a high speed services can be provided in and out of the country.
+- As designed to accept a massive volume of DNS queries, it can process a huge volume of DNS queries and mitigate DDoS attacks against DNS.
 
-## 서비스 대상
+## Service targets
 
-- 글로벌 대상으로 서비스하는 애플리케이션을 개발하는 경우
-- DNS 서버의 관리 및 유지보수가 부담스러운 경우
+- For developers whose applications and services will be provided to global customers
+- For administrators and maintenance engineers who want to ease the burden of management and maintenance of DNS servers
 
-## 서비스 용어
+## Service terms
 
-| 용어 | 설명 |
+| Terms | Description |
 |---|---|
-| 도메인 | 네트워크에서 컴퓨터를 식별하는 주소를 사람이 쉽게 인식할 수 있는 형태로 나타낸 방법입니다. |
-| DNS Zone | DNS가 서비스하는 호스트의 도메인 영역입니다. 레코드 세트의 컨테이너이며 도메인과 하위 도메인의 트래픽을 라우팅하는 방법을 포함하고 있습니다. |
-| 레코드 세트 | DNS Zone으로 서비스하는 호스트 정보로, 도메인의 트래픽을 라우팅하는 방법입니다. |
-| 레코드 세트 타입 | 호스트의 트래픽을 라우팅하는 방법을 나타내는 리소스 유형입니다. |
-| 레코드값 | 호스트의 트래픽을 라우팅하는 방법을 기술한 것으로 레코드 세트 타입(리소스 유형)에 따라 입력 내용이 결정되며 특정 유형을 제외하고 하나 이상 등록할 수 있습니다. |
+| Domain | An address used to identify a computer on the network, which is presented in a human-recognizable format. |
+| DNS Zone | A domain area of the host that DNS provides service. As a container of record sets, it specified how to route traffic from domain and subdomain. |
+| Record set | Host information that DNS provides service. This is used to route traffic from domain. |
+| Record set type | A resource type which shows how to route traffic from host. |
+| Record value | A description of how to route the traffic from the host. The entry is determined based on the record set type (resource type) and one or more record values can be registered. |
+
