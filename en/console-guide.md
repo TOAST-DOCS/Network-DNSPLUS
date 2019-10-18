@@ -19,7 +19,7 @@ You can manage the DNS Zone on the **DNS Plus** screen of the menu.
 - In the **DNS Zone name**, type the user-owned domain or the sub domain as follows: [FQDN(fully qualified domain name)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name).
 - Its **DNS Zone name** must be unique within the DNS server.
 - The same **DNS Zone name** can be created as many as the number of DNS servers. There are three DNS servers.
-- After it has been created, set the name server information of the default NS record set in the domain. For the default record set, see [Manage Record Set](./console-guide/#_1).
+- After it has been created, set the name server information of the default NS record set in the domain. For the default record set, see [Manage Record Set](./console-guide/#manage-record-set).
 	- If it is created as a newly-registered domain, set the name server information to the corresponding name server in the domain registrar.
 	- If it is created as a sub domain of the domain currently in operation, set the NS record set using the sub domain name and the corresponding name server in the domain being operated.
 

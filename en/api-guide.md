@@ -187,7 +187,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 [Request body]
 
 - Changes {appkey} to the value checked in the console.
-- {zoneId} is the DNS Zone ID, which can be checked by performing [DNS Zone lookup](./api-guide/#dns-zone).
+- {zoneId} is the DNS Zone ID, which can be checked by performing [DNS Zone lookup](./api-guide/#dns-zone-lookup).
 
 ```
 curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}' \
@@ -243,7 +243,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 [Request body]
 
 - Changes {appkey} to the value checked in the console.
--  You can check the DNS Zone ID by performing [DNS Zone lookup](./api-guide/#dns-zone).
+-  You can check the DNS Zone ID by performing [DNS Zone lookup](./api-guide/#dns-zone-lookup).
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/async?
@@ -288,7 +288,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 [Request body]
 
 - Changes {appkey} to the value checked in the console.
-- {zoneId} is the DNS Zone ID, which can be checked by performing [DNS Zone lookup](./api-guide/#dns-zone).
+- {zoneId} is the DNS Zone ID, which can be checked by performing [DNS Zone lookup](./api-guide/#dns-zone-lookup).
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
@@ -395,7 +395,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 [Request body]
 
 - Changes {appkey} to the value checked in the console.
-- {zoneId} is the DNS Zone ID, which can be checked by performing [DNS Zone lookup](./api-guide/#dns-zone).
+- {zoneId} is the DNS Zone ID, which can be checked by performing [DNS Zone lookup](./api-guide/#dns-zone-lookup).
 - Record value is required. You can enter the value by selecting either recordset.recordList[0].recordContent field or the detailed field.
 - recordContent field displays the detailed field in one line separated by space. You can check the detailed field in [Detailed field by record set type].
 - If you enter values in both the detailed field and the recordContent field at the same time, the value in the recordContent field will take priority.
@@ -611,10 +611,10 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 [Request body]
 
 - Changes {appkey} to the value checked in the console.
-- {zoneId} is the DNS Zone ID, which can be checked by performing [DNS Zone lookup](./api-guide/#dns-zone).
-- {recordsetId} is the record set ID and you can check this by performing [Lookup record set](./api-guide/#_11).
+- {zoneId} is the DNS Zone ID, which can be checked by performing [DNS Zone lookup](./api-guide/#dns-zone-lookup).
+- {recordsetId} is the record set ID and you can check this by performing [Lookup record set](./api-guide/#lookup-record-set).
 - Record value is required. You can enter the value by selecting either recordset.recordList[0].recordContent field or the detailed field.
-- recordContent field displays the detailed field in one line separated by space. You can check the detailed field in the [Detailed field by record set type][Create record set](./api-guide/#_14).
+- recordContent field displays the detailed field in one line separated by space. You can check the detailed field in the [Detailed field by record set type] [Create record set](./api-guide/#create-record-set).
 - If you enter values in both the detailed field and the recordContent field, the recordContent field will take priority.
 
 ```
@@ -645,6 +645,22 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
         "isSuccessful": true,
         "resultCode": 0,
         "resultMessage": "SUCCESS"
+    },
+    "recordset": {
+        "recordsetId": "d0b7ee57-8e41-438f-ad04-d4b316793d42",
+        "recordsetName": "sub.test.dnsplus.com.",
+        "recordsetType": "A",
+        "recordsetTtl": 86400,
+        "recordsetStatus": "USE",
+        "createdAt": "2019-06-04T12:32:50.000+09:00",
+        "updatedAt": "2019-06-04T12:42:00.000+09:00",
+        "recordList": [
+            {
+                "recordDisabled": false,
+                "recordContent": "1.1.1.1",
+                "ipV4": "1.1.1.1"
+            }
+        ]
     }
 }
 ```
@@ -666,8 +682,8 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 [Request body]
 
 - Changes {appkey} to the value checked in the console.
-- {zoneId} is the DNS Zone ID, which can be checked by performing [DNS Zone lookup](./api-guide/#dns-zone).
-- You can check the record set ID by performing [Lookup record set](./api-guide/#_11).
+- {zoneId} is the DNS Zone ID, which can be checked by performing [DNS Zone lookup](./api-guide/#dns-zone-lookup).
+- You can check the record set ID by performing [Lookup record set](./api-guide/#lookup-record-set).
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
