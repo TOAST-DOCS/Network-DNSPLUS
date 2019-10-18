@@ -1,4 +1,4 @@
-﻿## Network > DNS Plus > Overview
+## Network > DNS Plus > Overview
 
 DNS Plus is a type of DNS that allows users all around the world to access their networks in a fast and reliable way. It supports Anycast network for fast and reliable access to DNS from anywhere. In addition, DNS services are directly available in the web console without separate DNS solutions or servers.
 
