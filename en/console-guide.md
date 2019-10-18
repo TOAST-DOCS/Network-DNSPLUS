@@ -1,4 +1,4 @@
-﻿## Network > DNS Plus > Console User Guide
+## Network > DNS Plus > Console User Guide
 
 This Console User Guide describes how to manage DNS Zones and record sets in the console.
 
