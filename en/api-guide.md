@@ -1,4 +1,4 @@
-﻿## Network > DNS Plus > API Guide
+## Network > DNS Plus > API Guide
 
 The API Guide describes the API of DNS Plus Service.
 
