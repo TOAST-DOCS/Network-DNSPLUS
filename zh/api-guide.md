@@ -461,7 +461,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - CNAME记录集合
     - 可以输入一个记录。
     - 记录集合名定义为正规名的别名(canonical)。
-    - 应首先设置A记录后再设置CNAME。
+    - 동일한 레코드 세트 이름에 대하여 다른 레코드 세트 타입이 없는 경우 CNAME 레코드 세트를 생성할 수 있습니다.
 
 | 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
