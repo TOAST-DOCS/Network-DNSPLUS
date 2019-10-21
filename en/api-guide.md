@@ -461,7 +461,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - CNAME record set
     - You can enter one record.
     - Define the record set name as an alias of a canonical name (canonical).
-    - You must set the A record set first and CNAME next.
+    - 동일한 레코드 세트 이름에 대하여 다른 레코드 세트 타입이 없는 경우 CNAME 레코드 세트를 생성할 수 있습니다.
 
 | Name | Type | Valid range | Required? | Default | Description |
 |---|---|---|---|---|---|
