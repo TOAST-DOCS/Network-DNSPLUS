@@ -16,12 +16,12 @@ You can manage the DNS Zone on the **DNS Plus** screen of the menu.
 
 2. Enter the **DNS Zone name** and the **Description** and then click the **OK** button.  
 
-- In the **DNS Zone name**, type the user-owned domain or the sub domain as follows: [FQDN(fully qualified domain name)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name).
-- Its **DNS Zone name** must be unique within the DNS server.
-- The same **DNS Zone name** can be created as many as the number of DNS servers. There are three DNS servers.
-- After it has been created, set the name server information of the default NS record set in the domain. For the default record set, see [Manage Record Set](./console-guide/#manage-record-set).
-	- If it is created as a newly-registered domain, set the name server information to the corresponding name server in the domain registrar.
-	- If it is created as a sub domain of the domain currently in operation, set the NS record set using the sub domain name and the corresponding name server in the domain being operated.
+	- In the **DNS Zone name**, type the user-owned domain or the sub domain as follows: [FQDN(fully qualified domain name)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name).
+	- Its **DNS Zone name** must be unique within the DNS server.
+	- The same **DNS Zone name** can be created as many as the number of DNS servers. There are three DNS servers.
+	- After it has been created, set the name server information of the default NS record set in the domain. For the default record set, see [Manage Record Set](./console-guide/#manage-record-set).
+		- If it is created as a newly-registered domain, set the name server information to the corresponding name server in the domain registrar.
+		- If it is created as a sub domain of the domain currently in operation, set the NS record set using the sub domain name and the corresponding name server in the domain being operated.
 
 ### Updating DNS Zone
 
@@ -58,14 +58,14 @@ Manage record sets of the DNS Zone selected on the **DNS Plus** screen of the me
 
 2. Enter the record set information.
 
-- Record set name: Enter the **DNS Zone name** or the sub name as the host name to serve in the [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) type.
-- Record set type: This is a type of host which can be selected according to the purpose of use.
-- TTL(sec) Time to live (TTL) refers to the valid period of data. Enter the renew cycle of the record set information in seconds in the name server. Right-click for easy entry.
+	- Record set name: Enter the **DNS Zone name** or the sub name as the host name to serve in the [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) type.
+	- Record set type: This is a type of host which can be selected according to the purpose of use.
+	- TTL(sec) Time to live (TTL) refers to the valid period of data. Enter the renew cycle of the record set information in seconds in the name server. Right-click for easy entry.
 
 3. Enter record information appropriate for the record set type.
 
-- A different record value must be entered depending on the record set type. Enter the record value according to the description displayed at the bottom of the screen.
-- The record value must be different by record set type. Click the **+** button on the right side of the screen to add a record. Click the **-** button next to the added record to remove it.
+	- A different record value must be entered depending on the record set type. Enter the record value according to the description displayed at the bottom of the screen.
+	- The record value must be different by record set type. Click the **+** button on the right side of the screen to add a record. Click the **-** button next to the added record to remove it.
 
 4. After completing the setup, click the **OK** button.
 
@@ -104,5 +104,5 @@ Manage record sets of the DNS Zone selected on the **DNS Plus** screen of the me
 
 2. Type the keyword and click the **Enter Key** or the **Search** to search for the record set name.  
 
-- All values which include the keyword are searched.
+	- All values which include the keyword are searched.
 
