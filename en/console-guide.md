@@ -205,7 +205,7 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 3. GSLB 상태는 아래 규칙에 따라 표시되며 연결된 Pool은 [Pool](./console-guide/#_8)의 상태를 표시합니다.
 
-| 종류 | GSLB 상태 | Pool 상태 |
+| GSLB 상태 | GSLB 활성화/비활성화 | Pool 상태 |
 | --- | --- | --- |
 | 정상(초록색) | 활성화 | 1개 이상 정상 상태 |
 | 오류(붉은색) | 활성화 | 정상 상태가 없고 1개 이상 오류 상태 |
@@ -274,7 +274,7 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 3. Pool의 상태는 아래 규칙에 따라 표시됩니다.
 
-| 종류 | Pool 상태 | 헬스 체크 설정 | 엔드포인트 상태 |
+| Pool 상태 | Pool 활성화/비활성화 | 헬스 체크 설정 | 엔드포인트 상태 |
 | --- | --- | --- | --- |
 | 정상(초록색) | 활성화 | 연결 | 1개 이상 정상 상태 |
 | 오류(붉은색) | 활성화 | 연결 | 정상 상태가 없고 1개 이상 오류 상태 |
