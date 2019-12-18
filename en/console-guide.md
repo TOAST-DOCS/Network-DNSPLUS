@@ -122,7 +122,7 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 2. **GSLB** 정보를 입력합니다.
 
 	- GSLB 이름: 생성되는 GSLB를 지칭하는 이름으로 영대소문자와 숫자, '-', '_'로 입력 가능합니다.
-	- 라우팅 규칙: GSLB 도메인에 대한 로드밸런싱 방법으로 FAILOVER/RANDOM/GEOLOCATION를 선택할 수 있습니다.
+	- 라우팅 규칙: GSLB 도메인에 대한 로드밸런싱 방법으로 FAILOVER, RANDOM, GEOLOCATION를 선택할 수 있습니다.
 		- FAILOVER: 연결된 Pool의 우선순위로 라우팅 합니다.
 		- RANDOM: 연결된 Pool 중 사용 가능한 Pool을 무작위로 선택하여 라우팅 합니다.
 		- GEOLOCATION: 설정된 지역의 트래픽을 해당 연결된 Pool로 라우팅합니다. 지역 설정이 없는 경우 우선순위로 라우팅합니다.
@@ -173,6 +173,8 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 3. **확인** 버튼을 클릭합니다.
 
+4. Pool 연결 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의해 주시기 바랍니다. [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+
 ### Pool 연결 수정
 
 ![image_16_20191218](https://static.toastoven.net/prod_dnsplus/image_16_20191218.png)
@@ -187,7 +189,7 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 ![image_17_20191218](https://static.toastoven.net/prod_dnsplus/image_17_20191218.png)
 
-1. 연결 해제할 Pool을 모두 선택한 후, **Pool 연결 수정** 버튼을 클릭합니다.
+1. 연결 해제할 Pool을 모두 선택한 후, **Pool 연결 해제** 버튼을 클릭합니다.
 
 2. **확인** 버튼을 클릭합니다.
 
@@ -301,12 +303,12 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 		- HTTPS 입력 가능 항목: 인증서 검증 안함, 포트, 경로, 예상 상태 코드, 예상 응답 본문
 		- HTTP 입력 가능 항목: 포트, 경로, 예상 상태 코드, 예상 응답 본문
 		- TCP 입력 가능 항목: 포트
-	- 인증서 검증 안함: 엔드포인트에 헬스 체크가 수행 될 때 TLS/SSL 인증서가 유효하지 않아도 무시할 수 있는 설정입니다.
+	- 인증서 검증 안함: 헬스 체크가 수행 될 때 엔드포인트의 TLS/SSL 인증서가 유효하지 않아도 무시할 수 있는 설정입니다.
 	- 포트: 헬스 체크를 수행할 때 사용할 포트를 입력합니다.
 	- 경로: 헬스 체크를 수행할 때 사용할 경로를 입력합니다. 시작 문자는 '/'이여야 합니다.
 	- 예상 상태 코드: 헬스 체크에 대한 예상 [HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) 응답을 입력합니다. 와일드카드로 'x' 문자를 입력할 수 있으며 일치할 경우 엔드포인트를 정상으로 판단합니다. (예제) 2xx, 20x, 200
-		- 엔드포인트에서 리다이렉션 된 페이지에 대한 헬스 체크는 지원하지 않습니다.
 	- 예상 응답 본문: 헬스 체크애 대한 예상 응답 본문을 입력할 수 있습니다.
+	- **예상 상태 코드**와 **예상 응답 본문**을 판단 할 때 엔드포인트에서 리다이렉션 된 페이지에 대해서는 지원하지 않습니다.
 
 3. 설정 완료 후 **확인** 버튼을 클릭합니다.
 
