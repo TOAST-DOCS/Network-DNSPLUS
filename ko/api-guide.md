@@ -900,7 +900,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### GSLB 수정
 
 - GSLB와 Pool 연결 설정을 수정합니다.
-- [GSLB 생성](./api-guide/#gslb)에서 입력한 항목을 수정합니다.
+- [GSLB 생성](./api-guide/#gslb_1)에서 입력한 항목을 수정합니다.
 
 #### 요청
 
@@ -1038,7 +1038,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 - {gslbId}는 GSLB ID이며 [GSLB 조회](./api-guide/#gslb)를 통해서 알 수 있습니다.
-- {poolId}는 Pool ID이며 [Pool 조회](./api-guide/#pool)를 통해서 알 수 있습니다.
+- {poolId}는 Pool ID이며 [Pool 조회](./api-guide/#pool_3)를 통해서 알 수 있습니다.
 - connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
 
 ```
@@ -1096,7 +1096,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### Pool 연결 수정
 
 - GSLB에 연결된 Pool 설정을 수정합니다.
-- [GSLB 생성](./api-guide/#gslb)의 Pool 설정 또는 [Pool 연결](./api-guide/#Pool)에서 입력한 항목을 수정합니다.
+- [GSLB 생성](./api-guide/#gslb_1)의 Pool 설정 또는 [Pool 연결](./api-guide/#pool)에서 입력한 항목을 수정합니다.
 
 #### 요청
 
@@ -1110,7 +1110,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 - {gslbId}는 GSLB ID이며 [GSLB 조회](./api-guide/#gslb)를 통해서 알 수 있습니다.
-- {poolId}는 Pool ID이며 [Pool 조회](./api-guide/#pool)를 통해서 알 수 있습니다.
+- {poolId}는 Pool ID이며 [Pool 조회](./api-guide/#pool_3)를 통해서 알 수 있습니다.
 - connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
 
 ```
@@ -1369,7 +1369,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | pool | Object |  | 필수 |  | Pool |
 | pool.poolName | String | 최대 100자,<br>영대소문자와 숫자, '-', '_' | 필수 |  | Pool 이름 |
 | pool.poolDisabled | boolean |  | 선택 | false | Pool 비활성화 여부 |
-| pool.healthCheckId | int | 최소 1, 최대 65535 | 선택 |  | 헬스 체크 ID |
+| pool.healthCheckId | String |  | 선택 |  | 헬스 체크 ID |
 | pool.endpointList | List |  | 필수 |  | 엔드포인트 목록 |
 | pool.endpointList[0].endpointAddress | String | 최대 254자,<br>소문자와 숫자, '.', '-', '_' | 필수 |  | 엔드포인트 주소 |
 | pool.endpointList[0].endpointWeight | double | 최소 0, 최대 1.00 | 선택 | 1.00 | 엔드포인트 가중치 |
@@ -1413,7 +1413,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### Pool 수정
 
 - Pool과 Pool 내에 엔드포인트를 수정합니다.
-- [Pool 생성](./api-guide/#pool)에서 입력한 항목을 수정합니다.
+- [Pool 생성](./api-guide/#pool_4)에서 입력한 항목을 수정합니다.
 
 #### 요청
 
@@ -1426,7 +1426,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {poolId}는 Pool ID이며 [Pool 조회](./api-guide/#pool)를 통해서 알 수 있습니다.
+- {poolId}는 Pool ID이며 [Pool 조회](./api-guide/#pool_3)를 통해서 알 수 있습니다.
 
 ```
 curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools/{poolId}' \
@@ -1679,7 +1679,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### 헬스 체크 수정
 
 - 헬스 체크를 수정합니다.
-- [헬스 체크 생성](./api-guide/#dns-zone)에서 입력한 항목을 수정합니다.
+- [헬스 체크 생성](./api-guide/#_48)에서 입력한 항목을 수정합니다.
 
 #### 요청
 
@@ -1692,7 +1692,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {healthCheckId}는 헬스 체크 ID이며 [헬스 체크 조회](./api-guide/#dns-zone)를 통해서 알 수 있습니다.
+- {healthCheckId}는 헬스 체크 ID이며 [헬스 체크 조회](./api-guide/#_45)를 통해서 알 수 있습니다.
 
 ```
 curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
