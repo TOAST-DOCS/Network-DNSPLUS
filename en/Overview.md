@@ -17,7 +17,7 @@ DNS Plus is a type of DNS that allows users all around the world to access their
     |---|---|---|
     | FAILOVER | Routes pools connected to GLSB domain in the priority order. |  |
     | RANDOM | Routes available pools connected to GLSB domain randomly. |  |
-    | GEOLOCATION | Routes traffic of configured region to the corresponding connected pool.<br>Routes in the priority order, if regional setting is not available. | <Available Regions><br>- Western North America<br>- Eastern Nort America<br>- Western Europe<br>- Eastern Europe<br>- Northern South America<br>- Southern South America<br>- Oceania<br>- Middle East<br>- Northern Africa<br>- Southern Africa<br>- India<br>- Southeast Asia<br>- Northeast Asia |
+    | GEOLOCATION | Routes traffic of configured region to the corresponding connected pool.<br>Routes in the priority order, if regional setting is not available. | < Available Regions ><br>- Western North America<br>- Eastern Nort America<br>- Western Europe<br>- Eastern Europe<br>- Northern South America<br>- Southern South America<br>- Oceania<br>- Middle East<br>- Northern Africa<br>- Southern Africa<br>- India<br>- Southeast Asia<br>- Northeast Asia |
 
     - Endpoint grouping via pool
         - Endpoints can be grouped by pool for specific purposes.
