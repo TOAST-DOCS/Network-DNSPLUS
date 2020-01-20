@@ -712,43 +712,43 @@ recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092
 
 ## GSLB API
 
-### GSLB 조회
+### GSLBの照会
 
-- GSLB 목록을 조회합니다.
-- Pool에 헬스 체크가 연결되어 있는 경우 GSLB 정상 상태와 Pool 정상 상태, 엔드포인트 정상 상태를 알 수 있습니다.
+- GSLBリストを照会します。
+- Poolにヘルスチェックが接続されている場合は、GSLB正常状態、Pool正常状態、エンドポイント正常状態を確認できます。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}はコンソールで確認した値に変更します。
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs?showHealthy=true'
 ```
 
-[옵션]
+[オプション]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| gslbIdList | List | 최대 3,000개 | 선택 |  | GSLB ID 목록 |
-| searchGslbName | String |  | 선택 |  | 검색할 GSLB 이름 |
-| gslbDomain | String |  | 선택 |  | GSLB 도메인 |
-| showHealthy | boolean |  | 선택 |  | 헬스 체크 결과 보기 여부 |
-| page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
-| limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
-| sortDirection | String | DESC, ASC | 선택 | DESC | 정렬 방향(DESC: 내림차순, ASC: 오름차순) |
-| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>GSLB_NAME, <br>GSLB_DOMAIN, <br>GSLB_TTL, <br>GSLB_ROUTING_RULE, <br>GSLB_DISABLED | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>GSLB_NAME: GSLB 이름, <br>GSLB_DOMAIN: GSLB 도메인, <br>GSLB_TTL: GSLB 도메인 갱신 주기, <br>GSLB_ROUTING_RULE: 라우팅 규칙, <br>GSLB_DISABLED: GSLB 비활성화 여부) |
+| gslbIdList | List | 最大3,000個 | 任意 |  | GSLB IDリスト |
+| searchGslbName | String |  | 任意 |  | 検索するGSLBの名前 |
+| gslbDomain | String |  | 任意 |  | GSLBドメイン |
+| showHealthy | boolean |  | 任意 |  | ヘルスチェック結果の表示 |
+| page | int | 最小1 | 任意 | 1 | ページ番号 |
+| limit | int | 最小1、最大3,000 | 任意 | 50 | 照会数 |
+| sortDirection | String | DESC, ASC | 任意 | DESC | ソート方向(DESC：降順、ASC：昇順) |
+| sortKey | String | CREATED_AT、 <br>UPDATED_AT、 <br>GSLB_NAME、 <br>GSLB_DOMAIN、 <br>GSLB_TTL、 <br>GSLB_ROUTING_RULE、 <br>GSLB_DISABLED | 任意 | CREATED_AT | ソート対象 <br>(CREATED_AT：作成日、<br>UPDATED_AT：修正日、<br>GSLB_NAME：GSLBの名前、<br>GSLB_DOMAIN：GSLBドメイン、<br>GSLB_TTL：GSLBドメイン更新周期、<br>GSLB_ROUTING_RULE：ルーティングルール、<br>GSLB_DISABLED：GSLBが無効かどうか) |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -772,7 +772,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
                     "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
                     "connectedPoolOrder": 1,
                     "pool": {
-                        // Pool 정보 생략
+                        // Pool情報省略
                     }
                 },
                 {
@@ -780,7 +780,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
                     "connectedPoolOrder": 2,
                     "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA",
                     "pool": {
-                        // Pool 정보 생략
+                        // Pool情報省略
                     }
                 }
             ],
@@ -791,50 +791,50 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 }
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 설명 |
+| 名前 | タイプ | 説明 |
 |---|---|---|
-| totalCount | long | 전체 GSLB 개수 |
-| gslbList | List | Pool 목록 |
+| totalCount | long | GSLBの総数 |
+| gslbList | List | Poolリスト |
 | gslbList[0].gslbId | String | GSLB ID |
-| gslbList[0].gslbName | String | GSLB 이름 |
-| gslbList[0].gslbDomain | String | GSLB 도메인 |
-| gslbList[0].gslbTtl | String | GLSB 도메인 갱신 주기 |
-| gslbList[0].gslbRoutingRule | String | 라우팅 규칙 |
-| gslbList[0].gslbDisabled | boolean | GSLB 비활성화 여부 |
-| gslbList[0].healthy | boolean | GSLB 정상 여부 |
-| gslbList[0].connectedPoolList | List | 연결된 Pool 목록 |
-| gslbList[0].connectedPoolList[0].poolId | String | 연결된 Pool Id |
-| gslbList[0].connectedPoolList[0].pool | Object | 연결된 Pool 정보 |
-| gslbList[0].connectedPoolList[0].connectedPoolOrder | int | 연결된 Pool 우선순위 |
-| gslbList[0].connectedPoolList[0].connectedPoolRegionContent | String | 연결된 Pool의 지역을 한 줄로 표시한 내용 |
-| gslbList[0].createdAt | DateTime | 생성일 |
-| gslbList[0].updatedAt | DateTime | 수정일 |
+| gslbList[0].gslbName | String | GSLBの名前 |
+| gslbList[0].gslbDomain | String | GSLBドメイン |
+| gslbList[0].gslbTtl | String | GLSBドメイン更新周期 |
+| gslbList[0].gslbRoutingRule | String | ルーティングルール |
+| gslbList[0].gslbDisabled | boolean | GSLBが無効かどうか |
+| gslbList[0].healthy | boolean | GSLBが正常かどうか |
+| gslbList[0].connectedPoolList | List | 接続されたPoolリスト |
+| gslbList[0].connectedPoolList[0].poolId | String | 接続されたPool Id |
+| gslbList[0].connectedPoolList[0].pool | Object | 接続されたPool情報 |
+| gslbList[0].connectedPoolList[0].connectedPoolOrder | int | 接続されたPoolの優先順位 |
+| gslbList[0].connectedPoolList[0].connectedPoolRegionContent | String | 接続されたPoolの地域を1行で表示した内容 |
+| gslbList[0].createdAt | DateTime | 作成日 |
+| gslbList[0].updatedAt | DateTime | 修正日 |
 
 
-### GSLB 생성
+### GSLBの作成
 
-- GSLB와 Pool 연결 설정을 생성합니다.
-- **라우팅 규칙**은 GSLB 도메인에 대한 로드밸런싱 방법으로 FAILOVER, RANDOM, GEOLOCATION을 선택할 수 있습니다.
-    - FAILOVER: 연결된 Pool의 우선순위로 라우팅 합니다.
-	- RANDOM: 연결된 Pool 중 사용 가능한 Pool을 무작위로 선택하여 라우팅 합니다.
-	- GEOLOCATION: 설정된 지역의 트래픽을 해당 연결된 Pool로 라우팅합니다. 지역 설정이 없는 경우 우선순위로 라우팅합니다.
-- **연결된 Pool**의 **우선순위**는 작을수록 라우팅 순서가 높으며, 중복될 수 없습니다.
-- GSLB 생성 개수와 Pool 연결 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의해 주시기 바랍니다. [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+- GSLBとPoolの接続設定を作成します。
+- **ルーティングルール**は、GSLBドメインのロードバランシング方法にFAILOVER、RANDOM、GEOLOCATIONを選択できます。
+    - FAILOVER：接続されたPoolの優先順位でルーティングします。
+	- RANDOM：接続されたPoolのうち、使用可能なPoolをランダムに選択してルーティングします。
+	- GEOLOCATION：設定した地域のトラフィックを該当の接続されたPoolにルーティングします。地域設定がない場合は優先順位でルーティングします。
+- **接続されたPool**の**優先順位**は、小さいほどルーティング順序が高く、重複した値は使用できません。
+- GSLBの作成数とPoolの接続数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
+- {appkey}はコンソールで確認した値に変更します。
+- connectedPoolRegionContentフィールドはカンマ(,)を区切り文字にして**地域**を1行で作成します。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs' \
@@ -842,23 +842,23 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 --data '{ "gslb": { "gslbName": "GSLB-test", "gslbTtl": 300, "gslbRoutingRule": "FAILOVER", "connectedPoolList": [ { "poolId": "8e4326d4-3862-4b46-819e-83a786add570", "connectedPoolOrder": 1 }, { "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818", "connectedPoolOrder": 2 } ] }}'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| gslb | Object |  | 필수 |  | GSLB |
-| gslb.gslbName | String | 최대 100자,<br>영대소문자와 숫자, '-', '_' | 필수 |  | GSLB 이름 |
-| gslb.gslbTtl | int |  | 필수 | false | GSLB 도메인 갱신 주기 |
-| gslb.gslbRoutingRule | String | FAILOVER, RANDOM, GEOLOCATION  | 필수 |  | 라우팅 규칙 |
-| gslb.gslbDisabled | boolean |  | 선택 | false | GSLB 비활성화 여부 |
-| gslb.connectedPoolList | List |  | 필수 |  | 연결된 Pool 목록 |
-| gslb.connectedPoolList[0].poolId | String |  | 필수 |  | 연결된 Pool ID |
-| gslb.connectedPoolList[0].connectedPoolOrder | int | 최소 1, 최대 2,147,483,647 | 필수 |  | 연결된 Pool 우선순위 |
-| gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 선택 |  | 연결된 Pool 지역 설정 |
+| gslb | Object |  | 必須 |  | GSLB |
+| gslb.gslbName | String | 最大100文字、<br>英字(大文字/小文字)、数字、(-)、(_) | 必須 |  | GSLBの名前 |
+| gslb.gslbTtl | int |  | 必須 | false | GSLBドメイン更新周期 |
+| gslb.gslbRoutingRule | String | FAILOVER、RANDOM、GEOLOCATION  | 必須 |  | ルーティングルール |
+| gslb.gslbDisabled | boolean |  | 任意 | false | GSLBが無効かどうか |
+| gslb.connectedPoolList | List |  | 必須 |  | 接続されたPoolリスト |
+| gslb.connectedPoolList[0].poolId | String |  | 必須 |  | 接続されたPool ID |
+| gslb.connectedPoolList[0].connectedPoolOrder | int | 最小1、最大2,147,483,647 | 必須 |  | 接続されたPoolの優先順位 |
+| gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 任意 |  | 接続されたPoolの地域設定 |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -879,14 +879,14 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
                 "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
                 "connectedPoolOrder": 1,
                 "pool": {
-                    // Pool 정보 생략
+                    // Pool情報省略
                 }
             },
             {
                 "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818",
                 "connectedPoolOrder": 2,
                 "pool": {
-                    // Pool 정보 생략
+                    // Pool情報省略
                 }
             }
         ],
@@ -897,24 +897,24 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 
 
-### GSLB 수정
+### GSLBの修正
 
-- GSLB와 Pool 연결 설정을 수정합니다.
-- [GSLB 생성](./api-guide/#gslb_1)에서 입력한 항목을 수정합니다.
+- GSLBとPool接続設定を修正します。
+- [GSLB作成](./api-guide/#gslb_1)で入力した項目を修正します。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId} |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {gslbId}는 GSLB ID이며 [GSLB 조회](./api-guide/#gslb)를 통해서 알 수 있습니다.
-- connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
+- {appkey}はコンソールで確認した値に変更します。
+- {gslbId}はGSLB IDで、[GSLB照会](./api-guide/#gslb)を通して確認できます。
+- connectedPoolRegionContentフィールドはカンマ(,)を区切り文字にして**地域**を1行で作成します。
 
 ```
 curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}' \
@@ -922,23 +922,23 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 --data '{ "gslb": { "gslbName": "GSLB-test", "gslbTtl": 300, "gslbDisabled": true, "gslbRoutingRule": "GEOLOCATION", "connectedPoolList": [ { "poolId": "8e4326d4-3862-4b46-819e-83a786add570", "connectedPoolOrder": 1 }, { "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818", "connectedPoolOrder": 2, "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA" } ] }}'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| gslb | Object |  | 필수 |  | GSLB |
-| gslb.gslbName | String | 최대 100자,<br>영대소문자와 숫자, '-', '_' | 필수 |  | GSLB 이름 |
-| gslb.gslbTtl | int |  | 필수 | false | GSLB 도메인 갱신 주기 |
-| gslb.gslbRoutingRule | String | FAILOVER, RANDOM, GEOLOCATION  | 필수 |  | 라우팅 규칙 |
-| gslb.gslbDisabled | boolean |  | 선택 | false | GSLB 비활성화 여부 |
-| gslb.connectedPoolList | List |  | 필수 |  | 연결된 Pool 목록 |
-| gslb.connectedPoolList[0].poolId | String |  | 필수 |  | 연결된 Pool ID |
-| gslb.connectedPoolList[0].connectedPoolOrder | int | 최소 1, 최대 2,147,483,647 | 필수 |  | 연결된 Pool 우선순위 |
-| gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 선택 |  | 연결된 Pool 지역 설정 |
+| gslb | Object |  | 必須 |  | GSLB |
+| gslb.gslbName | String | 最大100文字、<br>英字(大文字/小文字)、数字、(-)、(_) | 必須 |  | GSLBの名前 |
+| gslb.gslbTtl | int |  | 必須 | false | GSLBドメイン更新周期 |
+| gslb.gslbRoutingRule | String | FAILOVER、RANDOM、GEOLOCATION  | 必須 |  | ルーティングルール |
+| gslb.gslbDisabled | boolean |  | 任意 | false | GSLBが無効かどうか |
+| gslb.connectedPoolList | List |  | 必須 |  | 接続されたPoolリスト |
+| gslb.connectedPoolList[0].poolId | String |  | 必須 |  | 接続されたPool ID |
+| gslb.connectedPoolList[0].connectedPoolOrder | int | 最小1、最大2,147,483,647 | 必須 |  | 接続されたPoolの優先順位 |
+| gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 任意 |  | 接続されたPoolの地域設定 |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -959,7 +959,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
                 "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
                 "connectedPoolOrder": 1,
                 "pool": {
-                    // Pool 정보 생략
+                    // Pool情報省略
                 }
             },
             {
@@ -967,7 +967,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
                 "connectedPoolOrder": 2,
                 "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA",
                 "pool": {
-                    // Pool 정보 생략
+                    // Pool情報省略
                 }
             }
         ],
@@ -978,36 +978,36 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 ```
 
 
-### GSLB 삭제
+### GSLBの削除
 
-- 여러 개의 GSLB를 삭제합니다.
+- 複数のGSLBを削除します。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}はコンソールで確認した値に変更します。
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs?
 gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c604bf'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| gslbIdList | List | 최소 1개, 최대 3,000개 | 필수 |  | GSLB ID 목록 |
+| gslbIdList | List | 最小1個、最大3,000個 | 必須 |  | GSLB IDリスト |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -1020,26 +1020,26 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 ```
 
 
-### Pool 연결
+### Pool接続
 
-- GSLB에 Pool을 연결합니다.
-- **연결된 Pool**의 **우선순위**는 작을수록 라우팅 순서가 높으며, 기존에 연결된 Pool과 동일한 우선순위를 입력한 경우 기존 Pool의 라우팅 순서가 낮아집니다.
-- Pool 연결 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의해 주시기 바랍니다. [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+- GSLBにPoolを接続します。
+- **接続されたPool**の**優先順位**は、小さいほどルーティング順序が高く、既に接続されたPoolと同じ優先順位を入力した場合、既存Poolのルーティング順序が低くなります。
+- Pool接続数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {gslbId}는 GSLB ID이며 [GSLB 조회](./api-guide/#gslb)를 통해서 알 수 있습니다.
-- {poolId}는 Pool ID이며 [Pool 조회](./api-guide/#pool_3)를 통해서 알 수 있습니다.
-- connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
+- {appkey}はコンソールで確認した値に変更します。
+- {gslbId}はGSLB IDです。[GSLB照会](./api-guide/#gslb)で確認できます。
+- {poolId}はPool IDです。[Pool照会](./api-guide/#pool_3)で確認できます。
+- connectedPoolRegionContentフィールドはカンマ(,)を区切り文字にして**地域**を1行で作成します。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
@@ -1047,17 +1047,17 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 --data '{ "connectedPool": { "connectedPoolOrder": 1 } }'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| connectedPool | Object |  | 필수 |  | 연결된 Pool |
-| connectedPool.connectedPoolOrder | int | 최소 1, 최대 2,147,483,647 | 필수 |  | 연결된 Pool 우선순위 |
-| connectedPool.connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 선택 |  | 연결된 Pool 지역 설정 |
+| connectedPool | Object |  | 必須 |  | 接続されたPool |
+| connectedPool.connectedPoolOrder | int | 最小1、最大2,147,483,647 | 必須 |  | 接続されたPoolの優先順位 |
+| connectedPool.connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 任意 |  | 接続されたPoolの地域設定 |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -1071,14 +1071,14 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
             "poolId": "52da0e48-9062-43f7-bef8-8aec4b795bfe",
             "connectedPoolOrder": 1,
             "pool": {
-                // Pool 정보 생략
+                // Pool情報省略
             }
         },
         {
             "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
             "connectedPoolOrder": 2,
             "pool": {
-                // Pool 정보 생략
+                // Pool情報省略
             }
         },
         {
@@ -1086,32 +1086,32 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
             "connectedPoolOrder": 3,
             "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA",
             "pool": {
-                // Pool 정보 생략
+                // Pool情報省略
             }
         }
     ]
 }
 ```
 
-### Pool 연결 수정
+### Pool接続の修正
 
-- GSLB에 연결된 Pool 설정을 수정합니다.
-- [GSLB 생성](./api-guide/#gslb_1)의 Pool 설정 또는 [Pool 연결](./api-guide/#pool)에서 입력한 항목을 수정합니다.
+- GSLBに接続されたPoolの設定を修正します。
+- [GSLB作成](./api-guide/#gslb_1)のPool設定または[Pool接続](./api-guide/#pool)で入力した項目を修正します。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {gslbId}는 GSLB ID이며 [GSLB 조회](./api-guide/#gslb)를 통해서 알 수 있습니다.
-- {poolId}는 Pool ID이며 [Pool 조회](./api-guide/#pool_3)를 통해서 알 수 있습니다.
-- connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
+- {appkey}はコンソールで確認した値に変更します。
+- {gslbId}はGSLB IDでです。[GSLB照会](./api-guide/#gslb)で確認できます。
+- {poolId}はPool IDです。[Pool照会](./api-guide/#pool_3)で確認できます。
+- connectedPoolRegionContentフィールドはカンマ(,)を区切り文字にして**地域**を1行で作成します。
 
 ```
 curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
@@ -1119,17 +1119,17 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 --data '{ "connectedPool": { "connectedPoolOrder": 1, "connectedPoolRegionContent": "WESTERN_NORTH_AMERICA" } }'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| connectedPool | Object |  | 필수 |  | 연결된 Pool |
-| connectedPool.connectedPoolOrder | int | 최소 1, 최대 2,147,483,647 | 필수 |  | 연결된 Pool 우선순위 |
-| connectedPool.connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 선택 |  | 연결된 Pool 지역 설정 |
+| connectedPool | Object |  | 必須 |  | 接続されたPool |
+| connectedPool.connectedPoolOrder | int | 最小1、最大2,147,483,647 | 必須 |  | 接続されたPoolの優先順位 |
+| connectedPool.connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 任意 |  | 接続されたPoolの地域設定 |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -1144,14 +1144,14 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
             "connectedPoolOrder": 1,
             "connectedPoolRegionContent": "WESTERN_NORTH_AMERICA",
             "pool": {
-                // Pool 정보 생략
+                // Pool情報省略
             }
         },
         {
             "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
             "connectedPoolOrder": 2,
             "pool": {
-                // Pool 정보 생략
+                // Pool情報省略
             }
         },
         {
@@ -1159,44 +1159,44 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
             "connectedPoolOrder": 3,
             "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA",
             "pool": {
-                // Pool 정보 생략
+                // Pool情報省略
             }
         }
     ]
 }
 ```
 
-### Pool 연결 해제
+### Poolの接続解除
 
-- GSLB에 연결된 여러 개의 Pool을 해제합니다.
+- GSLBに接続された複数のPoolを解除します。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {gslbId}는 GSLB ID이며 [GSLB 조회](./api-guide/#gslb)를 통해서 알 수 있습니다.
+- {appkey}はコンソールで確認した値に変更します。
+- {gslbId}はGSLB IDです。[GSLB照会](./api-guide/#gslb)で確認できます。
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
 poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1dfb093'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| poolIdList | List | 최소 1개, 최대 3,000개 | 필수 |  | Pool ID 목록 |
+| poolIdList | List | 最小1個、最大3,000個 | 必須 |  | Pool IDリスト |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -1210,7 +1210,7 @@ poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1df
             "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
             "connectedPoolOrder": 2,
             "pool": {
-                // Pool 정보 생략
+                // Pool情報省略
             }
         },
         {
@@ -1218,7 +1218,7 @@ poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1df
             "connectedPoolOrder": 3,
             "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA",
             "pool": {
-                // Pool 정보 생략
+                // Pool情報省略
             }
         }
     ]
@@ -1228,43 +1228,43 @@ poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1df
 
 ## Pool API
 
-### Pool 조회
+### Poolの照会
 
-- Pool 목록을 조회합니다.
-- 헬스 체크가 연결되어 있는 경우 Pool 정상 상태와 엔드포인트 정상 상태를 알 수 있습니다.
+- Poolリストを照会します。
+- ヘルスチェックが接続されている場合は、Pool正常状態とエンドポイント正常状態を確認できます。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}はコンソールで確認した値に変更します。
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools?showHealthy=true'
 ```
 
-[옵션]
+[オプション]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| poolIdList | List | 최대 3,000개 | 선택 |  | Pool ID 목록 |
-| searchPoolName | String |  | 선택 |  | 검색할 Pool 이름 |
-| healthCheckId | String |  | 선택 |  | 연결 된 헬스 체크 ID |
-| showHealthy | boolean |  | 선택 |  | 헬스 체크 결과 보기 여부 |
-| page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
-| limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
-| sortDirection | String | DESC, ASC | 선택 | DESC | 정렬 방향(DESC: 내림차순, ASC: 오름차순) |
-| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>POOL_NAME, <br>POOL_DISABLED, <br>HEALTH_CHECK_ID | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>POOL_NAME: Pool 이름, <br>POOL_DISABLED: Pool 비활성화 여부, <br>HEALTH_CHECK_ID: 연결된 헬스 체크 ID) |
+| poolIdList | List | 最大3,000個 | 任意 |  | Pool IDリスト |
+| searchPoolName | String |  | 任意 |  | 検索するPoolの名前 |
+| healthCheckId | String |  | 任意 |  | 接続されたヘルスチェックID |
+| showHealthy | boolean |  | 任意 |  | ヘルスチェック結果を表示するかどうか |
+| page | int | 最小1 | 任意 | 1 | ページ番号 |
+| limit | int | 最小1、最大3,000 | 任意 | 50 | 照会数 |
+| sortDirection | String | DESC、ASC | 任意 | DESC | ソート方向(DESC：降順、ASC：昇順) |
+| sortKey | String | CREATED_AT、 <br>UPDATED_AT、 <br>POOL_NAME、 <br>POOL_DISABLED、 <br>HEALTH_CHECK_ID | 任意 | CREATED_AT | ソート対象 <br>(CREATED_AT：作成日、<br>UPDATED_AT：修正日、<br>POOL_NAME：Poolの名前、<br>POOL_DISABLED：Poolが無効かどうか、<br>HEALTH_CHECK_ID：接続されたヘルスチェックID) |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -1282,7 +1282,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/p
             "healthy": true,
             "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17",
             "healthCheck": {
-                // 헬스 체크 정보 생략
+                // ヘルスチェック情報省略
             },
             "endpointList": [
                 {
@@ -1312,49 +1312,49 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/p
 }
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 설명 |
+| 名前 | タイプ | 説明 |
 |---|---|---|
-| totalCount | long | 전체 Pool 개수 |
-| poolList | List | Pool 목록 |
+| totalCount | long | Pool総数 |
+| poolList | List | Poolリスト |
 | poolList[0].poolId | String | Pool ID |
-| poolList[0].poolName | String | Pool 이름 |
-| poolList[0].poolDisabled | boolean | Pool 비활성화 여부 |
-| poolList[0].healthy | boolean | Pool 정상 여부 |
-| poolList[0].healthCheckId | String | 연결된 헬스 체크 ID |
-| poolList[0].healthCheck | Object | 연결된 헬스 체크 정보 |
-| poolList[0].endpointList | List | 엔드포인트 목록 |
-| poolList[0].endpointList[0].endpointAddress | String | 엔드포인트 주소 |
-| poolList[0].endpointList[0].endpointWeight | double | 엔드포인트 가중치 |
-| poolList[0].endpointList[0].healthy | boolean | 엔드포인트 정상 여부 |
-| poolList[0].endpointList[0].failureReason | String | 엔드포인트 비정상 이유 |
-| poolList[0].createdAt | DateTime | 생성일 |
-| poolList[0].updatedAt | DateTime | 수정일 |
+| poolList[0].poolName | String | Poolの名前 |
+| poolList[0].poolDisabled | boolean | Poolが無効かどうか |
+| poolList[0].healthy | boolean | Poolが正常かどうか |
+| poolList[0].healthCheckId | String | 接続されたヘルスチェックID |
+| poolList[0].healthCheck | Object | 接続されたヘルスチェック情報 |
+| poolList[0].endpointList | List | エンドポイントリスト |
+| poolList[0].endpointList[0].endpointAddress | String | エンドポイントアドレス |
+| poolList[0].endpointList[0].endpointWeight | double | エンドポイントの重み |
+| poolList[0].endpointList[0].healthy | boolean | エンドポイントが正常かどうか |
+| poolList[0].endpointList[0].failureReason | String | エンドポイントが異常な理由 |
+| poolList[0].createdAt | DateTime | 作成日 |
+| poolList[0].updatedAt | DateTime | 修正日 |
 
 
-### Pool 생성
+### Poolの作成
 
-- Pool과 Pool 내에 엔드포인트를 생성합니다.
-- Pool 내의 엔드포인트의 접근성을 확인할 **헬스 체크**를 설정할 수 있습니다.
-- **엔드포인트 주소**는 도메인 주소 또는 IPv4로 입력할 수 있으며 제한된 입력이 있습니다.
-    - 하이픈과 마침표로 시작할 수 없으며 하이픈으로 끝날 수 없습니다. 마침표와 하이픈을 연이어서 입력할 수 없습니다.
-    - [예약된 IP 주소](https://en.wikipedia.org/wiki/Reserved_IP_addresses)는 입력할 수 없습니다.
-    - Pool 내에서 중복될 수 없습니다.
-- 엔드포인트의 **가중치**는 Pool 내의 다른 엔드포인트 가중치와 상대적으로 동작합니다. 동일한 가중치는 Pool 내에서 동일한 비중을 가집니다.
-- Pool의 생성 개수, Pool 내의 엔드포인트 개수, 전체 엔드포인트의 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의해 주시기 바랍니다. [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+- PoolとPool内にエンドポイントを作成します。
+- Pool内のエンドポイントのアクセシビリティを確認する**ヘルスチェック**を設定できます。
+- **エンドポイントアドレス**はドメインアドレスまたはIPv4で入力することができ、制限された入力があります。
+    - 最初の文字にハイフン、ドットは使用できず、最後の文字にハイフンは使用できません。またドットとハイフンは続けて入力できません。
+    - [予約済のIPアドレス](https://en.wikipedia.org/wiki/Reserved_IP_addresses)は入力できません。
+    - Pool内で重複してはいけません。
+- エンドポイントの**重み**はPool内の他のエンドポイントの重みと相対的に動作します。同じ重みはPool内で同じ比重を持ちます。
+- Poolの作成数、Pool内のエンドポイント数、エンドポイントの総数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}はコンソールで確認した値に変更します。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools' \
@@ -1362,22 +1362,22 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 --data '{ "pool": { "poolName": "POOL-test", "endpointList": [ { "endpointAddress": "test.dnsplus.com" }, { "endpointAddress": "123.123.123.123" } ] }}'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| pool | Object |  | 필수 |  | Pool |
-| pool.poolName | String | 최대 100자,<br>영대소문자와 숫자, '-', '_' | 필수 |  | Pool 이름 |
-| pool.poolDisabled | boolean |  | 선택 | false | Pool 비활성화 여부 |
-| pool.healthCheckId | String |  | 선택 |  | 헬스 체크 ID |
-| pool.endpointList | List |  | 필수 |  | 엔드포인트 목록 |
-| pool.endpointList[0].endpointAddress | String | 최대 254자,<br>소문자와 숫자, '.', '-', '_' | 필수 |  | 엔드포인트 주소 |
-| pool.endpointList[0].endpointWeight | double | 최소 0, 최대 1.00 | 선택 | 1.00 | 엔드포인트 가중치 |
-| pool.endpointList[0].endpointDisabled | boolean |  | 선택 | false | 엔드포인트 비활성화 여부 |
+| pool | Object |  | 必須 |  | Pool |
+| pool.poolName | String | 最大100文字、<br>英字(大文字/小文字)、数字、(-)、(_) | 必須 |  | Poolの名前 |
+| pool.poolDisabled | boolean |  | 任意 | false | Poolが無効かどうか |
+| pool.healthCheckId | String |  | 任意 |  | ヘルスチェックID |
+| pool.endpointList | List |  | 必須 |  | エンドポイントリスト |
+| pool.endpointList[0].endpointAddress | String | 最大254文字、<br>小文字と数字、(.-_) | 必須 |  | エンドポイントアドレス |
+| pool.endpointList[0].endpointWeight | double | 最小0、最大1.00 | 任意 | 1.00 | エンドポイントの重み |
+| pool.endpointList[0].endpointDisabled | boolean |  | 任意 | false | エンドポイントが無効かどうか |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -1410,23 +1410,23 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 
 
-### Pool 수정
+### Poolの修正
 
-- Pool과 Pool 내에 엔드포인트를 수정합니다.
-- [Pool 생성](./api-guide/#pool_4)에서 입력한 항목을 수정합니다.
+- PoolとPool内のエンドポイントを修正します。
+- [Pool作成](./api-guide/#pool_4)で入力した項目を修正します。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools/{poolId} |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {poolId}는 Pool ID이며 [Pool 조회](./api-guide/#pool_3)를 통해서 알 수 있습니다.
+- {appkey}はコンソールで確認した値に変更します。
+- {poolId}はPool IDです。[Pool照会](./api-guide/#pool_3)で確認できます。
 
 ```
 curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools/{poolId}' \
@@ -1434,22 +1434,22 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/p
 --data '{ "pool": { "poolName": "POOL-test", "poolDisabled": true, "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17", "endpointList": [ { "endpointAddress": "test.dnsplus.com", "endpointWeight": 1.00, "endpointDisabled": true }, { "endpointAddress": "123.123.123.123", "endpointWeight": 0.5, "endpointDisabled": true } ] }}'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| pool | Object |  | 필수 |  | Pool |
-| pool.poolName | String | 최대 100자,<br>영대소문자와 숫자, '-', '_' | 필수 |  | Pool 이름 |
-| pool.poolDisabled | boolean |  | 선택 | false | Pool 비활성화 여부 |
-| pool.healthCheckId | String |  | 선택 |  | 헬스 체크 ID |
-| pool.endpointList | List |  | 필수 |  | 엔드포인트 목록 |
-| pool.endpointList[0].endpointAddress | String | 최대 254자,<br>소문자와 숫자, '.', '-', '_' | 필수 |  | 엔드포인트 주소 |
-| pool.endpointList[0].endpointWeight | double | 최소 0, 최대 1.00 | 선택 | 1.00 | 엔드포인트 가중치 |
-| pool.endpointList[0].endpointDisabled | boolean |  | 선택 | false | 엔드포인트 비활성화 여부 |
+| pool | Object |  | 必須 |  | Pool |
+| pool.poolName | String | 最大100文字、<br>英字(大文字/小文字)、数字、(-)、(_) | 必須 |  | Poolの名前 |
+| pool.poolDisabled | boolean |  | 任意 | false | Poolが無効かどうか |
+| pool.healthCheckId | String |  | 任意 |  | ヘルスチェックID |
+| pool.endpointList | List |  | 必須 |  | エンドポイントリスト |
+| pool.endpointList[0].endpointAddress | String | 最大254文字、<br>小文字と数字、(.-_) | 必須 |  | エンドポイントアドレス |
+| pool.endpointList[0].endpointWeight | double | 最小0、最大1.00 | 任意 | 1.00 | エンドポイントの重み |
+| pool.endpointList[0].endpointDisabled | boolean |  | 任意 | false | エンドポイントが無効かどうか |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -1464,7 +1464,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/p
         "poolDisabled": true,
         "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17",
         "healthCheck": {
-            // 헬스 체크 정보 생략
+            // ヘルスチェック情報省略
         },
         "endpointList": [
             {
@@ -1485,37 +1485,37 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/p
 ```
 
 
-### Pool 삭제
+### Poolの削除
 
-- 여러 개의 Pool을 삭제하며, Pool의 엔드포인트도 함께 삭제합니다.
-- GSLB에 연결되어 있는 Pool은 삭제할 수 없습니다.
+- 複数のPoolを削除し、Poolのエンドポイントも一緒に削除します。
+- GSLBに接続されているPoolは削除できません。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}はコンソールで確認した値に変更します。
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools?
 poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c12818'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| poolIdList | List | 최소 1개, 최대 3,000개 | 필수 |  | Pool ID 목록 |
+| poolIdList | List | 最小1個、最大3,000個 | 必須 |  | Pool IDリスト |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -1528,42 +1528,42 @@ poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c1
 ```
 
 
-## 헬스 체크 API
+## ヘルスチェックAPI
 
-### 헬스 체크 조회
+### ヘルスチェックの照会
 
-- 헬스 체크 목록을 조회합니다.
+- ヘルスチェックリストを照会します。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}はコンソールで確認した値に変更します。
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks'
 ```
 
-[옵션]
+[オプション]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| healthCheckIdList | List | 최대 3,000개 | 선택 |  | 헬스 체크 ID 목록 |
-| searchHealthCheckName | String |  | 선택 |  | 검색할 헬스 체크 이름 |
-| page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
-| limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
-| sortDirection | String | DESC, ASC | 선택 | DESC | 정렬 방향(DESC: 내림차순, ASC: 오름차순) |
-| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>HEALTH_CHECK_NAME, <br>PROTOCOL, <br>PORT | 선택 | CREATED_AT | 정렬 대상 <br>(CREATED_AT: 생성일, <br>UPDATED_AT: 수정일, <br>HEALTH_CHECK_NAME: 헬스 체크 이름, <br>PROTOCOL: 프로토콜, <br>PORT: 포트) |
+| healthCheckIdList | List | 最大3,000個 | 任意 |  | ヘルスチェックIDリスト |
+| searchHealthCheckName | String |  | 任意 |  | 検索するヘルスチェックの名前 |
+| page | int | 最小1 | 任意 | 1 | ページ番号 |
+| limit | int | 最小1、最大3,000 | 任意 | 50 | 照会数 |
+| sortDirection | String | DESC, ASC | 任意 | DESC | ソート方向(DESC：降順、ASC：昇順) |
+| sortKey | String | CREATED_AT、 <br>UPDATED_AT、 <br>HEALTH_CHECK_NAME、 <br>PROTOCOL、 <br>PORT | 任意 | CREATED_AT | ソート対象 <br>(CREATED_AT：作成日、<br>UPDATED_AT：修正日、<br>HEALTH_CHECK_NAME：ヘルスチェック名前、<br>PROTOCOL：プロトコル、<br>PORT：ポート) |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -1590,46 +1590,46 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/h
 }
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 설명 |
+| 名前 | タイプ | 説明 |
 |---|---|---|
-| totalCount | long | 전체 헬스 체크 개수 |
-| healthCheckList | List | 헬스 체크 목록 |
-| healthCheckList[0].healthCheckId | String | 헬스 체크 ID |
-| healthCheckList[0].healthCheckName | String | 헬스 체크 이름 |
-| healthCheckList[0].protocol | String | 프로토콜 |
-| healthCheckList[0].port | int | 포트 |
-| healthCheckList[0].path | String | 경로 |
-| healthCheckList[0].expectedCodes | String | 예상 상태 코드 |
-| healthCheckList[0].expectedBody | String | 예상 응답 본문 |
-| healthCheckList[0].allowInsecure | boolean | 인증서 검증 안함 |
-| healthCheckList[0].createdAt | DateTime | 생성일 |
-| healthCheckList[0].updatedAt | DateTime | 수정일 |
+| totalCount | long | ヘルスチェック総数 |
+| healthCheckList | List | ヘルスチェックリスト |
+| healthCheckList[0].healthCheckId | String | ヘルスチェックID |
+| healthCheckList[0].healthCheckName | String | ヘルスチェックの名前 |
+| healthCheckList[0].protocol | String | プロトコル |
+| healthCheckList[0].port | int | ポート |
+| healthCheckList[0].path | String | パス |
+| healthCheckList[0].expectedCodes | String | 予想ステータスコード |
+| healthCheckList[0].expectedBody | String | 予想レスポンス本文 |
+| healthCheckList[0].allowInsecure | boolean | 証明書検証しない |
+| healthCheckList[0].createdAt | DateTime | 作成日 |
+| healthCheckList[0].updatedAt | DateTime | 修正日 |
 
 
-### 헬스 체크 생성
+### ヘルスチェックの作成
 
-- 헬스 체크를 생성합니다.
-- 헬스 체크 **프로토콜**은 HTTPS, HTTP, TCP를 지원하며 선택한 프로토콜에 따라 입력 할 수 있는 정보가 다릅니다.
-    - HTTPS 입력 가능 항목: 인증서 검증 안함, 포트, 경로, 예상 상태 코드, 예상 응답 본문
-	- HTTP 입력 가능 항목: 포트, 경로, 예상 상태 코드, 예상 응답 본문
-	- TCP 입력 가능 항목: 포트
-- **인증서 검증 안함**을 사용하면 헬스 체크가 수행될 때 엔드포인트의 TLS/SSL 인증서가 유효하지 않아도 무시할 수 있습니다.
-- **예상 상태 코드**와 **예상 응답 본문**을 판단 할 때 엔드포인트에서 리다이렉션 된 페이지에 대해서는 지원하지 않습니다.
-- 헬스 체크 생성 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의해 주시기 바랍니다. [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+- ヘルスチェックを作成します。
+- ヘルスチェック**プロトコル**はHTTPS、HTTP、TCPをサポートし、選択したプロトコルによって入力できる情報が異なります。
+    - HTTPS入力可能項目：証明書検証しない、ポート、パス、予想ステータスコード、予想レスポンス本文
+	- HTTP入力可能項目：ポート、パス、予想ステータスコード、予想レスポンス本文
+	- TCP入力可能項目：ポート
+- **証明書検証しない**を使用すると、ヘルスチェックが実行される時、エンドポイントのTLS/SSL証明書が無効でも無視できます。
+- **予想ステータスコード**と**予想レスポンス本文**を判断する時、エンドポイントからリダイレクトされたページについてはサポートしません。
+- ヘルスチェックの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}はコンソールで確認した値に変更します。
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks' \
@@ -1637,22 +1637,22 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 --data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "2xx", "allowInsecure": false }}'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| healthCheck | Object |  | 필수 |  | 헬스 체크 |
-| healthCheck.healthCheckName | String | 최대 100자,<br>영대소문자와 숫자, '-', '_' | 필수 |  | 헬스 체크 이름 |
-| healthCheck.protocol | String | HTTPS, HTTP, TCP | 필수 |  | 헬스 체크 수행 프로토콜 |
-| healthCheck.port | int | 최소 1, 최대 65535 | 필수 |  | 헬스 체크 수행 포트 |
-| healthCheck.path | String | 최대 254자,<br>시작 문자 '/' | 선택 |  | 헬스 체크 수행 경로,<br>HTTPS, HTTP 일 때 사용 |
-| healthCheck.expectedCodes | String | 숫자와 와일드카드 'x' | 선택 |  | 헬스 체크 예상 상태 코드,<br>HTTPS, HTTP 일 때 사용<br>(예제) 2xx, 20x, 200 |
-| healthCheck.expectedBody | String | 최대 10KB | 선택 |  | 헬스 체크 예상 응답 본문,<br>HTTPS, HTTP 일 때 사용 |
-| healthCheck.allowInsecure | boolean |  | 선택 |  | 헬스 체크 인증서 검증 안함,<br>HTTPS 일 때 사용 |
+| healthCheck | Object |  | 必須 |  | ヘルスチェック |
+| healthCheck.healthCheckName | String | 最大100文字、<br>英字(大文字/小文字)、数字、(-)、(_) | 必須 |  | ヘルスチェックの名前 |
+| healthCheck.protocol | String | HTTPS、HTTP、TCP | 必須 |  | ヘルスチェック実行プロトコル |
+| healthCheck.port | int | 最小1、最大65535 | 必須 |  | ヘルスチェック実行ポート |
+| healthCheck.path | String | 最大254文字、<br>最初の文字'/' | 任意 |  | ヘルスチェック実行パス、<br>HTTPS/HTTPの時に使用 |
+| healthCheck.expectedCodes | String | 数字とワイルドカード'x' | 任意 |  | ヘルスチェック予想ステータスコード、<br>HTTPS/HTTPの時に使用<br>(例) 2xx, 20x, 200 |
+| healthCheck.expectedBody | String | 最大10KB | 任意 |  | ヘルスチェック予想レスポンス本文、<br>HTTPS/HTTPの時に使用 |
+| healthCheck.allowInsecure | boolean |  | 任意 |  | ヘルスチェック証明書検証しない、<br>HTTPSの時に使用 |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -1676,23 +1676,23 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 
 
-### 헬스 체크 수정
+### ヘルスチェックの修正
 
-- 헬스 체크를 수정합니다.
-- [헬스 체크 생성](./api-guide/#_48)에서 입력한 항목을 수정합니다.
+- ヘルスチェックを修正します。
+- [ヘルスチェック作成](./api-guide/#_48)で入力した項目を修正します。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId} |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {healthCheckId}는 헬스 체크 ID이며 [헬스 체크 조회](./api-guide/#_45)를 통해서 알 수 있습니다.
+- {appkey}はコンソールで確認した値に変更します。
+- {healthCheckId}はヘルスチェックIDです。[ヘルスチェック照会](./api-guide/#_45)で確認できます。
 
 ```
 curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
@@ -1700,22 +1700,22 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/h
 --data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| healthCheck | Object |  | 필수 |  | 헬스 체크 |
-| healthCheck.healthCheckName | String | 최대 100자,<br>영대소문자와 숫자, '-', '_' | 필수 |  | 헬스 체크 이름 |
-| healthCheck.protocol | String | HTTPS, HTTP, TCP | 필수 |  | 헬스 체크 수행 프로토콜 |
-| healthCheck.port | int | 최소 1, 최대 65535 | 필수 |  | 헬스 체크 수행 포트 |
-| healthCheck.path | String | 최대 254자,<br>시작 문자 '/' | 선택 |  | 헬스 체크 수행 경로,<br>HTTPS, HTTP 일 때 사용 |
-| healthCheck.expectedCodes | String | 숫자와 와일드카드 'x' | 선택 |  | 헬스 체크 예상 상태 코드,<br>HTTPS, HTTP 일 때 사용<br>(예제) 2xx, 20x, 200 |
-| healthCheck.expectedBody | String | 최대 10KB | 선택 |  | 헬스 체크 예상 응답 본문,<br>HTTPS, HTTP 일 때 사용 |
-| healthCheck.allowInsecure | boolean |  | 선택 |  | 헬스 체크 인증서 검증 안함,<br>HTTPS 일 때 사용 |
+| healthCheck | Object |  | 必須 |  | ヘルスチェック |
+| healthCheck.healthCheckName | String | 最大100文字、<br>英字(大文字/小文字)、数字、(-)、(_) | 必須 |  | ヘルスチェックの名前 |
+| healthCheck.protocol | String | HTTPS、HTTP、TCP | 必須 |  | ヘルスチェック実行プロトコル |
+| healthCheck.port | int | 最小1、最大65535 | 必須 |  | ヘルスチェック実行ポート |
+| healthCheck.path | String | 最大254文字、<br>最初の文字'/' | 任意 |  | ヘルスチェック実行パス、<br>HTTPS/HTTPの時に使用 |
+| healthCheck.expectedCodes | String | 数字とワイルドカード'x' | 任意 |  | ヘルスチェック予想ステータスコード、<br>HTTPS/HTTPの時に使用<br>(例) 2xx, 20x, 200 |
+| healthCheck.expectedBody | String | 最大10KB | 任意 |  | ヘルスチェック予想レスポンス本文、<br>HTTPS/HTTPの時に使用 |
+| healthCheck.allowInsecure | boolean |  | 任意 |  | ヘルスチェック証明書を検証しない、<br>HTTPSの時に使用 |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
@@ -1739,37 +1739,37 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/h
 ```
 
 
-### 헬스 체크 삭제
+### ヘルスチェックの削除
 
-- 여러 개의 헬스 세트를 삭제합니다.
-- Pool에 연결되어 있는 헬스 체크는 삭제할 수 없습니다.
+- 複数のヘルスチェックを削除します。
+- Poolに接続されているヘルスチェックは削除できません。
 
-#### 요청
+#### リクエスト
 
 [URI]
 
-| 메서드 | URI |
+| メソッド | URI |
 |---|---|
 | DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
 
-[요청 본문]
+[リクエスト本文]
 
-- {appkey}는 콘솔에서 확인한 값으로 변경합니다.
+- {appkey}はコンソールで確認した値に変更します。
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks?
 healthCheckIdList=b9165853-7859-4309-8059-48f12ebdbc17,d2629d6b-9381-4645-9cf3-43d7ad491e2b'
 ```
 
-[필드]
+[フィールド]
 
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
-| healthCheckIdList | List | 최소 1개, 최대 3,000개 | 필수 |  | 헬스 체크 ID 목록 |
+| healthCheckIdList | List | 最小1個、最大3,000個 | 必須 |  | ヘルスチェックIDリスト |
 
-#### 응답
+#### レスポンス
 
-[응답 본문]
+[レスポンス本文]
 
 ```
 {
