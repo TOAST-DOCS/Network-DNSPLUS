@@ -805,7 +805,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 | gslbList[0].gslbDisabled | boolean | GSLB 비활성화 여부 |
 | gslbList[0].healthy | boolean | GSLB 정상 여부 |
 | gslbList[0].connectedPoolList | List | 연결된 Pool 목록 |
-| gslbList[0].connectedPoolList[0].poolId | String | 연결된 Pool Id |
+| gslbList[0].connectedPoolList[0].poolId | String | 연결된 Pool ID |
 | gslbList[0].connectedPoolList[0].pool | Object | 연결된 Pool 정보 |
 | gslbList[0].connectedPoolList[0].connectedPoolOrder | int | 연결된 Pool 우선순위 |
 | gslbList[0].connectedPoolList[0].connectedPoolRegionContent | String | 연결된 Pool의 지역을 한 줄로 표시한 내용 |
@@ -817,8 +817,8 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 
 - GSLB와 Pool 연결 설정을 생성합니다.
 - **라우팅 규칙**은 GSLB 도메인에 대한 로드밸런싱 방법으로 FAILOVER, RANDOM, GEOLOCATION을 선택할 수 있습니다.
-    - FAILOVER: 연결된 Pool의 우선순위로 라우팅 합니다.
-	- RANDOM: 연결된 Pool 중 사용 가능한 Pool을 무작위로 선택하여 라우팅 합니다.
+    - FAILOVER: 연결된 Pool의 우선순위로 라우팅합니다.
+	- RANDOM: 연결된 Pool 중 사용 가능한 Pool을 무작위로 선택하여 라우팅합니다.
 	- GEOLOCATION: 설정된 지역의 트래픽을 해당 연결된 Pool로 라우팅합니다. 지역 설정이 없는 경우 우선순위로 라우팅합니다.
 - **연결된 Pool**의 **우선순위**는 작을수록 라우팅 순서가 높으며, 중복될 수 없습니다.
 - GSLB 생성 개수와 Pool 연결 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의해 주시기 바랍니다. [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
@@ -847,7 +847,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | gslb | Object |  | 필수 |  | GSLB |
-| gslb.gslbName | String | 최대 100자,<br>영대소문자와 숫자, '-', '_' | 필수 |  | GSLB 이름 |
+| gslb.gslbName | String | 최대 100자,<br>영어 대소문자와 숫자, '-', '_' | 필수 |  | GSLB 이름 |
 | gslb.gslbTtl | int |  | 필수 | false | GSLB 도메인 갱신 주기 |
 | gslb.gslbRoutingRule | String | FAILOVER, RANDOM, GEOLOCATION  | 필수 |  | 라우팅 규칙 |
 | gslb.gslbDisabled | boolean |  | 선택 | false | GSLB 비활성화 여부 |
