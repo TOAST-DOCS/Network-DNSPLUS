@@ -67,7 +67,9 @@
 
 4. 設定完了後、**確認**ボタンをクリックします。
 
-![image_06_20191218](https://static.toastoven.net/prod_dnsplus/image_06_20191218.png)
+5. レコードセットの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+
+![image_06_20200511](https://static.toastoven.net/prod_dnsplus/image_06_20200511.png)
 
 ### レコードセット修正
 
@@ -129,7 +131,7 @@
 
 4. GSLBの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_12_20191218](https://static.toastoven.net/prod_dnsplus/image_12_20191218.png)
+![image_12_20200511](https://static.toastoven.net/prod_dnsplus/image_12_20200511.png)
 
 ### GSLBの修正
 

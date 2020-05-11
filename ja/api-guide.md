@@ -383,6 +383,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 - SOAレコードセットは、作成/修正/削除できず、NSレコードセットは、**DNS Zone名**で作成/修正/削除できません。
 - レコードセット内のレコードリストの長さは、最大512バイトです。
 - DNS Zoneつ当たり、レコードセットは最大5,000個まで作成できます。
+- レコードセットの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 #### リクエスト
 
