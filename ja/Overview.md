@@ -15,7 +15,7 @@ DNS Plusは、全世界のユーザーが高速かつ安定的に接続できる
 
     | ルーティングルール | 説明 | 詳細内容 |
     |---|---|---|
-    | FAILOVER | GSLBドメインに接続されたPoolの優先順位でルーティングします。 |  |
+    | FAILOVER | GSLBドメインに接続されたPoolのうち、使用可能なPoolを優先順位でルーティングします。 |  |
     | RANDOM | GSLBドメインに接続されたPoolのうち、使用可能なPoolをランダムにルーティングします。 |  |
     | GEOLOCATION | 設定された地域のトラフィックを該当の接続されたPoolにルーティングします。<br>地域設定がない場合、優先順位でルーティングします。 | <設定可能な地域><br>- Western North America<br>- Eastern Nort America<br>- Western Europe<br>- Eastern Europe<br>- Northern South America<br>- Southern South America<br>- Oceania<br>- Middle East<br>- Northern Africa<br>- Southern Africa<br>- India<br>- Southeast Asia<br>- Northeast Asia |
 
