@@ -67,7 +67,11 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 4. After completing the setup, click the **OK** button.
 
-![image_06_20191218](https://static.toastoven.net/prod_dnsplus/image_06_20191218.png)
+5. 레코드 세트 생성 개수는 제한되어 있으며 연장이 필요하면 별도로 문의해 주시기 바랍니다. 
+
+	- 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+
+![image_06_20200511](https://static.toastoven.net/prod_dnsplus/image_06_20200511.png)
 
 ### Modify Record set
 
@@ -134,7 +138,7 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 	- 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_12_20191218](https://static.toastoven.net/prod_dnsplus/image_12_20191218.png)
+![image_12_20200511](https://static.toastoven.net/prod_dnsplus/image_12_20200511.png)
 
 ### GSLB 수정
 
