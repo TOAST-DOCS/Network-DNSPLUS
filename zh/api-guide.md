@@ -597,7 +597,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### 修改记录集合
 
 - 修改记录集合。
-- **记录集合名**与**记录集合类型**无法修改，**TTL(秒)**与**记录值**可修改。
+- **레코드 세트 이름**은 수정할 수 없으며, **레코드 세트 타입**과 **TTL(초)**, **레코드값**은 수정할 수 있습니다.
 - SOA的记录集合无法创建/修改/删除，NS记录集合无法以**DNS Zone名**创建/修改/删除。
 - 记录集合内记录列表的长度最大为512个字节。
 
@@ -629,7 +629,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
 |---|---|---|---|---|---|
 | recordset | Object |  | 必需 |  | 记录集合 |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 必需 |  | 与记录集合ID相关的记录集合类型 |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 必需 |  | 记录集合类型 |
 | recordset.recordsetTtl | int | 最小1，最大2147483647 | 必需 |  | 名称服务器中记录集合信息的更新周期 |
 | recordset.recordList | List |  | 必需 |  | 记录列表 |
 | recordset.recordList[0].recordDisabled | boolean |  | 必需 |  | 记录是否禁用 |
