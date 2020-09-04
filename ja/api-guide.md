@@ -597,7 +597,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### レコードセット修正
 
 - レコードセットを修正します。
-- **レコードセット名**と**レコードセットタイプ**は修正できず、**TTL(秒)**と**レコード値**は修正できます。
+- **레코드 세트 이름**은 수정할 수 없으며, **레코드 세트 타입**과 **TTL(초)**, **레코드값**은 수정할 수 있습니다.
 - SOAレコードセットは作成/修正/削除できず、NSレコードセットは**DNS Zone名**で作成/修正/削除できません。
 - レコードセット内のレコードリストの長さは、最大512バイトです。
 
@@ -629,7 +629,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
 | recordset | Object |  | 必須 |  | レコードセット |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 必須 |  | レコードセットIDに対するレコードセットタイプ |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 必須 |  | レコードセットタイプ |
 | recordset.recordsetTtl | int | 最小1、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
 | recordset.recordList | List |  | 必須 |  | レコードリスト |
 | recordset.recordList[0].recordDisabled | boolean |  | 必須 |  | レコードを無効にするかどうか |

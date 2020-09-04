@@ -597,7 +597,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### 레코드 세트 수정
 
 - 레코드 세트를 수정합니다.
-- **레코드 세트 이름**과 **레코드 세트 타입**은 수정할 수 없으며, **TTL(초)**과 **레코드값**은 수정할 수 있습니다.
+- **레코드 세트 이름**은 수정할 수 없으며, **레코드 세트 타입**과 **TTL(초)**, **레코드값**은 수정할 수 있습니다.
 - SOA 레코드 세트는 생성/수정/삭제할 수 없으며, NS 레코드 세트는 **DNS Zone 이름**으로 생성/수정/삭제할 수 없습니다.
 - 레코드 세트 내의 레코드 목록의 길이는 최대 512바이트입니다.
 
@@ -629,7 +629,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | recordset | Object |  | 필수 |  | 레코드 세트 |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드 세트 ID에 대한 레코드 세트 타입 |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드 세트 타입 |
 | recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
 | recordset.recordList | List |  | 필수 |  | 레코드 목록 |
 | recordset.recordList[0].recordDisabled | boolean |  | 필수 |  | 레코드 비활성화 여부 |
