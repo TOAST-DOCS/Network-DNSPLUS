@@ -77,7 +77,7 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 1. Select a record set to modify and then click the **Modify Record Set** button.
 
-2. **Record set name** and **record set type** cannot be modified. However, **TTL(sec)** and **record value** can be modified.
+2. **레코드 세트 이름**은 수정할 수 없으며, **레코드 세트 타입**과 **TTL(초)**, **레코드값**은 수정할 수 있습니다.
 
 3. After completing the setup, click the **OK** button.
 

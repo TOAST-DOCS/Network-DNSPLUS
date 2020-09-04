@@ -597,7 +597,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ### Modify record set
 
 - Modify a record set.
-- **Record set name** and **record set type** cannot be modified. However, **TTL(sec)** and **record value** can be modified.
+- **레코드 세트 이름**은 수정할 수 없으며, **레코드 세트 타입**과 **TTL(초)**, **레코드값**은 수정할 수 있습니다.
 - SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 - The length of the record list within the record set is up to 512 bytes.
 
@@ -629,7 +629,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | Name | Type | Valid range | Required? | Default | Description |
 |---|---|---|---|---|---|
 | recordset | Object |  | Required |  | Record set |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type for the record set ID |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
 | recordset.recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Renew cycle of the record set data in the name server |
 | recordset.recordList | List |  | Required |  | Record list |
 | recordset.recordList[0].recordDisabled | boolean |  | Required |  | Whether record is disabled or not |
