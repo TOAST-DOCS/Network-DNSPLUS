@@ -48,7 +48,3 @@ DNS Plus is a type of DNS that allows users all around the world to access their
 | Record set | Host information that DNS provides service. This is used to route traffic from domain. |
 | Record set type | A resource type which shows how to route traffic from host. |
 | Record value | A description of how to route the traffic from the host. The entry is determined based on the record set type (resource type) and one or more record values can be registered. |
-| GSLB 도메인 | Global Server Load Balancing 도메인의 약어이며, DNS Plus에서 생성한 서비스 도메인(레코드 세트)에 CNAME을 매핑해 사용할 수 있는 도메인입니다. |
-| Pool(풀) | 엔드포인트를 그룹핑하는 요소이며, 라우팅 규칙이 적용되는 최소 단위입니다. Pool 내에 포함된 엔드포인트는 가중치에 따라 로드밸런싱됩니다. |
-| 엔드포인트 | 실제 트래픽을 처리하는 서버를 말합니다. 엔드포인트는 IP 및 도메인 형태로 사용 가능합니다. |
-| 헬스 체크 | 설정한 값에 따라 Pool 내에 속한 엔드포인트에 대해 접근성을 확인하는 요소입니다. |
