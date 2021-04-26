@@ -380,7 +380,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 - レコードセットを作成します。
 - **レコードセットタイプ**としてA、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、SPF、NS、SOAをサポートします。
-- SOAレコードセットは、作成/修正/削除できず、NSレコードセットは、**DNS Zone名**で作成/修正/削除できません。
+- SOAレコードセットは、作成、修正、削除できず、NSレコードセットは、**DNS Zone名**で作成、修正、削除できません。
 - レコードセット内のレコードリストの長さは、最大512バイトです。
 - DNS Zoneつ当たり、レコードセットは最大5,000個まで作成できます。
 - レコードセットの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
@@ -594,11 +594,69 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 
 
+### レコードセット大量作成
+
+- レコードセットを複数作成します。1回のリクエストで最大2,000個まで作成できます。
+- **レコードセットタイプ**は、A、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、SPF、NS、SOAをサポートします。
+- SOAレコードセットは、作成、修正、削除できず、NSレコードセットは、**DNS Zone名**で作成、修正、削除できません。
+- レコードセット内のレコードリストの長さは、最大512バイトです。
+- DNS Zoneごとにレコードセットは、最大5,000個まで作成できます。
+- レコードセット作成数は、制限されており、数を増やしたい場合は、別途お問い合わせください。 [1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+
+#### リクエスト
+
+[URI]
+
+| メソッド | URI |
+|---|---|
+| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list |
+
+[リクエスト本文]
+
+- {appkey}はコンソールで確認した値に変更します。
+- {zoneId}はDNS Zone IDです。[DNS Zone照会](./api-guide/#dns-zone)から確認できます。
+- レコード値は必須です。入力方法としてrecordset.recordList[0].recordContentフィールドまたは詳細フィールドを選択できます。
+- recordContentフィールドは、スペースを区切り文字とします。詳細フィールドを1行で表示した内容です。詳細フィールドは、[レコードセット作成](./api-guide/#_14)の[レコードセットタイプに基づいた詳細フィールド]で確認できます。
+- 詳細フィールドとrecordContentフィールドを同時に入力した場合、recordContentフィールドを基準に作成されます。
+
+```
+curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list' \
+-H 'Content-Type: application/json' \
+--data '{ "recordsetList": [{ "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }]}'
+```
+
+[フィールド]
+
+| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
+|---|---|---|---|---|---|
+| recordsetList | List |  | 必須 |  | レコードセットリスト |
+| recordsetList[0].recordsetName | String | 最大254文字<br>(DNS Zone名を含む) | 必須 |  | 作成するレコードセット名、 <br>ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
+| recordsetList[0].recordsetType | String | A、AAAA、CAA、CNAME、MX、<br>NAPTR、PTR、TXT、SRV、SPF、NS | 必須 |  | レコードセットタイプ |
+| recordsetList[0].recordsetTtl | int | 1～2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
+| recordsetList[0].recordList | List |  | 必須 |  | レコードリスト |
+| recordsetList[0].recordList[0].recordDisabled | boolean |  | 任意 | false | レコードが無効になっているかどうか |
+| recordsetList[0].recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプに基づいた詳細フィールドを1行で表示した内容 |
+
+#### レスポンス
+
+[レスポンス本文]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
+
+
 ### レコードセット修正
 
 - レコードセットを修正します。
 - **レコードセット名**は修正できず、**レコードセットタイプ**と**TTL(秒)**、**レコード値**は修正できます。
-- SOAレコードセットは作成/修正/削除できず、NSレコードセットは**DNS Zone名**で作成/修正/削除できません。
+- SOAレコードセットは作成、修正、削除できず、NSレコードセットは**DNS Zone名**で作成、修正、削除できません。
 - レコードセット内のレコードリストの長さは、最大512バイトです。
 
 #### リクエスト
@@ -670,7 +728,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 ### レコードセット削除
 
 - 複数のレコードセットを削除し、レコードセットのレコードも一緒に削除します。
-- SOAレコードセットは作成/修正/削除できず、NSレコードセットは**DNS Zone名**で作成/修正/削除できません。
+- SOAレコードセットは作成、修正、削除できず、NSレコードセットは**DNS Zone名**で作成、修正、削除できません。
 
 #### リクエスト
 
