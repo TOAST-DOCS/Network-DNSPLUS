@@ -593,6 +593,64 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 
 
+### Create multiple record sets
+
+- You can create a number of record sets, up to 2,000 sets per request.
+- The supported - **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, and SOA.
+- SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
+- The length of the record list within the record set is up to 512 bytes.
+- Up to 5,000 record sets can be created per DNS Zone.
+- There is a limit to the maximum number of record sets that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list |
+
+[Request body]
+
+- {appkey}is to be changed to the value checked in the console.
+- {zoneId}is the DNS Zone ID, which can be checked by performing [View DNS Zone](./api-guide/#dns-zone).
+- Record value is required. You can enter the value by selecting either recordset.recordList[0].recordContent field or the detailed field.
+- recordContent field displays the detailed field in one line separated by space. You can check the detailed field in the [Detailed field by record set type] section of [Create record set](./api-guide/#_14).
+- If you enter values in both the detailed field and the recordContent field at the same time, the value in the recordContent field will take priority.
+
+```
+curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list' \
+-H 'Content-Type: application/json' \
+--data '{ "recordsetList": [{ "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }]}'
+```
+
+[Field]
+
+| Name | Type | Valid Range | Required? | Default | Description |
+|---|---|---|---|---|---|
+| recordsetList | List |  | Required |  | Record set list |
+| recordsetList[0].recordsetName | String | Max. 254 characters<br>(including DNS Zone name) | Required |  | Record set name to create, <br>type the domain as [FQDN]( |
+| recordsetList[0].recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
+| recordsetList[0].recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Renew cycle of the record set data in the name server |
+| recordsetList[0].recordList | List |  | Required |  | Record list |
+| recordsetList[0].recordList[0].recordDisabled | boolean |  | Optional | false | Disable record or not |
+| recordsetList[0].recordList[0].recordContent | String |  | Required |  | It displays the detailed field by record set type in a line |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
+
+
 ### Modify record set
 
 - Modify a record set.
