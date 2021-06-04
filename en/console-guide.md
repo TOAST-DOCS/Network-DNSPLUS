@@ -6,7 +6,7 @@ This Console User Guide describes how to manage DNS Zones and record sets in the
 
 You can manage the DNS Zone on the **DNS** screen of the menu.
 
-![image_01_20191218](https://static.toastoven.net/prod_dnsplus/image_01_20191218.png)
+![image_01_20210604](https://static.toastoven.net/prod_dnsplus/image_01_20210604.png)
 
 ### Create DNS Zone
 
@@ -21,7 +21,7 @@ You can manage the DNS Zone on the **DNS** screen of the menu.
 		- If it is created as a newly-registered domain, set the name server information to the corresponding name server in the domain registrar.
 		- If it is created as a sub domain of the domain currently in operation, set the NS record set using the sub domain name and the corresponding name server in the domain being operated.
 
-![image_02_20191218](https://static.toastoven.net/prod_dnsplus/image_02_20191218.png)
+![image_02_20210604](https://static.toastoven.net/prod_dnsplus/image_02_20210604.png)
 
 ### Updating DNS Zone
 
@@ -29,7 +29,7 @@ You can manage the DNS Zone on the **DNS** screen of the menu.
 
 2. Modify the **Description** and then click the **OK** button.
 
-![image_03_20191218](https://static.toastoven.net/prod_dnsplus/image_03_20191218.png)
+![image_03_20210604](https://static.toastoven.net/prod_dnsplus/image_03_20210604.png)
 
 ### Delete DNS Zone
 
@@ -37,7 +37,7 @@ You can manage the DNS Zone on the **DNS** screen of the menu.
 
 2. Click the **OK** button. All record sets within the DNS Zone will be deleted and it takes some time to finish the job.
 
-![image_04_20191218](https://static.toastoven.net/prod_dnsplus/image_04_20191218.png)
+![image_04_20210604](https://static.toastoven.net/prod_dnsplus/image_04_20210604.png)
 
 
 ## Manage Record set
@@ -48,7 +48,7 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 - SOA and NS record sets of the **DNS Zone name** are created by default and cannot be modified or deleted.
 - SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 
-![image_05_20191218](https://static.toastoven.net/prod_dnsplus/image_05_20191218.png)
+![image_05_20210604](https://static.toastoven.net/prod_dnsplus/image_05_20210604.png)
 
 ### Create Record set
 
@@ -67,7 +67,7 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 4. After completing the setup, click the **OK** button.
 
-![image_06_20200511](https://static.toastoven.net/prod_dnsplus/image_06_20200511.png)
+![image_06_20210604](https://static.toastoven.net/prod_dnsplus/image_06_20210604.png)
 
 ### Modify Record set
 
@@ -77,7 +77,7 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 3. After completing the setup, click the **OK** button.
 
-![image_07_20191218](https://static.toastoven.net/prod_dnsplus/image_07_20191218.png)
+![image_07_20210604](https://static.toastoven.net/prod_dnsplus/image_07_20210604.png)
 
 ### Delete Record set
 
@@ -85,7 +85,7 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 2. Click the **OK** button.
 
-![image_08_20191218](https://static.toastoven.net/prod_dnsplus/image_08_20191218.png)
+![image_08_20210604](https://static.toastoven.net/prod_dnsplus/image_08_20210604.png)
 
 ### Record set statistics
 
@@ -93,7 +93,7 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 2. You can view the query information and average response time of the record set for the last seven days.
 
-![image_09_20191218](https://static.toastoven.net/prod_dnsplus/image_09_20191218.png)
+![image_09_20210604](https://static.toastoven.net/prod_dnsplus/image_09_20210604.png)
 
 ### Look up and view list
 
@@ -103,4 +103,4 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 	- All values which include the keyword are searched.
 
-![image_10_20191218](https://static.toastoven.net/prod_dnsplus/image_10_20191218.png)
+![image_10_20210604](https://static.toastoven.net/prod_dnsplus/image_10_20210604.png)
