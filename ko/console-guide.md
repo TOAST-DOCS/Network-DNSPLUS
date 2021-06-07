@@ -6,7 +6,7 @@
 
 메뉴의 **DNS** 화면에서 DNS Zone을 관리할 수 있습니다.
 
-![image_01_20191218](https://static.toastoven.net/prod_dnsplus/image_01_20191218.png)
+![image_01_20210604](https://static.toastoven.net/prod_dnsplus/image_01_20210604.png)
 
 ### DNS Zone 생성
 
@@ -21,7 +21,7 @@
 		- 신규로 등록한 도메인으로 생성한 경우 도메인 등록 기관에 네임 서버 정보를 해당 네임 서버로 설정해야 합니다.
 		- 운영 중인 도메인의 하위 도메인으로 생성한 경우 운영 중인 도메인에 NS 레코드 세트를 하위 도메인 이름과 해당 네임 서버로 생성해야 합니다.
 
-![image_02_20191218](https://static.toastoven.net/prod_dnsplus/image_02_20191218.png)
+![image_02_20210604](https://static.toastoven.net/prod_dnsplus/image_02_20210604.png)
 
 ### DNS Zone 수정
 
@@ -29,7 +29,7 @@
 
 2. **설명**을 수정하고, **확인** 버튼을 클릭합니다.
 
-![image_03_20191218](https://static.toastoven.net/prod_dnsplus/image_03_20191218.png)
+![image_03_20210604](https://static.toastoven.net/prod_dnsplus/image_03_20210604.png)
 
 ### DNS Zone 삭제
 
@@ -37,7 +37,7 @@
 
 2. **확인** 버튼을 클릭합니다. DNS Zone 내 모든 레코드 세트도 삭제되며 일정 시간이 소요됩니다.
 
-![image_04_20191218](https://static.toastoven.net/prod_dnsplus/image_04_20191218.png)
+![image_04_20210604](https://static.toastoven.net/prod_dnsplus/image_04_20210604.png)
 
 
 ## 레코드 세트 관리
@@ -48,7 +48,7 @@
 - **DNS Zone 이름**의 SOA와 NS 레코드 세트는 기본으로 생성되며 수정 및 삭제할 수 없습니다.
 - SOA 레코드 세트는 생성/수정/삭제할 수 없으며, NS 레코드 세트는 **DNS Zone 이름**으로 생성/수정/삭제할 수 없습니다.
 
-![image_05_20191218](https://static.toastoven.net/prod_dnsplus/image_05_20191218.png)
+![image_05_20210604](https://static.toastoven.net/prod_dnsplus/image_05_20210604.png)
 
 ### 레코드 세트 생성
 
@@ -71,7 +71,7 @@
 
 	- 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_06_20200511](https://static.toastoven.net/prod_dnsplus/image_06_20200511.png)
+![image_06_20210604](https://static.toastoven.net/prod_dnsplus/image_06_20210604.png)
 
 ### 레코드 세트 수정
 
@@ -81,7 +81,7 @@
 
 3. 설정 완료 후 **확인** 버튼을 클릭합니다.
 
-![image_07_20191218](https://static.toastoven.net/prod_dnsplus/image_07_20191218.png)
+![image_07_20210604](https://static.toastoven.net/prod_dnsplus/image_07_20210604.png)
 
 ### 레코드 세트 삭제
 
@@ -89,7 +89,7 @@
 
 2. **확인** 버튼을 클릭합니다.
 
-![image_08_20191218](https://static.toastoven.net/prod_dnsplus/image_08_20191218.png)
+![image_08_20210604](https://static.toastoven.net/prod_dnsplus/image_08_20210604.png)
 
 ### 레코드 세트 통계
 
@@ -97,7 +97,7 @@
 
 2. 레코드 세트의 최근 일주일의 쿼리 정보와 평균 응답 시간을 확인할 수 있습니다.
 
-![image_09_20191218](https://static.toastoven.net/prod_dnsplus/image_09_20191218.png)
+![image_09_20210604](https://static.toastoven.net/prod_dnsplus/image_09_20210604.png)
 
 ### 레코드 세트 검색 및 목록 보기
 
@@ -107,13 +107,13 @@
 
 	- 검색어를 포함하는 모든 값을 검색합니다.
 
-![image_10_20191218](https://static.toastoven.net/prod_dnsplus/image_10_20191218.png)
+![image_10_20210604](https://static.toastoven.net/prod_dnsplus/image_10_20210604.png)
 
 ## GSLB 및 연결된 Pool 관리
 
 메뉴의 **GSLB** 화면에서 GSLB(global server load balancing)를 관리할 수 있으며, 선택한 GSLB의 Pool 연결을 관리할 수 있습니다.
 
-![image_11_20191218](https://static.toastoven.net/prod_dnsplus/image_11_20191218.png)
+![image_11_20210604](https://static.toastoven.net/prod_dnsplus/image_11_20210604.png)
 
 ### GSLB 생성
 
@@ -137,7 +137,7 @@
 
 	- 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_12_20200511](https://static.toastoven.net/prod_dnsplus/image_12_20200511.png)
+![image_12_20210604](https://static.toastoven.net/prod_dnsplus/image_12_20210604.png)
 
 ### GSLB 수정
 
@@ -145,13 +145,13 @@
 
 2. **GSLB 이름**과 **라우팅 규칙**, **TTL(초)**, **상태**를 수정하고, **확인** 버튼을 클릭합니다.
 
-![image_13_20191218](https://static.toastoven.net/prod_dnsplus/image_13_20191218.png)
+![image_13_20210604](https://static.toastoven.net/prod_dnsplus/image_13_20210604.png)
 
 ### GSLB 삭제
 
 삭제할 GSLB를 모두 선택한 후, **GSLB 삭제** 버튼을 클릭하고 **GSLB 삭제** 대화 상자에서 **확인**을 클릭합니다.
 
-![image_14_20191218](https://static.toastoven.net/prod_dnsplus/image_14_20191218.png)
+![image_14_20210604](https://static.toastoven.net/prod_dnsplus/image_14_20210604.png)
 
 ### Pool 연결
 
@@ -181,7 +181,7 @@ GSLB에 연결할 Pool을 설정합니다.
 
 	- 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_15_20191218](https://static.toastoven.net/prod_dnsplus/image_15_20191218.png)
+![image_15_20210604](https://static.toastoven.net/prod_dnsplus/image_15_20210604.png)
 
 ### Pool 연결 수정
 
@@ -191,7 +191,7 @@ GSLB에 연결할 Pool을 설정합니다.
 
 3. **확인** 버튼을 클릭합니다.
 
-![image_16_20191218](https://static.toastoven.net/prod_dnsplus/image_16_20191218.png)
+![image_16_20210604](https://static.toastoven.net/prod_dnsplus/image_16_20210604.png)
 
 ### Pool 연결 해제
 
@@ -199,7 +199,7 @@ GSLB에 연결할 Pool을 설정합니다.
 
 2. **확인** 버튼을 클릭합니다.
 
-![image_17_20191218](https://static.toastoven.net/prod_dnsplus/image_17_20191218.png)
+![image_17_20210604](https://static.toastoven.net/prod_dnsplus/image_17_20210604.png)
 
 ### GSLB 검색 및 목록 보기
 
@@ -220,13 +220,13 @@ GSLB에 연결할 Pool을 설정합니다.
 | 알 수 없음(회색) | 활성화 | 모두 비활성화 또는 알 수 없음 상태,<br>연결된 Pool이 없는 상태 |
 | 비활성화(회색) | 비활성화 | 무관 |
 
-![image_18_20191218](https://static.toastoven.net/prod_dnsplus/image_18_20191218.png)
+![image_18_20210604](https://static.toastoven.net/prod_dnsplus/image_18_20210604.png)
 
 ## Pool 및 엔드포인트 관리
 
 메뉴의 **GSLB** 화면에서 Pool을 관리할 수 있으며, 선택한 Pool의 엔드포인트를 관리할 수 있습니다.
 
-![image_19_20191218](https://static.toastoven.net/prod_dnsplus/image_19_20191218.png)
+![image_19_20210604](https://static.toastoven.net/prod_dnsplus/image_19_20210604.png)
 
 ### Pool 생성
 
@@ -251,7 +251,7 @@ GSLB에 연결할 Pool을 설정합니다.
 
    - 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_20_20191218](https://static.toastoven.net/prod_dnsplus/image_20_20191218.png)
+![image_20_20210604](https://static.toastoven.net/prod_dnsplus/image_20_20210604.png)
 
 ### Pool 수정
 
@@ -261,7 +261,7 @@ GSLB에 연결할 Pool을 설정합니다.
 
 3. 설정 완료 후 **확인** 버튼을 클릭합니다.
 
-![image_21_20191218](https://static.toastoven.net/prod_dnsplus/image_21_20191218.png)
+![image_21_20210604](https://static.toastoven.net/prod_dnsplus/image_21_20210604.png)
 
 ### Pool 삭제
 
@@ -269,7 +269,7 @@ GSLB에 연결할 Pool을 설정합니다.
 
 2. **확인** 버튼을 클릭합니다.
 
-![image_22_20191218](https://static.toastoven.net/prod_dnsplus/image_22_20191218.png)
+![image_22_20210604](https://static.toastoven.net/prod_dnsplus/image_22_20210604.png)
 
 ### Pool 검색 및 목록 보기
 
@@ -288,14 +288,14 @@ GSLB에 연결할 Pool을 설정합니다.
 | 알 수 없음(회색) | 활성화 | 연결 안함,<br>연결인 경우 엔드포인트 상태에 따름 | 모두 비활성화 또는 알 수 없음 상태 |
 | 비활성화(회색) | 비활성화 | 무관 | 무관 |
 
-![image_23_20191218](https://static.toastoven.net/prod_dnsplus/image_23_20191218.png)
+![image_23_20210604](https://static.toastoven.net/prod_dnsplus/image_23_20210604.png)
 
 
 ## 헬스 체크 관리
 
 메뉴의 **GSLB** 화면에서 헬스 체크를 관리할 수 있습니다.
 
-![image_24_20191218](https://static.toastoven.net/prod_dnsplus/image_24_20191218.png)
+![image_24_20210604](https://static.toastoven.net/prod_dnsplus/image_24_20210604.png)
 
 ### 헬스 체크 생성
 
@@ -321,7 +321,7 @@ GSLB에 연결할 Pool을 설정합니다.
 
    	- 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_25_20191218](https://static.toastoven.net/prod_dnsplus/image_25_20191218.png)
+![image_25_20210604](https://static.toastoven.net/prod_dnsplus/image_25_20210604.png)
 
 ### 헬스 체크 수정
 
@@ -331,7 +331,7 @@ GSLB에 연결할 Pool을 설정합니다.
 
 3. 설정 완료 후 **확인** 버튼을 클릭합니다.
 
-![image_26_20191218](https://static.toastoven.net/prod_dnsplus/image_26_20191218.png)
+![image_26_20210604](https://static.toastoven.net/prod_dnsplus/image_26_20210604.png)
 
 ### 헬스 체크 삭제
 
@@ -339,7 +339,7 @@ GSLB에 연결할 Pool을 설정합니다.
 
 2. **확인** 버튼을 클릭합니다.
 
-![image_27_20191218](https://static.toastoven.net/prod_dnsplus/image_27_20191218.png)
+![image_27_20210604](https://static.toastoven.net/prod_dnsplus/image_27_20210604.png)
 
 ### 헬스 체크 검색 및 기본 정보 확인
 
@@ -347,4 +347,4 @@ GSLB에 연결할 Pool을 설정합니다.
 
 2. 검색된 헬스 체크 목록에서 원하는 항목을 선택하면 헬스 체크에 설정된 **기본 정보**를 확인할 수 있습니다.
 
-![image_28_20191218](https://static.toastoven.net/prod_dnsplus/image_28_20191218.png)
+![image_28_20210604](https://static.toastoven.net/prod_dnsplus/image_28_20210604.png)
