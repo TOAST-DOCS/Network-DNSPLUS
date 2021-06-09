@@ -144,7 +144,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | zone | Object |  | 필수 |  | DNS Zone |
-| zone.zoneName | String | 최대 254자 | 필수 |  | 생성할 DNS Zone 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| zone.zoneName | String | 최대 254자<br>영소문자와 숫자, '.', '-', '_'<br>마지막 문자 '.' | 필수 |  | 생성할 DNS Zone 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 | zone.description | String | 최대 255자 | 선택 |  | DNS Zone 설명 |
 
 #### 응답
@@ -412,7 +412,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | recordset | Object |  | 필수 |  | 레코드 세트 |
-| recordset.recordsetName | String | 최대 254자<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드 세트 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordset.recordsetName | String | 최대 254자<br>영소문자와 숫자, '.', '-', '_'<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드 세트 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 | recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드 세트 타입 |
 | recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
 | recordset.recordList | List |  | 필수 |  | 레코드 목록 |
@@ -630,7 +630,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | recordsetList | List |  | 필수 |  | 레코드 세트 목록 |
-| recordsetList[0].recordsetName | String | 최대 254자<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드 세트 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
+| recordsetList[0].recordsetName | String | 최대 254자<br>영소문자와 숫자, '.', '-', '_'<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드 세트 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
 | recordsetList[0].recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드 세트 타입 |
 | recordsetList[0].recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
 | recordsetList[0].recordList | List |  | 필수 |  | 레코드 목록 |
