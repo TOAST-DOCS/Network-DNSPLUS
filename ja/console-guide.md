@@ -6,7 +6,7 @@
 
 メニューの**DNS**画面でDNS Zoneを管理できます。
 
-![image_01_20191218](https://static.toastoven.net/prod_dnsplus/image_01_ja_20200515.png)
+![image_01_20210604](https://static.toastoven.net/prod_dnsplus/image_01_20210604.png)
 
 ### DNS Zone作成
 
@@ -21,7 +21,7 @@
 		- 新規で登録したドメインで作成した場合、ドメイン登録機関にネームサーバー情報を該当ネームサーバーに設定する必要があります。
 		- 運営中のドメインのサブドメインで作成した場合、運営中のドメインにNSレコードセットをサブドメイン名と該当ネームサーバーに作成する必要があります。
 
-![image_02_20191218](https://static.toastoven.net/prod_dnsplus/image_02_ja_20200515.png)
+![image_02_20210604](https://static.toastoven.net/prod_dnsplus/image_02_20210604.png)
 
 ### DNS Zone修正
 
@@ -29,7 +29,7 @@
 
 2. **説明**を修正し、**確認**ボタンをクリックします。
 
-![image_03_20191218](https://static.toastoven.net/prod_dnsplus/image_03_ja_20200515.png)
+![image_03_20210604](https://static.toastoven.net/prod_dnsplus/image_03_20210604.png)
 
 ### DNS Zone削除
 
@@ -37,7 +37,7 @@
 
 2. **確認**ボタンをクリックします。DNS Zone内のすべてのレコードセットも削除され、一定時間がかかります。
 
-![image_04_20191218](https://static.toastoven.net/prod_dnsplus/image_04_ja_20200515.png)
+![image_04_20210604](https://static.toastoven.net/prod_dnsplus/image_04_20210604.png)
 
 
 ## レコードセット管理
@@ -48,7 +48,7 @@
 - **DNS Zone名**のSOAとNSレコードセットはデフォルトで作成され、修正および削除ができません。
 - SOAレコードセットは作成/修正/削除できず、NSレコードセットは**DNS Zone名**で作成/修正/削除できません。
 
-![image_05_20191218](https://static.toastoven.net/prod_dnsplus/image_05_ja_20200515.png)
+![image_05_20210604](https://static.toastoven.net/prod_dnsplus/image_05_20210604.png)
 
 ### レコードセット作成
 
@@ -69,7 +69,7 @@
 
 5. レコードセットの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_06_20200511](https://static.toastoven.net/prod_dnsplus/image_06_ja_20200515.png)
+![image_06_20210604](https://static.toastoven.net/prod_dnsplus/image_06_20210604.png)
 
 ### レコードセット修正
 
@@ -79,7 +79,7 @@
 
 3. 設定完了後、**確認**ボタンをクリックします。
 
-![image_07_20191218](https://static.toastoven.net/prod_dnsplus/image_07_ja_20200515.png)
+![image_07_20210604](https://static.toastoven.net/prod_dnsplus/image_07_20210604.png)
 
 ### レコードセット削除
 
@@ -87,7 +87,7 @@
 
 2. **確認**ボタンをクリックします。
 
-![image_08_20191218](https://static.toastoven.net/prod_dnsplus/image_08_ja_20200515.png)
+![image_08_20210604](https://static.toastoven.net/prod_dnsplus/image_08_20210604.png)
 
 ### レコードセット統計
 
@@ -95,7 +95,7 @@
 
 2. レコードセットの直近一週間のクエリー情報と平均レスポンス時間を確認できます。
 
-![image_09_20191218](https://static.toastoven.net/prod_dnsplus/image_09_ja_20200515.png)
+![image_09_20210604](https://static.toastoven.net/prod_dnsplus/image_09_20210604.png)
 
 ### 照会およびリスト表示
 
@@ -105,13 +105,13 @@
 
 	- 検索語を含むすべての値を検索します。
 
-![image_10_20191218](https://static.toastoven.net/prod_dnsplus/image_10_ja_20200515.png)
+![image_10_20210604](https://static.toastoven.net/prod_dnsplus/image_10_20210604.png)
 
 ## GSLBおよび接続されたPool管理
 
 メニューの**GSLB**画面でGSLBを管理し、選択したGSLBのPool接続を管理できます。
 
-![image_11_20191218](https://static.toastoven.net/prod_dnsplus/image_11_ja_20200515.png)
+![image_11_20210604](https://static.toastoven.net/prod_dnsplus/image_11_20210604.png)
 
 ### GSLBの作成
 
@@ -131,7 +131,7 @@
 
 4. GSLBの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_12_20200511](https://static.toastoven.net/prod_dnsplus/image_12_ja_20200515.png)
+![image_12_20210604](https://static.toastoven.net/prod_dnsplus/image_12_20210604.png)
 
 ### GSLBの修正
 
@@ -139,7 +139,7 @@
 
 2. **GSLBの名前**と**ルーティングルール**、**TTL(秒)**、**状態**を修正し、**確認**ボタンをクリックします。
 
-![image_13_20191218](https://static.toastoven.net/prod_dnsplus/image_13_ja_20200515.png)
+![image_13_20210604](https://static.toastoven.net/prod_dnsplus/image_13_20210604.png)
 
 ### GSLBの削除
 
@@ -147,7 +147,7 @@
 
 2. **確認**ボタンをクリックします。
 
-![image_14_20191218](https://static.toastoven.net/prod_dnsplus/image_14_ja_20200515.png)
+![image_14_20210604](https://static.toastoven.net/prod_dnsplus/image_14_20210604.png)
 
 ### Poolの接続
 
@@ -173,7 +173,7 @@
 
 4. Poolの接続数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_15_20191218](https://static.toastoven.net/prod_dnsplus/image_15_ja_20200515.png)
+![image_15_20210604](https://static.toastoven.net/prod_dnsplus/image_15_20210604.png)
 
 ### Pool接続の修正
 
@@ -183,7 +183,7 @@
 
 3. **確認**ボタンをクリックします。
 
-![image_16_20191218](https://static.toastoven.net/prod_dnsplus/image_16_ja_20200515.png)
+![image_16_20210604](https://static.toastoven.net/prod_dnsplus/image_16_20210604.png)
 
 ### Pool接続の解除
 
@@ -191,7 +191,7 @@
 
 2. **確認**ボタンをクリックします。
 
-![image_17_20191218](https://static.toastoven.net/prod_dnsplus/image_17_ja_20200515.png)
+![image_17_20210604](https://static.toastoven.net/prod_dnsplus/image_17_20210604.png)
 
 ### 照会およびリスト表示
 
@@ -212,14 +212,14 @@
 | 不明(灰色) | 有効化 | 全て無効または不明な状態、<br>接続されたPoolがない状態 |
 | 無効化(灰色) | 無効化 | 無関係 |
 
-![image_18_20191218](https://static.toastoven.net/prod_dnsplus/image_18_ja_20200515.png)
+![image_18_20210604](https://static.toastoven.net/prod_dnsplus/image_18_20210604.png)
 
 
 ## PoolおよびEndpoint管理
 
 メニューの**GSLB**画面でPoolと、選択したPoolのEndpointを管理できます。
 
-![image_19_20191218](https://static.toastoven.net/prod_dnsplus/image_19_ja_20200515.png)
+![image_19_20210604](https://static.toastoven.net/prod_dnsplus/image_19_20210604.png)
 
 ### Poolの作成
 
@@ -242,7 +242,7 @@
 
 4. Poolの作成数、Pool内のエンドポイント数、エンドポイントの総数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_20_20191218](https://static.toastoven.net/prod_dnsplus/image_20_ja_20200515.png)
+![image_20_20210604](https://static.toastoven.net/prod_dnsplus/image_20_20210604.png)
 
 ### Poolの修正
 
@@ -252,7 +252,7 @@
 
 3. 設定完了後、**確認**ボタンをクリックします。
 
-![image_21_20191218](https://static.toastoven.net/prod_dnsplus/image_21_ja_20200515.png)
+![image_21_20210604](https://static.toastoven.net/prod_dnsplus/image_21_20210604.png)
 
 ### Poolの削除
 
@@ -260,7 +260,7 @@
 
 2. **確認**ボタンをクリックします。
 
-![image_22_20191218](https://static.toastoven.net/prod_dnsplus/image_22_ja_20200515.png)
+![image_22_20210604](https://static.toastoven.net/prod_dnsplus/image_22_20210604.png)
 
 ### 照会およびリスト表示
 
@@ -281,14 +281,14 @@
 | 不明(灰色) | 有効 | 接続なし<br>接続の場合はエンドポイントの状態に準ずる | 全て無効または不明な状態 |
 | 無効化(灰色) | 無効 | 無関係 | 無関係 |
 
-![image_23_20191218](https://static.toastoven.net/prod_dnsplus/image_23_ja_20200515.png)
+![image_23_20210604](https://static.toastoven.net/prod_dnsplus/image_23_20210604.png)
 
 
 ## ヘルスチェックの管理
 
 メニューの**GSLB**画面でヘルスチェックを管理できます。
 
-![image_24_20191218](https://static.toastoven.net/prod_dnsplus/image_24_ja_20200515.png)
+![image_24_20210604](https://static.toastoven.net/prod_dnsplus/image_24_20210604.png)
 
 ### ヘルスチェックの作成
 
@@ -312,7 +312,7 @@
 
 4. ヘルスチェックの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-![image_25_20191218](https://static.toastoven.net/prod_dnsplus/image_25_ja_20200515.png)
+![image_25_20210604](https://static.toastoven.net/prod_dnsplus/image_25_20210604.png)
 
 ### ヘルスチェックの修正
 
@@ -322,7 +322,7 @@
 
 3. 設定完了後、**確認**ボタンをクリックします。
 
-![image_26_20191218](https://static.toastoven.net/prod_dnsplus/image_26_ja_20200515.png)
+![image_26_20210604](https://static.toastoven.net/prod_dnsplus/image_26_20210604.png)
 
 ### ヘルスチェックの削除
 
@@ -330,7 +330,7 @@
 
 2. **確認**ボタンをクリックします。
 
-![image_27_20191218](https://static.toastoven.net/prod_dnsplus/image_27_ja_20200515.png)
+![image_27_20210604](https://static.toastoven.net/prod_dnsplus/image_27_20210604.png)
 
 ### 照会および基本情報
 
@@ -340,4 +340,4 @@
 
 2. ヘルスチェックを選択すると、ヘルスチェックに設定された**基本情報**を確認できます。
 
-![image_28_20191218](https://static.toastoven.net/prod_dnsplus/image_28_ja_20200515.png)
+![image_28_20210604](https://static.toastoven.net/prod_dnsplus/image_28_20210604.png)
