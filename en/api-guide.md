@@ -144,7 +144,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | Name | Type | Valid range | Required? | Default | Description |
 |---|---|---|---|---|---|
 | zone | Object |  | Required |  | DNS Zone |
-| zone.zoneName | String | Max. 254 characters | Required |  | DNS Zone name to create, <br>type the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| zone.zoneName | String | Up to 254<br>lowercase characters and numbers, '.', '-', '_'<br>last character '.' | Required |  | Record DNS Zone name to create and <br>the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 | zone.description | String | Max. 255 characters | Select |  | DNS Zone description |
 
 #### Response
@@ -411,7 +411,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | Name | Type | Valid range | Required? | Default | Description |
 |---|---|---|---|---|---|
 | recordset | Object |  | Required |  | Record set |
-| recordset.recordsetName | String | Max. 254 characters<br>(DNS Zone name included) | Required |  |  record set name to create, <br>type the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| recordset.recordsetName | String | Up to 254 <br>lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required |  | Record set name to create, <br>type the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)  |
 | recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
 | recordset.recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Renew cycle of the record set data in the name server |
 | recordset.recordList | List |  | Required |  | Record list |
@@ -629,7 +629,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | Name | Type | Valid Range | Required? | Default | Description |
 |---|---|---|---|---|---|
 | recordsetList | List |  | Required |  | Record set list |
-| recordsetList[0].recordsetName | String | Max. 254 characters<br>(including DNS Zone name) | Required |  | Record set name to create, <br>type the domain as [FQDN]( |
+| recordsetList[0].recordsetName | String | Up to 254 <br>lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required  |  | Record set name to create, <br>type the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)  |
 | recordsetList[0].recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
 | recordsetList[0].recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Renew cycle of the record set data in the name server |
 | recordsetList[0].recordList | List |  | Required |  | Record list |

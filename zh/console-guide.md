@@ -6,7 +6,7 @@
 
 在菜单的**DNS**界面中可管理DNS Zone。
 
-![image_01_20191218](https://static.toastoven.net/prod_dnsplus/image_01_20191218.png)
+![image_01_20210604](https://static.toastoven.net/prod_dnsplus/image_01_20210604.png)
 
 ### 创建DNS Zone
 
@@ -21,7 +21,7 @@
 		- 以新注册的域名创建时，应在域名注册机构将名称服务器信息设置为相应名称服务器。
 		- 以运营中域名的下级域名创建时，应在运营中的域名中以下级域名及相应名称服务器创建NS记录集合。
 
-![image_02_20191218](https://static.toastoven.net/prod_dnsplus/image_02_20191218.png)
+![image_02_20210604](https://static.toastoven.net/prod_dnsplus/image_02_20210604.png)
 
 ### 修改DNS Zone
 
@@ -29,7 +29,7 @@
 
 2. 修改**说明**后单击**确认**按钮。
 
-![image_03_20191218](https://static.toastoven.net/prod_dnsplus/image_03_20191218.png)
+![image_03_20210604](https://static.toastoven.net/prod_dnsplus/image_03_20210604.png)
 
 ### 删除DNS Zone
 
@@ -37,7 +37,7 @@
 
 2. 单击**确认**按钮。DNS Zone中所有记录集合也将删除，所以需要一定时间。
 
-![image_04_20191218](https://static.toastoven.net/prod_dnsplus/image_04_20191218.png)
+![image_04_20210604](https://static.toastoven.net/prod_dnsplus/image_04_20210604.png)
 
 
 ## 管理记录集合
@@ -48,7 +48,7 @@
 - 默认创建**DNS Zone名**的SOA与NS记录集合，但无法修改及删除。
 - SOA的记录集合无法创建/修改/删除，NS记录集合无法以**DNS Zone名**创建/修改/删除。
 
-![image_05_20191218](https://static.toastoven.net/prod_dnsplus/image_05_20191218.png)
+![image_05_20210604](https://static.toastoven.net/prod_dnsplus/image_05_20210604.png)
 
 ### 创建记录集合
 
@@ -67,7 +67,7 @@
 
 4. 设置完成后单击**确认**按钮。
 
-![image_06_20200511](https://static.toastoven.net/prod_dnsplus/image_06_20200511.png)
+![image_06_20210604](https://static.toastoven.net/prod_dnsplus/image_06_20210604.png)
 
 ### 修改记录集合
 
@@ -77,7 +77,7 @@
 
 3. 设置完成后单击**确认**按钮。
 
-![image_07_20191218](https://static.toastoven.net/prod_dnsplus/image_07_20191218.png)
+![image_07_20210604](https://static.toastoven.net/prod_dnsplus/image_07_20210604.png)
 
 ### 删除记录集合
 
@@ -85,7 +85,7 @@
 
 2. 单击**确认**按钮。
 
-![image_08_20191218](https://static.toastoven.net/prod_dnsplus/image_08_20191218.png)
+![image_08_20210604](https://static.toastoven.net/prod_dnsplus/image_08_20210604.png)
 
 ### 统计记录集合
 
@@ -93,7 +93,7 @@
 
 2. 可确认记录集合最近一周的查询信息及平均响应时间。
 
-![image_09_20191218](https://static.toastoven.net/prod_dnsplus/image_09_20191218.png)
+![image_09_20210604](https://static.toastoven.net/prod_dnsplus/image_09_20210604.png)
 
 ### 查询及查看列表
 
@@ -103,4 +103,4 @@
 
 	- 搜索包含搜索词的所有值。
 
-![image_10_20191218](https://static.toastoven.net/prod_dnsplus/image_10_20191218.png)	
+![image_10_20210604](https://static.toastoven.net/prod_dnsplus/image_10_20210604.png)	
