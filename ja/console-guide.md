@@ -79,7 +79,7 @@
 
 3. テンプレートに入力した情報を画面で確認した後、**確認**ボタンをクリックします。
 
-![image_06_2_20210802](https://static.toastoven.net/prod_dnsplus/image_06_2_20210802.png)
+![image_06_2_ja_20210802](https://static.toastoven.net/prod_dnsplus/image_06_2_ja_20210802.png)
 
 ### レコードセット修正
 
