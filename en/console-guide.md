@@ -69,6 +69,17 @@ Manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
 ![image_06_20210604](https://static.toastoven.net/prod_dnsplus/image_06_20210604.png)
 
+### Create multiple record sets
+
+1. Click the **Create multiple record sets** button.
+
+2. Click the **Download template** button to download a template. Enter the record set information on the downloaded template. Click the **Select file** button to select a template.
+
+3. On the screen, check the information entered on the template and click the **OK** button.
+
+![image_06_2_20210802](https://static.toastoven.net/prod_dnsplus/image_06_2_20210802.png)
+
+
 ### Modify Record set
 
 1. Select a record set to modify and then click the **Modify Record Set** button.
