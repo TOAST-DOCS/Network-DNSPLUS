@@ -1,54 +1,54 @@
 ## Network > DNS Plus > Overview
 
-DNS Plus is a type of DNS that allows users all around the world to access their networks in a fast and reliable way. It supports Anycast network for fast and reliable access to DNS from anywhere. In addition, DNS services are directly available in the web console without separate DNS solutions or servers.
+DNS Plus is a DNS that users around the world can access fast and reliably. DNS Plus supports anycast networks so that users can access DNS fast and reliably from anywhere, and allows you to provide a DNS service directly from the web console without a separate DNS solution or server.
 
-## Key features
+## Key Features
 
 - DNS
-    - DNS services are directly available in the web console without separate DNS solutions or servers.
-    - It supports Anycast network so that a high speed services can be provided in and out of the country.
-    - As designed to accept a massive volume of DNS queries, it can process a huge volume of DNS queries and mitigate DDoS attacks against DNS.
+    - You can perform DNS configuration in the web console without installing a separate DNS server.
+    - It supports anycast networks so that you can provide a service at high speed in Korea as well as in other countries.
+    - Because it is designed to accept a high volume of DNS queries, it can process a high volume of DNS queries and also mitigate DDoS attacks targeting DNS.
 
 - GSLB
-    - DNS Plus GLSB (Global Server Load Balancing) is based on DNS service which provides load balancing of traffic to endpoints on a stable basis.
-    - Provides a variety of routing rules.
+    - DNS Plus GSLB (global server load balancing) is a service that performs reliable load balancing of traffic to endpoints based on DNS service.
+    - It supports various routing rules.
 
-    | Routing Rules | Description | Details |
+    | Routing Rule | Description | Details |
     |---|---|---|
-    | FAILOVER | Routes pools connected to GLSB domain in the priority order. |  |
-    | RANDOM | Routes available pools connected to GLSB domain randomly. |  |
-    | GEOLOCATION | Routes traffic of configured region to the corresponding connected pool.<br>Routes in the priority order, if regional setting is not available. | < Available Regions ><br>- Western North America<br>- Eastern Nort America<br>- Western Europe<br>- Eastern Europe<br>- Northern South America<br>- Southern South America<br>- Oceania<br>- Middle East<br>- Northern Africa<br>- Southern Africa<br>- India<br>- Southeast Asia<br>- Northeast Asia |
+    | FAILOVER | Performs routing based on the priorities of pools connected to the GSLB domain. |  |
+    | RANDOM | Performs routing by randomly selecting an available pool among pools connected to the GSLB domain. |  |
+    | GEOLOCATION | Routes the traffic of the configured region to the connected pool.<br>When there is no configured region, performs routing based on the priorities of connected pools. | < Available Regions ><br>\- Western North America<br>\- Eastern North America<br>\- Western Europe<br>\- Eastern Europe<br>\- Northern South America<br>\- Southern South America<br>\- Oceania<br>\- Middle East<br>\- Northern Africa<br>\- Southern Africa<br>\- India<br>\- Southeast Asia<br>\- Northeast Asia |
 
-    - Endpoint grouping via pool
-        - Endpoints can be grouped by pool for specific purposes.
-        - Weighted value can be configured for each endpoint included in the pool.
+    - Endpoint grouping through pool
+        - You can use pools to group endpoints according to specific purposes.
+        - Weights can be set for each endpoint included in the pool.
 
-    - Support for healthchecks for various endpoints
-        - Service can be supported more stably with healthcheck execution at endpoints included in the pool, by using HTTP/HTTPS/TCP.
-        - For HTTP healthchecks, port, route, expected status code, and expected response body can be configured.
-        - For HTTPS healthchecks, certificate validity, port, route, expected status code, and expected response body can be configured.
+    - Supports various endpoint health check functions
+        - Supports a reliable service by performing health checks of endpoints included in the pool using HTTP/HTTPS/TCP
+        - For HTTP health checks, you can set the port, path, expected status code, and expected response body.
+        - For HTTPS health checks, you can set the certificate validity, port, path, expected status code, and expected response body.
 
-## Service targets
+## Service Targets
 
 - DNS
-    - For developers whose applications and services will be provided to global customers
-    - For administrators and maintenance engineers who want to ease the burden of management and maintenance of DNS servers
+    - If you're developing an application provided for global users
+    - When it is burdensome to manage and maintain DNS servers
 
 - GSLB
-    - To provide stable load balancing of service traffic
-    - To provide global load balancing of service traffic
-    - To configure Disaster Recovery (DR) through load balancing
+    - If you want reliable load balancing of service traffic
+    - If you want load balancing of global service traffic
+    - If you want to configure disaster recovery (DR) through load balancing
 
-## Service terms
+## Service Terms
 
-| Terms | Description |
+| Term | Description |
 |---|---|
-| Domain | An address used to identify a computer on the network, which is presented in a human-recognizable format. |
-| DNS Zone | A domain area of the host that DNS provides service. As a container of record sets, it specified how to route traffic from domain and subdomain. |
-| Record set | Host information that DNS provides service. This is used to route traffic from domain. |
-| Record set type | A resource type which shows how to route traffic from host. |
-| Record value | A description of how to route the traffic from the host. The entry is determined based on the record set type (resource type) and one or more record values can be registered. |
-| GSLB 도메인 | Global Server Load Balancing 도메인의 약어이며, DNS Plus에서 생성한 서비스 도메인(레코드 세트)에 CNAME을 매핑해 사용할 수 있는 도메인입니다. |
-| Pool(풀) | 엔드포인트를 그룹핑하는 요소이며, 라우팅 규칙이 적용되는 최소 단위입니다. Pool 내에 포함된 엔드포인트는 가중치에 따라 로드밸런싱됩니다. |
-| 엔드포인트 | 실제 트래픽을 처리하는 서버를 말합니다. 엔드포인트는 IP 및 도메인 형태로 사용 가능합니다. |
-| 헬스 체크 | 설정한 값에 따라 Pool 내에 속한 엔드포인트에 대해 접근성을 확인하는 요소입니다. |
+| Domain | A method of representing an address that identifies a computer on a network in a human-recognizable form. |
+| DNS Zone | The domain zone of the host served by DNS. A container for record sets, which contains how to route traffic of domain and subdomain. |
+| Record set | The information of host served by DNS Zone, which is how to route traffic of a domain. |
+| Record set type | A resource type that indicates how to route traffic of a host. |
+| Record value | Description of how to route the traffic of a host. The input content is determined by the record set type (resource type), and one or more values can be registered except for a specific type. |
+| GSLB domain | An abbreviation of global server load balancing domain. It is a domain that can be used by mapping the CNAME to the service domain (record set) created by DNS Plus. |
+| Pool | A component that groups endpoints, which is the smallest unit to which a routing rule is applied. Endpoints included in the pool are load balanced according to their weight. |
+| Endpoint | Refers to the server that handles the actual traffic. Endpoints are available in the form of IP or domain. |
+| Health check | A component that checks accessibility for endpoints belonging to a pool according to the configured value. |
