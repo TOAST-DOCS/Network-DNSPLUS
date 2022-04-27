@@ -259,7 +259,7 @@ GSLB에 연결할 Pool을 설정합니다.
 
 5. Pool의 생성 개수, Pool 내의 엔드포인트 개수, 전체 엔드포인트의 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의해 주시기 바랍니다. 
 
-   - 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+	- 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_20_20210604](https://static.toastoven.net/prod_dnsplus/image_20_20210604.png)
 

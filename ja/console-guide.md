@@ -67,7 +67,9 @@
 
 4. 設定完了後、**確認**ボタンをクリックします。
 
-5. レコードセットの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+5. レコードセットの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。
+
+	- [1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_06_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_06_ja_20210628.png)
 
@@ -125,7 +127,9 @@
 
 ### GSLBの作成
 
-1. **GSLBドメイン**は**ルーティングルール**に従って安定的にトラフィックがロードバランシングされます。**GSLB作成**ボタンをクリックして作成します。
+**GSLBドメイン**は**ルーティングルール**に従って安定的にトラフィックがロードバランシングされます。
+
+1. **GSLB作成**ボタンをクリックして作成します。
 
 2. **GSLB**情報を入力します。
 
@@ -139,7 +143,9 @@
 
 3. 設定完了後、**確認**ボタンをクリックします。
 
-4. GSLBの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+4. GSLBの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。
+
+	- [1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_12_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_12_ja_20210628.png)
 
@@ -181,7 +187,9 @@
 
 3. **確認**ボタンをクリックします。
 
-4. Poolの接続数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+4. Poolの接続数は制限されています。拡張が必要な場合は別途お問い合わせください。
+
+	- [1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_15_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_15_ja_20210628.png)
 
@@ -224,7 +232,6 @@
 
 ![image_18_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_18_ja_20210628.png)
 
-
 ## PoolおよびEndpoint管理
 
 メニューの**GSLB**画面でPoolと、選択したPoolのEndpointを管理できます。
@@ -248,9 +255,11 @@
 	- 重み：0～1.00で入力できます。Pool内の他のエンドポイントの重みと相対的に動作します。同じ重みはPool内で同じ比重を持ちます。
 	- 状態：エンドポイントを有効化するかどうかを選択します。
 
-3. 設定完了後、**確認**ボタンをクリックします。
+4. 設定完了後、**確認**ボタンをクリックします。
 
-4. Poolの作成数、Pool内のエンドポイント数、エンドポイントの総数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+5. Poolの作成数、Pool内のエンドポイント数、エンドポイントの総数は制限されています。拡張が必要な場合は別途お問い合わせください。
+
+   - [1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_20_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_20_ja_20210628.png)
 
@@ -274,9 +283,7 @@
 
 ### 照会およびリスト表示
 
-1. Poolリストに検索ワードを入力し、**Enter Key**を押すか、**検索**をクリックするとPoolの名前で検索します。
-
-	- 検索ワードを含むすべての値を検索します。
+1. Poolリストに検索ワードを入力し、**Enter Key**を押すか、**検索**をクリックするとPoolの名前で検索します。 ードを含むすべての値を検索します。
 
 2. エンドポイントリストに検索ワードを入力すると、現在のリスト内でフィルタリングされます。
 
@@ -320,7 +327,9 @@
 
 3. 設定完了後、**確認**ボタンをクリックします。
 
-4. ヘルスチェックの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+4. ヘルスチェックの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。
+
+	- [1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_25_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_25_ja_20210628.png)
 
