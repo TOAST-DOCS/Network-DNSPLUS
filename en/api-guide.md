@@ -594,7 +594,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 
 
-### Create Multiple Record Sets
+### Bulk Create Record Sets
 
 - You can create multiple record sets, up to 2,000 sets per request.
 - The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, and SOA.
@@ -874,7 +874,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 
 ### Create GSLB
 
-- Creates GSLB and pool connection settings
+- Creates GSLB and pool connection settings.
 - For **routing rule**, you can select FAILOVER, RANDOM, or GEOLOCATION as a load balancing method for GSLB domain.
     - FAILOVER: Performs routing based on the priorities of connected pools.
 	- RANDOM: Performs routing by randomly selecting an available pool among connected pools.
@@ -958,7 +958,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 ### Update GSLB
 
-- Updates GSLB and pool connection settings
+- Updates GSLB and pool connection settings.
 - Updates the items entered in [Create GSLB](./api-guide/#create-gslb).
 
 #### Request
@@ -1039,7 +1039,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 
 ### Delete GSLB
 
-- Deletes multiple GSLBs
+- Deletes multiple GSLBs.
 
 #### Request
 
@@ -1081,7 +1081,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 
 ### Connect Pool
 
-- Connects a pool to GSLB
+- Connects a pool to GSLB.
 - The smaller the **priority** of the **connected pool**, the higher the routing order. If you enter the same priority as the previously connected pool, the routing order for the existing pool gets lower.
 - There is a limit to the maximum number of pools that can be connected. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
@@ -1591,7 +1591,7 @@ poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c1
 
 ### Query Health Check
 
-- Retrieves the list of health checks
+- Retrieves the list of health checks.
 
 #### Request
 
@@ -1669,7 +1669,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/h
 
 ### Create Health Check
 
-- Creates a health check
+- Creates a health check.
 - For the health check **protocol**, HTTPS, HTTP, and TPC are supported, and the information that can be entered differs depending on the selected protocol.
     - HTTPS input items: Disable certificate validation, port, path, expected status code, expected response body
 	- HTTP input items: Port, path, expected status code, expected response body
@@ -1737,7 +1737,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 ### Update Health Check
 
-- Updates a health check
+- Updates a health check.
 - Updates the items entered in [Create Health Check](./api-guide/#create-health-check).
 
 #### Request
