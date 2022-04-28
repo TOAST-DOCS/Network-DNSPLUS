@@ -1,20 +1,20 @@
-## Network > DNS Plus > API指南
+## Network > DNS Plus > API Guide
 
-介绍DNS Plus服务的API。
+The document describes API of the DNS Plus service.
 
 
-## API通用信息
+## Common Information of API
 
-### 提前准备
+### Preparation
 
-- 若欲使用API，需要Appkey。
-- Appkey可在控制台上端**URL & Appkey**菜单中确认。
+- An appkey is required to use the API.
+- Your appkey can be found in the **URL & Appkey** menu on the top of the console.
 
-### 响应通用信息
+### Common Response Information
 
-- 对于所有API请求，以“200 OK”响应。详细响应结果请参考响应正文的标头。
+- '200 OK' is returned for all API requests. For details on response results, refer to the header of each response.
 
-[成功响应正文]
+[Success response body]
 
 ```
 {
@@ -26,14 +26,14 @@
 }
 ```
 
-[失败响应正文]
+[Failure response body]
 
 ```
 {
     "header": {
         "isSuccessful": false,
         "resultCode": 4010001,
-        "resultMessage": "Invalid appKey."
+        "resultMessage": "Invalid appKey. "
     }
 }
 ```
@@ -41,47 +41,47 @@
 
 ## DNS Zone API
 
-### 查询DNS Zone
+### Query DNS Zone
 
-- 查询DNS Zone列表。
+- Retrieves the list of DNS Zones.
 
-#### 请求
+#### Request
 
 [URI]
 
-| 方法 | URI |
+| Method | URI |
 |---|---|
 | GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones |
 
-[请求正文]
+[Request body]
 
-- {appkey}更改为在控制台中确认的值。
+- Change {appkey} to the value found in the console.
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones'
 ```
 
-[选项]
+[Options]
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| zoneIdList | List | 最大3,000个 | 选择 |  | DNS Zone ID列表 |
-| zoneStatusList | List | CREATING, <br>DELETING, <br>DELETING_FAIL, <br> USE | 选择 | | DNS Zone状态列表 <br>(CREATING：正在创建，<br>DELETING：正在删除，<br>DELETING_FAIL：删除失败，<br>USE：使用) |
-| searchZoneName | String |  | 选择 |  | 要搜索的DNS Zone名 |
-| engineId | String | | 选择 |  | DNS服务器ID |
-| page | int | 最小1 | 选择 | 1 | 页面编号 |
-| limit | int | 最小1，最大3,000 | 选择 | 50 | 查询个数 |
-| sortDirection | String | DESC, ASC | 选择 | DESC | 排列方向(DESC：降序，ASC：升序) |
-| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>ZONE_NAME, <br>ZONE_STATUS, <br>RECORDSET_COUNT | 选择 | CREATED_AT | 排列对象 <br>(CREATED_AT：创建日，<br>UPDATED_AT：修改日，<br>ZONE_NAME：DNS Zone名，<br>ZONE_STATUS：DNS Zone状态，<br>RECORDSET_COUNT：记录集合个数) |
+| zoneIdList | List | Max. 3,000 | Optional |  | DNS Zone ID List |
+| zoneStatusList | List | CREATING, <br>DELETING, <br>DELETING_FAIL, <br> USE | Optional | | DNS Zone status list <br>(CREATING: Creating, <br>DELETING: Deleting, <br>DELETING_FAIL: Failed to delete, <br>USE: Use) |
+| searchZoneName | String |  | Optional |  | DNS Zone name to search for |
+| engineId | String | | Optional |  | DNS server ID |
+| page | int | Min. 1 | Optional | 1 | Page No. |
+| limit | int | Min. 1, Max. 3,000 | Optional | 50 | Query count |
+| sortDirection | String | DESC, ASC | Optional | DESC | Sort order (DESC: Descending, ASC: Ascending) |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>ZONE_NAME, <br>ZONE_STATUS, <br>RECORDSET_COUNT | Optional | CREATED_AT | Sort criteria <br>(CREATED_AT: Created date, <br>UPDATED_AT: Modified date, <br>ZONE_NAME: DNS Zone name, <br>ZONE_STATUS: DNS Zone status, <br>RECORDSET_COUNT: Record set count) |
 
-#### 响应
+#### Response
 
-[响应正文]
+[Response body]
 
 ```
 {
     "header": {
-        // 省略
+        // Omitted
     },
     "totalCount": 1,
     "zoneList": [
@@ -90,7 +90,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
             "zoneId": "bff20a9a-24cf-4670-8b34-007622ec010e",
             "zoneName": "test.dnsplus.com.",
             "zoneStatus": "USE",
-            “description”: “文本",
+            "description": "Test",
             "createdAt": "2019-06-04T12:32:50.000+09:00",
             "updatedAt": "2019-06-04T12:32:50.000+09:00",
             "recordsetCount": 2
@@ -99,57 +99,57 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 }
 ```
 
-[字段]
+[Fields]
 
-| 名称 | 类型 | 说明 |
+| Name | Type | Description |
 |---|---|---|
-| totalCount | long | 全部DNS Zone个数 |
-| zoneList | List | DNS Zone列表 |
-| zoneList[0].engineId | boolean | DNS服务器ID |
+| totalCount | long | Total DNS Zone count |
+| zoneList | List | DNS Zone list |
+| zoneList[0].engineId | boolean | DNS server ID |
 | zoneList[0].zoneId | String | DNS Zone ID |
-| zoneList[0].zoneName | String | DNS Zone名 |
-| zoneList[0].zoneStatus | String | DNS Zone状态 |
-| zoneList[0].description | String | 说明 |
-| zoneList[0].createdAt | DateTime | 创建日 |
-| zoneList[0].updatedAt | DateTime | 修改日 |
-| zoneList[0].recordsetCount | long | 记录集合个数 |
+| zoneList[0].zoneName | String | DNS Zone name |
+| zoneList[0].zoneStatus | String | DNS Zone status |
+| zoneList[0].description | String | Description |
+| zoneList[0].createdAt | DateTime | Created date |
+| zoneList[0].updatedAt | DateTime | Modified date |
+| zoneList[0].recordsetCount | long | Record set count |
 
 
-### 创建DNS Zone
+### Create DNS Zone
 
-- 创建DNS Zone。
-- **DNS Zone名**在DNS服务器中应唯一。
-- 可按照DNS服务器数创建相同的**DNS Zone名**。DNS服务器为3台。
+- Creates a DNS Zone.
+- The **DNS Zone name** must be unique within the DNS server.
+- The same **DNS Zone name** can be created as many as the number of DNS servers. There are three DNS servers.
 
-#### 请求
+#### Request
 
 [URI]
 
-| 方法 | URI |
+| Method | URI |
 |---|---|
 | POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones |
 
-[请求正文]
+[Request body]
 
-- {appkey}更改为在控制台中确认的值。
+- Change {appkey} to the value found in the console.
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones' \
--H 'Content-Type:application/json' \
+-H 'Content-Type: application/json' \
 --data '{ "zone": { "zoneName": "test.dnsplus.com.", "description": "test" }}'
 ```
 
-[字段]
+[Fields]
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| zone | Object |  | 必需 |  | DNS Zone |
-| zone.zoneName | String | 最大254个字符 | 必需 |  | 要创建的DNS Zone名，<br>域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
-| zone.description | String | 最大255个字符 | 选择 |  | DNS Zone说明 |
+| zone | Object |  | Required |  | DNS Zone |
+| zone.zoneName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>Last character '.' | Required |  | DNS Zone name to create,  <br>Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| zone.description | String | Max. 255 characters | Optional |  | DNS Zone description |
 
-#### 响应
+#### Response
 
-[响应正文]
+[Response body]
 
 ```
 {
@@ -172,39 +172,39 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 
 
-### 修改DNS Zone
+### Update DNS Zone
 
-- 修改DNS Zone。
+- Updates the DNS Zone.
 
-#### 请求
+#### Request
 
 [URI]
 
-| 方法 | URI |
+| Method | URI |
 |---|---|
 | PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId} |
 
-[请求正文]
+[Request body]
 
-- {appkey}更改为在控制台中确认的值。
-- {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
+- Change {appkey} to the value found in the console.
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
 
 ```
 curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}' \
--H 'Content-Type:application/json' \
+-H 'Content-Type: application/json' \
 --data '{ "zone": { "description": "test" }}'
 ```
 
-[字段]
+[Fields]
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| zone | Object |  | 必需 |  | DNS Zone |
-| zone.description | String | 最大255个字符 | 选择 |  | DNS Zone说明 |
+| zone | Object |  | Required |  | DNS Zone |
+| zone.description | String | Max. 255 characters | Optional |  | DNS Zone description |
 
-#### 响应
+#### Response
 
-[响应正文]
+[Response body]
 
 ```
 {
@@ -227,38 +227,38 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 ```
 
 
-### 删除DNS Zone (非同步)
+### Delete DNS Zone (async)
 
-- 删除多个DNS Zone，DNS Zone的记录集合也同时删除。
-- 实际数据删除非同步处理。
+- Deletes multiple DNS Zones along with their record sets.
+- Actual deletion of data is processed asynchronously.
 
-#### 请求
+#### Request
 
 [URI]
 
-| 方法 | URI |
+| Method | URI |
 |---|---|
 | DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/async |
 
-[请求正文]
+[Request body]
 
-- {appkey}更改为在控制台确认的值。
-- DNS Zone ID可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
+- Change {appkey} to the value found in the console.
+- DNS Zone ID can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/async?
 zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab24188dc4'
 ```
 
-[字段]
+[Fields]
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| zoneIdList | List | 最小1个，最大3,000个 | 必需 |  | DNS Zone ID列表 |
+| zoneIdList | List | Min. 1, Max. 3,000 | Required |  | DNS Zone ID List |
 
-#### 响应
+#### Response
 
-[响应正文]
+[Response body]
 
 ```
 {
@@ -271,49 +271,49 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 ```
 
 
-## 记录集合API
+## Record Set API
 
-### 查询记录集合
+### Query Record Set
 
-- 查询记录集合列表。
+- Retrieves the list of record sets.
 
-#### 请求
+#### Request
 
 [URI]
 
-| 方法 | URI |
+| Method | URI |
 |---|---|
 | GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
-[请求正文]
+[Request body]
 
-- {appkey}更改为在控制台中确认的值。
-- {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
+- Change {appkey} to the value found in the console.
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
 
 ```
 curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
 ```
 
-[选项]
+[Options]
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordsetIdList | List | 最大3,000个 | 选择 |  | 记录集合列表 |
-| recordsetTypeList | List | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS, SOA | 选择 | | 记录集合类型列表 |
-| searchRecordsetName | String |  | 选择 |  | 要搜索的记录集合名 |
-| page | int | 最小1 | 选择 | 1 | 页面编号 |
-| limit | int | 最小1，最大3,000 | 选择 | 50 | 查询个数 |
-| sortDirection | String | DESC, ASC | 选择 | DESC | 排列方向(DESC：降序，ASC：升序) |
-| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>RECORDSET_NAME, <br>RECORDSET_TYPE, <br>RECORDSET_TTL | 选择 | CREATED_AT | 排列对象<br>(CREATED_AT：创建日，<br>UPDATED_AT：修改日，<br>RECORDSET_NAME：记录集合名，<br>RECORDSET_TYPE：记录集合类型，<br>RECORDSET_TTL：TTL(秒)) |
+| recordsetIdList | List | Max. 3,000 | Optional |  | Record set list |
+| recordsetTypeList | List | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS, SOA | Optional | | Record set type list |
+| searchRecordsetName | String |  | Optional |  | Record set name to search for |
+| page | int | Min. 1 | Optional | 1 | Page No. |
+| limit | int | Min. 1, Max. 3,000 | Optional | 50 | Query count |
+| sortDirection | String | DESC, ASC | Optional | DESC | Sort order (DESC: Descending, ASC: Ascending) |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>RECORDSET_NAME, <br>RECORDSET_TYPE, <br>RECORDSET_TTL | Optional | CREATED_AT | Sort criteria <br>(CREATED_AT: Created date, <br>UPDATED_AT: Modified date, <br>RECORDSET_NAME: Record set name, <br>RECORDSET_TYPE: Record set type, <br>RECORDSET_TTL: TTL (sec)) |
 
-#### 响应
+#### Response
 
-[响应正文]
+[Response body]
 
 ```
 {
     "header": {
-        // 省略
+        // Omitted
     },
     "totalCount": 2,
     "recordsetList": [
@@ -328,8 +328,8 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
             "recordList": [
                 {
                     "recordDisabled": false,
-                    "recordContent": "ns1.dnsplus.com.hostmaster.dnsplus.com.2019060401 10800 3600 604800 1200",
-                    // 省略：根据记录集合类型有所不同
+                    "recordContent": "ns1.dnsplus.com. hostmaster.dnsplus.com. 2019060401 10800 3600 604800 1200",
+                    // Omitted: Varies by record set type
                 }
             ]
         },
@@ -345,12 +345,12 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
                 {
                     "recordDisabled": false,
                     "recordContent": "ns.toastdns-jin.com.",
-                    // 省略：根据记录集合类型有所不同
+                    // Omitted: Varies by record set type
                 },
                 {
                     "recordDisabled": false,
                     "recordContent": "ns.toastdns-jin.net.",
-                    // 省略：根据记录集合类型有所不同
+                    // Omitted: Varies by record set type
                 }
             ]
         }
@@ -358,213 +358,214 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 }
 ```
 
-[字段]
+[Fields]
 
-| 名称 | 类型 | 说明 |
+| Name | Type | Description |
 |---|---|---|
-| totalCount | long | 全部记录集合个数 |
-| recordsetList | List | 记录集合列表 |
-| recordsetList[0].recordsetId | String | 记录集合ID |
-| recordsetList[0].recordsetName | String | 记录集合名 |
-| recordsetList[0].recordsetType | String | 记录集合类型 |
-| recordsetList[0].recordsetTtl | int | 名称服务器中记录集合信息的更新周期 |
-| recordsetList[0].recordsetStatus | String | 记录集合状态 |
-| recordsetList[0].createdAt | DateTime | 创建日 |
-| recordsetList[0].updatedAt | DateTime | 修改日 |
-| recordsetList[0].recordList | List | 记录列表 |
-| recordsetList[0].recordList[0].recordDisabled | boolean | 记录是否禁用 |
-| recordsetList[0].recordList[0].recordContent | String | 为记录值，且以一行显示的不同记录集合类型的具体字段内容 |
+| totalCount | long | Total record set count |
+| recordsetList | List | Record set list |
+| recordsetList[0].recordsetId | String | Record set ID |
+| recordsetList[0].recordsetName | String | Record set name |
+| recordsetList[0].recordsetType | String | Record set type |
+| recordsetList[0].recordsetTtl | int | Update cycle of the record set data in the name server |
+| recordsetList[0].recordsetStatus | String | Record set status |
+| recordsetList[0].createdAt | DateTime | Created date |
+| recordsetList[0].updatedAt | DateTime | Modified date |
+| recordsetList[0].recordList | List | Record list |
+| recordsetList[0].recordList[0].recordDisabled | boolean | Whether record is disabled or not |
+| recordsetList[0].recordList[0].recordContent | String | A record value. It displays the detailed field by record set type in a line. |
 
 
-### 创建记录集合
+### Create Record Set
 
-- 创建记录集合。
-- 以**记录集合类型**支持 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA。
-- SOA的记录集合无法创建/修改/删除，NS记录集合无法以**DNS Zone名**创建/修改/删除。
-- 记录集合内的记录列表的长度最大为512个字节。
-- 每个DNS区域最多可以创建5,000个记录集。
+- Creates a record set.
+- The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, and SOA.
+- SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
+- The maximum length of the record list within the record set is 512 bytes.
+- Up to 5,000 record sets can be created per DNS Zone.
+- There is a limit to the maximum number of record sets that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-#### 请求
+#### Request
 
 [URI]
 
-| 方法 | URI |
+| Method | URI |
 |---|---|
 | POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
-[请求正文]
+[Request body]
 
-- {appkey}更改为在控制台中确认的值。
-- {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
-- 记录值为必需，输入方法可选择recordset.recordList[0].recordContent字段或具体字段。
-- recordContent字段是将空格作为区分字符，以一行显示具体字段的内容。具体字段可在 [不同记录集合类型的具体字段] 中确认。
-- 若同时输入具体字段与recordContent字段，以recordContent字段为准创建。
+- Change {appkey} to the value found in the console.
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
+- Record value is required. You can enter the value by selecting either recordset.recordList[0].recordContent field or the detailed field.
+- The recordContent field displays the detailed field in one line separated by space. You can check the detailed field in [Detailed field by record set type].
+- If you enter values in both the detailed field and the recordContent field at the same time, the value in the recordContent field will take priority.
 
 ```
 curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
--H 'Content-Type:application/json' \
+-H 'Content-Type: application/json' \
 --data '{ "recordset": { "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
 
-[字段]
+[Fields]
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset | Object |  | 必需 |  | 记录集合 |
-| recordset.recordsetName | String | 最大254个字符<br>(含DNS Zone名) | 必需 |  | 要创建的记录集合名，<br>域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 必需 |  | 记录集合类型 |
-| recordset.recordsetTtl | int | 最小1，最大2147483647 | 必需 |  | 名称服务器中记录集合信息的更新周期 |
-| recordset.recordList | List |  | 必需 |  | 记录列表 |
-| recordset.recordList[0].recordDisabled | boolean |  | 选择 | false | 记录是否禁用 |
-| recordset.recordList[0].recordContent | String |  | 必需 |  | 以一行显示的不同记录集合类型的具体字段内容 |
+| recordset | Object |  | Required |  | Record set |
+| recordset.recordsetName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required |  | Name of the record set to create, <br>Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
+| recordset.recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
+| recordset.recordList | List |  | Required |  | Record list |
+| recordset.recordList[0].recordDisabled | boolean |  | Optional | false | Whether record is disabled or not |
+| recordset.recordList[0].recordContent | String |  | Required |  | It displays the detailed field by record set type in a line. |
 
-[不同记录集合类型的具体字段]
+[Detailed field by record set type]
 
-- A记录集合
-    - 可以输入多个记录。
-    - 一个域名可绑定多个IPv4地址。
+- A record set
+    - Multiple records can be entered.
+    - One domain name can be used for multiple IPv4 addresses.
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].ipV4 | String |  | 必需 |  | IPv4格式的地址 |
+| recordset.recordList[0].ipV4 | String |  | Required |  | IPv4 type address |
 
 
-- AAAA记录集合
-    - 可以输入多个记录。
-    - 一个域名可绑定多个IPv6地址
+- AAAA record set
+    - Multiple records can be entered.
+    - One domain name can be used for multiple IPv6 addresses.
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].ipV6 | String |  | 必需 |  | IPv6格式的地址 |
+| recordset.recordList[0].ipV6 | String |  | Required |  | IPv6 type address |
 
 
-- CAA记录集合
-    - 可以输入多个记录。
-    - 域名若指定允许发放证书的认证机构(CA)，则可防止未经许可的认证机构(CA)发放证书。
-    - issue标签是发放与域名或下级域名相关的证书的权限。
-    - issuewild标签是发放与域名或下级域名相关的通配符证书的权限。
-        - issue标签与issuewild标签的设置方法相同。
-        - 允许签发认证书：输入认证机构地址，若需要附加设置，以分号(;)隔开，指定成对“名=值”
-        - 禁止签发认证书：输入分号(;)
-    - iodef标签在认证机构(CA)收到错误请求时，向设置的邮箱或URL地址进行通知。
-        - 邮箱输入格式："mailto:*email-address*"
-        - URL地址输入格式：“http://*URL*”或"https://*URL*"
-    - 用户指定标签是认证机构(CA)支持除RFC标准外的附加功能时的设置。
+- CAA record set
+    - Multiple records can be entered.
+    - Setting an authorized certificate authority (CA) to the domain allows you to prevent any unauthorized CA from issuing the certificate.
+    - The issue tag is a certificate issuance permission for domain or sub-domain.
+    - The issuewild tag is a wildcard certificate issuance permission for domain or sub-domain.
+        - You can use the same setting method for the issue tag and the issuewild tag.
+        - Allow the issuance of a certificate: Enter the address of the certificate authority. If additional settings are required, use semicolon (;) as a separator and set them in the 'name=value' pairs.
+        - Do not allow the issuance of a certificate: Enter a semicolon (;)
+    - The iodef tag is used for notifying via a specified email or URL address when an invalid request has been received by the CA.
+        - Email address input format: "mailto:*email-address*"
+        - URL address input format: "http://*URL*" or "https://*URL*"
+    - A custom tag can be used when the CA supports additional features other than the RFC standard.
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].flags | int | 0或128 | 必需 |  | 为已定义标签时为0,<br>为用户指定标签时为128 |
-| recordset.recordList[0].tag | String | TAG_ISSUE, <br>TAG_ISSUEWILD, <br>TAG_IODEF, <br>用户指定标签最大15 | 必需 |  | TAG_ISSUE: issue标签，<br>TAG_ISSUEWILD：issuewild标签，<br>TAG_IODEF：iodef标签，<br>用户指定标签 |
-| recordset.recordList[0].stringValue | String | 最大512个字符(含引用符号) | 必需 |  | 以标签为准的内容 |
+| recordset.recordList[0].flags | int | 0 or 128 | Required |  | 0 for a defined tag, <br>128 for a custom tag |
+| recordset.recordList[0].tag | String | TAG_ISSUE, <br>TAG_ISSUEWILD, <br>TAG_IODEF, <br>Up to 15 custom tags | Required |  | TAG_ISSUE: issue tag, <br>TAG_ISSUEWILD: issuewild tag, <br>TAG_IODEF: iodef tag, <br>custom tag |
+| recordset.recordList[0].stringValue | String | Max. 512 characters (including quotation marks) | Required |  | Tag-dependent content |
 
 
-- CNAME记录集合
-    - 可以输入一个记录。
-    - 记录集合名定义为正规名的别名(canonical)。
-    - 对于相同的记录集合名，无其他记录集合类型时，可创建CNAME记录集合。
+- CNAME record set
+    - A single record can be entered.
+    - Define the record set name as an alias of a canonical name (canonical).
+    - CNAME record set can be created if there is no other record set type for the same record set name.
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 最大255个字符 | 必需 |  | 域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
+| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 
 
-- MX记录集合
-    - 可以输入多个记录。
-    - 指定域名相关邮件服务器。
+- MX record set
+    - Multiple records can be entered.
+    - Specify the mail server for the domain.
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].priority | int | 最小0，最大65535 | 必需 |  | 优先顺序 |
-| recordset.recordList[0].domainName | String | 最大255个字符 | 必需 |  | 域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
+| recordset.recordList[0].priority | int | Min. 0, Max. 65535 | Required |  | Priority |
+| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 
 
-- NAPTR记录集合
-    - 可以输入多个记录。
-    - 用于在DDDS(Dynamic Delegation Discovery System)应用程序中将一个值更改或替代为其他值。
-    - 顺序项目是DDDS应用程序评估记录的顺序。
-    - 偏好顺序项目是两个以上记录的顺序项目相同时优先评估的顺序。
-    - 分类项目作为DDDS应用程序设置，可使用空白、’S’、’A’、’U’、’P’，其他文字为预约。
-    - 服务项目为DDDS应用程序设置，具体定义可在RFC文件中确认。
-        - URI DDDS应用程序[RFC 3404#section-4.4](https://tools.ietf.org/html/rfc3404#section-4.4)
-        - S-NAPTR DDDS应用程序[RFC 3958#section-6.5](https://tools.ietf.org/html/rfc3958#section-6.5)
-        - U-NAPTR DDDS应用程序[RFC 4848#section-4.5](https://tools.ietf.org/html/rfc4848#section-4.5)
-    - 正规式项目用于在DDDS应用程序中将输入值转换为输出值。具体定义可在[RFC 3402#section-3.2](https://tools.ietf.org/html/rfc3402#section-3.2)中确认。
-    - 替代值项目以DDDS应用程序提交DNS Query的域名替代输入值。设置正规式项目时，设置为‘.’。
+- NAPTR record set
+    - Multiple records can be entered.
+    - In the Dynamic Delegation Discovery System (DDDS) application, it is used to convert or replace one value with another.
+    - Order is the order of records evaluation by the DDDS application.
+    - Preferred order is the order of records evaluation when there are more than two records with exactly the same order.
+    - Separator, which is set in the DDDS application, uses space, 'S', 'A', 'U', and 'P'; the other characters are reserved for something else.
+    - Service is set in the DDDS application. For more detailed definition, see the RFC document.
+        - URI DDDS Application [RFC 3404#section-4.4](https://tools.ietf.org/html/rfc3404#section-4.4)
+        - S-NAPTR DDDS Application [RFC 3958#section-6.5](https://tools.ietf.org/html/rfc3958#section-6.5)
+        - U-NAPTR DDDS Application [RFC 4848#section-4.5](https://tools.ietf.org/html/rfc4848#section-4.5)
+    - Regexp is used to convert an input value to an output value in the DDDS application. For detailed definition, see [RFC 3402#section-3.2](https://tools.ietf.org/html/rfc3402#section-3.2).
+    - Replacement value replaces an input value with the name of a domain where the DDDS application will submit DNS queries. Set this as '.' if regexp is set.
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].order | int | 最小0，最大65535 | 必需 |  | 顺序 |
-| recordset.recordList[0].preference | int | 最小0，最大65535 | 必需 |  | 偏好顺序 |
-| recordset.recordList[0].flags | String | 最大3个字符(含引用符号) | 必需 |  | 分类 |
-| recordset.recordList[0].service | String | 最大257个字符(含引用符号) | 必需 |  | 服务 |
-| recordset.recordList[0].regexp | String | 最大257个字符(含引用符号) | 必需 |  | 正规式 |
-| recordset.recordList[0].replacement | String | 最大255个字符 | 必需 |  | 替代值 '.'或域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
+| recordset.recordList[0].order | int | Min. 0, Max. 65535 | Required |  | Order |
+| recordset.recordList[0].preference | int | Min. 0, Max. 65535 | Required |  | Preference |
+| recordset.recordList[0].flags | String | Max. 3 characters (including quotation marks) | Required |  | Classification |
+| recordset.recordList[0].service | String | Max. 257 characters (including quotation marks) | Required |  | Service |
+| recordset.recordList[0].regexp | String | Max. 257 characters (including quotation marks) | Required |  | Regular expression |
+| recordset.recordList[0].replacement | String | Max. 255 characters | Required |  | Enter '.' as a replacement value or enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)  |
 
 
-- PTR记录集合
-    - 可以输入多个记录。
-    - 是使用IP地址查询域名信息的逆向答疑功能应向ISP企业申请设置。
-    - IP地址应逆序输入到记录集合名中。(范例) 127.0.0.1, 1.0.0.127.in-addr.arpa
+- PTR record set
+    - Multiple records can be entered.
+    - This is a reverse query to perform lookup of the domain information with its IP address. You should set this by requesting to your ISP company.
+    - The IP address must be entered in the record set name in the reverse order. (Example) 127.0.0.1, 1.0.0.127.in-addr.arpa
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 最大255个字符 | 必需 |  | 域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
+| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 
 
-- TXT记录集合
-    - 可以输入多个记录。
-    - 输入与记录集合名相关的文本内容。
+- TXT record set
+    - Multiple records can be entered.
+    - Enter the text for the record set name.
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 最大255字节(含引用符号) | 必需 |  | 文本内容 |
+| recordset.recordList[0].stringValue | String | Max. 255 bytes (including quotation marks) | Required |  | Text |
 
 
-- SRV记录集合
-    - 可以输入多个记录。
-    - 可使用单一DNS Query操作查找提供类似基于TCP/IP服务的多种服务器。
+- SRV record set
+    - Multiple records can be entered.
+    - Find multiple servers which provide similar TCP/IP-based services with a single DNS query operation.
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].priority | int | 最小0，最大65535 | 必需 |  | 优先顺序 |
-| recordset.recordList[0].weight | int | 最小0，最大65535 | 必需 |  | 加权值 |
-| recordset.recordList[0].port | int | 最小0，最大65535 | 必需 |  | 端口 |
-| recordset.recordList[0].domainName | String | 最大255个字符 | 必需 |  | 域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
+| recordset.recordList[0].priority | int | Min. 0, Max. 65535 | Required |  | Priority |
+| recordset.recordList[0].weight | int | Min. 0, Max. 65535 | Required |  | Weight |
+| recordset.recordList[0].port | int | Min. 0, Max. 65535 | Required |  | Port |
+| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 
 
-- SPF记录集合
-    - 可以输入多个记录。
-    - 利用邮件发送人域名认证方式，确认收件服务器与发件服务器的邮箱地址是否一致的功能。
-    - 可以如下形式输入，具体定义可在[RFC4408](https://tools.ietf.org/html/rfc4408)中确认。
-    - 限定符的默认值为‘+’，根据机制可补充输入IP、域名等。
-        - 形态：“v=spf1 {限定符}{机制}{内容} {更正符}={内容}"
-        - 限定符：'+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
-        - 机制：all, include, a, mx, prt, ip4, ip6, exists
-        - 更正符：redirect, exp, 用户指定
-        - (范例)
+- SPF record set
+    - Multiple records can be entered.
+    - This feature verifies whether the incoming email server has the same email address as the outgoing mail server by the email sender domain authentication method.
+    - Enter as follows. For detailed definition, see [RFC4408](https://tools.ietf.org/html/rfc4408).
+    - The default value of the qualifier is '+', and you can add IP or domain name depending on the mechanism.
+        - Format: "v=spf1 {qualifier}{mechanism}{content} {modifier}={content}"
+        - qualifier: '+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
+        - mechanism: all, include, a, mx, prt, ip4, ip6, exists
+        - modifier: redirect, exp, custom
+        - (Example)
             - "v=spf1 mx -all"
             - "v=spf1 ip4:192.168.0.1/16 -all"
             - "v=spf1 a:toast.com -all"
             - "v=spf1 redirect=toast.com"
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 最大255字节(含引用符号) | 必需 |  | 以SPF格式为准内容 |
+| recordset.recordList[0].stringValue | String | Max. 255 bytes (including quotation marks) | Required |  | Content according to the SPF format |
 
 
-- NS记录集合
-    - 可以输入多个记录。
-    - 指定与记录集合名相关的名称服务器。
-    - 记录集合名仅可以DNS Zone名的下级域名创建或修改。
+- NS record set
+    - Multiple records can be entered.
+    - Enter the name server for the record set name.
+    - The record set name can be created or modified only with the sub-domain of the DNS Zone name.
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | 最大255个字符 | 必需 |  | 域名以[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)输入 |
+| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 
 
-#### 响应
+#### Response
 
-[响应正文]
+[Response body]
 
 ```
 {
@@ -593,51 +594,109 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 ```
 
 
-### 修改记录集合
+### Bulk Create Record Sets
 
-- 修改记录集合。
-- **记录集合名**与**记录集合类型**无法修改，**TTL(秒)**与**记录值**可修改。
-- SOA的记录集合无法创建/修改/删除，NS记录集合无法以**DNS Zone名**创建/修改/删除。
-- 记录集合内记录列表的长度最大为512个字节。
+- You can create multiple record sets, up to 2,000 sets per request.
+- The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, and SOA.
+- SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
+- The maximum length of the record list within the record set is 512 bytes.
+- Up to 5,000 record sets can be created per DNS Zone.
+- There is a limit to the maximum number of record sets that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
-#### 请求
+#### Request
 
 [URI]
 
-| 方法 | URI |
+| Method | URI |
+|---|---|
+| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
+- Record value is required. You can enter the value by selecting either recordset.recordList[0].recordContent field or the detailed field.
+- The recordContent field displays the detailed field in one line separated by space. You can check the detailed field in the [Detailed field by record set type] section of [Create Record Set](./api-guide/#create-record-set).
+- If you enter values in both the detailed field and the recordContent field at the same time, the value in the recordContent field will take priority.
+
+```
+curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list' \
+-H 'Content-Type: application/json' \
+--data '{ "recordsetList": [{ "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }]}'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| recordsetList | List |  | Required |  | Record set list |
+| recordsetList[0].recordsetName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required |  | Name of the record set to create, <br>Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| recordsetList[0].recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
+| recordsetList[0].recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
+| recordsetList[0].recordList | List |  | Required |  | Record list |
+| recordsetList[0].recordList[0].recordDisabled | boolean |  | Optional | false | Whether record is disabled or not |
+| recordsetList[0].recordList[0].recordContent | String |  | Required |  | It displays the detailed field by record set type in a line. |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
+
+
+### Modify Record Set
+
+- Modifies a record set.
+- **Record set name** cannot be modified. However, **record set type**, **TTL (sec)**, and **record value** can be modified.
+- SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
+- The maximum length of the record list within the record set is 512 bytes.
+
+#### Request
+
+[URI]
+
+| Method | URI |
 |---|---|
 | PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId} |
 
-[请求正文]
+[Request body]
 
-- {appkey}更改为在控制台中确认的值。
-- {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
-- {recordsetId}为记录集合ID，可通过[查询记录集合](./api-guide/#_11)确认。
-- 记录值为必需，输入方法可选择recordset.recordList[0].recordContent字段或具体字段。
-- recordContent字段是将空格作为区分字符，以一行显示具体字段的内容。具体字段可在 [创建记录集合](./api-guide/#_14) 的 [不同记录集合类型的具体字段] 中确认。
-- 若同时输入具体字段与recordContent字段，以recordContent字段为准修改。
+- Change {appkey} to the value found in the console.
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
+- {recordsetId} is the record set ID and you can check this by performing [Query Record Set](./api-guide/#query-record-set).
+- Record value is required. You can enter the value by selecting either recordset.recordList[0].recordContent field or the detailed field.
+- The recordContent field displays the detailed field in one line separated by space. You can check the detailed field in the [Detailed field by record set type] section of [Create Record Set](./api-guide/#create-record-set).
+- If you enter values in both the detailed field and the recordContent field at the same time, the recordContent field will take priority.
 
 ```
 curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
--H 'Content-Type:application/json' \
+-H 'Content-Type: application/json' \
 --data '{ "recordset": { "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
 
-[字段]
+[Fields]
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset | Object |  | 必需 |  | 记录集合 |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 必需 |  | 与记录集合ID相关的记录集合类型 |
-| recordset.recordsetTtl | int | 最小1，最大2147483647 | 必需 |  | 名称服务器中记录集合信息的更新周期 |
-| recordset.recordList | List |  | 必需 |  | 记录列表 |
-| recordset.recordList[0].recordDisabled | boolean |  | 必需 |  | 记录是否禁用 |
-| recordset.recordList[0].recordContent | String |  | 必需 |  | 以一行显示的不同记录集合类型的具体字段内容 |
+| recordset | Object |  | Required |  | Record set |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
+| recordset.recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
+| recordset.recordList | List |  | Required |  | Record list |
+| recordset.recordList[0].recordDisabled | boolean |  | Required |  | Whether record is disabled or not |
+| recordset.recordList[0].recordContent | String |  | Required |  | It displays the detailed field by record set type in a line. |
 
 
-#### 响应
+#### Response
 
-[响应正文]
+[Response body]
 
 ```
 {
@@ -666,39 +725,1110 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 ```
 
 
-### 删除记录集合
+### Delete Record Set
 
-- 删除多个记录集合，记录集合的记录也一同删除。
-- SOA的记录集合无法创建/修改/删除，NS记录集合无法以**DNS Zone名**创建/修改/删除。
+- Deletes multiple record sets along with the records in the record sets.
+- SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 
-#### 请求
+#### Request
 
 [URI]
 
-| 方法 | URI |
+| Method | URI |
 |---|---|
 | DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
-[请求正文]
+[Request body]
 
-- {appkey}更改为在控制台中确认的值。
-- {zoneId}为DNS Zone ID，可通过[查询DNS Zone](./api-guide/#dns-zone)确认。
-- 记录集合ID可通过[查询记录集合](./api-guide/#_11)确认。
+- Change {appkey} to the value found in the console.
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
+- You can check the record set ID by performing [Query Record Set](./api-guide/#query-record-set).
 
 ```
 curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
 recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092d340e0adf'
 ```
 
-[字段]
+[Fields]
 
-| 名称 | 类型 | 有效范围 | 是否必需 | 默认值 | 说明 |
+| Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordsetIdList | List | 最小1个，最大3,000个 | 必需 |  | 记录集合ID列表 |
+| recordsetIdList | List | Min. 1, Max. 3,000 | Required |  | Record set ID list |
 
-#### 响应
+#### Response
 
-[响应正文]
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
+
+## GSLB API
+
+### Query GSLB
+
+- Retrieves the list of GSLBs.
+- When a health check is connected to pools, you can check the health status of GSLB, pools, and endpoints.
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+
+```
+curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs?showHealthy=true'
+```
+
+[Options]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| gslbIdList | List | Max. 3,000 | Optional |  | GSLB ID list |
+| searchGslbName | String |  | Optional |  | Name of GSLB to search for |
+| gslbDomain | String |  | Optional |  | GSLB domain |
+| showHealthy | boolean |  | Optional |  | Whether to view the health check results |
+| page | int | Min. 1 | Optional | 1 | Page No. |
+| limit | int | Min. 1, Max. 3,000 | Optional | 50 | Query count |
+| sortDirection | String | DESC, ASC | Optional | DESC | Sort order (DESC: Descending, ASC: Ascending) |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>GSLB_NAME, <br>GSLB_DOMAIN, <br>GSLB_TTL, <br>GSLB_ROUTING_RULE, <br>GSLB_DISABLED | Optional | CREATED_AT | Sort criteria <br>(CREATED_AT: Created date, <br>UPDATED_AT: Modified date, <br>GSLB_NAME: GSLB name, <br>GSLB_DOMAIN: GSLB domain, <br>GSLB_TTL: GSLB domain update cycle, <br>GSLB_ROUTING_RULE: Routing rule, <br>GSLB_DISABLED: Whether GSLB is disabled or not) |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "totalCount": 1,
+    "gslbList": [
+        {
+            "gslbId": "91de0c6f-aeaa-44ec-b361-822acfcd5921",
+            "gslbName": "GSLB-test",
+            "gslbDomain": "rgpac3e7q9onlipdfg.toastgslb.com",
+            "gslbTtl": 300,
+            "gslbRoutingRule": "GEOLOCATION",
+            "gslbDisabled": false,
+            "healthy": true,
+            "connectedPoolList": [
+                {
+                    "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
+                    "connectedPoolOrder": 1,
+                    "pool": {
+                        // Pool information omitted
+                    }
+                },
+                {
+                    "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818",
+                    "connectedPoolOrder": 2,
+                    "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA",
+                    "pool": {
+                        // Pool information omitted
+                    }
+                }
+            ],
+            "createdAt": "2019-12-18T20:44:02.000+09:00",
+            "updatedAt": "2019-12-18T21:01:05.000+09:00"
+        }
+    ]
+}
+```
+
+[Fields]
+
+| Name | Type | Description |
+|---|---|---|
+| totalCount | long | Total number of GSLBs |
+| gslbList | List | Pool list |
+| gslbList[0].gslbId | String | GSLB ID |
+| gslbList[0].gslbName | String | GSLB name |
+| gslbList[0].gslbDomain | String | GSLB domain |
+| gslbList[0].gslbTtl | String | GSLB domain update cycle |
+| gslbList[0].gslbRoutingRule | String | Routing rule |
+| gslbList[0].gslbDisabled | boolean | Whether GSLB is disabled or not |
+| gslbList[0].healthy | boolean | Whether GSLB is healthy or not |
+| gslbList[0].connectedPoolList | List | Connected pool list |
+| gslbList[0].connectedPoolList[0].poolId | String | Connected pool ID |
+| gslbList[0].connectedPoolList[0].pool | Object | Connected pool information |
+| gslbList[0].connectedPoolList[0].connectedPoolOrder | int | Connected pool priority |
+| gslbList[0].connectedPoolList[0].connectedPoolRegionContent | String | It displays the connected pool's regions in a line |
+| gslbList[0].createdAt | DateTime | Created date |
+| gslbList[0].updatedAt | DateTime | Modified date |
+
+
+### Create GSLB
+
+- Creates GSLB and pool connection settings.
+- For **routing rule**, you can select FAILOVER, RANDOM, or GEOLOCATION as a load balancing method for GSLB domain.
+    - FAILOVER: Performs routing based on the priorities of connected pools.
+    - RANDOM: Performs routing by randomly selecting an available pool among connected pools.
+    - GEOLOCATION: Routes the traffic of the configured region to the connected pool. When there is no configured region, performs routing based on the priorities of connected pools.
+- The smaller the **priority** of the **connected pool**, the higher the routing order, and it cannot be duplicated.
+- There are limits to the maximum number of GSLBs that can be created and to the maximum number of pools that can be connected. If you want to raise the limits, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+- For the connectedPoolRegionContent field, enter **regions** in one line with commas (,) as delimiters.
+
+```
+curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs' \
+-H 'Content-Type: application/json' \
+--data '{ "gslb": { "gslbName": "GSLB-test", "gslbTtl": 300, "gslbRoutingRule": "FAILOVER", "connectedPoolList": [ { "poolId": "8e4326d4-3862-4b46-819e-83a786add570", "connectedPoolOrder": 1 }, { "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818", "connectedPoolOrder": 2 } ] }}'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| gslb | Object |  | Required |  | GSLB |
+| gslb.gslbName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | GSLB name |
+| gslb.gslbTtl | int |  | Required | false | GSLB domain update cycle |
+| gslb.gslbRoutingRule | String | FAILOVER, RANDOM, GEOLOCATION  | Required |  | Routing rule |
+| gslb.gslbDisabled | boolean |  | Optional | false | Whether GSLB is disabled or not |
+| gslb.connectedPoolList | List |  | Required |  | Connected pool list |
+| gslb.connectedPoolList[0].poolId | String |  | Required |  | Connected pool ID |
+| gslb.connectedPoolList[0].connectedPoolOrder | int | Min. 1, Max. 2,147,483,647 | Required |  | Connected pool priority |
+| gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | Optional |  | Connected pool region settings |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "gslb": {
+        "gslbId": "91de0c6f-aeaa-44ec-b361-822acfcd5921",
+        "gslbName": "GSLB-test",
+        "gslbDomain": "rgpac3e7q9onlipdfg.toastgslb.com",
+        "gslbTtl": 300,
+        "gslbRoutingRule": "FAILOVER",
+        "gslbDisabled": false,
+        "connectedPoolList": [
+            {
+                "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
+                "connectedPoolOrder": 1,
+                "pool": {
+                    // Pool information omitted
+                }
+            },
+            {
+                "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818",
+                "connectedPoolOrder": 2,
+                "pool": {
+                    // Pool information omitted
+                }
+            }
+        ],
+        "createdAt": "2019-12-18T20:44:02.000+09:00",
+        "updatedAt": "2019-12-18T20:44:03.000+09:00"
+    }
+}
+```
+
+
+### Update GSLB
+
+- Updates GSLB and pool connection settings.
+- Updates the items entered in [Create GSLB](./api-guide/#create-gslb).
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId} |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+- {gslbId} is a GSLB ID and can be found by [Query GSLB](./api-guide/#query-gslb).
+- For the connectedPoolRegionContent field, enter **regions** in one line with commas (,) as delimiters.
+
+```
+curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}' \
+-H 'Content-Type: application/json' \
+--data '{ "gslb": { "gslbName": "GSLB-test", "gslbTtl": 300, "gslbDisabled": true, "gslbRoutingRule": "GEOLOCATION", "connectedPoolList": [ { "poolId": "8e4326d4-3862-4b46-819e-83a786add570", "connectedPoolOrder": 1 }, { "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818", "connectedPoolOrder": 2, "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA" } ] }}'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| gslb | Object |  | Required |  | GSLB |
+| gslb.gslbName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | GSLB name |
+| gslb.gslbTtl | int |  | Required | false | GSLB domain update cycle |
+| gslb.gslbRoutingRule | String | FAILOVER, RANDOM, GEOLOCATION  | Required |  | Routing rule |
+| gslb.gslbDisabled | boolean |  | Optional | false | Whether GSLB is disabled or not |
+| gslb.connectedPoolList | List |  | Required |  | Connected pool list |
+| gslb.connectedPoolList[0].poolId | String |  | Required |  | Connected pool ID |
+| gslb.connectedPoolList[0].connectedPoolOrder | int | Min. 1, Max. 2,147,483,647 | Required |  | Connected pool priority |
+| gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | Optional |  | Connected pool region settings |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "gslb": {
+        "gslbId": "91de0c6f-aeaa-44ec-b361-822acfcd5921",
+        "gslbName": "GSLB-test",
+        "gslbDomain": "rgpac3e7q9onlipdfg.toastgslb.com",
+        "gslbTtl": 300,
+        "gslbRoutingRule": "GEOLOCATION",
+        "gslbDisabled": true,
+        "connectedPoolList": [
+            {
+                "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
+                "connectedPoolOrder": 1,
+                "pool": {
+                    // Pool information omitted
+                }
+            },
+            {
+                "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818",
+                "connectedPoolOrder": 2,
+                "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA",
+                "pool": {
+                    // Pool information omitted
+                }
+            }
+        ],
+        "createdAt": "2019-12-18T20:44:02.000+09:00",
+        "updatedAt": "2019-12-18T20:59:49.000+09:00"
+    }
+}
+```
+
+
+### Delete GSLB
+
+- Deletes multiple GSLBs.
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+
+```
+curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs?
+gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c604bf'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| gslbIdList | List | Min. 1, Max. 3,000 | Required |  | GSLB ID list |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
+
+
+### Connect Pool
+
+- Connects a pool to GSLB.
+- The smaller the **priority** of the **connected pool**, the higher the routing order. If you enter the same priority as the previously connected pool, the routing order for the existing pool gets lower.
+- There is a limit to the maximum number of pools that can be connected. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+- {gslbId} is a GSLB ID and can be found by [Query GSLB](./api-guide/#query-gslb).
+- {poolId} is a pool ID, which can be found by [Query Pool](./api-guide/#query-pool).
+- For the connectedPoolRegionContent field, enter **regions** in one line with commas (,) as delimiters.
+
+```
+curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
+-H 'Content-Type: application/json' \
+--data '{ "connectedPool": { "connectedPoolOrder": 1 } }'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| connectedPool | Object |  | Required |  | Connected pool |
+| connectedPool.connectedPoolOrder | int | Min. 1, Max. 2,147,483,647 | Required |  | Connected pool priority |
+| connectedPool.connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | Optional |  | Connected pool region settings |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "connectedPoolList": [
+        {
+            "poolId": "52da0e48-9062-43f7-bef8-8aec4b795bfe",
+            "connectedPoolOrder": 1,
+            "pool": {
+                // Pool information omitted
+            }
+        },
+        {
+            "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
+            "connectedPoolOrder": 2,
+            "pool": {
+                // Pool information omitted
+            }
+        },
+        {
+            "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818",
+            "connectedPoolOrder": 3,
+            "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA",
+            "pool": {
+                // Pool information omitted
+            }
+        }
+    ]
+}
+```
+
+### Update Pool Connection
+
+- Updates the settings of a pool connected to GSLB.
+- Updates the items entered in pool settings of [Create GSLB](./api-guide/#create-gslb) or [Connect Pool](./api-guide/#connect-pool).
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+- {gslbId} is a GSLB ID and can be found by [Query GSLB](./api-guide/#query-gslb).
+- {poolId} is a pool ID, which can be found by [Query Pool](./api-guide/#query-pool).
+- For the connectedPoolRegionContent field, enter **regions** in one line with commas (,) as delimiters.
+
+```
+curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
+-H 'Content-Type: application/json' \
+--data '{ "connectedPool": { "connectedPoolOrder": 1, "connectedPoolRegionContent": "WESTERN_NORTH_AMERICA" } }'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| connectedPool | Object |  | Required |  | Connected pool |
+| connectedPool.connectedPoolOrder | int | Min. 1, Max. 2,147,483,647 | Required |  | Connected pool priority |
+| connectedPool.connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | Optional |  | Connected pool region settings |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "connectedPoolList": [
+        {
+            "poolId": "52da0e48-9062-43f7-bef8-8aec4b795bfe",
+            "connectedPoolOrder": 1,
+            "connectedPoolRegionContent": "WESTERN_NORTH_AMERICA",
+            "pool": {
+                // Pool information omitted
+            }
+        },
+        {
+            "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
+            "connectedPoolOrder": 2,
+            "pool": {
+                // Pool information omitted
+            }
+        },
+        {
+            "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818",
+            "connectedPoolOrder": 3,
+            "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA",
+            "pool": {
+                // Pool information omitted
+            }
+        }
+    ]
+}
+```
+
+### Detach Pool
+
+- Detaches multiple pools connected to GSLB.
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+- {gslbId} is a GSLB ID and can be found by [Query GSLB](./api-guide/#query-gslb).
+
+```
+curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
+poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1dfb093'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| poolIdList | List | Min. 1, Max. 3,000 | Required |  | Pool ID list |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "connectedPoolList": [
+        {
+            "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
+            "connectedPoolOrder": 2,
+            "pool": {
+                // Pool information omitted
+            }
+        },
+        {
+            "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818",
+            "connectedPoolOrder": 3,
+            "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA",
+            "pool": {
+                // Pool information omitted
+            }
+        }
+    ]
+}
+```
+
+
+## Pool API
+
+### Query Pool
+
+- Retrieves the list of pools.
+- When a health check is connected, you can check the health status of pools and endpoints.
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+
+```
+curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools?showHealthy=true'
+```
+
+[Options]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| poolIdList | List | Max. 3,000 | Optional |  | Pool ID list |
+| searchPoolName | String |  | Optional |  | Pool name to search for |
+| healthCheckId | String |  | Optional |  | Connected health check ID |
+| showHealthy | boolean |  | Optional |  | Whether to view the health check results |
+| page | int | Min. 1 | Optional | 1 | Page No. |
+| limit | int | Min. 1, Max. 3,000 | Optional | 50 | Query count |
+| sortDirection | String | DESC, ASC | Optional | DESC | Sort order (DESC: Descending, ASC: Ascending) |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>POOL_NAME, <br>POOL_DISABLED, <br>HEALTH_CHECK_ID | Optional | CREATED_AT | Sort criteria <br>(CREATED_AT: Created date, <br>UPDATED_AT: Modified date, <br>POOL_NAME: Pool name, <br>POOL_DISABLED: Whether a pool is disabled or not, <br>HEALTH_CHECK_ID: Connected health check ID) |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "totalCount": 1,
+    "poolList": [
+        {
+            "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
+            "poolName": "POOL-test",
+            "poolDisabled": false,
+            "healthy": true,
+            "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17",
+            "healthCheck": {
+                // Health check information omitted
+            },
+            "endpointList": [
+                {
+                    "endpointAddress": "test.dnsplus.com",
+                    "endpointWeight": 1.0,
+                    "endpointDisabled": false,
+                    "healthy": true,
+                    "failureReason": "No failures"
+                },
+                {
+                    "endpointAddress": "123.123.123.123",
+                    "endpointWeight": 1.0,
+                    "endpointDisabled": false,
+                    "healthy": false,
+                    "failureReason": "HTTP timeout occurred"
+                },
+                {
+                    "endpointAddress": "test2.dnsplus.com",
+                    "endpointWeight": 1.0,
+                    "endpointDisabled": true
+                }
+            ],
+            "createdAt": "2019-12-18T18:36:02.000+09:00",
+            "updatedAt": "2019-12-18T18:43:31.000+09:00"
+        }
+    ]
+}
+```
+
+[Fields]
+
+| Name | Type | Description |
+|---|---|---|
+| totalCount | long | Total number of pools |
+| poolList | List | Pool list |
+| poolList[0].poolId | String | Pool ID |
+| poolList[0].poolName | String | Pool name |
+| poolList[0].poolDisabled | boolean | Whether a pool is disabled or not |
+| poolList[0].healthy | boolean | Whether a pool is healthy or not |
+| poolList[0].healthCheckId | String | Connected health check ID |
+| poolList[0].healthCheck | Object | Connected health check information |
+| poolList[0].endpointList | List | Endpoint list |
+| poolList[0].endpointList[0].endpointAddress | String | Endpoint address |
+| poolList[0].endpointList[0].endpointWeight | double | Endpoint weight |
+| poolList[0].endpointList[0].healthy | boolean | Whether an endpoint is healthy or not |
+| poolList[0].endpointList[0].failureReason | String | Reason for an unhealthy endpoint |
+| poolList[0].createdAt | DateTime | Created date |
+| poolList[0].updatedAt | DateTime | Modified date |
+
+
+### Create Pool
+
+- Creates a pool and an endpoint in the pool.
+- You can set **a health check** to check the accessibility of endpoints in the pool.
+- The **endpoint address** can be entered as a domain address or IPv4 and has a limit to the input field.
+    - The endpoint address cannot start with a hyphen and a period, and cannot end with a hyphen. You cannot enter periods and hyphens consecutively.
+    - You cannot enter a [reserved IP address](https://en.wikipedia.org/wiki/Reserved_IP_addresses)
+    - The endpoint addresses cannot be duplicated in the pool.
+- The **weight** for an endpoint is applied relative to the weights for other endpoints. Equal weights have the same priority in the pool.
+- There are limits to the maximum number of pools that can be created, the maximum number of endpoints in a pool, and the maximum total number of endpoints. If you want to raise the limits, please contact us. [1:1 inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+
+```
+curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools' \
+-H 'Content-Type: application/json' \
+--data '{ "pool": { "poolName": "POOL-test", "endpointList": [ { "endpointAddress": "test.dnsplus.com" }, { "endpointAddress": "123.123.123.123" } ] }}'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| pool | Object |  | Required |  | Pool |
+| pool.poolName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | Pool name |
+| pool.poolDisabled | boolean |  | Optional | false | Whether a pool is disabled or not |
+| pool.healthCheckId | String |  | Optional |  | Health check ID |
+| pool.endpointList | List |  | Required |  | Endpoint list |
+| pool.endpointList[0].endpointAddress | String | Max. 254 characters,<br>Lowercase characters and numbers, '.', '-', '_' | Required |  | Endpoint address |
+| pool.endpointList[0].endpointWeight | double | Min. 0, Max. 1.00 | Optional | 1.00 | Endpoint weight |
+| pool.endpointList[0].endpointDisabled | boolean |  | Optional | false | Whether an endpoint is disabled or not |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "pool": {
+        "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
+        "poolName": "POOL-test",
+        "poolDisabled": false,
+        "healthCheckId": "",
+        "endpointList": [
+            {
+                "endpointAddress": "test.dnsplus.com",
+                "endpointWeight": 1.0,
+                "endpointDisabled": false
+            },
+            {
+                "endpointAddress": "123.123.123.123",
+                "endpointWeight": 1.0,
+                "endpointDisabled": false
+            }
+        ],
+        "createdAt": "2019-12-18T18:36:02.000+09:00",
+        "updatedAt": "2019-12-18T18:36:02.000+09:00"
+    }
+}
+```
+
+
+### Update Pool
+
+- Updates pools and endpoints in the pools.
+- Updates the items entered in [Create Pool](./api-guide/#create-pool).
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools/{poolId} |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+- {poolId} is a pool ID, which can be found by [Query Pool](./api-guide/#query-pool).
+
+```
+curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools/{poolId}' \
+-H 'Content-Type: application/json' \
+--data '{ "pool": { "poolName": "POOL-test", "poolDisabled": true, "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17", "endpointList": [ { "endpointAddress": "test.dnsplus.com", "endpointWeight": 1.00, "endpointDisabled": true }, { "endpointAddress": "123.123.123.123", "endpointWeight": 0.5, "endpointDisabled": true } ] }}'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| pool | Object |  | Required |  | Pool |
+| pool.poolName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | Pool name |
+| pool.poolDisabled | boolean |  | Optional | false | Whether a pool is disabled or not |
+| pool.healthCheckId | String |  | Optional |  | Health check ID |
+| pool.endpointList | List |  | Required |  | Endpoint list |
+| pool.endpointList[0].endpointAddress | String | Max. 254 characters,<br>Lowercase characters and numbers, '.', '-', '_' | Required |  | Endpoint address |
+| pool.endpointList[0].endpointWeight | double | Min. 0, Max. 1.00 | Optional | 1.00 | Endpoint weight |
+| pool.endpointList[0].endpointDisabled | boolean |  | Optional | false | Whether an endpoint is disabled or not |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "pool": {
+        "poolId": "8e4326d4-3862-4b46-819e-83a786add570",
+        "poolName": "POOL-test",
+        "poolDisabled": true,
+        "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17",
+        "healthCheck": {
+            // Health check information omitted
+        },
+        "endpointList": [
+            {
+                "endpointAddress": "test.dnsplus.com",
+                "endpointWeight": 1.0,
+                "endpointDisabled": true
+            },
+            {
+                "endpointAddress": "123.123.123.123",
+                "endpointWeight": 0.5,
+                "endpointDisabled": true
+            }
+        ],
+        "createdAt": "2019-12-18T18:36:02.000+09:00",
+        "updatedAt": "2019-12-18T18:37:45.000+09:00"
+    }
+}
+```
+
+
+### Delete Pool
+
+- Deletes multiple pools along with the endpoints in the pools.
+- You cannot delete the pools connected to GSLB.
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+
+```
+curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools?
+poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c12818'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| poolIdList | List | Min. 1, Max. 3,000 | Required |  | Pool ID list |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    }
+}
+```
+
+
+## Health Check API
+
+### Query Health Check
+
+- Retrieves the list of health checks.
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+
+```
+curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks'
+```
+
+[Options]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| healthCheckIdList | List | Max. 3,000 | Optional |  | Health check ID list |
+| searchHealthCheckName | String |  | Optional |  | Health check name to search for |
+| page | int | Min. 1 | Optional | 1 | Page No. |
+| limit | int | Min. 1, Max. 3,000 | Optional | 50 | Query count |
+| sortDirection | String | DESC, ASC | Optional | DESC | Sort order (DESC: Descending, ASC: Ascending) |
+| sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>HEALTH_CHECK_NAME, <br>PROTOCOL, <br>PORT | Optional | CREATED_AT | Sort criteria <br>(CREATED_AT: Created date, <br>UPDATED_AT: Modified date, <br>HEALTH_CHECK_NAME: Health check name, <br>PROTOCOL: Protocol, <br>PORT: Port) |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "totalCount": 1,
+    "healthCheckList": [
+        {
+            "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17",
+            "healthCheckName": "HTTPS-443",
+            "protocol": "HTTPS",
+            "port": 443,
+            "path": "/",
+            "expectedCodes": "2xx",
+            "expectedBody": "OK",
+            "allowInsecure": false,
+            "createdAt": "2019-12-18T12:31:34.000+09:00",
+            "updatedAt": "2019-12-18T14:19:20.000+09:00"
+        }
+    ]
+}
+```
+
+[Fields]
+
+| Name | Type | Description |
+|---|---|---|
+| totalCount | long | Total number of health checks |
+| healthCheckList | List | Health check list |
+| healthCheckList[0].healthCheckId | String | Health check ID |
+| healthCheckList[0].healthCheckName | String | Health check name |
+| healthCheckList[0].protocol | String | Protocol |
+| healthCheckList[0].port | int | Port |
+| healthCheckList[0].path | String | Path |
+| healthCheckList[0].expectedCodes | String | Expected status code |
+| healthCheckList[0].expectedBody | String | Expected response body |
+| healthCheckList[0].allowInsecure | boolean | Disable certificate validation |
+| healthCheckList[0].createdAt | DateTime | Created date |
+| healthCheckList[0].updatedAt | DateTime | Modified date |
+
+
+### Create Health Check
+
+- Creates a health check.
+- For the health check **protocol**, HTTPS, HTTP, and TPC are supported, and the information that can be entered differs depending on the selected protocol.
+    - HTTPS input items: Disable certificate validation, port, path, expected status code, expected response body
+    - HTTP input items: Port, path, expected status code, expected response body
+    - TCP input items: Port
+- Using **Disable certificate validation** allows you to ignore the TLS/SSL certificate of an endpoint being invalid when a health check is performed.
+- Does not support a page redirected from an endpoint when determining **Expected status code** and **Expected response body**.
+- There is a limit to the maximum number of health checks that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+
+```
+curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks' \
+-H 'Content-Type: application/json' \
+--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "2xx", "allowInsecure": false }}'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| healthCheck | Object |  | Required |  | Health check |
+| healthCheck.healthCheckName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | Health check name |
+| healthCheck.protocol | String | HTTPS, HTTP, TCP | Required |  | Protocol to use when performing health checks |
+| healthCheck.port | int | Min. 1, Max. 65535 | Required |  | Port to use when performing health checks |
+| healthCheck.path | String | Max. 254 characters,<br>Start character '/' | Optional |  | Path to use when performing health checks,<br>used for HTTPS and HTTP |
+| healthCheck.expectedCodes | String | Numbers and a wildcard 'x' | Optional |  | Expected status code for health checks,<br>used for HTTPS and HTTP<br>(Example) 2xx, 20x, 200 |
+| healthCheck.expectedBody | String | Max. 10KB | Optional |  | Expected response body for health checks,<br>used for HTTPS and HTTP |
+| healthCheck.allowInsecure | boolean |  | Optional |  | Disable certificate validation for health checks,<br>used for HTTPS |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "healthCheck": {
+        "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17",
+        "healthCheckName": "HTTPS-443",
+        "protocol": "HTTPS",
+        "port": 443,
+        "path": "/",
+        "expectedCodes": "2xx",
+        "allowInsecure": false,
+        "createdAt": "2019-12-18T12:31:34.000+09:00",
+        "updatedAt": "2019-12-18T12:31:34.000+09:00"
+    }
+}
+```
+
+
+### Update Health Check
+
+- Updates a health check.
+- Updates the items entered in [Create Health Check](./api-guide/#create-health-check).
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId} |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+- {healthCheckId} is a health check ID and can be found by [Query Health Check](./api-guide/#query-health-check).
+
+```
+curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
+-H 'Content-Type: application/json' \
+--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| healthCheck | Object |  | Required |  | Health check |
+| healthCheck.healthCheckName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | Health check name |
+| healthCheck.protocol | String | HTTPS, HTTP, TCP | Required |  | Protocol to use when performing health checks |
+| healthCheck.port | int | Min. 1, Max. 65535 | Required |  | Port to use when performing health checks |
+| healthCheck.path | String | Max. 254 characters,<br>Start character '/' | Optional |  | Path to use when performing health checks,<br>used for HTTPS and HTTP |
+| healthCheck.expectedCodes | String | Numbers and a wildcard 'x' | Optional |  | Expected status code for health checks,<br>used for HTTPS and HTTP<br>(Example) 2xx, 20x, 200 |
+| healthCheck.expectedBody | String | Max. 10KB | Optional |  | Expected response body for health checks,<br>used for HTTPS and HTTP |
+| healthCheck.allowInsecure | boolean |  | Optional |  | Disable certificate validation for health checks,<br>used for HTTPS |
+
+#### Response
+
+[Response body]
+
+```
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "SUCCESS"
+    },
+    "healthCheck": {
+        "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17",
+        "healthCheckName": "HTTPS-443",
+        "protocol": "HTTPS",
+        "port": 443,
+        "path": "/",
+        "expectedCodes": "3xx",
+        "allowInsecure": false,
+        "createdAt": "2019-12-18T12:31:34.000+09:00",
+        "updatedAt": "2019-12-18T12:36:20.000+09:00"
+    }
+}
+```
+
+
+### Delete Health Check
+
+- Deletes multiple health checks.
+- You cannot delete the health checks connected to the pool.
+
+#### Request
+
+[URI]
+
+| Method | URI |
+|---|---|
+| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
+
+[Request body]
+
+- Change {appkey} to the value found in the console.
+
+```
+curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks?
+healthCheckIdList=b9165853-7859-4309-8059-48f12ebdbc17,d2629d6b-9381-4645-9cf3-43d7ad491e2b'
+```
+
+[Fields]
+
+| Name | Type | Valid range | Required | Default | Description |
+|---|---|---|---|---|---|
+| healthCheckIdList | List | Min. 1, Max. 3,000 | Required |  | Health check ID list |
+
+#### Response
+
+[Response body]
 
 ```
 {
