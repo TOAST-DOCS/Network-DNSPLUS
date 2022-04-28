@@ -596,7 +596,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 ### Create Multiple Record Sets
 
-- You can create a number of record sets, up to 2,000 sets per request.
+- You can create multiple record sets, up to 2,000 sets per request.
 - The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, and SOA.
 - SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 - The maximum length of the record list within the record set is 512 bytes.
