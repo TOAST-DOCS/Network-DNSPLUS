@@ -221,7 +221,7 @@ You can search for the GSLB that you want by name.
 
     - All pools that contain the search term in **Pool Name**, **Priority**, and **Region** are searched and displayed.
 
-3. The GSLB status is displayed according to the rules below, and the status of the [Pool](./console-guide/#_8) is displayed for the connected pool.
+3. The GSLB status is displayed according to the rules below, and the status of the [Pool](./console-guide/#health-check-api) is displayed for the connected pool.
 
 | GSLB Status | GSLB Enabled/Disabled | Pool Status |
 | --- | --- | --- |
