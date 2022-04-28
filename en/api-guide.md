@@ -877,8 +877,8 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 - Creates GSLB and pool connection settings.
 - For **routing rule**, you can select FAILOVER, RANDOM, or GEOLOCATION as a load balancing method for GSLB domain.
     - FAILOVER: Performs routing based on the priorities of connected pools.
-	- RANDOM: Performs routing by randomly selecting an available pool among connected pools.
-	- GEOLOCATION: Routes the traffic of the configured region to the connected pool. When there is no configured region, performs routing based on the priorities of connected pools.
+    - RANDOM: Performs routing by randomly selecting an available pool among connected pools.
+    - GEOLOCATION: Routes the traffic of the configured region to the connected pool. When there is no configured region, performs routing based on the priorities of connected pools.
 - The smaller the **priority** of the **connected pool**, the higher the routing order, and it cannot be duplicated.
 - There are limits to the maximum number of GSLBs that can be created and to the maximum number of pools that can be connected. If you want to raise the limits, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
@@ -1672,8 +1672,8 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/h
 - Creates a health check.
 - For the health check **protocol**, HTTPS, HTTP, and TPC are supported, and the information that can be entered differs depending on the selected protocol.
     - HTTPS input items: Disable certificate validation, port, path, expected status code, expected response body
-	- HTTP input items: Port, path, expected status code, expected response body
-	- TCP input items: Port
+    - HTTP input items: Port, path, expected status code, expected response body
+    - TCP input items: Port
 - Using **Disable certificate validation** allows you to ignore the TLS/SSL certificate of an endpoint being invalid when a health check is performed.
 - Does not support a page redirected from an endpoint when determining **Expected status code** and **Expected response body**.
 - There is a limit to the maximum number of health checks that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)

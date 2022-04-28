@@ -14,12 +14,12 @@ You can manage DNS Zones on the **DNS** screen of the menu.
 
 2. Enter **DNS Zone Name** and **Description**, and click **Confirm**.  
 
-	- In **DNS Zone Name**, enter the domain or subdomain you own as [fully qualified domain name (FQDN)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name).
-	- **DNS Zone Name** must be unique on the DNS server.
-	- The same **DNS Zone Name** can be created as many as the number of DNS servers. There are 3 DNS servers.
-	- After the DNS Zone is created, you must set the name server information of the NS record set that is created by default to the domain. For the record sets created by default, see [Manage Record Sets](./console-guide/#manage-record-sets).
-		- If the DNS Zone was created with a newly registered domain, you must set the name server information to the corresponding name server in the domain registrar.
-		- If the DNS Zone was created with a subdomain of a domain currently in operation, you must create an NS record set in your operating domain with the subdomain name and its name server.
+    - In **DNS Zone Name**, enter the domain or subdomain you own as [fully qualified domain name (FQDN)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name).
+    - **DNS Zone Name** must be unique on the DNS server.
+    - The same **DNS Zone Name** can be created as many as the number of DNS servers. There are 3 DNS servers.
+    - After the DNS Zone is created, you must set the name server information of the NS record set that is created by default to the domain. For the record sets created by default, see [Manage Record Sets](./console-guide/#manage-record-sets).
+        - If the DNS Zone was created with a newly registered domain, you must set the name server information to the corresponding name server in the domain registrar.
+        - If the DNS Zone was created with a subdomain of a domain currently in operation, you must create an NS record set in your operating domain with the subdomain name and its name server.
 
 ![image_02_20210604](https://static.toastoven.net/prod_dnsplus/image_02_20210604.png)
 
@@ -56,20 +56,20 @@ You can manage record sets of the DNS Zone selected on the **DNS** screen of the
 
 2. Enter the record set information.
 
-	- Record Set Name: Name of the host to serve. Enter in [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) format so that it can be a **DNS Zone Name** or a sub-name.
-	- Record Set Type: Type of the host. Select the type according to the purpose of use.
-	- TTL (seconds): Time to live, which indicates the validity period of the data. Enter the update cycle of the record set information in the name server (in seconds). You can enter a value easily by clicking the buttons on the right.
+    - Record Set Name: Name of the host to serve. Enter in [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) format so that it can be a **DNS Zone Name** or a sub-name.
+    - Record Set Type: Type of the host. Select the type according to the purpose of use.
+    - TTL (seconds): Time to live, which indicates the validity period of the data. Enter the update cycle of the record set information in the name server (in seconds). You can enter a value easily by clicking the buttons on the right.
 
 3. Enter the record information according to the record set type.
 
-	- A different record value must be entered depending on the record set type. Enter the record value according to the description displayed at the bottom of the screen.
-	- Depending on the record set type, multiple records can be entered. You can add a record by clicking the **+** button on the right side of the screen, and you can remove a record by clicking the **-** button of the added record.
+    - A different record value must be entered depending on the record set type. Enter the record value according to the description displayed at the bottom of the screen.
+    - Depending on the record set type, multiple records can be entered. You can add a record by clicking the **+** button on the right side of the screen, and you can remove a record by clicking the **-** button of the added record.
 
 4. After completing the configuration, click **Confirm**.
 
 5. There is a limit to the maximum number of record sets that can be created. If you want to raise the limit, please contact us. 
 
-	- Contact: [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+    - Contact: [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_06_20210604](https://static.toastoven.net/prod_dnsplus/image_06_20210604.png)
 
@@ -115,7 +115,7 @@ You can manage record sets of the DNS Zone selected on the **DNS** screen of the
 
 2. Enter a search term and press **Enter Key** or click **Search** to search by the record set name.  
 
-	- All values containing the search term are retrieved.
+    - All values containing the search term are retrieved.
 
 ![image_10_20210604](https://static.toastoven.net/prod_dnsplus/image_10_20210604.png)
 
@@ -133,9 +133,9 @@ For a **GSLB domain**, traffic is reliably load balanced according to the **rout
 
 2. Enter information in the **Create GSLB** dialog box.
 
-	- GSLB Name: You can set uppercase and lowercase letters, numbers, '-' and '_'.
-	- Routing Rule: You can select FAILOVER, RANDOM, or GEOLOCATION as the load balancing method for the GSLB domain.
-		- FAILOVER: Performs routing based on the priorities of connected pools.
+    - GSLB Name: You can set uppercase and lowercase letters, numbers, '-' and '_'.
+    - Routing Rule: You can select FAILOVER, RANDOM, or GEOLOCATION as the load balancing method for the GSLB domain.
+        - FAILOVER: Performs routing based on the priorities of connected pools.
 		- RANDOM: Performs routing by randomly selecting an available pool among connected pools.
 		- GEOLOCATION: Routes the traffic of the configured region to the connected pool. When there is no configured region, performs routing based on the priorities of connected pools.
 	- TTL (seconds): Time to live, which indicates the validity period of the data. Enter the update cycle of the GSLB domain (in seconds). You can enter a value easily by clicking the buttons on the right.
