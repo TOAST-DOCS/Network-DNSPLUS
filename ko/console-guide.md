@@ -139,13 +139,13 @@
         - RANDOM: 연결된 Pool 중 사용 가능한 Pool을 무작위로 선택하여 라우팅합니다.
         - GEOLOCATION: 설정된 지역의 트래픽을 해당 연결된 Pool로 라우팅합니다. 지역 설정이 없는 경우 우선순위로 라우팅합니다.
     - TTL(초): Time to live로 데이터의 유효 기간을 나타냅니다. GSLB 도메인의 갱신 주기를 초 단위로 입력합니다. 오른쪽 버튼을 클릭하여 간단하게 입력할 수 있습니다.
-	- 상태: GSLB 도메인의 활성화 여부를 선택합니다.
-	
+    - 상태: GSLB 도메인의 활성화 여부를 선택합니다.
+    
 3. 설정 완료 후 **확인** 버튼을 클릭합니다.
 
 4. GSLB 생성 개수는 제한되어 있으며 연장이 필요하면 별도로 문의해 주시기 바랍니다. 
 
-	- 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+    - 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_12_20210604](https://static.toastoven.net/prod_dnsplus/image_12_20210604.png)
 
@@ -171,25 +171,25 @@ GSLB에 연결할 Pool을 설정합니다.
 
 2. **Pool 연결** 대화 상자에서 연결할 Pool을 선택하고 라우팅 규칙에 따라 설정 정보를 입력합니다.
 
-	- 우선순위: 숫자가 작을수록 라우팅 순서가 높으며, 기존에 연결된 Pool과 동일한 우선순위를 입력한 경우 기존 Pool의 라우팅 순서가 낮아집니다. 라우팅 규칙이 FAILOVER 또는 GEOLOCATION일 때 설정합니다.
-	- 지역: 설정한 지역의 트래픽을 연결한 Pool로 라우팅하며, 라우팅 규칙이 GEOLOCATION일 때 설정합니다.
-	예) GSLB에 아래 표와 같이 Pool이 연결되어 있을 경우
-		- FAILOVER일 때 Pool-A로 라우팅됩니다.
-		- GEOLOCATION일 때 클라이언트가 Northeast Asia 지역에 있는 경우 Pool-B로 라우팅됩니다.
-		- GEOLOCATION일 때 클라이언트가 Western North America 지역에 있는 경우 Pool-C로 라우팅됩니다.
-		- GEOLOCATION일 때 클라이언트가 Western Europe 지역에 있는 경우 설정된 지역이 없기 때문에 우선순위에 따라 Pool-A로 라우팅됩니다.
+    - 우선순위: 숫자가 작을수록 라우팅 순서가 높으며, 기존에 연결된 Pool과 동일한 우선순위를 입력한 경우 기존 Pool의 라우팅 순서가 낮아집니다. 라우팅 규칙이 FAILOVER 또는 GEOLOCATION일 때 설정합니다.
+    - 지역: 설정한 지역의 트래픽을 연결한 Pool로 라우팅하며, 라우팅 규칙이 GEOLOCATION일 때 설정합니다.
+    예) GSLB에 아래 표와 같이 Pool이 연결되어 있을 경우
+        - FAILOVER일 때 Pool-A로 라우팅됩니다.
+        - GEOLOCATION일 때 클라이언트가 Northeast Asia 지역에 있는 경우 Pool-B로 라우팅됩니다.
+        - GEOLOCATION일 때 클라이언트가 Western North America 지역에 있는 경우 Pool-C로 라우팅됩니다.
+        - GEOLOCATION일 때 클라이언트가 Western Europe 지역에 있는 경우 설정된 지역이 없기 때문에 우선순위에 따라 Pool-A로 라우팅됩니다.
 
-	| Pool 이름 | 우선순위 | 지역 |
-	| --- | --- | --- |
-	| Pool-A | 1 |  |
-	| Pool-B | 2 | Northeast Asia, Southeast Asia |
-	| Pool-C | 3 | Western North America |
+    | Pool 이름 | 우선순위 | 지역 |
+    | --- | --- | --- |
+    | Pool-A | 1 |  |
+    | Pool-B | 2 | Northeast Asia, Southeast Asia |
+    | Pool-C | 3 | Western North America |
 
 3. **확인** 버튼을 클릭합니다.
 
 4. Pool 연결 개수는 제한되어 있습니다. 연장이 필요하면 별도로 문의해 주시기 바랍니다.
 
-	- 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+    - 문의처: [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_15_20210604](https://static.toastoven.net/prod_dnsplus/image_15_20210604.png)
 
@@ -219,7 +219,7 @@ GSLB에 연결할 Pool을 설정합니다.
 
 2. 연결된 Pool 목록에 검색어를 입력하면 현재 목록 내에서 검색됩니다.
 
-	- **Pool 이름**, **우선순위**, **지역** 항목에 검색어를 포함하는 모든 Pool을 검색해 표시합니다.
+    - **Pool 이름**, **우선순위**, **지역** 항목에 검색어를 포함하는 모든 Pool을 검색해 표시합니다.
 
 3. GSLB 상태는 아래 규칙에 따라 표시되며 연결된 Pool은 [Pool](./console-guide/#_8)의 상태를 표시합니다.
 
@@ -244,16 +244,16 @@ GSLB에 연결할 Pool을 설정합니다.
 
 2. **Pool** 정보를 입력합니다.
 
-	- Pool 이름: 생성되는 Pool을 지칭하는 이름으로 영대소문자와 숫자, '-', '_'로 입력 가능합니다.
-	- 상태: Pool의 활성화 여부를 선택합니다.
-	- 헬스 체크: Pool 내의 엔드포인트의 접근성을 확인할 헬스 체크를 선택할 수 있습니다.
+    - Pool 이름: 생성되는 Pool을 지칭하는 이름으로 영대소문자와 숫자, '-', '_'로 입력 가능합니다.
+    - 상태: Pool의 활성화 여부를 선택합니다.
+    - 헬스 체크: Pool 내의 엔드포인트의 접근성을 확인할 헬스 체크를 선택할 수 있습니다.
 
 3. **엔드포인트** 정보를 입력합니다.
 
-	- 여러 개의 엔드포인트를 입력할 수 있습니다. 화면 우측 **+** 버튼을 클릭해 엔드포인트를 추가할 수 있으며, 추가된 엔드포인트의 **-** 버튼을 클릭해 엔드포인트를 제거할 수 있습니다.
-	- 엔드포인트 주소: 도메인 주소 또는 IPv4 주소로 입력할 수 있으며 [예약된 IP 주소](https://en.wikipedia.org/wiki/Reserved_IP_addresses)는 입력할 수 없습니다. Pool 내에서 엔드포인트 주소는 중복될 수 없습니다.
-	- 가중치: 0~1.00으로 입력할 수 있으며 Pool 내의 다른 엔드포인트 가중치와 상대적으로 동작합니다. 동일한 가중치는 Pool 내에서 동일한 비중을 가집니다.
-	- 상태: 엔드포인트의 활성화 여부를 선택합니다.
+    - 여러 개의 엔드포인트를 입력할 수 있습니다. 화면 우측 **+** 버튼을 클릭해 엔드포인트를 추가할 수 있으며, 추가된 엔드포인트의 **-** 버튼을 클릭해 엔드포인트를 제거할 수 있습니다.
+    - 엔드포인트 주소: 도메인 주소 또는 IPv4 주소로 입력할 수 있으며 [예약된 IP 주소](https://en.wikipedia.org/wiki/Reserved_IP_addresses)는 입력할 수 없습니다. Pool 내에서 엔드포인트 주소는 중복될 수 없습니다.
+    - 가중치: 0~1.00으로 입력할 수 있으며 Pool 내의 다른 엔드포인트 가중치와 상대적으로 동작합니다. 동일한 가중치는 Pool 내에서 동일한 비중을 가집니다.
+    - 상태: 엔드포인트의 활성화 여부를 선택합니다.
 	
 4. 설정 완료 후 **확인** 버튼을 클릭합니다.
 

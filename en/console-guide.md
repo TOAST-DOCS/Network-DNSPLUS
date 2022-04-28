@@ -136,16 +136,16 @@ For a **GSLB domain**, traffic is reliably load balanced according to the **rout
     - GSLB Name: You can set uppercase and lowercase letters, numbers, '-' and '_'.
     - Routing Rule: You can select FAILOVER, RANDOM, or GEOLOCATION as the load balancing method for the GSLB domain.
         - FAILOVER: Performs routing based on the priorities of connected pools.
-		- RANDOM: Performs routing by randomly selecting an available pool among connected pools.
-		- GEOLOCATION: Routes the traffic of the configured region to the connected pool. When there is no configured region, performs routing based on the priorities of connected pools.
-	- TTL (seconds): Time to live, which indicates the validity period of the data. Enter the update cycle of the GSLB domain (in seconds). You can enter a value easily by clicking the buttons on the right.
-	- Status: Choose whether to activate the GSLB domain.
-	
+        - RANDOM: Performs routing by randomly selecting an available pool among connected pools.
+        - GEOLOCATION: Routes the traffic of the configured region to the connected pool. When there is no configured region, performs routing based on the priorities of connected pools.
+    - TTL (seconds): Time to live, which indicates the validity period of the data. Enter the update cycle of the GSLB domain (in seconds). You can enter a value easily by clicking the buttons on the right.
+    - Status: Choose whether to activate the GSLB domain.
+    
 3. After completing the configuration, click **Confirm**.
 
 4. There is a limit to the maximum number of GSLBs that can be created. If you want to raise the limit, please contact us. 
 
-	- Contact: [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+    - Contact: [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_12_20210604](https://static.toastoven.net/prod_dnsplus/image_12_20210604.png)
 
@@ -171,13 +171,13 @@ Configure a pool to connect to GSLB.
 
 2. In the **Connect Pool** dialog box, select a pool to connect to and enter the setting information according to the routing rule.
 
-	- Priority: The smaller the number, the higher the routing order. If the same priority as the previously connected pool is entered, the routing order of the existing pool is lowered. Set when the routing rule is FAILOVER or GEOLOCATION.
-	- Region: Routes traffic of the configured region to the connected pool. Set when the routing rule is GEOLOCATION.
+    - Priority: The smaller the number, the higher the routing order. If the same priority as the previously connected pool is entered, the routing order of the existing pool is lowered. Set when the routing rule is FAILOVER or GEOLOCATION.
+    - Region: Routes traffic of the configured region to the connected pool. Set when the routing rule is GEOLOCATION.
 Example: If a pool is connected to GSLB as shown in the table below
-		- In case of FAILOVER, it will be routed to Pool-A.
-		- In case of GEOLOCATION, if the client is in the Northeast Asia region, it will be routed to Pool-B.
-		- In case of GEOLOCATION, if the client is in the Western North America region, it is routed to Pool-C.
-		- In case of GEOLOCATION, if the client is in the Western Europe region, it is routed to Pool-A by priority because there is no configure region.
+        - In case of FAILOVER, it will be routed to Pool-A.
+        - In case of GEOLOCATION, if the client is in the Northeast Asia region, it will be routed to Pool-B.
+        - In case of GEOLOCATION, if the client is in the Western North America region, it is routed to Pool-C.
+    	- In case of GEOLOCATION, if the client is in the Western Europe region, it is routed to Pool-A by priority because there is no configure region.
 
 	| Pool name | Priority | Region |
 	| --- | --- | --- |
