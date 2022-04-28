@@ -8,7 +8,7 @@ The document describes API of the DNS Plus service.
 ### Preparation
 
 - An appkey is required to use the API.
-- Your appkey is located in the **URL & Appkey** menu on the top of the console.
+- Your appkey can be found in the **URL & Appkey** menu on the top of the console.
 
 ### Common Response Information
 
@@ -144,7 +144,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
 | zone | Object |  | Required |  | DNS Zone |
-| zone.zoneName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>Last character '.' | Required |  | Enter the DNS Zone name to create and <br>the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| zone.zoneName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>Last character '.' | Required |  | DNS Zone name to create,  <br>Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 | zone.description | String | Max. 255 characters | Optional |  | DNS Zone description |
 
 #### Response
@@ -412,7 +412,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
 | recordset | Object |  | Required |  | Record set |
-| recordset.recordsetName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required |  | Name of the record set to create, <br>the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| recordset.recordsetName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required |  | Name of the record set to create, <br>Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 | recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
 | recordset.recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
 | recordset.recordList | List |  | Required |  | Record list |
@@ -466,7 +466,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 
 
 - MX record set
@@ -476,7 +476,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
 | recordset.recordList[0].priority | int | Min. 0, Max. 65535 | Required |  | Priority |
-| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 
 
 - NAPTR record set
@@ -490,7 +490,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
         - S-NAPTR DDDS Application [RFC 3958#section-6.5](https://tools.ietf.org/html/rfc3958#section-6.5)
         - U-NAPTR DDDS Application [RFC 4848#section-4.5](https://tools.ietf.org/html/rfc4848#section-4.5)
     - Regexp is used to convert an input value to an output value in the DDDS application. For detailed definition, see [RFC 3402#section-3.2](https://tools.ietf.org/html/rfc3402#section-3.2).
-    - Replacement replaces an input value with the name of a domain where the DDDS application will submit DNS queries. Set this as '.' in the case regexp is set.
+    - Replacement value replaces an input value with the name of a domain where the DDDS application will submit DNS queries. Set this as '.' if regexp is set.
 
 | Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
@@ -499,7 +499,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset.recordList[0].flags | String | Max. 3 characters (including quotation marks) | Required |  | Classification |
 | recordset.recordList[0].service | String | Max. 257 characters (including quotation marks) | Required |  | Service |
 | recordset.recordList[0].regexp | String | Max. 257 characters (including quotation marks) | Required |  | Regular expression |
-| recordset.recordList[0].replacement | String | Max. 255 characters | Required |  | Enter '.' as a replacement value or enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| recordset.recordList[0].replacement | String | Max. 255 characters | Required |  | Enter '.' as a replacement value or enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)  |
 
 
 - PTR record set
@@ -509,7 +509,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 
 
 - TXT record set
@@ -530,7 +530,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | recordset.recordList[0].priority | int | Min. 0, Max. 65535 | Required |  | Priority |
 | recordset.recordList[0].weight | int | Min. 0, Max. 65535 | Required |  | Weight |
 | recordset.recordList[0].port | int | Min. 0, Max. 65535 | Required |  | Port |
-| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 
 
 - SPF record set
@@ -560,7 +560,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
-| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 
 
 #### Response
@@ -630,7 +630,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 | Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
 | recordsetList | List |  | Required |  | Record set list |
-| recordsetList[0].recordsetName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required |  | Name of the record set to create, <br>the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
+| recordsetList[0].recordsetName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required |  | Name of the record set to create, <br>Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 | recordsetList[0].recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
 | recordsetList[0].recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
 | recordsetList[0].recordList | List |  | Required |  | Record list |
