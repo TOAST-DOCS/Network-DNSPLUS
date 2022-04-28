@@ -176,20 +176,20 @@ Configure a pool to connect to GSLB.
 Example: If a pool is connected to GSLB as shown in the table below
         - In case of FAILOVER, it will be routed to Pool-A.
         - In case of GEOLOCATION, if the client is in the Northeast Asia region, it will be routed to Pool-B.
-    	- In case of GEOLOCATION, if the client is in the Western North America region, it is routed to Pool-C.
-		- In case of GEOLOCATION, if the client is in the Western Europe region, it is routed to Pool-A by priority because there is no configure region.
+        - In case of GEOLOCATION, if the client is in the Western North America region, it is routed to Pool-C.
+        - In case of GEOLOCATION, if the client is in the Western Europe region, it is routed to Pool-A by priority because there is no configure region.
 
-	| Pool name | Priority | Region |
-	| --- | --- | --- |
-	| Pool-A | 1 |  |
-	| Pool-B | 2 | Northeast Asia, Southeast Asia |
-	| Pool-C | 3 | Western North America |
+    | Pool name | Priority | Region |
+    | --- | --- | --- |
+    | Pool-A | 1 |  |
+    | Pool-B | 2 | Northeast Asia, Southeast Asia |
+    | Pool-C | 3 | Western North America |
 
 3. Click **Confirm**.
 
 4. There is a limit to the maximum number of pools that can be connected. If you want to raise the limit, please contact us.
 
-	- Contact: [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+    - Contact: [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_15_20210604](https://static.toastoven.net/prod_dnsplus/image_15_20210604.png)
 
@@ -219,7 +219,7 @@ You can search for the GSLB that you want by name.
 
 2. If you enter a search term in the connected pool list, the search is performed within the current list.
 
-	- All pools that contain the search term in **Pool Name**, **Priority**, and **Region** are searched and displayed.
+    - All pools that contain the search term in **Pool Name**, **Priority**, and **Region** are searched and displayed.
 
 3. The GSLB status is displayed according to the rules below, and the status of the [Pool](./console-guide/#_8) is displayed for the connected pool.
 
@@ -244,17 +244,17 @@ On the **GSLB** screen of the menu, you can manage pools and endpoints of the se
 
 2. Enter the **Pool** information.
 
-	- Pool Name: Name of the pool to be created. Uppercase and lowercase letters, numbers, and '-' and '_' are allowed.
-	- Status: Select whether to activate the pool.
-	- Health Check: You can select a health check to check the accessibility of endpoints in the pool.
+    - Pool Name: Name of the pool to be created. Uppercase and lowercase letters, numbers, and '-' and '_' are allowed.
+    - Status: Select whether to activate the pool.
+    - Health Check: You can select a health check to check the accessibility of endpoints in the pool.
 
 3. Enter the **Endpoint** information.
 
-	- You can enter multiple endpoints. You can add an endpoint by clicking the **+** button on the right side of the screen, and remove an endpoint by clicking the **-** button of the added endpoint.
-	- Endpoint Address: A domain address or IPv4 address can be entered, but a [reserved IP address](https://en.wikipedia.org/wiki/Reserved_IP_addresses) cannot be entered. Endpoint addresses cannot be duplicated within a pool.
-	- Weight: 0~1.00 can be entered, and the value is applied relative to other endpoint weights in the pool. Equal weights have the same priority within the pool.
-	- Status: Choose whether to activate the endpoint.
-	
+    - You can enter multiple endpoints. You can add an endpoint by clicking the **+** button on the right side of the screen, and remove an endpoint by clicking the **-** button of the added endpoint.
+    - Endpoint Address: A domain address or IPv4 address can be entered, but a [reserved IP address](https://en.wikipedia.org/wiki/Reserved_IP_addresses) cannot be entered. Endpoint addresses cannot be duplicated within a pool.
+    - Weight: 0~1.00 can be entered, and the value is applied relative to other endpoint weights in the pool. Equal weights have the same priority within the pool.
+    - Status: Choose whether to activate the endpoint.
+    
 4. After completing the configuration, click **Confirm**.
 
 5. There are limits to the maximum number of pools that can be created, the maximum number of endpoints in a pool, and the maximum total number of endpoints. If you want to raise the limits, please contact us. 
@@ -287,7 +287,7 @@ On the **GSLB** screen of the menu, you can manage pools and endpoints of the se
 
 2. If you enter a search term in the endpoint list, the search is performed within the current list.
 
-	- All endpoints that contain a search term in the **Endpoint Address** and **Weight** fields are searched and displayed.
+    - All endpoints that contain a search term in the **Endpoint Address** and **Weight** fields are searched and displayed.
 
 3. The pool's status is displayed according to the rules below.
 
@@ -313,23 +313,23 @@ You can manage health checks from the **GSLB** screen in the menu.
 
 2. Enter the **Health Check** information.
 
-	- **Health Check Name**: The name of the health check to be created. Uppercase and lowercase letters, numbers, '-' and '_' are allowed.
-	- **Protocol**: The protocol to use when performing a health check, You can select HTTPS, HTTP, or TCP. The information you can enter depends on the protocol you choose.
-		- **HTTPS input items**: Disable Certificate Validation, Port, Path, Expected Status Code, Expected Response Body
-		- **HTTP input items**: Port, Path, Expected Status Code, Expected Response Body
-		- **TCP input items**: Port
-	- **Disable Certificate Validation**: If you select **Yes**, ignores the endpoint's TLS/SSL certificate being invalid when a health check is performed.
-	- **Port**: Enter the port to be used when performing a health check.
-	- **Path**: Enter the path to be used when performing a health check. The starting character must be a forward slash (/).
-	- **Expected Status Code**: Enter the expected [HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) response of the health check. You can enter an 'x' character as a wildcard, and if a match is found, the endpoint is considered healthy. Example: 2xx, 20x, 200
-	- **Expected Response Body**: You can enter the expected response body of the health check.
-	- When determining **Expected Status Code** and **Expected Response Body**, pages redirected from the endpoint are not supported.
-	
+    - **Health Check Name**: The name of the health check to be created. Uppercase and lowercase letters, numbers, '-' and '_' are allowed.
+    - **Protocol**: The protocol to use when performing a health check, You can select HTTPS, HTTP, or TCP. The information you can enter depends on the protocol you choose.
+        - **HTTPS input items**: Disable Certificate Validation, Port, Path, Expected Status Code, Expected Response Body
+        - **HTTP input items**: Port, Path, Expected Status Code, Expected Response Body
+        - **TCP input items**: Port
+    - **Disable Certificate Validation**: If you select **Yes**, ignores the endpoint's TLS/SSL certificate being invalid when a health check is performed.
+    - **Port**: Enter the port to be used when performing a health check.
+    - **Path**: Enter the path to be used when performing a health check. The starting character must be a forward slash (/).
+    - **Expected Status Code**: Enter the expected [HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) response of the health check. You can enter an 'x' character as a wildcard, and if a match is found, the endpoint is considered healthy. Example: 2xx, 20x, 200
+    - **Expected Response Body**: You can enter the expected response body of the health check.
+    - When determining **Expected Status Code** and **Expected Response Body**, pages redirected from the endpoint are not supported.
+    
 3. After completing the configuration, click **Confirm**.
 
 4. There is a limit to the maximum number of health checks that can be created. If you want to raise the limit, please contact us. 
 
-   	- Contact: [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
+   - Contact: [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
 ![image_25_20210604](https://static.toastoven.net/prod_dnsplus/image_25_20210604.png)
 
