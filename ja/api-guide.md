@@ -51,14 +51,14 @@ DNS PlusサービスのAPIを説明します。
 
 | メソッド | URI |
 |---|---|
-| GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones |
+| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones |
 
 [リクエスト本文]
 
 - {appkey}は、コンソールで確認した値に変更します。
 
 ```
-curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones'
+curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones'
 ```
 
 [オプション]
@@ -127,14 +127,14 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 | メソッド | URI |
 |---|---|
-| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones |
+| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に変更します。
 
 ```
-curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones' \
+curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones' \
 -H 'Content-Type: application/json' \
 --data '{ "zone": { "zoneName": "test.dnsplus.com.", "description": "test" }}'
 ```
@@ -182,7 +182,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | メソッド | URI |
 |---|---|
-| PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId} |
+| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId} |
 
 [リクエスト本文]
 
@@ -190,7 +190,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
 
 ```
-curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}' \
+curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}' \
 -H 'Content-Type: application/json' \
 --data '{ "zone": { "description": "test" }}'
 ```
@@ -238,7 +238,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/async |
+| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/async |
 
 [リクエスト本文]
 
@@ -246,7 +246,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 - DNS Zone IDは、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
 
 ```
-curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/async?
+curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/async?
 zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab24188dc4'
 ```
 
@@ -283,7 +283,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 
 | メソッド | URI |
 |---|---|
-| GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
+| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
 [リクエスト本文]
 
@@ -291,7 +291,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 - {zoneId}はDNS Zone IDで、[DNS Zone照会](./api-guide/#dns-zone)を通して確認できます。
 
 ```
-curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
+curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
 ```
 
 [オプション]
@@ -391,7 +391,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 | メソッド | URI |
 |---|---|
-| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
+| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
 [リクエスト本文]
 
@@ -402,7 +402,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 - 詳細フィールドとrecordContentフィールドを同時に入力すると、recordContentフィールドを基準に作成されます。
 
 ```
-curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
+curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
 -H 'Content-Type: application/json' \
 --data '{ "recordset": { "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
@@ -609,7 +609,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | メソッド | URI |
 |---|---|
-| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list |
+| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list |
 
 [リクエスト本文]
 
@@ -620,7 +620,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - 詳細フィールドとrecordContentフィールドを同時に入力した場合、recordContentフィールドを基準に作成されます。
 
 ```
-curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list' \
+curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list' \
 -H 'Content-Type: application/json' \
 --data '{ "recordsetList": [{ "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }]}'
 ```
@@ -665,7 +665,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | メソッド | URI |
 |---|---|
-| PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId} |
+| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId} |
 
 [リクエスト本文]
 
@@ -677,7 +677,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - 詳細フィールドとrecordContentフィールドを同時に入力すると、recordContentフィールドを基準に修正されます。
 
 ```
-curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
+curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
 -H 'Content-Type: application/json' \
 --data '{ "recordset": { "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
@@ -736,7 +736,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
+| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
 [リクエスト本文]
 
@@ -745,7 +745,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/z
 - レコードセットIDは、[レコードセット照会](./api-guide/#_11)を通して確認できます。
 
 ```
-curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
+curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
 recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092d340e0adf'
 ```
 
@@ -782,14 +782,14 @@ recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092
 
 | メソッド | URI |
 |---|---|
-| GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
+| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に変更します。
 
 ```
-curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs?showHealthy=true'
+curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs?showHealthy=true'
 ```
 
 [オプション]
@@ -888,7 +888,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 
 | メソッド | URI |
 |---|---|
-| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
+| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
 
 [リクエスト本文]
 
@@ -896,7 +896,7 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 - connectedPoolRegionContentフィールドはカンマ(,)を区切り文字にして**地域**を1行で作成します。
 
 ```
-curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs' \
+curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs' \
 -H 'Content-Type: application/json' \
 --data '{ "gslb": { "gslbName": "GSLB-test", "gslbTtl": 300, "gslbRoutingRule": "FAILOVER", "connectedPoolList": [ { "poolId": "8e4326d4-3862-4b46-819e-83a786add570", "connectedPoolOrder": 1 }, { "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818", "connectedPoolOrder": 2 } ] }}'
 ```
@@ -967,7 +967,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | メソッド | URI |
 |---|---|
-| PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId} |
+| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId} |
 
 [リクエスト本文]
 
@@ -976,7 +976,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - connectedPoolRegionContentフィールドはカンマ(,)を区切り文字にして**地域**を1行で作成します。
 
 ```
-curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}' \
+curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}' \
 -H 'Content-Type: application/json' \
 --data '{ "gslb": { "gslbName": "GSLB-test", "gslbTtl": 300, "gslbDisabled": true, "gslbRoutingRule": "GEOLOCATION", "connectedPoolList": [ { "poolId": "8e4326d4-3862-4b46-819e-83a786add570", "connectedPoolOrder": 1 }, { "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818", "connectedPoolOrder": 2, "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA" } ] }}'
 ```
@@ -1047,14 +1047,14 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
+| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に変更します。
 
 ```
-curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs?
+curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs?
 gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c604bf'
 ```
 
@@ -1091,7 +1091,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 
 | メソッド | URI |
 |---|---|
-| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
+| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
 
 [リクエスト本文]
 
@@ -1101,7 +1101,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 - connectedPoolRegionContentフィールドはカンマ(,)を区切り文字にして**地域**を1行で作成します。
 
 ```
-curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
+curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
 -H 'Content-Type: application/json' \
 --data '{ "connectedPool": { "connectedPoolOrder": 1 } }'
 ```
@@ -1163,7 +1163,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | メソッド | URI |
 |---|---|
-| PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
+| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
 
 [リクエスト本文]
 
@@ -1173,7 +1173,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - connectedPoolRegionContentフィールドはカンマ(,)を区切り文字にして**地域**を1行で作成します。
 
 ```
-curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
+curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
 -H 'Content-Type: application/json' \
 --data '{ "connectedPool": { "connectedPoolOrder": 1, "connectedPoolRegionContent": "WESTERN_NORTH_AMERICA" } }'
 ```
@@ -1235,7 +1235,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools |
+| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools |
 
 [リクエスト本文]
 
@@ -1243,7 +1243,7 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/g
 - {gslbId}はGSLB IDです。[GSLB照会](./api-guide/#gslb)で確認できます。
 
 ```
-curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
+curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
 poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1dfb093'
 ```
 
@@ -1298,14 +1298,14 @@ poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1df
 
 | メソッド | URI |
 |---|---|
-| GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools |
+| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/pools |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に変更します。
 
 ```
-curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools?showHealthy=true'
+curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/pools?showHealthy=true'
 ```
 
 [オプション]
@@ -1409,14 +1409,14 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/p
 
 | メソッド | URI |
 |---|---|
-| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools |
+| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/pools |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に変更します。
 
 ```
-curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools' \
+curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/pools' \
 -H 'Content-Type: application/json' \
 --data '{ "pool": { "poolName": "POOL-test", "endpointList": [ { "endpointAddress": "test.dnsplus.com" }, { "endpointAddress": "123.123.123.123" } ] }}'
 ```
@@ -1480,7 +1480,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | メソッド | URI |
 |---|---|
-| PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools/{poolId} |
+| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/pools/{poolId} |
 
 [リクエスト本文]
 
@@ -1488,7 +1488,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - {poolId}はPool IDです。[Pool照会](./api-guide/#pool_3)で確認できます。
 
 ```
-curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools/{poolId}' \
+curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/pools/{poolId}' \
 -H 'Content-Type: application/json' \
 --data '{ "pool": { "poolName": "POOL-test", "poolDisabled": true, "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17", "endpointList": [ { "endpointAddress": "test.dnsplus.com", "endpointWeight": 1.00, "endpointDisabled": true }, { "endpointAddress": "123.123.123.123", "endpointWeight": 0.5, "endpointDisabled": true } ] }}'
 ```
@@ -1555,14 +1555,14 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/p
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools |
+| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/pools |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に変更します。
 
 ```
-curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/pools?
+curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/pools?
 poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c12818'
 ```
 
@@ -1599,14 +1599,14 @@ poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c1
 
 | メソッド | URI |
 |---|---|
-| GET | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
+| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に変更します。
 
 ```
-curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks'
+curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks'
 ```
 
 [オプション]
@@ -1684,14 +1684,14 @@ curl -X GET 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/h
 
 | メソッド | URI |
 |---|---|
-| POST | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
+| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に変更します。
 
 ```
-curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks' \
+curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks' \
 -H 'Content-Type: application/json' \
 --data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "2xx", "allowInsecure": false }}'
 ```
@@ -1746,7 +1746,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 
 | メソッド | URI |
 |---|---|
-| PUT | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId} |
+| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId} |
 
 [リクエスト本文]
 
@@ -1754,7 +1754,7 @@ curl -X POST 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/
 - {healthCheckId}はヘルスチェックIDです。[ヘルスチェック照会](./api-guide/#_45)で確認できます。
 
 ```
-curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
+curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
 -H 'Content-Type: application/json' \
 --data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
 ```
@@ -1809,14 +1809,14 @@ curl -X PUT 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/h
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
+| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に変更します。
 
 ```
-curl -X DELETE 'https://api-dnsplus.cloud.toast.com/dnsplus/v1.0/appkeys/{appkey}/health-checks?
+curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks?
 healthCheckIdList=b9165853-7859-4309-8059-48f12ebdbc17,d2629d6b-9381-4645-9cf3-43d7ad491e2b'
 ```
 
