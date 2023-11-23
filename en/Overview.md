@@ -8,6 +8,8 @@ DNS Plus is a DNS that users around the world can access fast and reliably. DNS 
     - You can perform DNS configuration in the web console without installing a separate DNS server.
     - It supports anycast networks so that you can provide a service at high speed in Korea as well as in other countries.
     - Because it is designed to accept a high volume of DNS queries, it can process a high volume of DNS queries and also mitigate DDoS attacks targeting DNS.
+    > **[Note] Purchase a domain for DNS service usage**
+    > To start using the DNS service, you must first have a domain. You cannot purchase a new domain name with the DNS service so you must purchase a domain from a domain registrar. (For details on how to register a domain name, see [Korea Internet & Security Agency's Domain Name Registration](https://xn--3e0bx5euxnjje69i70af08bea817g.xn--3e0b707e/jsp/business/management/domain/registrationInfo.jsp).)
 
 - GSLB
     - DNS Plus GSLB (global server load balancing) is a service that performs reliable load balancing of traffic to endpoints based on DNS service.
@@ -52,3 +54,13 @@ DNS Plus is a DNS that users around the world can access fast and reliably. DNS 
 | Pool | A component that groups endpoints, which is the smallest unit to which a routing rule is applied. Endpoints included in the pool are load balanced according to their weight. |
 | Endpoint | Refers to the server that handles the actual traffic. Endpoints are available in the form of IP or domain. |
 | Health check | A component that checks accessibility for endpoints belonging to a pool according to the configured value. |
+
+## DNS Concepts
+The domain name system (DNS) is the system responsible for mapping between host names (such as www.example.com) and IP addresses (such as 192.168.1.1) in a computer network.
+
+How DNS works is as follows.
+1. Enter domain name: The user enters the domain name (for example, www.example.com) in a web browser.
+2. DNS query: The user's computer sends a query to the DNS server to resolve the entered domain name.
+3. Search DNS server: The user’s computer sends a query to a DNS server, usually one that belongs to Internet service provider (ISP). If this DNS server knows the IP address mapped to the domain name, it returns that IP address. If not, it sends another query to a higher-level DNS server to find the IP address.
+4. Forward response: The DNS server forwards the IP address it finds to the user’s computer.
+5. Connect to a web server: The user’s computer uses the IP address it found to connect to a web server in that domain.
