@@ -299,7 +299,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
 | recordsetIdList | List | 最大3,000個 | 任意 |  | レコードセットリスト |
-| recordsetTypeList | List | A、AAAA、CAA、CNAME、MX、<br>NAPTR、PTR、TXT、SRV、SPF、NS、SOA | 任意 | | レコードセットタイプリスト |
+| recordsetTypeList | List | A、AAAA、CAA、CNAME、MX、<br>NAPTR、PTR、TXT、SRV、NS、SOA | 任意 | | レコードセットタイプリスト |
 | searchRecordsetName | String |  | 任意 |  | 検索するレコードセット名 |
 | page | int | 最小1 | 任意 | 1 | ページ番号 |
 | limit | int | 最小1、最大3,000 | 任意 | 50 | 照会数 |
@@ -379,7 +379,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 ### レコードセット作成
 
 - レコードセットを作成します。
-- **レコードセットタイプ**としてA、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、SPF、NS、SOAをサポートします。
+- **レコードセットタイプ**としてA、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、NS、SOAをサポートします。
 - SOAレコードセットは、作成、修正、削除できず、NSレコードセットは、**DNS Zone名**で作成、修正、削除できません。
 - レコードセット内のレコードリストの長さは、最大512バイトです。
 - DNS Zoneつ当たり、レコードセットは最大5,000個まで作成できます。
@@ -413,7 +413,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 |---|---|---|---|---|---|
 | recordset | Object |  | 必須 |  | レコードセット |
 | recordset.recordsetName | String | 最大254文字<br>英数字、(.)(-)(_)<br>(DNS Zone名含む) | 必須 |  | 作成するレコードセット名、<br>ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
-| recordset.recordsetType | String | A、AAAA、CAA、CNAME、MX、<br>NAPTR、PTR、TXT、SRV、SPF、NS | 必須 |  | レコードセットタイプ |
+| recordset.recordsetType | String | A、AAAA、CAA、CNAME、MX、<br>NAPTR、PTR、TXT、SRV、NS | 必須 |  | レコードセットタイプ |
 | recordset.recordsetTtl | int | 最小1、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
 | recordset.recordList | List |  | 必須 |  | レコードリスト |
 | recordset.recordList[0].recordDisabled | boolean |  | 任意 | false | レコードを無効にするかどうか |
@@ -533,26 +533,6 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | recordset.recordList[0].domainName | String | 最大255文字 | 必須 |  | ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
 
 
-- SPFレコードセット
-    - 複数のレコードを入力できます。
-    - メール送信者のドメイン認証方式です。受信メールサーバーが送信メールサーバーとメールアドレスが一致しているかを確認する機能です。
-    - 下記のような形式で入力でき、詳細定義は[RFC4408](https://tools.ietf.org/html/rfc4408)で確認できます。
-    - 修飾子のデフォルト値は'+'で、メカニズムによってIP、ドメイン名などを追加で入力します。
-        - 形式："v=spf1 {修飾子}{メカニズム}{内容} {変更者}={内容}"
-        - 修飾子: '+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
-        - メカニズム：all、include、a、mx、prt、ip4、ip6、exists
-        - 変更者：redirect、exp、ユーザー指定
-        - (例)
-            - "v=spf1 mx -all"
-            - "v=spf1 ip4:192.168.0.1/16 -all"
-            - "v=spf1 a:toast.com -all"
-            - "v=spf1 redirect=toast.com"
-
-| 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
-|---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 最大255バイト(引用符号含む) | 必須 |  | SPF形式に応じた内容 |
-
-
 - NSレコードセット
     - 複数のレコードを入力できます。
     - レコードセット名に対するネームサーバーを指定します。
@@ -597,7 +577,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ### レコードセット大量作成
 
 - レコードセットを複数作成します。1回のリクエストで最大2,000個まで作成できます。
-- **レコードセットタイプ**は、A、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、SPF、NS、SOAをサポートします。
+- **レコードセットタイプ**は、A、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、NS、SOAをサポートします。
 - SOAレコードセットは、作成、修正、削除できず、NSレコードセットは、**DNS Zone名**で作成、修正、削除できません。
 - レコードセット内のレコードリストの長さは、最大512バイトです。
 - DNS Zoneごとにレコードセットは、最大5,000個まで作成できます。
@@ -631,7 +611,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 |---|---|---|---|---|---|
 | recordsetList | List |  | 必須 |  | レコードセットリスト |
 | recordsetList[0].recordsetName | String | 最大254文字<br>英数字、(.)(-)(_)<br>(DNS Zone名を含む) | 必須 |  | 作成するレコードセット名、 <br>ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
-| recordsetList[0].recordsetType | String | A、AAAA、CAA、CNAME、MX、<br>NAPTR、PTR、TXT、SRV、SPF、NS | 必須 |  | レコードセットタイプ |
+| recordsetList[0].recordsetType | String | A、AAAA、CAA、CNAME、MX、<br>NAPTR、PTR、TXT、SRV、NS | 必須 |  | レコードセットタイプ |
 | recordsetList[0].recordsetTtl | int | 1～2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
 | recordsetList[0].recordList | List |  | 必須 |  | レコードリスト |
 | recordsetList[0].recordList[0].recordDisabled | boolean |  | 任意 | false | レコードが無効になっているかどうか |
@@ -687,7 +667,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
 | recordset | Object |  | 必須 |  | レコードセット |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 必須 |  | レコードセットタイプ |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS | 必須 |  | レコードセットタイプ |
 | recordset.recordsetTtl | int | 最小1、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
 | recordset.recordList | List |  | 必須 |  | レコードリスト |
 | recordset.recordList[0].recordDisabled | boolean |  | 必須 |  | レコードを無効にするかどうか |

@@ -95,7 +95,6 @@ Record Name에 호스트 이름을 입력합니다. 예제와 같이 "www"이라
 |TXT|Text|
 |PTR|Pointer|
 |SRV|Location Service|
-|SPF|Sender Policy Framework|
 
 Alias의 경우 해당 Host가 다른 Host를 대신하게 되는 경우에 사용합니다. 각 Service Type에 대해서 값들이 존재하는데 "A"인 경우 IPv4 Address를 입력한다. 복수로 입력이 가능하며 이는 DNS Query 응답에 포함되어 전달됩니다.
 
