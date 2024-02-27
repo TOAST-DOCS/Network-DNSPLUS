@@ -515,6 +515,19 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{
 - TXT 레코드 세트
     - 여러 개의 레코드를 입력할 수 있습니다.
     - 레코드 세트 이름에 대한 텍스트 내용을 입력합니다.
+    - TXT 레코트 세트 타입으로 SPF 레코드를 생성 할 수 있습니다.
+        - 이메일 발신자 도메인 인증 방식으로 수신 메일 서버가 발송 메일 서버와 메일 주소가 일치하는지 확인하는 기능입니다.
+        - 아래와 같은 형태로 입력 가능하며 상세 정의는 [RFC4408](https://tools.ietf.org/html/rfc4408)에서 확인할 수 있습니다.
+        - 수식자의 기본값은 '+'이며 메커니즘에 따라 IP, 도메인 이름 등을 추가로 입력합니다.
+            - 형태: "v=spf1 {수식자}{메커니즘}{내용} {변경자}={내용}"
+            - 수식자: '+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
+            - 메커니즘: all, include, a, mx, prt, ip4, ip6, exists
+            - 변경자: redirect, exp, 사용자 지정
+            - (예제)
+                - "v=spf1 mx -all"
+                - "v=spf1 ip4:192.168.0.1/16 -all"
+                - "v=spf1 a:toast.com -all"
+                - "v=spf1 redirect=toast.com"
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|

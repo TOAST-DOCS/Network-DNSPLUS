@@ -515,6 +515,19 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 - TXTレコードセット
     - 複数のレコードを入力できます。
     - レコードセット名に対するテキストの内容を入力します。
+    - TXT 레코트 세트 타입으로 SPF 레코드를 생성 할 수 있습니다.
+        - メール送信者のドメイン認証方式です。受信メールサーバーが送信メールサーバーとメールアドレスが一致しているかを確認する機能です。
+        - 下記のような形式で入力でき、詳細定義は[RFC4408](https://tools.ietf.org/html/rfc4408)で確認できます。
+        - 修飾子のデフォルト値は'+'で、メカニズムによってIP、ドメイン名などを追加で入力します。
+            - 形式："v=spf1 {修飾子}{メカニズム}{内容} {変更者}={内容}"
+            - 修飾子: '+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
+            - メカニズム：all、include、a、mx、prt、ip4、ip6、exists
+            - 変更者：redirect、exp、ユーザー指定
+            - (例)
+                - "v=spf1 mx -all"
+                - "v=spf1 ip4:192.168.0.1/16 -all"
+                - "v=spf1 a:toast.com -all"
+                - "v=spf1 redirect=toast.com"
 
 | 名前 | タイプ | 有効範囲 | 必須かどうか | デフォルト値 | 説明 |
 |---|---|---|---|---|---|
