@@ -515,7 +515,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 - TXT record set
     - Multiple records can be entered.
     - Enter the text for the record set name.
-    - TXT 레코트 세트 타입으로 SPF 레코드를 생성 할 수 있습니다.
+    - TXT 레코드 세트 타입으로 SPF 레코드를 생성할 수 있습니다.
         - This feature verifies whether the incoming email server has the same email address as the outgoing mail server by the email sender domain authentication method.
         - Enter as follows. For detailed definition, see [RFC4408](https://tools.ietf.org/html/rfc4408).
         - The default value of the qualifier is '+', and you can add IP or domain name depending on the mechanism.
