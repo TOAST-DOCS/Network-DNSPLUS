@@ -299,7 +299,7 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{a
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | recordsetIdList | List | 최대 3,000개 | 선택 |  | 레코드 세트 목록 |
-| recordsetTypeList | List | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS, SOA | 선택 | | 레코드 세트 타입 목록 |
+| recordsetTypeList | List | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS, SOA | 선택 | | 레코드 세트 타입 목록 |
 | searchRecordsetName | String |  | 선택 |  | 검색할 레코드 세트 이름 |
 | page | int | 최소 1 | 선택 | 1 | 페이지 번호 |
 | limit | int | 최소 1, 최대 3,000 | 선택 | 50 | 조회 개수 |
@@ -379,7 +379,7 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{a
 ### 레코드 세트 생성
 
 - 레코드 세트를 생성합니다.
-- **레코드 세트 타입**으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA를 지원합니다.
+- **레코드 세트 타입**으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, SOA를 지원합니다.
 - SOA 레코드 세트는 생성, 수정, 삭제할 수 없으며, NS 레코드 세트는 **DNS Zone 이름**으로 생성, 수정, 삭제할 수 없습니다.
 - 레코드 세트 내의 레코드 목록의 길이는 최대 512바이트입니다.
 - DNS Zone당 레코드 세트는 최대 5,000개까지 생성할 수 있습니다.
@@ -413,7 +413,7 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{
 |---|---|---|---|---|---|
 | recordset | Object |  | 필수 |  | 레코드 세트 |
 | recordset.recordsetName | String | 최대 254자<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드 세트 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드 세트 타입 |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS | 필수 |  | 레코드 세트 타입 |
 | recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
 | recordset.recordList | List |  | 필수 |  | 레코드 목록 |
 | recordset.recordList[0].recordDisabled | boolean |  | 선택 | false | 레코드 비활성화 여부 |
@@ -515,6 +515,19 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{
 - TXT 레코드 세트
     - 여러 개의 레코드를 입력할 수 있습니다.
     - 레코드 세트 이름에 대한 텍스트 내용을 입력합니다.
+    - TXT 레코드 세트 타입으로 SPF 레코드를 생성할 수 있습니다.
+        - 이메일 발신자 도메인 인증 방식으로 수신 메일 서버가 발송 메일 서버와 메일 주소가 일치하는지 확인하는 기능입니다.
+        - 아래와 같은 형태로 입력 가능하며 상세 정의는 [RFC4408](https://tools.ietf.org/html/rfc4408)에서 확인할 수 있습니다.
+        - 수식자의 기본값은 '+'이며 메커니즘에 따라 IP, 도메인 이름 등을 추가로 입력합니다.
+            - 형태: "v=spf1 {수식자}{메커니즘}{내용} {변경자}={내용}"
+            - 수식자: '+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
+            - 메커니즘: all, include, a, mx, prt, ip4, ip6, exists
+            - 변경자: redirect, exp, 사용자 지정
+            - (예제)
+                - "v=spf1 mx -all"
+                - "v=spf1 ip4:192.168.0.1/16 -all"
+                - "v=spf1 a:toast.com -all"
+                - "v=spf1 redirect=toast.com"
 
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
@@ -531,26 +544,6 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{
 | recordset.recordList[0].weight | int | 최소 0, 최대 65535 | 필수 |  | 가중치 |
 | recordset.recordList[0].port | int | 최소 0, 최대 65535 | 필수 |  | 포트 |
 | recordset.recordList[0].domainName | String | 최대 255자 | 필수 |  | 도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
-
-
-- SPF 레코드 세트
-    - 여러 개의 레코드를 입력할 수 있습니다.
-    - 이메일 발신자 도메인 인증 방식으로 수신 메일 서버가 발송 메일 서버와 메일 주소가 일치하는지 확인하는 기능입니다.
-    - 아래와 같은 형태로 입력 가능하며 상세 정의는 [RFC4408](https://tools.ietf.org/html/rfc4408)에서 확인할 수 있습니다.
-    - 수식자의 기본값은 '+'이며 메커니즘에 따라 IP, 도메인 이름 등을 추가로 입력합니다.
-        - 형태: "v=spf1 {수식자}{메커니즘}{내용} {변경자}={내용}"
-        - 수식자: '+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
-        - 메커니즘: all, include, a, mx, prt, ip4, ip6, exists
-        - 변경자: redirect, exp, 사용자 지정
-        - (예제)
-            - "v=spf1 mx -all"
-            - "v=spf1 ip4:192.168.0.1/16 -all"
-            - "v=spf1 a:toast.com -all"
-            - "v=spf1 redirect=toast.com"
-
-| 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
-|---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | 최대 255바이트(인용부포 포함) | 필수 |  | SPF 형식에 따른 내용 |
 
 
 - NS 레코드 세트
@@ -597,7 +590,7 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{
 ### 레코드 세트 대량 생성
 
 - 레코드 세트를 여러 개 생성합니다. 요청당 최대 2,000개까지 생성할 수 있습니다.
-- **레코드 세트 타입**으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, SOA를 지원합니다.
+- **레코드 세트 타입**으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, SOA를 지원합니다.
 - SOA 레코드 세트는 생성, 수정, 삭제할 수 없으며, NS 레코드 세트는 **DNS Zone 이름**으로 생성, 수정, 삭제할 수 없습니다.
 - 레코드 세트 내의 레코드 목록의 길이는 최대 512바이트입니다.
 - DNS Zone당 레코드 세트는 최대 5,000개까지 생성할 수 있습니다.
@@ -631,7 +624,7 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{
 |---|---|---|---|---|---|
 | recordsetList | List |  | 필수 |  | 레코드 세트 목록 |
 | recordsetList[0].recordsetName | String | 최대 254자<br>(DNS Zone 이름 포함) | 필수 |  | 생성할 레코드 세트 이름, <br>도메인을 [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)으로 입력 |
-| recordsetList[0].recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드 세트 타입 |
+| recordsetList[0].recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS | 필수 |  | 레코드 세트 타입 |
 | recordsetList[0].recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
 | recordsetList[0].recordList | List |  | 필수 |  | 레코드 목록 |
 | recordsetList[0].recordList[0].recordDisabled | boolean |  | 선택 | false | 레코드 비활성화 여부 |
@@ -687,7 +680,7 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{a
 | 이름 | 타입 | 유효 범위 | 필수 여부 | 기본값 | 설명 |
 |---|---|---|---|---|---|
 | recordset | Object |  | 필수 |  | 레코드 세트 |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | 필수 |  | 레코드 세트 타입 |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS | 필수 |  | 레코드 세트 타입 |
 | recordset.recordsetTtl | int | 최소 1, 최대 2147483647 | 필수 |  | 네임 서버에서 레코드 세트 정보의 갱신 주기 |
 | recordset.recordList | List |  | 필수 |  | 레코드 목록 |
 | recordset.recordList[0].recordDisabled | boolean |  | 필수 |  | 레코드 비활성화 여부 |
