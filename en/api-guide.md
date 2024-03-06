@@ -299,7 +299,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
 | recordsetIdList | List | Max. 3,000 | Optional |  | Record set list |
-| recordsetTypeList | List | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS, SOA | Optional | | Record set type list |
+| recordsetTypeList | List | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS, SOA | Optional | | Record set type list |
 | searchRecordsetName | String |  | Optional |  | Record set name to search for |
 | page | int | Min. 1 | Optional | 1 | Page No. |
 | limit | int | Min. 1, Max. 3,000 | Optional | 50 | Query count |
@@ -379,7 +379,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 ### Create Record Set
 
 - Creates a record set.
-- The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, and SOA.
+- The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, and SOA.
 - SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 - The maximum length of the record list within the record set is 512 bytes.
 - Up to 5,000 record sets can be created per DNS Zone.
@@ -413,7 +413,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 |---|---|---|---|---|---|
 | recordset | Object |  | Required |  | Record set |
 | recordset.recordsetName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required |  | Name of the record set to create, <br>Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS | Required |  | Record set type |
 | recordset.recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
 | recordset.recordList | List |  | Required |  | Record list |
 | recordset.recordList[0].recordDisabled | boolean |  | Optional | false | Whether record is disabled or not |
@@ -515,6 +515,19 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 - TXT record set
     - Multiple records can be entered.
     - Enter the text for the record set name.
+    - SPF records can be created with the TXT record set type.
+        - This feature verifies whether the incoming email server has the same email address as the outgoing mail server by the email sender domain authentication method.
+        - Enter as follows. For detailed definition, see [RFC4408](https://tools.ietf.org/html/rfc4408).
+        - The default value of the qualifier is '+', and you can add IP or domain name depending on the mechanism.
+            - Format: "v=spf1 {qualifier}{mechanism}{content} {modifier}={content}"
+            - qualifier: '+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
+            - mechanism: all, include, a, mx, prt, ip4, ip6, exists
+            - modifier: redirect, exp, custom
+            - (Example)
+                - "v=spf1 mx -all"
+                - "v=spf1 ip4:192.168.0.1/16 -all"
+                - "v=spf1 a:toast.com -all"
+                - "v=spf1 redirect=toast.com"
 
 | Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
@@ -531,26 +544,6 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | recordset.recordList[0].weight | int | Min. 0, Max. 65535 | Required |  | Weight |
 | recordset.recordList[0].port | int | Min. 0, Max. 65535 | Required |  | Port |
 | recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
-
-
-- SPF record set
-    - Multiple records can be entered.
-    - This feature verifies whether the incoming email server has the same email address as the outgoing mail server by the email sender domain authentication method.
-    - Enter as follows. For detailed definition, see [RFC4408](https://tools.ietf.org/html/rfc4408).
-    - The default value of the qualifier is '+', and you can add IP or domain name depending on the mechanism.
-        - Format: "v=spf1 {qualifier}{mechanism}{content} {modifier}={content}"
-        - qualifier: '+'(Pass), '-'(Fail), '~'(Soft Fail), '?'(Neutral)
-        - mechanism: all, include, a, mx, prt, ip4, ip6, exists
-        - modifier: redirect, exp, custom
-        - (Example)
-            - "v=spf1 mx -all"
-            - "v=spf1 ip4:192.168.0.1/16 -all"
-            - "v=spf1 a:toast.com -all"
-            - "v=spf1 redirect=toast.com"
-
-| Name | Type | Valid range | Required | Default | Description |
-|---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | Max. 255 bytes (including quotation marks) | Required |  | Content according to the SPF format |
 
 
 - NS record set
@@ -597,7 +590,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ### Bulk Create Record Sets
 
 - You can create multiple record sets, up to 2,000 sets per request.
-- The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, SPF, NS, and SOA.
+- The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, and SOA.
 - SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 - The maximum length of the record list within the record set is 512 bytes.
 - Up to 5,000 record sets can be created per DNS Zone.
@@ -631,7 +624,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 |---|---|---|---|---|---|
 | recordsetList | List |  | Required |  | Record set list |
 | recordsetList[0].recordsetName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required |  | Name of the record set to create, <br>Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
-| recordsetList[0].recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
+| recordsetList[0].recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS | Required |  | Record set type |
 | recordsetList[0].recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
 | recordsetList[0].recordList | List |  | Required |  | Record list |
 | recordsetList[0].recordList[0].recordDisabled | boolean |  | Optional | false | Whether record is disabled or not |
@@ -687,7 +680,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | Name | Type | Valid range | Required | Default | Description |
 |---|---|---|---|---|---|
 | recordset | Object |  | Required |  | Record set |
-| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, SPF, NS | Required |  | Record set type |
+| recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS | Required |  | Record set type |
 | recordset.recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
 | recordset.recordList | List |  | Required |  | Record list |
 | recordset.recordList[0].recordDisabled | boolean |  | Required |  | Whether record is disabled or not |
