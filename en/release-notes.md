@@ -1,7 +1,9 @@
 ## Network > DNS Plus > Release Notes
 
 ### March 12, 2024
+
 #### Feature Updates
+
 * Stopped support for the SPF record set type. You can use the TXT record set type instead.
     * For more information, see [RFC 7208#section-14.1](https://datatracker.ietf.org/doc/html/rfc7208#section-14.1).
 
