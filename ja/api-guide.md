@@ -910,7 +910,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | gslb.gslbTtl | int |  | 必須 | false | GSLBドメイン更新周期 |
 | gslb.gslbRoutingRule | String | FAILOVER、RANDOM、GEOLOCATION  | 必須 |  | ルーティングルール |
 | gslb.gslbDisabled | boolean |  | 任意 | false | GSLBが無効かどうか |
-| gslb.connectedPoolList | List |  | 必須 |  | 接続されたPoolリスト |
+| gslb.connectedPoolList | List |  | 任意 |  | 接続されたPoolリスト |
 | gslb.connectedPoolList[0].poolId | String |  | 必須 |  | 接続されたPool ID |
 | gslb.connectedPoolList[0].connectedPoolOrder | int | 最小1、最大2,147,483,647 | 必須 |  | 接続されたPoolの優先順位 |
 | gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 任意 |  | 接続されたPoolの地域設定 |
@@ -990,7 +990,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | gslb.gslbTtl | int |  | 必須 | false | GSLBドメイン更新周期 |
 | gslb.gslbRoutingRule | String | FAILOVER、RANDOM、GEOLOCATION  | 必須 |  | ルーティングルール |
 | gslb.gslbDisabled | boolean |  | 任意 | false | GSLBが無効かどうか |
-| gslb.connectedPoolList | List |  | 必須 |  | 接続されたPoolリスト |
+| gslb.connectedPoolList | List |  | 任意 |  | 接続されたPoolリスト |
 | gslb.connectedPoolList[0].poolId | String |  | 必須 |  | 接続されたPool ID |
 | gslb.connectedPoolList[0].connectedPoolOrder | int | 最小1、最大2,147,483,647 | 必須 |  | 接続されたPoolの優先順位 |
 | gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 任意 |  | 接続されたPoolの地域設定 |
