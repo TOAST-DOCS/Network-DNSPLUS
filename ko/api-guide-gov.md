@@ -903,7 +903,7 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{
 | gslb.gslbTtl | int |  | 필수 | false | GSLB 도메인 갱신 주기 |
 | gslb.gslbRoutingRule | String | FAILOVER, RANDOM, GEOLOCATION  | 필수 |  | 라우팅 규칙 |
 | gslb.gslbDisabled | boolean |  | 선택 | false | GSLB 비활성화 여부 |
-| gslb.connectedPoolList | List |  | 필수 |  | 연결된 Pool 목록 |
+| gslb.connectedPoolList | List |  | 선택 |  | 연결된 Pool 목록 |
 | gslb.connectedPoolList[0].poolId | String |  | 필수 |  | 연결된 Pool ID |
 | gslb.connectedPoolList[0].connectedPoolOrder | int | 최소 1, 최대 2,147,483,647 | 필수 |  | 연결된 Pool 우선순위 |
 | gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 선택 |  | 연결된 Pool 지역 설정 |
@@ -983,7 +983,7 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{a
 | gslb.gslbTtl | int |  | 필수 | false | GSLB 도메인 갱신 주기 |
 | gslb.gslbRoutingRule | String | FAILOVER, RANDOM, GEOLOCATION  | 필수 |  | 라우팅 규칙 |
 | gslb.gslbDisabled | boolean |  | 선택 | false | GSLB 비활성화 여부 |
-| gslb.connectedPoolList | List |  | 필수 |  | 연결된 Pool 목록 |
+| gslb.connectedPoolList | List |  | 선택 |  | 연결된 Pool 목록 |
 | gslb.connectedPoolList[0].poolId | String |  | 필수 |  | 연결된 Pool ID |
 | gslb.connectedPoolList[0].connectedPoolOrder | int | 최소 1, 최대 2,147,483,647 | 필수 |  | 연결된 Pool 우선순위 |
 | gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 선택 |  | 연결된 Pool 지역 설정 |

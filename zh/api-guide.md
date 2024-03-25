@@ -903,7 +903,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | gslb.gslbTtl | int |  | Required | false | GSLB domain update cycle |
 | gslb.gslbRoutingRule | String | FAILOVER, RANDOM, GEOLOCATION  | Required |  | Routing rule |
 | gslb.gslbDisabled | boolean |  | Optional | false | Whether GSLB is disabled or not |
-| gslb.connectedPoolList | List |  | Required |  | Connected pool list |
+| gslb.connectedPoolList | List |  | Optional |  | Connected pool list |
 | gslb.connectedPoolList[0].poolId | String |  | Required |  | Connected pool ID |
 | gslb.connectedPoolList[0].connectedPoolOrder | int | Min. 1, Max. 2,147,483,647 | Required |  | Connected pool priority |
 | gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | Optional |  | Connected pool region settings |
@@ -983,7 +983,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | gslb.gslbTtl | int |  | Required | false | GSLB domain update cycle |
 | gslb.gslbRoutingRule | String | FAILOVER, RANDOM, GEOLOCATION  | Required |  | Routing rule |
 | gslb.gslbDisabled | boolean |  | Optional | false | Whether GSLB is disabled or not |
-| gslb.connectedPoolList | List |  | Required |  | Connected pool list |
+| gslb.connectedPoolList | List |  | Optional |  | Connected pool list |
 | gslb.connectedPoolList[0].poolId | String |  | Required |  | Connected pool ID |
 | gslb.connectedPoolList[0].connectedPoolOrder | int | Min. 1, Max. 2,147,483,647 | Required |  | Connected pool priority |
 | gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | Optional |  | Connected pool region settings |
