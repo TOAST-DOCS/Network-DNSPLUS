@@ -515,7 +515,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 - TXT record set
     - Multiple records can be entered.
     - Enter the text for the record set name.
-    - TXT 레코드 세트 타입으로 SPF 레코드를 생성할 수 있습니다.
+    - SPF records can be created with the TXT record set type.
         - This feature verifies whether the incoming email server has the same email address as the outgoing mail server by the email sender domain authentication method.
         - Enter as follows. For detailed definition, see [RFC4408](https://tools.ietf.org/html/rfc4408).
         - The default value of the qualifier is '+', and you can add IP or domain name depending on the mechanism.
@@ -1630,11 +1630,16 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
             "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17",
             "healthCheckName": "HTTPS-443",
             "protocol": "HTTPS",
-            "port": 443,
+            "interval": 60,
+            "timeout": 5,
+            "retries": 2,
             "path": "/",
             "expectedCodes": "2xx",
             "expectedBody": "OK",
             "allowInsecure": false,
+            "requestHeaderList": [
+                { "Host": "nhncloud.com" }
+            ],
             "createdAt": "2019-12-18T12:31:34.000+09:00",
             "updatedAt": "2019-12-18T14:19:20.000+09:00"
         }
@@ -1652,10 +1657,15 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | healthCheckList[0].healthCheckName | String | Health check name |
 | healthCheckList[0].protocol | String | Protocol |
 | healthCheckList[0].port | int | Port |
+| healthCheckList[0].interval | int | Health check cycle |
+| healthCheckList[0].timeout | int | Maximum response latency |
+| healthCheckList[0].retries | int | Maximum number of retries |
 | healthCheckList[0].path | String | Path |
 | healthCheckList[0].expectedCodes | String | Expected status code |
 | healthCheckList[0].expectedBody | String | Expected response body |
 | healthCheckList[0].allowInsecure | boolean | Disable certificate validation |
+| healthCheckList[0].requestHeaderList | List | List of request headers |
+| healthCheckList[0].requestHeaderList[0].requestHeaderList[0] | Object | Request header name, value object |
 | healthCheckList[0].createdAt | DateTime | Created date |
 | healthCheckList[0].updatedAt | DateTime | Modified date |
 
@@ -1664,9 +1674,9 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 
 - Creates a health check.
 - For the health check **protocol**, HTTPS, HTTP, and TPC are supported, and the information that can be entered differs depending on the selected protocol.
-    - HTTPS input items: Disable certificate validation, port, path, expected status code, expected response body
-    - HTTP input items: Port, path, expected status code, expected response body
-    - TCP input items: Port
+    - HTTPS input items: No certificate verification, port, health check cycle, maximum response latency, maximum retries, path, expected status code, expected response body, and request header
+    - HTTP input items: Port, health check cycle, maximum response latency, maximum retries, path, expected status code, expected response body, and request header
+    - TCP input items: Port, health check cycle, maximum response latency, maximum retry count
 - Using **Disable certificate validation** allows you to ignore the TLS/SSL certificate of an endpoint being invalid when a health check is performed.
 - Does not support a page redirected from an endpoint when determining **Expected status code** and **Expected response body**.
 - There is a limit to the maximum number of health checks that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
@@ -1686,7 +1696,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 ```
 curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks' \
 -H 'Content-Type: application/json' \
---data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "2xx", "allowInsecure": false }}'
+--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "2xx", "allowInsecure": false, "requestHeaderList": [{ "Host": "nhncloud.com" }] }}'
 ```
 
 [Fields]
@@ -1697,10 +1707,14 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | healthCheck.healthCheckName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | Health check name |
 | healthCheck.protocol | String | HTTPS, HTTP, TCP | Required |  | Protocol to use when performing health checks |
 | healthCheck.port | int | Min. 1, Max. 65535 | Required |  | Port to use when performing health checks |
+| healthCheck.interval | int | Min. 10, Max. 3600 | Optional | 60 | Health check cycle |
+| healthCheck.timeout | int | Min. 1, Max. 10 | Optional | 5 | Maximum response latency |
+| healthCheck.retries | int | Min. 0, Max. 5 | Optional | 2 | Maximum number of retries |
 | healthCheck.path | String | Max. 254 characters,<br>Start character '/' | Optional |  | Path to use when performing health checks,<br>used for HTTPS and HTTP |
 | healthCheck.expectedCodes | String | Numbers and a wildcard 'x' | Optional |  | Expected status code for health checks,<br>used for HTTPS and HTTP<br>(Example) 2xx, 20x, 200 |
 | healthCheck.expectedBody | String | Max. 10KB | Optional |  | Expected response body for health checks,<br>used for HTTPS and HTTP |
 | healthCheck.allowInsecure | boolean |  | Optional |  | Disable certificate validation for health checks,<br>used for HTTPS |
+| healthCheck.requestHeaderList | List |  | Optional |  | A list of request headers,<br>used for HTTPS and HTTP<br> Items in the list are requested in the ` form { "Header Name": "Header Value" }` |
 
 #### Response
 
@@ -1718,9 +1732,15 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
         "healthCheckName": "HTTPS-443",
         "protocol": "HTTPS",
         "port": 443,
+        "interval": 60,
+        "timeout": 5,
+        "retries": 2,
         "path": "/",
         "expectedCodes": "2xx",
         "allowInsecure": false,
+        "requestHeaderList": [
+            { "Host": "nhncloud.com" }
+        ],
         "createdAt": "2019-12-18T12:31:34.000+09:00",
         "updatedAt": "2019-12-18T12:31:34.000+09:00"
     }
@@ -1749,7 +1769,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ```
 curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
 -H 'Content-Type: application/json' \
---data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
+--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
 ```
 
 [Fields]
@@ -1760,10 +1780,14 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | healthCheck.healthCheckName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | Health check name |
 | healthCheck.protocol | String | HTTPS, HTTP, TCP | Required |  | Protocol to use when performing health checks |
 | healthCheck.port | int | Min. 1, Max. 65535 | Required |  | Port to use when performing health checks |
+| healthCheck.interval | int | Min. 10, Max. 3600 | Optional | | Health check cycle |
+| healthCheck.timeout | int | Min. 1, Max. 10 | Optional | | Maximum response latency |
+| healthCheck.retries | int | Min. 0, Max. 5 | Optional | | Maximum number of retries |
 | healthCheck.path | String | Max. 254 characters,<br>Start character '/' | Optional |  | Path to use when performing health checks,<br>used for HTTPS and HTTP |
 | healthCheck.expectedCodes | String | Numbers and a wildcard 'x' | Optional |  | Expected status code for health checks,<br>used for HTTPS and HTTP<br>(Example) 2xx, 20x, 200 |
 | healthCheck.expectedBody | String | Max. 10KB | Optional |  | Expected response body for health checks,<br>used for HTTPS and HTTP |
 | healthCheck.allowInsecure | boolean |  | Optional |  | Disable certificate validation for health checks,<br>used for HTTPS |
+| healthCheck.requestHeaderList | List |  | Optional |  | A list of request headers,<br>used for HTTPS and HTTP<br> Items in the list are requested in the ` form { "Header Name": "Header Value" }` |
 
 #### Response
 
@@ -1781,9 +1805,15 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
         "healthCheckName": "HTTPS-443",
         "protocol": "HTTPS",
         "port": 443,
+        "interval": 60,
+        "timeout": 5,
+        "retries": 2,
         "path": "/",
         "expectedCodes": "3xx",
         "allowInsecure": false,
+        "requestHeaderList": [
+            { "Host": "nhncloud.com" }
+        ],
         "createdAt": "2019-12-18T12:31:34.000+09:00",
         "updatedAt": "2019-12-18T12:36:20.000+09:00"
     }
