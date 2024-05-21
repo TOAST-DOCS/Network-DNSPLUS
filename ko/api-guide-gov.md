@@ -1631,16 +1631,10 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{a
             "healthCheckName": "HTTPS-443",
             "protocol": "HTTPS",
             "port": 443,
-            "interval": 60,
-            "timeout": 5,
-            "retries": 2,
             "path": "/",
             "expectedCodes": "2xx",
             "expectedBody": "OK",
             "allowInsecure": false,
-            "requestHeaderList": [
-                { "Host": "gov-nhncloud.com" }
-            ],
             "createdAt": "2019-12-18T12:31:34.000+09:00",
             "updatedAt": "2019-12-18T14:19:20.000+09:00"
         }
@@ -1658,15 +1652,10 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{a
 | healthCheckList[0].healthCheckName | String | 헬스 체크 이름 |
 | healthCheckList[0].protocol | String | 프로토콜 |
 | healthCheckList[0].port | int | 포트 |
-| healthCheckList[0].interval | int | 헬스 체크 주기 |
-| healthCheckList[0].timeout | int | 최대 응답 대기 시간 |
-| healthCheckList[0].retries | int | 최대 재시도 횟수 |
 | healthCheckList[0].path | String | 경로 |
 | healthCheckList[0].expectedCodes | String | 예상 상태 코드 |
 | healthCheckList[0].expectedBody | String | 예상 응답 본문 |
 | healthCheckList[0].allowInsecure | boolean | 인증서 검증 안함 |
-| healthCheckList[0].requestHeaderList | List | 요청 헤더 목록 |
-| healthCheckList[0].requestHeaderList[0] | Object | 요청 헤더 이름, 값 객체 |
 | healthCheckList[0].createdAt | DateTime | 생성일 |
 | healthCheckList[0].updatedAt | DateTime | 수정일 |
 
@@ -1675,9 +1664,9 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{a
 
 - 헬스 체크를 생성합니다.
 - 헬스 체크 **프로토콜**은 HTTPS, HTTP, TCP를 지원하며 선택한 프로토콜에 따라 입력 할 수 있는 정보가 다릅니다.
-    - HTTPS 입력 가능 항목: 인증서 검증 안함, 포트, 헬스 체크 주기, 최대 응답 대기 시간, 최대 재시도 횟수, 경로, 예상 상태 코드, 예상 응답 본문, 요청 헤더
-    - HTTP 입력 가능 항목: 포트, 헬스 체크 주기, 최대 응답 대기 시간, 최대 재시도 횟수, 경로, 예상 상태 코드, 예상 응답 본문, 요청 헤더
-    - TCP 입력 가능 항목: 포트, 헬스 체크 주기, 최대 응답 대기 시간, 최대 재시도 횟수
+    - HTTPS 입력 가능 항목: 인증서 검증 안함, 포트, 경로, 예상 상태 코드, 예상 응답 본문
+    - HTTP 입력 가능 항목: 포트, 경로, 예상 상태 코드, 예상 응답 본문
+    - TCP 입력 가능 항목: 포트
 - **인증서 검증 안함**을 사용하면 헬스 체크가 수행될 때 엔드포인트의 TLS/SSL 인증서가 유효하지 않아도 무시할 수 있습니다.
 - **예상 상태 코드**와 **예상 응답 본문**을 판단 할 때 엔드포인트에서 리다이렉션 된 페이지에 대해서는 지원하지 않습니다.
 - 헬스 체크 생성 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의해 주시기 바랍니다. [1:1 문의](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
@@ -1697,7 +1686,7 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{a
 ```
 curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks' \
 -H 'Content-Type: application/json' \
---data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "2xx", "allowInsecure": false, "requestHeaderList": [{ "Host": "gov-nhncloud.com" }] }}'
+--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "2xx", "allowInsecure": false }}'
 ```
 
 [필드]
@@ -1708,14 +1697,10 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{
 | healthCheck.healthCheckName | String | 최대 100자,<br>영대소문자와 숫자, '-', '_' | 필수 |  | 헬스 체크 이름 |
 | healthCheck.protocol | String | HTTPS, HTTP, TCP | 필수 |  | 헬스 체크 수행 프로토콜 |
 | healthCheck.port | int | 최소 1, 최대 65535 | 필수 |  | 헬스 체크 수행 포트 |
-| healthCheck.interval | int | 최소 10, 최대 3600 | 선택 | 60 | 헬스 체크 주기 |
-| healthCheck.timeout | int | 최소 1, 최대 10 | 선택 | 5 | 최대 응답 대기 시간 |
-| healthCheck.retries | int | 최소 0, 최대 5 | 선택 | 2 | 최대 재시도 횟수 |
 | healthCheck.path | String | 최대 254자,<br>시작 문자 '/' | 선택 |  | 헬스 체크 수행 경로,<br>HTTPS, HTTP 일 때 사용 |
 | healthCheck.expectedCodes | String | 숫자와 와일드카드 'x' | 선택 |  | 헬스 체크 예상 상태 코드,<br>HTTPS, HTTP 일 때 사용<br>(예제) 2xx, 20x, 200 |
 | healthCheck.expectedBody | String | 최대 10KB | 선택 |  | 헬스 체크 예상 응답 본문,<br>HTTPS, HTTP 일 때 사용 |
 | healthCheck.allowInsecure | boolean |  | 선택 |  | 헬스 체크 인증서 검증 안함,<br>HTTPS 일 때 사용 |
-| healthCheck.requestHeaderList | List |  | 선택 |  | 요청 헤더 목록,<br>HTTPS, HTTP 일 때 사용,<br> 목록 내 항목은 `{ "헤더이름": "헤더 값" }`형태로 요청 |
 
 #### 응답
 
@@ -1733,15 +1718,9 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{
         "healthCheckName": "HTTPS-443",
         "protocol": "HTTPS",
         "port": 443,
-        "interval": 60,
-        "timeout": 5,
-        "retries": 2,
         "path": "/",
         "expectedCodes": "2xx",
         "allowInsecure": false,
-        "requestHeaderList": [
-            { "Host": "gov-nhncloud.com" }
-        ],
         "createdAt": "2019-12-18T12:31:34.000+09:00",
         "updatedAt": "2019-12-18T12:31:34.000+09:00"
     }
@@ -1770,7 +1749,7 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{
 ```
 curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
 -H 'Content-Type: application/json' \
---data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
+--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
 ```
 
 [필드]
@@ -1781,15 +1760,10 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{a
 | healthCheck.healthCheckName | String | 최대 100자,<br>영대소문자와 숫자, '-', '_' | 필수 |  | 헬스 체크 이름 |
 | healthCheck.protocol | String | HTTPS, HTTP, TCP | 필수 |  | 헬스 체크 수행 프로토콜 |
 | healthCheck.port | int | 최소 1, 최대 65535 | 필수 |  | 헬스 체크 수행 포트 |
-| healthCheck.interval | int | 최소 10, 최대 3600 | 선택 | | 헬스 체크 주기 |
-| healthCheck.timeout | int | 최소 1, 최대 10 | 선택 | | 최대 응답 대기 시간 |
-| healthCheck.retries | int | 최소 0, 최대 5 | 선택 | | 최대 재시도 횟수 |
 | healthCheck.path | String | 최대 254자,<br>시작 문자 '/' | 선택 |  | 헬스 체크 수행 경로,<br>HTTPS, HTTP 일 때 사용 |
 | healthCheck.expectedCodes | String | 숫자와 와일드카드 'x' | 선택 |  | 헬스 체크 예상 상태 코드,<br>HTTPS, HTTP 일 때 사용<br>(예제) 2xx, 20x, 200 |
 | healthCheck.expectedBody | String | 최대 10KB | 선택 |  | 헬스 체크 예상 응답 본문,<br>HTTPS, HTTP 일 때 사용 |
 | healthCheck.allowInsecure | boolean |  | 선택 |  | 헬스 체크 인증서 검증 안함,<br>HTTPS 일 때 사용 |
-| healthCheck.requestHeaderList | List |  | 선택 |  | 요청 헤더 목록,<br>HTTPS, HTTP 일 때 사용,<br> 목록 내 항목은 `{ "헤더이름": "헤더 값" }`형태로 요청 |
-
 
 #### 응답
 
@@ -1807,15 +1781,9 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v1.0/appkeys/{a
         "healthCheckName": "HTTPS-443",
         "protocol": "HTTPS",
         "port": 443,
-        "interval": 60,
-        "timeout": 5,
-        "retries": 2,
         "path": "/",
         "expectedCodes": "3xx",
         "allowInsecure": false,
-        "requestHeaderList": [
-            { "Host": "gov-nhncloud.com" }
-        ],
         "createdAt": "2019-12-18T12:31:34.000+09:00",
         "updatedAt": "2019-12-18T12:36:20.000+09:00"
     }
