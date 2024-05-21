@@ -1,6 +1,6 @@
 ## Network > DNS Plus > Release Notes
 
-### May 14, 2024
+### May 28, 2024
 
 #### Added Features 
 * Added the feature to set the header for health check requests, health check cycle, maximum response latency, and maximum number of retries in GSLB health checks.
