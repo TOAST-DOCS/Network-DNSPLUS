@@ -1657,8 +1657,8 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | healthCheckList[0].healthCheckName | String | Health check name |
 | healthCheckList[0].protocol | String | Protocol |
 | healthCheckList[0].port | int | Port |
-| healthCheckList[0].interval | int | Health check cycle |
-| healthCheckList[0].timeout | int | Maximum response latency |
+| healthCheckList[0].interval | int | Health check interval |
+| healthCheckList[0].timeout | int | Maximum response latency (timeout) |
 | healthCheckList[0].retries | int | Maximum number of retries |
 | healthCheckList[0].path | String | Path |
 | healthCheckList[0].expectedCodes | String | Expected status code |
@@ -1674,9 +1674,9 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 
 - Creates a health check.
 - For the health check **protocol**, HTTPS, HTTP, and TPC are supported, and the information that can be entered differs depending on the selected protocol.
-    - HTTPS input items: No certificate verification, port, health check cycle, maximum response latency, maximum retries, path, expected status code, expected response body, and request header
-    - HTTP input items: Port, health check cycle, maximum response latency, maximum retries, path, expected status code, expected response body, and request header
-    - TCP input items: Port, health check cycle, maximum response latency, maximum retry count
+    - HTTPS input items: No certificate verification, port, health check interval, Maximum response latency (timeout), maximum retries, path, expected status code, expected response body, and request header
+    - HTTP input items: Port, health check interval, Maximum response latency (timeout), maximum retries, path, expected status code, expected response body, and request header
+    - TCP input items: Port, health check interval, Maximum response latency (timeout), maximum retry count
 - Using **Disable certificate validation** allows you to ignore the TLS/SSL certificate of an endpoint being invalid when a health check is performed.
 - Does not support a page redirected from an endpoint when determining **Expected status code** and **Expected response body**.
 - There is a limit to the maximum number of health checks that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
@@ -1707,8 +1707,8 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | healthCheck.healthCheckName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | Health check name |
 | healthCheck.protocol | String | HTTPS, HTTP, TCP | Required |  | Protocol to use when performing health checks |
 | healthCheck.port | int | Min. 1, Max. 65535 | Required |  | Port to use when performing health checks |
-| healthCheck.interval | int | Min. 10, Max. 3600 | Optional | 60 | Health check cycle |
-| healthCheck.timeout | int | Min. 1, Max. 10 | Optional | 5 | Maximum response latency |
+| healthCheck.interval | int | Min. 10, Max. 3600 | Optional | 60 | Health check interval |
+| healthCheck.timeout | int | Min. 1, Max. 10 | Optional | 5 | Maximum response latency (timeout) |
 | healthCheck.retries | int | Min. 0, Max. 5 | Optional | 2 | Maximum number of retries |
 | healthCheck.path | String | Max. 254 characters,<br>Start character '/' | Optional |  | Path to use when performing health checks,<br>used for HTTPS and HTTP |
 | healthCheck.expectedCodes | String | Numbers and a wildcard 'x' | Optional |  | Expected status code for health checks,<br>used for HTTPS and HTTP<br>(Example) 2xx, 20x, 200 |
@@ -1780,8 +1780,8 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | healthCheck.healthCheckName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | Health check name |
 | healthCheck.protocol | String | HTTPS, HTTP, TCP | Required |  | Protocol to use when performing health checks |
 | healthCheck.port | int | Min. 1, Max. 65535 | Required |  | Port to use when performing health checks |
-| healthCheck.interval | int | Min. 10, Max. 3600 | Optional | | Health check cycle |
-| healthCheck.timeout | int | Min. 1, Max. 10 | Optional | | Maximum response latency |
+| healthCheck.interval | int | Min. 10, Max. 3600 | Optional | | Health check interval |
+| healthCheck.timeout | int | Min. 1, Max. 10 | Optional | | Maximum response latency (timeout) |
 | healthCheck.retries | int | Min. 0, Max. 5 | Optional | | Maximum number of retries |
 | healthCheck.path | String | Max. 254 characters,<br>Start character '/' | Optional |  | Path to use when performing health checks,<br>used for HTTPS and HTTP |
 | healthCheck.expectedCodes | String | Numbers and a wildcard 'x' | Optional |  | Expected status code for health checks,<br>used for HTTPS and HTTP<br>(Example) 2xx, 20x, 200 |
