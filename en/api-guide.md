@@ -1665,7 +1665,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | healthCheckList[0].expectedBody | String | Expected response body |
 | healthCheckList[0].allowInsecure | boolean | Disable certificate validation |
 | healthCheckList[0].requestHeaderList | List | List of request headers |
-| healthCheckList[0].requestHeaderList[0].requestHeaderList[0] | Object | Request header name, value object |
+| healthCheckList[0].requestHeaderList[0] | Object | Request header name, value object |
 | healthCheckList[0].createdAt | DateTime | Created date |
 | healthCheckList[0].updatedAt | DateTime | Modified date |
 
