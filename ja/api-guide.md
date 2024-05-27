@@ -1708,7 +1708,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | healthCheck.healthCheckName | String | 最大100文字、<br>英字(大文字/小文字)、数字、(-)、(_) | 必須 |  | ヘルスチェックの名前 |
 | healthCheck.protocol | String | HTTPS、HTTP、TCP | 必須 |  | ヘルスチェック実行プロトコル |
 | healthCheck.port | int | 最小1、最大65535 | 必須 |  | ヘルスチェック実行ポート |
-| healthCheck.interval | int | 最小10、最大3600 | 任意 | 60 | ヘルスチェック周期 |
+| healthCheck.interval | int | 最小10または(retries+1)*timeout、最大3600 | 任意 | 60 | ヘルスチェック周期 |
 | healthCheck.timeout | int | 最小1、最大10 | 任意 | 5 | 最大レスポンス待機時間 |
 | healthCheck.retries | int | 最小0、最大5 | 任意 | 2 | 最大再試行回数 |
 | healthCheck.path | String | 最大254文字、<br>最初の文字'/' | 任意 |  | ヘルスチェック実行パス、<br>HTTPS/HTTPの時に使用 |
@@ -1781,7 +1781,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | healthCheck.healthCheckName | String | 最大100文字、<br>英字(大文字/小文字)、数字、(-)、(_) | 必須 |  | ヘルスチェックの名前 |
 | healthCheck.protocol | String | HTTPS、HTTP、TCP | 必須 |  | ヘルスチェック実行プロトコル |
 | healthCheck.port | int | 最小1、最大65535 | 必須 |  | ヘルスチェック実行ポート |
-| healthCheck.interval | int | 最小10、最大3600 | 任意 | | ヘルスチェック周期 |
+| healthCheck.interval | int | 最小10または(retries+1)*timeout、最大3600 | 任意 | | ヘルスチェック周期 |
 | healthCheck.timeout | int | 最小1、最大10 | 任意 | | 最大レスポンス待機時間 |
 | healthCheck.retries | int | 最小0、最大5 | 任意 | | 最大再試行回数 |
 | healthCheck.path | String | 最大254文字、<br>最初の文字'/' | 任意 |  | ヘルスチェック実行パス、<br>HTTPS/HTTPの時に使用 |
