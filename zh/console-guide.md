@@ -315,13 +315,13 @@ You can manage health checks from the **GSLB** screen in the menu.
 
     - **Health Check Name**: The name of the health check to be created. Uppercase and lowercase letters, numbers, '-' and '_' are allowed.
     - **Protocol**: The protocol to use when performing a health check, You can select HTTPS, HTTP, or TCP. The information you can enter depends on the protocol you choose.
-        - **HTTPS Input Items**: No certificate verification, port, health check cycle, maximum response latency, maximum retries, path, expected status code, expected response body, and request header
-        - **HTTP Input Items**: Port, health check cycle, maximum response latency, maximum retries, path, expected status code, expected response body, and request header
-        - **TCP Input Items**: Port, health check cycle, maximum response latency, maximum retry count
+        - **HTTPS Input Items**: No certificate verification, port, health check interval, maximum response latency (timeout), maximum retries, path, expected status code, expected response body, and request header
+        - **HTTP Input Items**: Port, health check interval, maximum response latency (timeout), maximum retries, path, expected status code, expected response body, and request header
+        - **TCP Input Items**: Port, health check interval, maximum response latency (timeout), maximum retry count
     - **Disable Certificate Validation**: If you select **Yes**, ignores the endpoint's TLS/SSL certificate being invalid when a health check is performed.
     - **Port**: Enter the port to be used when performing a health check.
-    - **Health Check Cycle**: Enter the health check interval. The unit is seconds, and a health check is attempted every specified cycle.
-    - **Maximum Response Latency**: Enter the maximum number of seconds to wait for a healthy response after a health check. The units are seconds, and exceeding the specified wait time is considered a failure.
+    - **Health check interval**: Enter the health check interval. The unit is seconds, and a health check is attempted every specified cycle.
+    - **Maximum Response latency (timeout)**: Enter the maximum number of seconds to wait for a healthy response after a health check. The units are seconds, and exceeding the specified wait time is considered a failure.
     - **Maximum Number of Retries**: Enter the maximum number of retries for the health check
     - **Path**: Enter the path to be used when performing a health check. The starting character must be a forward slash (/).
     - **Expected Status Code**: Enter the expected [HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) response of the health check. You can enter an 'x' character as a wildcard, and if a match is found, the endpoint is considered healthy. Example: 2xx, 20x, 200
@@ -341,7 +341,7 @@ You can manage health checks from the **GSLB** screen in the menu.
 
 1. Select the health check to modify and click **Modify Health Check**.
 
-2. Modify **Health Check Name**, **Protocol**, **Disable Certificate Validation**, **Port**, **Health Check Cycle**, **Maximum Response Latency**, **Maximum Number of Retries**, **Path**, **Expected Status Code**, **Expected Response Body**, and **Request Header**.
+2. Modify **Health Check Name**, **Protocol**, **Disable Certificate Validation**, **Port**, **Health Check Interval**, **Maximum Response latency (timeout)**, **Maximum Number of Retries**, **Path**, **Expected Status Code**, **Expected Response Body**, and **Request Header**.
 
 3. After completing the configuration, click **Confirm**.
 

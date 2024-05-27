@@ -1707,7 +1707,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | healthCheck.healthCheckName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | Health check name |
 | healthCheck.protocol | String | HTTPS, HTTP, TCP | Required |  | Protocol to use when performing health checks |
 | healthCheck.port | int | Min. 1, Max. 65535 | Required |  | Port to use when performing health checks |
-| healthCheck.interval | int | Min. 10, Max. 3600 | Optional | 60 | Health check interval |
+| healthCheck.interval | int | Min. 10 or (retries+1)*timeout, Max. 3600 | Optional | 60 | Health check interval|
 | healthCheck.timeout | int | Min. 1, Max. 10 | Optional | 5 | Maximum response latency (timeout) |
 | healthCheck.retries | int | Min. 0, Max. 5 | Optional | 2 | Maximum number of retries |
 | healthCheck.path | String | Max. 254 characters,<br>Start character '/' | Optional |  | Path to use when performing health checks,<br>used for HTTPS and HTTP |
@@ -1780,7 +1780,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | healthCheck.healthCheckName | String | Max. 100 characters,<br>Uppercase and lowercase characters and numbers, '-', '_' | Required |  | Health check name |
 | healthCheck.protocol | String | HTTPS, HTTP, TCP | Required |  | Protocol to use when performing health checks |
 | healthCheck.port | int | Min. 1, Max. 65535 | Required |  | Port to use when performing health checks |
-| healthCheck.interval | int | Min. 10, Max. 3600 | Optional | | Health check interval |
+| healthCheck.interval | int | Min. 10 or (retries+1)*timeout, Max. 3600 | Optional | | Health check interval|
 | healthCheck.timeout | int | Min. 1, Max. 10 | Optional | | Maximum response latency (timeout) |
 | healthCheck.retries | int | Min. 0, Max. 5 | Optional | | Maximum number of retries |
 | healthCheck.path | String | Max. 254 characters,<br>Start character '/' | Optional |  | Path to use when performing health checks,<br>used for HTTPS and HTTP |
