@@ -1631,10 +1631,16 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
             "healthCheckName": "HTTPS-443",
             "protocol": "HTTPS",
             "port": 443,
+            "interval": 60,
+            "timeout": 5,
+            "retries": 2,
             "path": "/",
             "expectedCodes": "2xx",
             "expectedBody": "OK",
             "allowInsecure": false,
+            "requestHeaderList": [
+                { "Host": "nhncloud.com" }
+            ],
             "createdAt": "2019-12-18T12:31:34.000+09:00",
             "updatedAt": "2019-12-18T14:19:20.000+09:00"
         }
@@ -1652,10 +1658,15 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | healthCheckList[0].healthCheckName | String | ヘルスチェックの名前 |
 | healthCheckList[0].protocol | String | プロトコル |
 | healthCheckList[0].port | int | ポート |
+| healthCheckList[0].interval | int | ヘルスチェック周期 |
+| healthCheckList[0].timeout | int | 最大レスポンス待機時間 |
+| healthCheckList[0].retries | int | 最大再試行回数 |
 | healthCheckList[0].path | String | パス |
 | healthCheckList[0].expectedCodes | String | 予想ステータスコード |
 | healthCheckList[0].expectedBody | String | 予想レスポンス本文 |
 | healthCheckList[0].allowInsecure | boolean | 証明書検証しない |
+| healthCheckList[0].requestHeaderList | List | リクエストヘッダリスト |
+| healthCheckList[0].requestHeaderList[0] | Object | リクエストヘッダ名、値オブジェクト |
 | healthCheckList[0].createdAt | DateTime | 作成日 |
 | healthCheckList[0].updatedAt | DateTime | 修正日 |
 
@@ -1664,9 +1675,9 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 
 - ヘルスチェックを作成します。
 - ヘルスチェック**プロトコル**はHTTPS、HTTP、TCPをサポートし、選択したプロトコルによって入力できる情報が異なります。
-    - HTTPS入力可能項目：証明書検証しない、ポート、パス、予想ステータスコード、予想レスポンス本文
-    - HTTP入力可能項目：ポート、パス、予想ステータスコード、予想レスポンス本文
-    - TCP入力可能項目：ポート
+    - HTTPS入力可能項目：証明書検証しない、ポート、ヘルスチェック周期、最大レスポンス待機時間、最大再試行回数、パス、予想ステータスコード、予想レスポンス本文、リクエストヘッダ
+    - HTTP入力可能項目：ポート、ヘルスチェック周期、最大レスポンス待機時間、最大再試行回数、パス、予想ステータスコード、予想レスポンス本文、リクエストヘッダ
+    - TCP入力可能項目:ポート、ヘルスチェック周期、最大レスポンス待機時間、最大再試行回数
 - **証明書検証しない**を使用すると、ヘルスチェックが実行される時、エンドポイントのTLS/SSL証明書が無効でも無視できます。
 - **予想ステータスコード**と**予想レスポンス本文**を判断する時、エンドポイントからリダイレクトされたページについてはサポートしません。
 - ヘルスチェックの作成数は制限されています。拡張が必要な場合は別途お問い合わせください。[1:1お問い合わせ](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
@@ -1686,7 +1697,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 ```
 curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks' \
 -H 'Content-Type: application/json' \
---data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "2xx", "allowInsecure": false }}'
+'--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "2xx", "allowInsecure": false, "requestHeaderList": [{ "Host": "nhncloud.com" }] }}'
 ```
 
 [フィールド]
@@ -1697,10 +1708,14 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | healthCheck.healthCheckName | String | 最大100文字、<br>英字(大文字/小文字)、数字、(-)、(_) | 必須 |  | ヘルスチェックの名前 |
 | healthCheck.protocol | String | HTTPS、HTTP、TCP | 必須 |  | ヘルスチェック実行プロトコル |
 | healthCheck.port | int | 最小1、最大65535 | 必須 |  | ヘルスチェック実行ポート |
+| healthCheck.interval | int | 最小10、最大3600 | 任意 | 60 | ヘルスチェック周期 |
+| healthCheck.timeout | int | 最小1、最大10 | 任意 | 5 | 最大レスポンス待機時間 |
+| healthCheck.retries | int | 最小0、最大5 | 任意 | 2 | 最大再試行回数 |
 | healthCheck.path | String | 最大254文字、<br>最初の文字'/' | 任意 |  | ヘルスチェック実行パス、<br>HTTPS/HTTPの時に使用 |
 | healthCheck.expectedCodes | String | 数字とワイルドカード'x' | 任意 |  | ヘルスチェック予想ステータスコード、<br>HTTPS/HTTPの時に使用<br>(例) 2xx, 20x, 200 |
 | healthCheck.expectedBody | String | 最大10KB | 任意 |  | ヘルスチェック予想レスポンス本文、<br>HTTPS/HTTPの時に使用 |
 | healthCheck.allowInsecure | boolean |  | 任意 |  | ヘルスチェック証明書検証しない、<br>HTTPSの時に使用 |
+| healthCheck.requestHeaderList | List |  | 任意 |  | リクエストヘッダリスト、<br>HTTPS, HTTPの場合に使用、<br> リスト内の項目は`{ "ヘッダ名": "ヘッダ値" }`の形でリクエスト |
 
 #### レスポンス
 
@@ -1718,9 +1733,15 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
         "healthCheckName": "HTTPS-443",
         "protocol": "HTTPS",
         "port": 443,
+        "interval": 60,
+        "timeout": 5,
+        "retries": 2,
         "path": "/",
         "expectedCodes": "2xx",
         "allowInsecure": false,
+        "requestHeaderList": [
+            { "Host": "nhncloud.com" }
+        ],
         "createdAt": "2019-12-18T12:31:34.000+09:00",
         "updatedAt": "2019-12-18T12:31:34.000+09:00"
     }
@@ -1749,7 +1770,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ```
 curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
 -H 'Content-Type: application/json' \
---data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
+'--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
 ```
 
 [フィールド]
@@ -1760,10 +1781,14 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | healthCheck.healthCheckName | String | 最大100文字、<br>英字(大文字/小文字)、数字、(-)、(_) | 必須 |  | ヘルスチェックの名前 |
 | healthCheck.protocol | String | HTTPS、HTTP、TCP | 必須 |  | ヘルスチェック実行プロトコル |
 | healthCheck.port | int | 最小1、最大65535 | 必須 |  | ヘルスチェック実行ポート |
+| healthCheck.interval | int | 最小10、最大3600 | 任意 | | ヘルスチェック周期 |
+| healthCheck.timeout | int | 最小1、最大10 | 任意 | | 最大レスポンス待機時間 |
+| healthCheck.retries | int | 最小0、最大5 | 任意 | | 最大再試行回数 |
 | healthCheck.path | String | 最大254文字、<br>最初の文字'/' | 任意 |  | ヘルスチェック実行パス、<br>HTTPS/HTTPの時に使用 |
 | healthCheck.expectedCodes | String | 数字とワイルドカード'x' | 任意 |  | ヘルスチェック予想ステータスコード、<br>HTTPS/HTTPの時に使用<br>(例) 2xx, 20x, 200 |
 | healthCheck.expectedBody | String | 最大10KB | 任意 |  | ヘルスチェック予想レスポンス本文、<br>HTTPS/HTTPの時に使用 |
 | healthCheck.allowInsecure | boolean |  | 任意 |  | ヘルスチェック証明書を検証しない、<br>HTTPSの時に使用 |
+| healthCheck.requestHeaderList | List |  | 任意 |  | リクエストヘッダリスト、<br>HTTPS、HTTPの場合に使用、<br> リスト内の項目は`{ "ヘッダ名": "ヘッダ値" }`の形式でリクエスト |
 
 #### レスポンス
 
@@ -1781,9 +1806,15 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
         "healthCheckName": "HTTPS-443",
         "protocol": "HTTPS",
         "port": 443,
+        "interval": 60,
+        "timeout": 5,
+        "retries": 2,
         "path": "/",
         "expectedCodes": "3xx",
         "allowInsecure": false,
+        "requestHeaderList": [
+            { "Host": "nhncloud.com" }
+        ],
         "createdAt": "2019-12-18T12:31:34.000+09:00",
         "updatedAt": "2019-12-18T12:36:20.000+09:00"
     }
