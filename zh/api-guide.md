@@ -414,7 +414,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | recordset | Object |  | Required |  | Record set |
 | recordset.recordsetName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required |  | Name of the record set to create, <br>Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 | recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS | Required |  | Record set type |
-| recordset.recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
+| recordset.recordsetTtl | int | Min. 10, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
 | recordset.recordList | List |  | Required |  | Record list |
 | recordset.recordList[0].recordDisabled | boolean |  | Optional | false | Whether record is disabled or not |
 | recordset.recordList[0].recordContent | String |  | Required |  | It displays the detailed field by record set type in a line. |
@@ -625,7 +625,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | recordsetList | List |  | Required |  | Record set list |
 | recordsetList[0].recordsetName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>(including name of DNS Zone) | Required |  | Name of the record set to create, <br>Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 | recordsetList[0].recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS | Required |  | Record set type |
-| recordsetList[0].recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
+| recordsetList[0].recordsetTtl | int | Min. 10, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
 | recordsetList[0].recordList | List |  | Required |  | Record list |
 | recordsetList[0].recordList[0].recordDisabled | boolean |  | Optional | false | Whether record is disabled or not |
 | recordsetList[0].recordList[0].recordContent | String |  | Required |  | It displays the detailed field by record set type in a line. |
@@ -681,7 +681,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 |---|---|---|---|---|---|
 | recordset | Object |  | Required |  | Record set |
 | recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS | Required |  | Record set type |
-| recordset.recordsetTtl | int | Min. 1, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
+| recordset.recordsetTtl | int | Min. 10, Max. 2147483647 | Required |  | Update cycle of the record set data in the name server |
 | recordset.recordList | List |  | Required |  | Record list |
 | recordset.recordList[0].recordDisabled | boolean |  | Required |  | Whether record is disabled or not |
 | recordset.recordList[0].recordContent | String |  | Required |  | It displays the detailed field by record set type in a line. |
