@@ -414,7 +414,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | recordset | Object |  | 必須 |  | レコードセット |
 | recordset.recordsetName | String | 最大254文字<br>英数字、(.)(-)(_)<br>(DNS Zone名含む) | 必須 |  | 作成するレコードセット名、<br>ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
 | recordset.recordsetType | String | A、AAAA、CAA、CNAME、MX、<br>NAPTR、PTR、TXT、SRV、NS | 必須 |  | レコードセットタイプ |
-| recordset.recordsetTtl | int | 最小1、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
+| recordset.recordsetTtl | int | 最小10、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
 | recordset.recordList | List |  | 必須 |  | レコードリスト |
 | recordset.recordList[0].recordDisabled | boolean |  | 任意 | false | レコードを無効にするかどうか |
 | recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプに応じて詳細フィールドを1行で表示した内容 |
@@ -625,7 +625,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | recordsetList | List |  | 必須 |  | レコードセットリスト |
 | recordsetList[0].recordsetName | String | 最大254文字<br>英数字、(.)(-)(_)<br>(DNS Zone名を含む) | 必須 |  | 作成するレコードセット名、 <br>ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
 | recordsetList[0].recordsetType | String | A、AAAA、CAA、CNAME、MX、<br>NAPTR、PTR、TXT、SRV、NS | 必須 |  | レコードセットタイプ |
-| recordsetList[0].recordsetTtl | int | 1～2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
+| recordsetList[0].recordsetTtl | int | 10～2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
 | recordsetList[0].recordList | List |  | 必須 |  | レコードリスト |
 | recordsetList[0].recordList[0].recordDisabled | boolean |  | 任意 | false | レコードが無効になっているかどうか |
 | recordsetList[0].recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプに基づいた詳細フィールドを1行で表示した内容 |
@@ -681,7 +681,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 |---|---|---|---|---|---|
 | recordset | Object |  | 必須 |  | レコードセット |
 | recordset.recordsetType | String | A, AAAA, CAA, CNAME, MX, <br>NAPTR, PTR, TXT, SRV, NS | 必須 |  | レコードセットタイプ |
-| recordset.recordsetTtl | int | 最小1、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
+| recordset.recordsetTtl | int | 最小10、最大2147483647 | 必須 |  | ネームサーバーでレコードセット情報の更新周期 |
 | recordset.recordList | List |  | 必須 |  | レコードリスト |
 | recordset.recordList[0].recordDisabled | boolean |  | 必須 |  | レコードを無効にするかどうか |
 | recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットタイプに応じて詳細フィールドを1行で表示した内容 |
