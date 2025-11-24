@@ -1,4 +1,8 @@
 ## Network > DNS Plus > Release Notes
+### November 25, 2025
+
+#### Feature Updates
+*  Made modification so that the maximum length of a record value in the TXT record set type has been changed from 255 bytes to 4,096 bytes.
 
 ### April 29, 2025
 
