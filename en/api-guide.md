@@ -382,6 +382,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 - The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, and SOA.
 - SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 - The maximum length of the record list within the record set is 512 bytes.
+  - TXT record sets can be up to 4,096 bytes long.
 - Up to 5,000 record sets can be created per DNS Zone.
 - There is a limit to the maximum number of record sets that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
@@ -529,9 +530,9 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
                 - "v=spf1 a:toast.com -all"
                 - "v=spf1 redirect=toast.com"
 
-| Name | Type | Valid range | Required | Default | Description |
-|---|---|---|---|---|---|
-| recordset.recordList[0].stringValue | String | Max. 255 bytes (including quotation marks) | Required |  | Text |
+| Name | Type | Valid range               | Required | Default | Description |
+|---|---|---------------------|---|---|---|
+| recordset.recordList[0].stringValue | String | Max. 4,096 bytes (including quotation marks) | Required |  | Text |
 
 
 - SRV record set
@@ -593,6 +594,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 - The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, and SOA.
 - SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 - The maximum length of the record list within the record set is 512 bytes.
+ - TXT record sets can be up to 4,096 bytes long.
 - Up to 5,000 record sets can be created per DNS Zone.
 - There is a limit to the maximum number of record sets that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
@@ -651,6 +653,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 - **Record set name** cannot be modified. However, **record set type**, **TTL (sec)**, and **record value** can be modified.
 - SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 - The maximum length of the record list within the record set is 512 bytes.
+ - TXT record sets can be up to 4,096 bytes long.
 
 #### Request
 
