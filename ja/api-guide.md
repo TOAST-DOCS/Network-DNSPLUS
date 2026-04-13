@@ -1,6 +1,6 @@
-## Network > DNS Plus > APIガイド
+## Network > DNS Plus > API v1.0ガイド
 
-DNS PlusサービスのAPIを説明します。
+DNS PlusサービスのAPI v1.0を説明します。
 
 
 ## API共通情報

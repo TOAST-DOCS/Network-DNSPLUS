@@ -9,7 +9,7 @@ DNS PlusサービスのAPI v2.0について説明します。
 
 DNS Plus API v2.0は、APIの呼び出し及び認証のためにAppkeyとUser Access Keyトークンをサポートします。
 
-Appkeyは、NHN Cloudの各サービスに発行される固有の認証キーであり、APIリクエスト時のサービス識別と有効性検証に使用されます。User Access Keyトークンは、User Access Keyを基に発行されるBearerタイプの一時的なアクセストークンです。
+Appkeyは、NHN Cloudの各サービスに発行される固有の認証キーであり、APIリクエスト時のサービス識別と有効性検証に使用されます。<br>User Access Keyトークンは、User Access Keyを基に発行されるBearerタイプの一時的なアクセストークンです。
 各認証方法の確認及び使用方法の詳細については、それぞれ[Appkey](/nhncloud/ja/public-api/appkey/)と[User Access Keyトークン](/nhncloud/ja/public-api/user-access-key-token)をご参照ください。
 
 発行されたトークンは、リクエストのHeaderに含める必要があります。
@@ -195,7 +195,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](./api-guide/#dns-zone)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
 
 ```
 curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}' \
@@ -251,7 +251,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- DNS Zone IDは[DNS Zoneの照会](./api-guide/#dns-zone)で確認できます。
+- DNS Zone IDは[DNS Zoneの照会](#dns-zone)で確認できます。
 
 ```
 curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/async?
@@ -296,7 +296,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](./api-guide/#dns-zone)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
 
 ```
 curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
@@ -405,7 +405,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](./api-guide/#dns-zone)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
 - レコード値は必須です。入力方法として、recordset.recordList[0].recordContentフィールドまたは詳細フィールドのいずれかを指定できます。
 - recordContentフィールドは、半角スペースを区切り文字として詳細フィールドを1行で記述した内容です。詳細フィールドについては[レコードセットのタイプに応じた詳細フィールド]で確認できます。
 - 詳細フィールドとrecordContentフィールドを同時に入力した場合、recordContentフィールドが優先して適用されます。
@@ -617,9 +617,9 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](./api-guide/#dns-zone)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
 - レコード値は必須です。入力方法として、recordset.recordList[0].recordContentフィールドまたは詳細フィールドのいずれかを指定できます。
-- recordContentフィールドは、半角スペースを区切り文字として詳細フィールドを1行で記述した内容です。詳細フィールドについては、[レコードセットの作成](./api-guide/#_14)の[レコードセットのタイプに応じた詳細フィールド]で確認できます。
+- recordContentフィールドは、半角スペースを区切り文字として詳細フィールドを1行で記述した内容です。詳細フィールドについては、[レコードセットの作成](#_14)の[レコードセットのタイプに応じた詳細フィールド]で確認できます。
 - 詳細フィールドとrecordContentフィールドを同時に入力した場合、recordContentフィールドが優先して適用されます。
 
 ```
@@ -674,10 +674,10 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](./api-guide/#dns-zone)で確認できます。
-- {recordsetId}はレコードセットIDであり、[レコードセットの照会](./api-guide/#_11)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
+- {recordsetId}はレコードセットIDであり、[レコードセットの照会](#_11)で確認できます。
 - レコード値は必須です。入力方法として、recordset.recordList[0].recordContentフィールドまたは詳細フィールドのいずれかを指定できます。
-- recordContentフィールドは、半角スペースを区切り文字として詳細フィールドを1行で記述した内容です。詳細フィールドについては、[レコードセットの作成](./api-guide/#_14)の[レコードセットのタイプに応じた詳細フィールド]で確認できます。
+- recordContentフィールドは、半角スペースを区切り文字として詳細フィールドを1行で記述した内容です。詳細フィールドについては、[レコードセットの作成](#_14)の[レコードセットのタイプに応じた詳細フィールド]で確認できます。
 - 詳細フィールドとrecordContentフィールドを同時に入力した場合、recordContentフィールドが優先して適用されます。
 
 ```
@@ -745,8 +745,8 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](./api-guide/#dns-zone)で確認できます。
-- レコードセットIDは[レコードセットの照会](./api-guide/#_11)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
+- レコードセットIDは[レコードセットの照会](#_11)で確認できます。
 
 ```
 curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
@@ -963,7 +963,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 ### GSLB修正
 
 - GSLBとPoolの接続設定を修正します。
-- [GSLB作成](./api-guide/#gslb_1)で入力した項目を修正します。
+- [GSLB作成](#gslb_1)で入力した項目を修正します。
 
 #### リクエスト
 
@@ -976,7 +976,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {gslbId}はGSLB IDであり、[GSLB照会](./api-guide/#gslb)で確認できます。
+- {gslbId}はGSLB IDであり、[GSLB照会](#gslb)で確認できます。
 - connectedPoolRegionContentフィールドは、カンマ(,)を区切り文字として**地域**を1行で記述します。
 
 ```
@@ -1100,8 +1100,8 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {gslbId}はGSLB IDであり、[GSLB照会](./api-guide/#gslb)で確認できます。
-- {poolId}はPool IDであり、[Pool照会](./api-guide/#pool_3)で確認できます。
+- {gslbId}はGSLB IDであり、[GSLB照会](#gslb)で確認できます。
+- {poolId}はPool IDであり、[Pool照会](#pool_3)で確認できます。
 - connectedPoolRegionContentフィールドは、カンマ(,)を区切り文字として**地域**を1行で記述します。
 
 ```
@@ -1159,7 +1159,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 ### Pool接続の修正
 
 - GSLBに接続されたPoolの設定を修正します。
-- [GSLB作成](./api-guide/#gslb_1)のPool設定、または[Pool接続](./api-guide/#pool)で入力した項目を修正します。
+- [GSLB作成](#gslb_1)のPool設定、または[Pool接続](#pool)で入力した項目を修正します。
 
 #### リクエスト
 
@@ -1172,8 +1172,8 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {gslbId}はGSLB IDであり、[GSLB照会](./api-guide/#gslb)で確認できます。
-- {poolId}はPool IDであり、[Pool照会](./api-guide/#pool_3)で確認できます。
+- {gslbId}はGSLB IDであり、[GSLB照会](#gslb)で確認できます。
+- {poolId}はPool IDであり、[Pool照会](#pool_3)で確認できます。
 - connectedPoolRegionContentフィールドは、カンマ(,)を区切り文字として**地域**を1行で記述します。
 
 ```
@@ -1244,7 +1244,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {gslbId}はGSLB IDであり、[GSLB照会](./api-guide/#gslb)で確認できます。
+- {gslbId}はGSLB IDであり、[GSLB照会](#gslb)で確認できます。
 
 ```
 curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
@@ -1476,7 +1476,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 ### Pool修正
 
 - Pool、及びPool内のエンドポイントを修正します。
-- [Pool作成](./api-guide/#pool_4)で入力した項目を修正します。
+- [Pool作成](#pool_4)で入力した項目を修正します。
 
 #### リクエスト
 
@@ -1489,7 +1489,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {poolId}はPool IDであり、[Pool照会](./api-guide/#pool_3)で確認できます。
+- {poolId}はPool IDであり、[Pool照会](#pool_3)で確認できます。
 
 ```
 curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools/{poolId}' \
@@ -1763,7 +1763,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 ### ヘルスチェック修正
 
 - ヘルスチェックを修正します。
-- [ヘルスチェック作成](./api-guide/#_48)で入力した項目を修正します。
+- [ヘルスチェック作成](#_48)で入力した項目を修正します。
 
 #### リクエスト
 
@@ -1776,7 +1776,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {healthCheckId}はヘルスチェックIDであり、[ヘルスチェック照会](./api-guide/#_45)で確認できます。
+- {healthCheckId}はヘルスチェックIDであり、[ヘルスチェック照会](#_45)で確認できます。
 
 ```
 curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
