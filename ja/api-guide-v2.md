@@ -884,7 +884,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
     - RANDOM: 接続されたPoolの中から、使用可能なPoolを無作為に選択してルーティングします。
     - GEOLOCATION: 設定された地域のトラフィックを、該当する接続されたPoolへルーティングします。地域設定がない場合は、優先順位に従ってルーティングします。
 - **接続されたPool**の**優先順位**は、値が小さいほどルーティングの順序が高くなります。なお、値を重複させることはできません。
-- GSLBの作成数とPoolの接続数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/kr/support/inquiry)
+- GSLBの作成数とPoolの接続数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/jp/support/inquiry)
 
 #### リクエスト
 
@@ -1087,7 +1087,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 
 - GSLBにPoolを接続します。
 - **接続されたPool**の**優先順位**は、値が小さいほどルーティングの順序が高くなります。既存のPoolと同じ優先順位を入力した場合、既存のPoolのルーティング順序は下がります。
-- Poolの接続数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/kr/support/inquiry)
+- Poolの接続数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/jp/support/inquiry)
 
 #### リクエスト
 
@@ -1405,7 +1405,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
     - [予約済みIPアドレス](https://en.wikipedia.org/wiki/Reserved_IP_addresses)は入力できません。
     - Pool内で値を重複させることはできません。
 - エンドポイントの**重み付け**は、Pool内の他のエンドポイントの重み付けに対して相対的に機能します。同一の重み付けを設定した場合、Pool内で均等な比重を持ちます。
-- Poolの作成数、Pool内のエンドポイント数、及び全体のエンドポイント数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/kr/support/inquiry)
+- Poolの作成数、Pool内のエンドポイント数、及び全体のエンドポイント数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/jp/support/inquiry)
 
 #### リクエスト
 
@@ -1691,7 +1691,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
     - TCPで入力可能な項目: ポート、ヘルスチェック周期、最大応答待機時間、最大再試行回数
 - **証明書の検証なし**を有効にすると、ヘルスチェック実行時にエンドポイントのTLS/SSL証明書が無効であっても無視できます。
 - **予想ステータスコード**及び**予想レスポンス本文**の判定において、エンドポイントからリダイレクトされたページはサポートされません。
-- ヘルスチェックの作成数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/kr/support/inquiry)
+- ヘルスチェックの作成数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/jp/support/inquiry)
 
 #### リクエスト
 
