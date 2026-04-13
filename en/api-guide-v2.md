@@ -196,7 +196,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 [Request Body]
 
 - Replace {appkey} with the value found in the console.
-- {zoneId} is the DNS zone ID, which can be found in [Query DNS Zones](#dns-zone).
+- {zoneId} is the DNS zone ID, which can be found in [List DNS Zones](#dns-zone).
 
 ```
 curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}' \
@@ -252,7 +252,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 [Request Body]
 
 - Change {appkey} to the value found in the console.
-- DNS Zone ID can be found by [Query DNS Zone](#dns-zone).
+- DNS Zone ID can be found by [List DNS Zones](#dns-zone).
 
 ```
 curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/async?
@@ -297,7 +297,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 [Request Body]
 
 - Change {appkey} to the value found in the console.
-- {zoneId} is the DNS zone ID, which can be found in [Query DNS Zones](#dns-zone).
+- {zoneId} is the DNS zone ID, which can be found in [List DNS Zones](#dns-zone).
 
 ```
 curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
@@ -393,7 +393,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 - The maximum length of the record list within a record set is 512 bytes.
   - TXT record sets support up to 4,096 bytes.
 - Up to 5,000 record sets can be created per DNS zone.
-- The number of record sets that can be created is limited. Contact us if you need to increase the limit. [Contact Us](https://www.nhncloud.com/kr/support/inquiry)
+- The number of record sets that can be created is limited. Contact us if you need to increase the limit. [Contact Us](https://www.nhncloud.com/en/support/inquiry)
 
 #### Request
 
@@ -406,7 +406,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 [Request Body]
 
 - Change {appkey} to the value found in the console.
-- {zoneId} is the DNS zone ID, which can be found in [Query DNS Zones](#dns-zone).
+- {zoneId} is the DNS zone ID, which can be found in [List DNS Zones](#dns-zone).
 - Record value is required. You can enter the value by selecting either recordset.recordList[0].recordContent field or the detailed field.
 - The recordContent field displays the detailed field in one line separated by space. You can check the detailed field in [Detailed field by record set type].
 - If you enter values in both the detailed field and the recordContent field at the same time, the value in the recordContent field will take priority.
@@ -605,7 +605,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 - The maximum length of the record list within the record set is 512 bytes.
   - TXT record sets support up to 4,096 bytes.
 - Up to 5,000 record sets can be created per DNS zone.
-- The number of record sets to be created is limited, please contact us if you need an extension. [Contact us](https://www.nhncloud.com/kr/support/inquiry)
+- The number of record sets to be created is limited, please contact us if you need an extension. [Contact us](https://www.nhncloud.com/en/support/inquiry)
 
 #### Request
 
@@ -618,7 +618,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 [Request Body]
 
 - Change {appkey} to the value found in the console.
-- {zoneId} is the DNS zone ID, which can be found in [Query DNS Zones](#dns-zone).
+- {zoneId} is the DNS zone ID, which can be found in [List DNS Zones](#dns-zone).
 - Record value is required. You can enter the value by selecting either recordset.recordList[0].recordContent field or the detailed field.
 - The recordContent field displays the detailed field in one line separated by space. You can check the detailed field in [Detailed field by record set type] from [Create Record Set](#_14).
 - If you enter values in both the detailed field and the recordContent field at the same time, the value in the recordContent field will take priority.
@@ -676,7 +676,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 
 - Replace {appkey} with the value found in the console.
 - {zoneId} is the DNS zone ID, which can be found in [List DNS Zones](#dns-zone).
-- {recordsetId} is the record set ID, which can be found in [List Record Sets](#_11).
+- {recordsetId} is the record set ID, which can be found in [Query Record Set](#_11).
 - Record value is required. You can enter the value by selecting either the recordset.recordList[0].recordContent field or the detailed field.
 - The recordContent field displays the detailed fields in a single line, separated by spaces. The detailed fields can be found in [Detailed field by record set type] in [Create Record Set](#_14).
 - If both the detailed field and recordContent field are entered simultaneously, the recordContent field takes precedence.
@@ -735,7 +735,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 - Deletes multiple record sets along with the records in the record sets.
 - SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 
-#### Reqest
+#### Request
 
 [URI]
 
@@ -746,7 +746,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 [Request Body]
 
 - Change {appkey} to the value found in the console.
-- {zoneId} is the DNS zone ID, which can be found in [Query DNS Zones](#dns-zone).
+- {zoneId} is the DNS zone ID, which can be found in [List DNS Zones](#dns-zone).
 - You can check the record set ID by performing [Query Record Set](#_11).
 
 ```
@@ -885,7 +885,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
     - RANDOM: Routes by randomly selecting an available pool from the connected pools.
     - GEOLOCATION: Routes traffic from the configured region to the corresponding connected pool. If no region is configured, routing is based on priority.
 - The lower the **priority** of a **connected pool**, the higher the routing order. Duplicate priorities are not allowed.
-- There are limits to the maximum number of GSLBs that can be created and to the maximum number of pools that can be connected. If you want to raise the limits, please contact us. [Contact us](https://www.nhncloud.com/kr/support/inquiry)
+- There are limits to the maximum number of GSLBs that can be created and to the maximum number of pools that can be connected. If you want to raise the limits, please contact us. [Contact us](https://www.nhncloud.com/en/support/inquiry)
 
 #### Request
 
@@ -961,7 +961,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 ```
 
 
-### GSLB 수정
+### Modify GSLB
 
 - Updates GSLB and pool connection settings.
 - Updates the items entered in [Create GSLB](#gslb_1).
@@ -1088,7 +1088,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 
 - Connects a pool to a GSLB.
 - The lower the **priority** of a **connected pool**, the higher the routing order. If the same priority as an existing connected pool is entered, the routing order of the existing pool is lowered.
-- There is a limit to the maximum number of pools that can be connected. If you want to raise the limit, contact us. [Contact Us](https://www.nhncloud.com/kr/support/inquiry)
+- There is a limit to the maximum number of pools that can be connected. If you want to raise the limit, contact us. [Contact Us](https://www.nhncloud.com/en/support/inquiry)
 
 #### Request
 
@@ -1101,7 +1101,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 [Request Body]
 
 - Replace {appkey} with the value found in the console.
-- {gslbId} is the GSLB ID, which can be found in [List GSLBs](#gslb).
+- {gslbId} is the GSLB ID, which can be found in [Retrieve GSLB](#gslb).
 - {poolId} is the pool ID, which can be found in [List Pools](#pool_3).
 - For the connectedPoolRegionContent field, enter **regions** in one line with commas (,) as delimiters.
 
@@ -1173,7 +1173,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 [Request Body]
 
 - Replace {appkey} with the value found in the console.
-- {gslbId} is the GSLB ID, which can be found in [List GSLBs](#gslb).
+- {gslbId} is the GSLB ID, which can be found in [Retrieve GSLB](#gslb).
 - {poolId} is the pool ID, which can be found in [List Pools](#pool_3).
 - For the connectedPoolRegionContent field, enter **regions** in one line with commas (,) as delimiters.
 
@@ -1245,7 +1245,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 [Request Body]
 
 - Change {appkey} to the value found in the console.
-- {gslbId} is the GSLB ID, which can be found in [List GSLBs](#gslb).
+- {gslbId} is the GSLB ID, which can be found in [Retrieve GSLB](#gslb).
 
 ```
 curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
@@ -1692,7 +1692,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
     - TCP input items: Port, health check interval, maximum response wait time, and maximum retry count
 - Enabling **Skip certificate verification** allows the health check to ignore invalid TLS/SSL certificates on endpoints.
 - Redirected pages from endpoints are not supported when evaluating **expected status codes** and **expected response bodies**.
-- The number of health checks that can be created is limited. Contact us if you need to increase the limit. [Contact Us](https://www.nhncloud.com/kr/support/inquiry)
+- The number of health checks that can be created is limited. Contact us if you need to increase the limit. [Contact Us](https://www.nhncloud.com/en/support/inquiry)
 
 #### Request
 
