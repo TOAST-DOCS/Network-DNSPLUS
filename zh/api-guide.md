@@ -1,6 +1,6 @@
-## Network > DNS Plus > API Guide
+## Network > DNS Plus > API v1.0 Guide
 
-The document describes API of the DNS Plus service.
+The document describes API v1.0 of the DNS Plus service.
 
 
 ## Common Information of API
