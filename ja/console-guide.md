@@ -1,14 +1,19 @@
-## Network > DNS Plus > コンソール使用ガイド
+<!-- pre-align:aligned sig=d5f944383415 -->
+
+<a id="network-dns-plus-console-user-guide"></a>
+## Network > DNS Plus > コンソール使用ガイド { #network-dns-plus-console-user-guide }
 
 ここではコンソールでDNS Zoneとレコードセットを管理する方法を説明します。
 
-## DNS Zone管理
+<a id="manage-dns-zones"></a>
+## DNS Zone管理 { #manage-dns-zones }
 
 メニューの**DNS**画面でDNS Zoneを管理できます。
 
 ![image_01_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_01_ja_20210628.png)
 
-### DNS Zone作成
+<a id="create-a-dns-zone"></a>
+### DNS Zone作成 { #create-a-dns-zone }
 
 1. DNS Zoneはレコードセットを書き込んでいく大枠となるもので、DNSがサービスするホストの経路情報をこの中に定義していきます。**DNS Zone作成**ボタンをクリックして作成します。
 
@@ -23,7 +28,8 @@
 
 ![image_02_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_02_ja_20210628.png)
 
-### DNS Zone修正
+<a id="modify-a-dns-zone"></a>
+### DNS Zone修正 { #modify-a-dns-zone }
 
 1. 修正するDNS Zoneを選択した後、**DNS Zone修正**ボタンをクリックします。
 
@@ -31,7 +37,8 @@
 
 ![image_03_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_03_ja_20210628.png)
 
-### DNS Zone削除
+<a id="delete-dns-zones"></a>
+### DNS Zone削除 { #delete-dns-zones }
 
 1. 削除するDNS Zoneを全て選択した後、**DNS Zone削除**ボタンをクリックします。
 
@@ -40,7 +47,8 @@
 ![image_04_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_04_ja_20210628.png)
 
 
-## レコードセット管理
+<a id="manage-record-sets"></a>
+## レコードセット管理 { #manage-record-sets }
 
 メニューの**DNS**画面で、選択したDNS Zoneのレコードセットを管理できます。
 
@@ -50,7 +58,8 @@
 
 ![image_05_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_05_ja_20210628.png)
 
-### レコードセット作成
+<a id="create-a-record-set"></a>
+### レコードセット作成 { #create-a-record-set }
 
 1. レコードセットはサービスされるホスト情報で、**レコードセット作成**ボタンをクリックして作成します。
 
@@ -73,7 +82,8 @@
 
 ![image_06_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_06_ja_20210628.png)
 
-### レコードセット大量作成
+<a id="create-multiple-record-sets"></a>
+### レコードセット大量作成 { #create-multiple-record-sets }
 
 1. **レコードセット大量作成**ボタンをクリックします。
 
@@ -83,7 +93,8 @@
 
 ![image_06_2_ja_20210802](https://static.toastoven.net/prod_dnsplus/image_06_2_ja_20210802.png)
 
-### レコードセット修正
+<a id="modify-a-record-set"></a>
+### レコードセット修正 { #modify-a-record-set }
 
 1. 修正するレコードセットを選択した後、**レコードセット修正**ボタンをクリックします。
 
@@ -93,7 +104,8 @@
 
 ![image_07_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_07_ja_20210628.png)
 
-### レコードセット削除
+<a id="delete-record-sets"></a>
+### レコードセット削除 { #delete-record-sets }
 
 1. 削除するレコードセットを全て選択した後、**レコードセット削除**ボタンをクリックします。
 
@@ -101,13 +113,15 @@
 
 ![image_08_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_08_ja_20210628.png)
 
-### レコードセット統計
+<a id="record-set-statistics"></a>
+### レコードセット統計 { #record-set-statistics }
 
 1. 確認するレコードセットを選択した後、**レコードセット統計**ボタンをクリックします。
 
 2. レコードセットの直近一週間のクエリー情報と平均レスポンス時間を確認できます。
 
-### 照会およびリスト表示
+<a id="search-record-sets-and-view-results"></a>
+### 照会およびリスト表示 { #search-record-sets-and-view-results }
 
 1. **タイプフィルタ**を利用して、選択したレコードセットタイプのみ表示できます。
 
@@ -117,13 +131,15 @@
 
 ![image_10_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_10_ja_20210628.png)
 
-## GSLBおよび接続されたPool管理
+<a id="manage-gslb-and-connected-pools"></a>
+## GSLBおよび接続されたPool管理 { #manage-gslb-and-connected-pools }
 
 メニューの**GSLB**画面でGSLBを管理し、選択したGSLBのPool接続を管理できます。
 
 ![image_11_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_11_ja_20210628.png)
 
-### GSLBの作成
+<a id="create-a-gslb"></a>
+### GSLBの作成 { #create-a-gslb }
 
 **GSLBドメイン**は**ルーティングルール**に従って安定的にトラフィックがロードバランシングされます。
 
@@ -147,7 +163,8 @@
 
 ![image_12_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_12_ja_20210628.png)
 
-### GSLBの修正
+<a id="modify-a-gslb"></a>
+### GSLBの修正 { #modify-a-gslb }
 
 1. 修正するGSLBを選択した後、**GSLB修正**ボタンをクリックします。
 
@@ -155,7 +172,8 @@
 
 ![image_13_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_13_ja_20210628.png)
 
-### GSLBの削除
+<a id="delete-gslbs"></a>
+### GSLBの削除 { #delete-gslbs }
 
 1. 削除するGSLBを全て選択した後、**GSLB削除**ボタンをクリックします。
 
@@ -163,7 +181,8 @@
 
 ![image_14_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_14_ja_20210628.png)
 
-### Poolの接続
+<a id="connect-a-pool"></a>
+### Poolの接続 { #connect-a-pool }
 
 1. GSLBに接続するPoolを設定できます。**Pool接続**ボタンをクリックして接続します。
 
@@ -191,7 +210,8 @@
 
 ![image_15_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_15_ja_20210628.png)
 
-### Pool接続の修正
+<a id="modify-pool-connection"></a>
+### Pool接続の修正 { #modify-pool-connection }
 
 1. 修正するPoolを選択した後、**Pool接続修正**ボタンをクリックします。
 
@@ -201,7 +221,8 @@
 
 ![image_16_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_16_ja_20210628.png)
 
-### Pool接続の解除
+<a id="disconnect-pools"></a>
+### Pool接続の解除 { #disconnect-pools }
 
 1. 接続解除するPoolを全て選択した後、**Pool接続解除**ボタンをクリックします。
 
@@ -209,7 +230,8 @@
 
 ![image_17_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_17_ja_20210628.png)
 
-### 照会およびリスト表示
+<a id="search-gslb-and-view-results"></a>
+### 照会およびリスト表示 { #search-gslb-and-view-results }
 
 1. GSLBリストに検索ワードを入力し、**Enter Key**を押すか、**検索**をクリックするとGSLBの名前で検索します。
 
@@ -230,13 +252,15 @@
 
 ![image_18_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_18_ja_20210628.png)
 
-## PoolおよびEndpoint管理
+<a id="manage-pools-and-endpoints"></a>
+## PoolおよびEndpoint管理 { #manage-pools-and-endpoints }
 
 メニューの**GSLB**画面でPoolと、選択したPoolのEndpointを管理できます。
 
 ![image_19_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_19_ja_20210628.png)
 
-### Poolの作成
+<a id="create-a-pool"></a>
+### Poolの作成 { #create-a-pool }
 
 1. エンドポイントをグルーピングする要素で、ルーティングルールが適用される最小単位です。**Pool作成**ボタンをクリックして作成します。
 
@@ -261,7 +285,8 @@
 
 ![image_20_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_20_ja_20210628.png)
 
-### Poolの修正
+<a id="modify-a-pool"></a>
+### Poolの修正 { #modify-a-pool }
 
 1. 修正するPoolを選択した後、**Pool修正**ボタンをクリックします。
 
@@ -271,7 +296,8 @@
 
 ![image_21_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_21_ja_20210628.png)
 
-### Poolの削除
+<a id="delete-pools"></a>
+### Poolの削除 { #delete-pools }
 
 1. 削除するPoolを全て選択した後、**Pool削除**ボタンをクリックします。
 
@@ -279,7 +305,8 @@
 
 ![image_22_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_22_ja_20210628.png)
 
-### 照会およびリスト表示
+<a id="search-pools-and-view-results"></a>
+### 照会およびリスト表示 { #search-pools-and-view-results }
 
 1. Poolリストに検索ワードを入力し、**Enter Key**を押すか、**検索**をクリックするとPoolの名前で検索します。 ードを含むすべての値を検索します。
 
@@ -299,13 +326,15 @@
 ![image_23_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_23_ja_20210628.png)
 
 
-## ヘルスチェックの管理
+<a id="manage-health-checks"></a>
+## ヘルスチェックの管理 { #manage-health-checks }
 
 メニューの**GSLB**画面でヘルスチェックを管理できます。
 
 ![image_24_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_24_ja_20210628.png)
 
-### ヘルスチェックの作成
+<a id="create-a-health-check"></a>
+### ヘルスチェックの作成 { #create-a-health-check }
 
 1. 設定した値に応じてPool内のエンドポイントに対するアクセシビリティを確認できます。**ヘルスチェック作成**ボタンをクリックして作成します。
 
@@ -335,7 +364,8 @@
 
 ![image_25_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_25_ja_20210628.png)
 
-### ヘルスチェックの修正
+<a id="modify-a-health-check"></a>
+### ヘルスチェックの修正 { #modify-a-health-check }
 
 1. 修正するヘルスチェックを選択した後、**ヘルスチェック修正**ボタンをクリックします。
 
@@ -345,7 +375,8 @@
 
 ![image_26_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_26_ja_20210628.png)
 
-### ヘルスチェックの削除
+<a id="delete-health-checks"></a>
+### ヘルスチェックの削除 { #delete-health-checks }
 
 1. 削除するヘルスチェックを全て選択した後、**ヘルスチェック削除**ボタンをクリックします。
 
@@ -353,7 +384,8 @@
 
 ![image_27_ja_20210628](https://static.toastoven.net/prod_dnsplus/image_27_ja_20210628.png)
 
-### 照会および基本情報
+<a id="search-health-checks-and-check-basic-information"></a>
+### 照会および基本情報 { #search-health-checks-and-check-basic-information }
 
 1. ヘルスチェックリストに検索ワードを入力し、**Enter Key**を押すか、**検索**をクリックすると、ヘルスチェックの名前で検索します。
 

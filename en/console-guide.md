@@ -1,14 +1,19 @@
-## Network > DNS Plus > Console User Guide
+<!-- pre-align:aligned sig=d5f944383415 -->
+
+<a id="network-dns-plus-console-user-guide"></a>
+## Network > DNS Plus > Console User Guide { #network-dns-plus-console-user-guide }
 
 This guide describes how to manage DNS Zones and record sets in the console.
 
-## Manage DNS Zones
+<a id="manage-dns-zones"></a>
+## Manage DNS Zones { #manage-dns-zones }
 
 You can manage DNS Zones on the **DNS** screen of the menu.
 
 ![image_01_20210604](https://static.toastoven.net/prod_dnsplus/image_01_20210604.png)
 
-### Create a DNS Zone
+<a id="create-a-dns-zone"></a>
+### Create a DNS Zone { #create-a-dns-zone }
 
 1. A DNS Zone is a container for record sets, which is a domain zone for hosts served by DNS. Click **Create DNS Zone** to create a DNS Zone.
 
@@ -23,7 +28,8 @@ You can manage DNS Zones on the **DNS** screen of the menu.
 
 ![image_02_20210604](https://static.toastoven.net/prod_dnsplus/image_02_20210604.png)
 
-### Modify a DNS Zone
+<a id="modify-a-dns-zone"></a>
+### Modify a DNS Zone { #modify-a-dns-zone }
 
 1. Select the DNS Zone to modify and click **Modify DNS Zone**.
 
@@ -31,7 +37,8 @@ You can manage DNS Zones on the **DNS** screen of the menu.
 
 ![image_03_20210604](https://static.toastoven.net/prod_dnsplus/image_03_20210604.png)
 
-### Delete DNS Zones
+<a id="delete-dns-zones"></a>
+### Delete DNS Zones { #delete-dns-zones }
 
 1. Select all DNS Zones to delete and click **Delete DNS Zone**.
 
@@ -40,7 +47,8 @@ You can manage DNS Zones on the **DNS** screen of the menu.
 ![image_04_20210604](https://static.toastoven.net/prod_dnsplus/image_04_20210604.png)
 
 
-## Manage Record Sets
+<a id="manage-record-sets"></a>
+## Manage Record Sets { #manage-record-sets }
 
 You can manage record sets of the DNS Zone selected on the **DNS** screen of the menu.
 
@@ -50,7 +58,8 @@ You can manage record sets of the DNS Zone selected on the **DNS** screen of the
 
 ![image_05_20210604](https://static.toastoven.net/prod_dnsplus/image_05_20210604.png)
 
-### Create a Record Set
+<a id="create-a-record-set"></a>
+### Create a Record Set { #create-a-record-set }
 
 1. A record set is the information of the host to serve. Click **Create Record Set** to create a record set.
 
@@ -73,7 +82,8 @@ You can manage record sets of the DNS Zone selected on the **DNS** screen of the
 
 ![image_06_20210604](https://static.toastoven.net/prod_dnsplus/image_06_20210604.png)
 
-### Create Multiple Record Sets
+<a id="create-multiple-record-sets"></a>
+### Create Multiple Record Sets { #create-multiple-record-sets }
 
 1. Click **Create Multiple Record Sets**.
 
@@ -83,7 +93,8 @@ You can manage record sets of the DNS Zone selected on the **DNS** screen of the
 
 ![image_06_2_20210802](https://static.toastoven.net/prod_dnsplus/image_06_2_20210802.png)
 
-### Modify a Record Set
+<a id="modify-a-record-set"></a>
+### Modify a Record Set { #modify-a-record-set }
 
 1. Select a record set to modify and click the **Modify Record Set** button.
 
@@ -93,7 +104,8 @@ You can manage record sets of the DNS Zone selected on the **DNS** screen of the
 
 ![image_07_20210604](https://static.toastoven.net/prod_dnsplus/image_07_20210604.png)
 
-### Delete Record Sets
+<a id="delete-record-sets"></a>
+### Delete Record Sets { #delete-record-sets }
 
 1. Select all record sets to delete and click **Delete Record Set**.
 
@@ -101,13 +113,15 @@ You can manage record sets of the DNS Zone selected on the **DNS** screen of the
 
 ![image_08_20210604](https://static.toastoven.net/prod_dnsplus/image_08_20210604.png)
 
-### Record Set Statistics
+<a id="record-set-statistics"></a>
+### Record Set Statistics { #record-set-statistics }
 
 1. Select the record set to view and click **Record Set Statistics**.
 
 2. You can view the query information and average response time of the record set for the last seven days.
 
-### Search Record Sets and View Results
+<a id="search-record-sets-and-view-results"></a>
+### Search Record Sets and View Results { #search-record-sets-and-view-results }
 
 1. You can view only the record set type selected using the **Type filter**.
 
@@ -117,13 +131,15 @@ You can manage record sets of the DNS Zone selected on the **DNS** screen of the
 
 ![image_10_20210604](https://static.toastoven.net/prod_dnsplus/image_10_20210604.png)
 
-## Manage GSLB and Connected Pools
+<a id="manage-gslb-and-connected-pools"></a>
+## Manage GSLB and Connected Pools { #manage-gslb-and-connected-pools }
 
 You can manage GSLB (global server load balancing) from the **GSLB** screen of the menu, and manage the pool connection of the selected GSLB.
 
 ![image_11_20210604](https://static.toastoven.net/prod_dnsplus/image_11_20210604.png)
 
-### Create a GSLB
+<a id="create-a-gslb"></a>
+### Create a GSLB { #create-a-gslb }
 
 For a **GSLB domain**, traffic is reliably load balanced according to the **routing rule**. You can create a GSLB as follows:
 
@@ -147,7 +163,8 @@ For a **GSLB domain**, traffic is reliably load balanced according to the **rout
 
 ![image_12_20210604](https://static.toastoven.net/prod_dnsplus/image_12_20210604.png)
 
-### Modify a GSLB
+<a id="modify-a-gslb"></a>
+### Modify a GSLB { #modify-a-gslb }
 
 1. Selecting the GSLB to modify and click **Modify GSLB**.
 
@@ -155,13 +172,15 @@ For a **GSLB domain**, traffic is reliably load balanced according to the **rout
 
 ![image_13_20210604](https://static.toastoven.net/prod_dnsplus/image_13_20210604.png)
 
-### Delete GSLBs
+<a id="delete-gslbs"></a>
+### Delete GSLBs { #delete-gslbs }
 
 Selecting all the GSLBs to delete, click **Delete GSLB**, and click **Confirm** in the **Delete GSLB** dialog box.
 
 ![image_14_20210604](https://static.toastoven.net/prod_dnsplus/image_14_20210604.png)
 
-### Connect a Pool
+<a id="connect-a-pool"></a>
+### Connect a Pool { #connect-a-pool }
 
 Configure a pool to connect to GSLB.
 
@@ -191,7 +210,8 @@ Example: If a pool is connected to GSLB as shown in the table below
 
 ![image_15_20210604](https://static.toastoven.net/prod_dnsplus/image_15_20210604.png)
 
-### Modify Pool Connection
+<a id="modify-pool-connection"></a>
+### Modify Pool Connection { #modify-pool-connection }
 
 1. Select the pool to modify and click **Modify Pool Connection**.
 
@@ -201,7 +221,8 @@ Example: If a pool is connected to GSLB as shown in the table below
 
 ![image_16_20210604](https://static.toastoven.net/prod_dnsplus/image_16_20210604.png)
 
-### Disconnect Pools
+<a id="disconnect-pools"></a>
+### Disconnect Pools { #disconnect-pools }
 
 1. Select all pools to disconnect and click **Disconnect Pools**.
 
@@ -209,7 +230,8 @@ Example: If a pool is connected to GSLB as shown in the table below
 
 ![image_17_20210604](https://static.toastoven.net/prod_dnsplus/image_17_20210604.png)
 
-### Search GSLB and View Results
+<a id="search-gslb-and-view-results"></a>
+### Search GSLB and View Results { #search-gslb-and-view-results }
 
 You can search for the GSLB that you want by name.
 
@@ -230,13 +252,15 @@ You can search for the GSLB that you want by name.
 
 ![image_18_20210604](https://static.toastoven.net/prod_dnsplus/image_18_20210604.png)
 
-## Manage Pools and Endpoints
+<a id="manage-pools-and-endpoints"></a>
+## Manage Pools and Endpoints { #manage-pools-and-endpoints }
 
 On the **GSLB** screen of the menu, you can manage pools and endpoints of the selected pools.
 
 ![image_19_20210604](https://static.toastoven.net/prod_dnsplus/image_19_20210604.png)
 
-### Create a Pool
+<a id="create-a-pool"></a>
+### Create a Pool { #create-a-pool }
 
 1. A pool is a component that groups endpoints, which is the smallest unit to which the routing rule is applied. Click **Create Pool** to create a pool.
 
@@ -261,7 +285,8 @@ On the **GSLB** screen of the menu, you can manage pools and endpoints of the se
 
 ![image_20_20210604](https://static.toastoven.net/prod_dnsplus/image_20_20210604.png)
 
-### Modify a Pool
+<a id="modify-a-pool"></a>
+### Modify a Pool { #modify-a-pool }
 
 1. Select the pool to modify and click **Modify Pool**.
 
@@ -271,7 +296,8 @@ On the **GSLB** screen of the menu, you can manage pools and endpoints of the se
 
 ![image_21_20210604](https://static.toastoven.net/prod_dnsplus/image_21_20210604.png)
 
-### Delete Pools
+<a id="delete-pools"></a>
+### Delete Pools { #delete-pools }
 
 1. Select all pools to delete and click **Delete Pool**.
 
@@ -279,7 +305,8 @@ On the **GSLB** screen of the menu, you can manage pools and endpoints of the se
 
 ![image_22_20210604](https://static.toastoven.net/prod_dnsplus/image_22_20210604.png)
 
-### Search Pools and View Results
+<a id="search-pools-and-view-results"></a>
+### Search Pools and View Results { #search-pools-and-view-results }
 
 1. Enter a search term in the pool list and click **Search** or press **Enter**. All values including the search term are displayed as results.
 
@@ -299,13 +326,15 @@ On the **GSLB** screen of the menu, you can manage pools and endpoints of the se
 ![image_23_20210604](https://static.toastoven.net/prod_dnsplus/image_23_20210604.png)
 
 
-## Manage Health Checks
+<a id="manage-health-checks"></a>
+## Manage Health Checks { #manage-health-checks }
 
 You can manage health checks from the **GSLB** screen in the menu.
 
 ![image_24_20210604](https://static.toastoven.net/prod_dnsplus/image_24_20210604.png)
 
-### Create a Health Check
+<a id="create-a-health-check"></a>
+### Create a Health Check { #create-a-health-check }
 
 1. To create a health check, click **Create Health Check**. Depending on the configured value, you can check the accessibility of endpoints in the pool.
 
@@ -335,7 +364,8 @@ You can manage health checks from the **GSLB** screen in the menu.
 
 ![image_25_20210604](https://static.toastoven.net/prod_dnsplus/image_25_20210604.png)
 
-### Modify a Health Check
+<a id="modify-a-health-check"></a>
+### Modify a Health Check { #modify-a-health-check }
 
 1. Select the health check to modify and click **Modify Health Check**.
 
@@ -345,7 +375,8 @@ You can manage health checks from the **GSLB** screen in the menu.
 
 ![image_26_20210604](https://static.toastoven.net/prod_dnsplus/image_26_20210604.png)
 
-### Delete Health Checks
+<a id="delete-health-checks"></a>
+### Delete Health Checks { #delete-health-checks }
 
 1. Select all health checks to delete and click **Delete Health Check**.
 
@@ -353,7 +384,8 @@ You can manage health checks from the **GSLB** screen in the menu.
 
 ![image_27_20210604](https://static.toastoven.net/prod_dnsplus/image_27_20210604.png)
 
-### Search Health Checks and Check Basic Information
+<a id="search-health-checks-and-check-basic-information"></a>
+### Search Health Checks and Check Basic Information { #search-health-checks-and-check-basic-information }
 
 1. Enter the health check name in the text box at the top right of the health check list and click **Search** or press **Enter**. All values including the search term are displayed as results.
 

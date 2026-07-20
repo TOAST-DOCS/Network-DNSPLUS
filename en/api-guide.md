@@ -1,16 +1,22 @@
-## Network > DNS Plus > API v1.0 Guide
+<!-- pre-align:aligned sig=9ecb215b0160 -->
+
+<a id="network-dns-plus-api-v10-guide"></a>
+## Network > DNS Plus > API v1.0 Guide { #network-dns-plus-api-v10-guide }
 
 The document describes API v1.0 of the DNS Plus service.
 
 
-## Common Information of API
+<a id="common-information-of-api"></a>
+## Common Information of API { #common-information-of-api }
 
-### Preparation
+<a id="preparation"></a>
+### Preparation { #preparation }
 
 - An appkey is required to use the API.
 - Your appkey can be found in the **URL & Appkey** menu on the top of the console.
 
-### Common Response Information
+<a id="common-response-information"></a>
+### Common Response Information { #common-response-information }
 
 - '200 OK' is returned for all API requests. For details on response results, refer to the header of each response.
 
@@ -39,12 +45,15 @@ The document describes API v1.0 of the DNS Plus service.
 ```
 
 
-## DNS Zone API
+<a id="dns-zone-api"></a>
+## DNS Zone API { #dns-zone-api }
 
-### Query DNS Zone
+<a id="query-dns-zone"></a>
+### Query DNS Zone { #query-dns-zone }
 
 - Retrieves the list of DNS Zones.
 
+<a id="query-dns-zone-request"></a>
 #### Request
 
 [URI]
@@ -74,6 +83,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | sortDirection | String | DESC, ASC | Optional | DESC | Sort order (DESC: Descending, ASC: Ascending) |
 | sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>ZONE_NAME, <br>ZONE_STATUS, <br>RECORDSET_COUNT | Optional | CREATED_AT | Sort criteria <br>(CREATED_AT: Created date, <br>UPDATED_AT: Modified date, <br>ZONE_NAME: DNS Zone name, <br>ZONE_STATUS: DNS Zone status, <br>RECORDSET_COUNT: Record set count) |
 
+<a id="query-dns-zone-response"></a>
 #### Response
 
 [Response body]
@@ -115,12 +125,14 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | zoneList[0].recordsetCount | long | Record set count |
 
 
-### Create DNS Zone
+<a id="create-dns-zone"></a>
+### Create DNS Zone { #create-dns-zone }
 
 - Creates a DNS Zone.
 - The **DNS Zone name** must be unique within the DNS server.
 - The same **DNS Zone name** can be created as many as the number of DNS servers. There are three DNS servers.
 
+<a id="create-dns-zone-request"></a>
 #### Request
 
 [URI]
@@ -147,6 +159,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | zone.zoneName | String | Max. 254 characters<br>Lowercase characters and numbers, '.', '-', '_'<br>Last character '.' | Required |  | DNS Zone name to create,  <br>Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 | zone.description | String | Max. 255 characters | Optional |  | DNS Zone description |
 
+<a id="create-dns-zone-response"></a>
 #### Response
 
 [Response body]
@@ -172,10 +185,12 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ```
 
 
-### Update DNS Zone
+<a id="update-dns-zone"></a>
+### Update DNS Zone { #update-dns-zone }
 
 - Updates the DNS Zone.
 
+<a id="update-dns-zone-request"></a>
 #### Request
 
 [URI]
@@ -202,6 +217,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | zone | Object |  | Required |  | DNS Zone |
 | zone.description | String | Max. 255 characters | Optional |  | DNS Zone description |
 
+<a id="update-dns-zone-response"></a>
 #### Response
 
 [Response body]
@@ -227,11 +243,13 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 ```
 
 
-### Delete DNS Zone (async)
+<a id="delete-dns-zone-async"></a>
+### Delete DNS Zone (async) { #delete-dns-zone-async }
 
 - Deletes multiple DNS Zones along with their record sets.
 - Actual deletion of data is processed asynchronously.
 
+<a id="delete-dns-zone-async-request"></a>
 #### Request
 
 [URI]
@@ -256,6 +274,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 |---|---|---|---|---|---|
 | zoneIdList | List | Min. 1, Max. 3,000 | Required |  | DNS Zone ID List |
 
+<a id="delete-dns-zone-async-response"></a>
 #### Response
 
 [Response body]
@@ -271,12 +290,15 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 ```
 
 
-## Record Set API
+<a id="record-set-api"></a>
+## Record Set API { #record-set-api }
 
-### Query Record Set
+<a id="query-record-set"></a>
+### Query Record Set { #query-record-set }
 
 - Retrieves the list of record sets.
 
+<a id="query-record-set-request"></a>
 #### Request
 
 [URI]
@@ -306,6 +328,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | sortDirection | String | DESC, ASC | Optional | DESC | Sort order (DESC: Descending, ASC: Ascending) |
 | sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>RECORDSET_NAME, <br>RECORDSET_TYPE, <br>RECORDSET_TTL | Optional | CREATED_AT | Sort criteria <br>(CREATED_AT: Created date, <br>UPDATED_AT: Modified date, <br>RECORDSET_NAME: Record set name, <br>RECORDSET_TYPE: Record set type, <br>RECORDSET_TTL: TTL (sec)) |
 
+<a id="query-record-set-response"></a>
 #### Response
 
 [Response body]
@@ -376,7 +399,8 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | recordsetList[0].recordList[0].recordContent | String | A record value. It displays the detailed field by record set type in a line. |
 
 
-### Create Record Set
+<a id="create-record-set"></a>
+### Create Record Set { #create-record-set }
 
 - Creates a record set.
 - The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, and SOA.
@@ -386,6 +410,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 - Up to 5,000 record sets can be created per DNS Zone.
 - There is a limit to the maximum number of record sets that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
+<a id="create-record-set-request"></a>
 #### Request
 
 [URI]
@@ -557,6 +582,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | recordset.recordList[0].domainName | String | Max. 255 characters | Required |  | Enter the domain as [FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) |
 
 
+<a id="create-record-set-response"></a>
 #### Response
 
 [Response body]
@@ -588,7 +614,8 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ```
 
 
-### Bulk Create Record Sets
+<a id="bulk-create-record-sets"></a>
+### Bulk Create Record Sets { #bulk-create-record-sets }
 
 - You can create multiple record sets, up to 2,000 sets per request.
 - The supported **record set types** are A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, and SOA.
@@ -598,6 +625,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 - Up to 5,000 record sets can be created per DNS Zone.
 - There is a limit to the maximum number of record sets that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
+<a id="bulk-create-record-sets-request"></a>
 #### Request
 
 [URI]
@@ -632,6 +660,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | recordsetList[0].recordList[0].recordDisabled | boolean |  | Optional | false | Whether record is disabled or not |
 | recordsetList[0].recordList[0].recordContent | String |  | Required |  | It displays the detailed field by record set type in a line. |
 
+<a id="bulk-create-record-sets-response"></a>
 #### Response
 
 [Response body]
@@ -647,7 +676,8 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ```
 
 
-### Modify Record Set
+<a id="modify-record-set"></a>
+### Modify Record Set { #modify-record-set }
 
 - Modifies a record set.
 - **Record set name** cannot be modified. However, **record set type**, **TTL (sec)**, and **record value** can be modified.
@@ -655,6 +685,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 - The maximum length of the record list within the record set is 512 bytes.
  - TXT record sets can be up to 4,096 bytes long.
 
+<a id="modify-record-set-request"></a>
 #### Request
 
 [URI]
@@ -690,6 +721,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | recordset.recordList[0].recordContent | String |  | Required |  | It displays the detailed field by record set type in a line. |
 
 
+<a id="modify-record-set-response"></a>
 #### Response
 
 [Response body]
@@ -721,11 +753,13 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 ```
 
 
-### Delete Record Set
+<a id="delete-record-set"></a>
+### Delete Record Set { #delete-record-set }
 
 - Deletes multiple record sets along with the records in the record sets.
 - SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 
+<a id="delete-record-set-request"></a>
 #### Request
 
 [URI]
@@ -751,6 +785,7 @@ recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092
 |---|---|---|---|---|---|
 | recordsetIdList | List | Min. 1, Max. 3,000 | Required |  | Record set ID list |
 
+<a id="delete-record-set-response"></a>
 #### Response
 
 [Response body]
@@ -765,13 +800,16 @@ recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092
 }
 ```
 
-## GSLB API
+<a id="gslb-api"></a>
+## GSLB API { #gslb-api }
 
-### Query GSLB
+<a id="query-gslb"></a>
+### Query GSLB { #query-gslb }
 
 - Retrieves the list of GSLBs.
 - When a health check is connected to pools, you can check the health status of GSLB, pools, and endpoints.
 
+<a id="query-gslb-request"></a>
 #### Request
 
 [URI]
@@ -801,6 +839,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | sortDirection | String | DESC, ASC | Optional | DESC | Sort order (DESC: Descending, ASC: Ascending) |
 | sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>GSLB_NAME, <br>GSLB_DOMAIN, <br>GSLB_TTL, <br>GSLB_ROUTING_RULE, <br>GSLB_DISABLED | Optional | CREATED_AT | Sort criteria <br>(CREATED_AT: Created date, <br>UPDATED_AT: Modified date, <br>GSLB_NAME: GSLB name, <br>GSLB_DOMAIN: GSLB domain, <br>GSLB_TTL: GSLB domain update cycle, <br>GSLB_ROUTING_RULE: Routing rule, <br>GSLB_DISABLED: Whether GSLB is disabled or not) |
 
+<a id="query-gslb-response"></a>
 #### Response
 
 [Response body]
@@ -868,7 +907,8 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | gslbList[0].updatedAt | DateTime | Modified date |
 
 
-### Create GSLB
+<a id="create-gslb"></a>
+### Create GSLB { #create-gslb }
 
 - Creates GSLB and pool connection settings.
 - For **routing rule**, you can select FAILOVER, RANDOM, or GEOLOCATION as a load balancing method for GSLB domain.
@@ -878,6 +918,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 - The smaller the **priority** of the **connected pool**, the higher the routing order, and it cannot be duplicated.
 - There are limits to the maximum number of GSLBs that can be created and to the maximum number of pools that can be connected. If you want to raise the limits, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
+<a id="create-gslb-request"></a>
 #### Request
 
 [URI]
@@ -911,6 +952,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | gslb.connectedPoolList[0].connectedPoolOrder | int | Min. 1, Max. 2,147,483,647 | Required |  | Connected pool priority |
 | gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | Optional |  | Connected pool region settings |
 
+<a id="create-gslb-response"></a>
 #### Response
 
 [Response body]
@@ -952,11 +994,13 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ```
 
 
-### Update GSLB
+<a id="update-gslb"></a>
+### Update GSLB { #update-gslb }
 
 - Updates GSLB and pool connection settings.
 - Updates the items entered in [Create GSLB](./api-guide/#create-gslb).
 
+<a id="update-gslb-request"></a>
 #### Request
 
 [URI]
@@ -991,6 +1035,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | gslb.connectedPoolList[0].connectedPoolOrder | int | Min. 1, Max. 2,147,483,647 | Required |  | Connected pool priority |
 | gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | Optional |  | Connected pool region settings |
 
+<a id="update-gslb-response"></a>
 #### Response
 
 [Response body]
@@ -1033,10 +1078,12 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 ```
 
 
-### Delete GSLB
+<a id="delete-gslb"></a>
+### Delete GSLB { #delete-gslb }
 
 - Deletes multiple GSLBs.
 
+<a id="delete-gslb-request"></a>
 #### Request
 
 [URI]
@@ -1060,6 +1107,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 |---|---|---|---|---|---|
 | gslbIdList | List | Min. 1, Max. 3,000 | Required |  | GSLB ID list |
 
+<a id="delete-gslb-response"></a>
 #### Response
 
 [Response body]
@@ -1075,12 +1123,14 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 ```
 
 
-### Connect Pool
+<a id="connect-pool"></a>
+### Connect Pool { #connect-pool }
 
 - Connects a pool to GSLB.
 - The smaller the **priority** of the **connected pool**, the higher the routing order. If you enter the same priority as the previously connected pool, the routing order for the existing pool gets lower.
 - There is a limit to the maximum number of pools that can be connected. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
+<a id="connect-pool-request"></a>
 #### Request
 
 [URI]
@@ -1110,6 +1160,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | connectedPool.connectedPoolOrder | int | Min. 1, Max. 2,147,483,647 | Required |  | Connected pool priority |
 | connectedPool.connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | Optional |  | Connected pool region settings |
 
+<a id="connect-pool-response"></a>
 #### Response
 
 [Response body]
@@ -1148,11 +1199,13 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 }
 ```
 
-### Update Pool Connection
+<a id="update-pool-connection"></a>
+### Update Pool Connection { #update-pool-connection }
 
 - Updates the settings of a pool connected to GSLB.
 - Updates the items entered in pool settings of [Create GSLB](./api-guide/#create-gslb) or [Connect Pool](./api-guide/#connect-pool).
 
+<a id="update-pool-connection-request"></a>
 #### Request
 
 [URI]
@@ -1182,6 +1235,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | connectedPool.connectedPoolOrder | int | Min. 1, Max. 2,147,483,647 | Required |  | Connected pool priority |
 | connectedPool.connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | Optional |  | Connected pool region settings |
 
+<a id="update-pool-connection-response"></a>
 #### Response
 
 [Response body]
@@ -1221,10 +1275,12 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 }
 ```
 
-### Detach Pool
+<a id="detach-pool"></a>
+### Detach Pool { #detach-pool }
 
 - Detaches multiple pools connected to GSLB.
 
+<a id="detach-pool-request"></a>
 #### Request
 
 [URI]
@@ -1249,6 +1305,7 @@ poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1df
 |---|---|---|---|---|---|
 | poolIdList | List | Min. 1, Max. 3,000 | Required |  | Pool ID list |
 
+<a id="detach-pool-response"></a>
 #### Response
 
 [Response body]
@@ -1281,13 +1338,16 @@ poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1df
 ```
 
 
-## Pool API
+<a id="pool-api"></a>
+## Pool API { #pool-api }
 
-### Query Pool
+<a id="query-pool"></a>
+### Query Pool { #query-pool }
 
 - Retrieves the list of pools.
 - When a health check is connected, you can check the health status of pools and endpoints.
 
+<a id="query-pool-request"></a>
 #### Request
 
 [URI]
@@ -1317,6 +1377,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | sortDirection | String | DESC, ASC | Optional | DESC | Sort order (DESC: Descending, ASC: Ascending) |
 | sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>POOL_NAME, <br>POOL_DISABLED, <br>HEALTH_CHECK_ID | Optional | CREATED_AT | Sort criteria <br>(CREATED_AT: Created date, <br>UPDATED_AT: Modified date, <br>POOL_NAME: Pool name, <br>POOL_DISABLED: Whether a pool is disabled or not, <br>HEALTH_CHECK_ID: Connected health check ID) |
 
+<a id="query-pool-response"></a>
 #### Response
 
 [Response body]
@@ -1388,7 +1449,8 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | poolList[0].updatedAt | DateTime | Modified date |
 
 
-### Create Pool
+<a id="create-pool"></a>
+### Create Pool { #create-pool }
 
 - Creates a pool and an endpoint in the pool.
 - You can set **a health check** to check the accessibility of endpoints in the pool.
@@ -1399,6 +1461,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 - The **weight** for an endpoint is applied relative to the weights for other endpoints. Equal weights have the same priority in the pool.
 - There are limits to the maximum number of pools that can be created, the maximum number of endpoints in a pool, and the maximum total number of endpoints. If you want to raise the limits, please contact us. [1:1 inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
+<a id="create-pool-request"></a>
 #### Request
 
 [URI]
@@ -1430,6 +1493,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | pool.endpointList[0].endpointWeight | double | Min. 0, Max. 1.00 | Optional | 1.00 | Endpoint weight |
 | pool.endpointList[0].endpointDisabled | boolean |  | Optional | false | Whether an endpoint is disabled or not |
 
+<a id="create-pool-response"></a>
 #### Response
 
 [Response body]
@@ -1465,11 +1529,13 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ```
 
 
-### Update Pool
+<a id="update-pool"></a>
+### Update Pool { #update-pool }
 
 - Updates pools and endpoints in the pools.
 - Updates the items entered in [Create Pool](./api-guide/#create-pool).
 
+<a id="update-pool-request"></a>
 #### Request
 
 [URI]
@@ -1502,6 +1568,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | pool.endpointList[0].endpointWeight | double | Min. 0, Max. 1.00 | Optional | 1.00 | Endpoint weight |
 | pool.endpointList[0].endpointDisabled | boolean |  | Optional | false | Whether an endpoint is disabled or not |
 
+<a id="update-pool-response"></a>
 #### Response
 
 [Response body]
@@ -1540,11 +1607,13 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 ```
 
 
-### Delete Pool
+<a id="delete-pool"></a>
+### Delete Pool { #delete-pool }
 
 - Deletes multiple pools along with the endpoints in the pools.
 - You cannot delete the pools connected to GSLB.
 
+<a id="delete-pool-request"></a>
 #### Request
 
 [URI]
@@ -1568,6 +1637,7 @@ poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c1
 |---|---|---|---|---|---|
 | poolIdList | List | Min. 1, Max. 3,000 | Required |  | Pool ID list |
 
+<a id="delete-pool-response"></a>
 #### Response
 
 [Response body]
@@ -1583,12 +1653,15 @@ poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c1
 ```
 
 
-## Health Check API
+<a id="health-check-api"></a>
+## Health Check API { #health-check-api }
 
-### Query Health Check
+<a id="query-health-check"></a>
+### Query Health Check { #query-health-check }
 
 - Retrieves the list of health checks.
 
+<a id="query-health-check-request"></a>
 #### Request
 
 [URI]
@@ -1616,6 +1689,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | sortDirection | String | DESC, ASC | Optional | DESC | Sort order (DESC: Descending, ASC: Ascending) |
 | sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>HEALTH_CHECK_NAME, <br>PROTOCOL, <br>PORT | Optional | CREATED_AT | Sort criteria <br>(CREATED_AT: Created date, <br>UPDATED_AT: Modified date, <br>HEALTH_CHECK_NAME: Health check name, <br>PROTOCOL: Protocol, <br>PORT: Port) |
 
+<a id="query-health-check-response"></a>
 #### Response
 
 [Response body]
@@ -1673,7 +1747,8 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | healthCheckList[0].updatedAt | DateTime | Modified date |
 
 
-### Create Health Check
+<a id="create-health-check"></a>
+### Create Health Check { #create-health-check }
 
 - Creates a health check.
 - For the health check **protocol**, HTTPS, HTTP, and TPC are supported, and the information that can be entered differs depending on the selected protocol.
@@ -1684,6 +1759,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 - Does not support a page redirected from an endpoint when determining **Expected status code** and **Expected response body**.
 - There is a limit to the maximum number of health checks that can be created. If you want to raise the limit, please contact us. [1:1 Inquiry](https://www.toast.com/kr/support/inquiry?alias=tab3_02)
 
+<a id="create-health-check-request"></a>
 #### Request
 
 [URI]
@@ -1719,6 +1795,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 | healthCheck.allowInsecure | boolean |  | Optional |  | Disable certificate validation for health checks,<br>used for HTTPS |
 | healthCheck.requestHeaderList | List |  | Optional |  | A list of request headers,<br>used for HTTPS and HTTP<br> Items in the list are requested in the ` form { "Header Name": "Header Value" }` |
 
+<a id="create-health-check-response"></a>
 #### Response
 
 [Response body]
@@ -1751,11 +1828,13 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ```
 
 
-### Update Health Check
+<a id="update-health-check"></a>
+### Update Health Check { #update-health-check }
 
 - Updates a health check.
 - Updates the items entered in [Create Health Check](./api-guide/#create-health-check).
 
+<a id="update-health-check-request"></a>
 #### Request
 
 [URI]
@@ -1792,6 +1871,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 | healthCheck.allowInsecure | boolean |  | Optional |  | Disable certificate validation for health checks,<br>used for HTTPS |
 | healthCheck.requestHeaderList | List |  | Optional |  | A list of request headers,<br>used for HTTPS and HTTP<br> Items in the list are requested in the ` form { "Header Name": "Header Value" }` |
 
+<a id="update-health-check-response"></a>
 #### Response
 
 [Response body]
@@ -1824,11 +1904,13 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 ```
 
 
-### Delete Health Check
+<a id="delete-health-check"></a>
+### Delete Health Check { #delete-health-check }
 
 - Deletes multiple health checks.
 - You cannot delete the health checks connected to the pool.
 
+<a id="delete-health-check-request"></a>
 #### Request
 
 [URI]
@@ -1852,6 +1934,7 @@ healthCheckIdList=b9165853-7859-4309-8059-48f12ebdbc17,d2629d6b-9381-4645-9cf3-4
 |---|---|---|---|---|---|
 | healthCheckIdList | List | Min. 1, Max. 3,000 | Required |  | Health check ID list |
 
+<a id="delete-health-check-response"></a>
 #### Response
 
 [Response body]
