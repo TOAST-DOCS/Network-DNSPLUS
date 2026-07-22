@@ -15,7 +15,7 @@ The guide describes API v2.0 of the DNS Plus service.
 DNS Plus API v2.0 supports Appkey and User Access Key tokens for API call authentication and authorization.
 
 An Appkey is a unique authentication key issued for each NHN Cloud service, used to identify the service and validate API requests.<br>The User Access Key token is a temporary, Bearer-type access token issued from a User Access Key.
-For more information on how to check and use each authentication method, see [Appkey](/en/nhncloud/en/public-api/appkey/) and [User Access Key Token](/en/nhncloud/en/public-api/user-access-key-token/).
+For more information on how to check and use each authentication method, see [Appkey](/nhncloud/en/public-api/appkey/) and [User Access Key Token](/nhncloud/en/public-api/user-access-key-token/).
 
 The issued token must be included in the request header.
 

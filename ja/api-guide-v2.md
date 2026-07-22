@@ -15,7 +15,7 @@ DNS PlusサービスのAPI v2.0について説明します。
 DNS Plus API v2.0は、APIの呼び出し及び認証のためにAppkeyとUser Access Keyトークンをサポートします。
 
 Appkeyは、NHN Cloudの各サービスに発行される固有の認証キーであり、APIリクエスト時のサービス識別と有効性検証に使用されます。<br>User Access Keyトークンは、User Access Keyを基に発行されるBearerタイプの一時的なアクセストークンです。
-各認証方法の確認及び使用方法の詳細については、それぞれ[Appkey](/ja/nhncloud/ja/public-api/appkey/)と[User Access Keyトークン](/ja/nhncloud/ja/public-api/user-access-key-token/)をご参照ください。
+各認証方法の確認及び使用方法の詳細については、それぞれ[Appkey](/nhncloud/ja/public-api/appkey/)と[User Access Keyトークン](/nhncloud/ja/public-api/user-access-key-token/)をご参照ください。
 
 発行されたトークンは、リクエストのHeaderに含める必要があります。
 
