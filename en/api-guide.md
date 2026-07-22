@@ -202,7 +202,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](#query-dns-zone).
 
 ```
 curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}' \
@@ -261,7 +261,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- DNS Zone ID can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
+- DNS Zone ID can be found by [Query DNS Zone](#query-dns-zone).
 
 ```
 curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/async?
@@ -310,7 +310,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](#query-dns-zone).
 
 ```
 curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
@@ -422,7 +422,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](#query-dns-zone).
 - Record value is required. You can enter the value by selecting either recordset.recordList[0].recordContent field or the detailed field.
 - The recordContent field displays the detailed field in one line separated by space. You can check the detailed field in [Detailed field by record set type].
 - If you enter values in both the detailed field and the recordContent field at the same time, the value in the recordContent field will take priority.
@@ -637,9 +637,9 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](#query-dns-zone).
 - Record value is required. You can enter the value by selecting either recordset.recordList[0].recordContent field or the detailed field.
-- The recordContent field displays the detailed field in one line separated by space. You can check the detailed field in the [Detailed field by record set type] section of [Create Record Set](./api-guide/#create-record-set).
+- The recordContent field displays the detailed field in one line separated by space. You can check the detailed field in the [Detailed field by record set type] section of [Create Record Set](#create-record-set).
 - If you enter values in both the detailed field and the recordContent field at the same time, the value in the recordContent field will take priority.
 
 ```
@@ -697,10 +697,10 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
-- {recordsetId} is the record set ID and you can check this by performing [Query Record Set](./api-guide/#query-record-set).
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](#query-dns-zone).
+- {recordsetId} is the record set ID and you can check this by performing [Query Record Set](#query-record-set).
 - Record value is required. You can enter the value by selecting either recordset.recordList[0].recordContent field or the detailed field.
-- The recordContent field displays the detailed field in one line separated by space. You can check the detailed field in the [Detailed field by record set type] section of [Create Record Set](./api-guide/#create-record-set).
+- The recordContent field displays the detailed field in one line separated by space. You can check the detailed field in the [Detailed field by record set type] section of [Create Record Set](#create-record-set).
 - If you enter values in both the detailed field and the recordContent field at the same time, the recordContent field will take priority.
 
 ```
@@ -771,8 +771,8 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](./api-guide/#query-dns-zone).
-- You can check the record set ID by performing [Query Record Set](./api-guide/#query-record-set).
+- {zoneId} is the DNS Zone ID, which can be found by [Query DNS Zone](#query-dns-zone).
+- You can check the record set ID by performing [Query Record Set](#query-record-set).
 
 ```
 curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
@@ -998,7 +998,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ### Update GSLB { #update-gslb }
 
 - Updates GSLB and pool connection settings.
-- Updates the items entered in [Create GSLB](./api-guide/#create-gslb).
+- Updates the items entered in [Create GSLB](#create-gslb).
 
 <a id="update-gslb-request"></a>
 #### Request
@@ -1012,7 +1012,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {gslbId} is a GSLB ID and can be found by [Query GSLB](./api-guide/#query-gslb).
+- {gslbId} is a GSLB ID and can be found by [Query GSLB](#query-gslb).
 - For the connectedPoolRegionContent field, enter **regions** in one line with commas (,) as delimiters.
 
 ```
@@ -1142,8 +1142,8 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {gslbId} is a GSLB ID and can be found by [Query GSLB](./api-guide/#query-gslb).
-- {poolId} is a pool ID, which can be found by [Query Pool](./api-guide/#query-pool).
+- {gslbId} is a GSLB ID and can be found by [Query GSLB](#query-gslb).
+- {poolId} is a pool ID, which can be found by [Query Pool](#query-pool).
 - For the connectedPoolRegionContent field, enter **regions** in one line with commas (,) as delimiters.
 
 ```
@@ -1203,7 +1203,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ### Update Pool Connection { #update-pool-connection }
 
 - Updates the settings of a pool connected to GSLB.
-- Updates the items entered in pool settings of [Create GSLB](./api-guide/#create-gslb) or [Connect Pool](./api-guide/#connect-pool).
+- Updates the items entered in pool settings of [Create GSLB](#create-gslb) or [Connect Pool](#connect-pool).
 
 <a id="update-pool-connection-request"></a>
 #### Request
@@ -1217,8 +1217,8 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {gslbId} is a GSLB ID and can be found by [Query GSLB](./api-guide/#query-gslb).
-- {poolId} is a pool ID, which can be found by [Query Pool](./api-guide/#query-pool).
+- {gslbId} is a GSLB ID and can be found by [Query GSLB](#query-gslb).
+- {poolId} is a pool ID, which can be found by [Query Pool](#query-pool).
 - For the connectedPoolRegionContent field, enter **regions** in one line with commas (,) as delimiters.
 
 ```
@@ -1292,7 +1292,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appke
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {gslbId} is a GSLB ID and can be found by [Query GSLB](./api-guide/#query-gslb).
+- {gslbId} is a GSLB ID and can be found by [Query GSLB](#query-gslb).
 
 ```
 curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
@@ -1533,7 +1533,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ### Update Pool { #update-pool }
 
 - Updates pools and endpoints in the pools.
-- Updates the items entered in [Create Pool](./api-guide/#create-pool).
+- Updates the items entered in [Create Pool](#create-pool).
 
 <a id="update-pool-request"></a>
 #### Request
@@ -1547,7 +1547,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {poolId} is a pool ID, which can be found by [Query Pool](./api-guide/#query-pool).
+- {poolId} is a pool ID, which can be found by [Query Pool](#query-pool).
 
 ```
 curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/pools/{poolId}' \
@@ -1832,7 +1832,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 ### Update Health Check { #update-health-check }
 
 - Updates a health check.
-- Updates the items entered in [Create Health Check](./api-guide/#create-health-check).
+- Updates the items entered in [Create Health Check](#create-health-check).
 
 <a id="update-health-check-request"></a>
 #### Request
@@ -1846,7 +1846,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appk
 [Request body]
 
 - Change {appkey} to the value found in the console.
-- {healthCheckId} is a health check ID and can be found by [Query Health Check](./api-guide/#query-health-check).
+- {healthCheckId} is a health check ID and can be found by [Query Health Check](#query-health-check).
 
 ```
 curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId}' \

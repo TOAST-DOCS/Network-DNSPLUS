@@ -1,17 +1,20 @@
-## Network > DNS Plus > API v2.0 가이드
+<a id="network-dns-plus-api-v20-guide"></a>
+## Network > DNS Plus > API v2.0 가이드 { #network-dns-plus-api-v20-guide }
 
 DNS Plus 서비스의 API v2.0을 설명합니다.
 
 
-## API 공통 정보
+<a id="api-common-information"></a>
+## API 공통 정보 { #api-common-information }
 
-### 인증 및 권한
+<a id="authentication-and-authorization"></a>
+### 인증 및 권한 { #authentication-and-authorization }
 
 DNS Plus API v2.0은 API 인증 호출 및 인증을 위해 Appkey와 User Access Key 토큰을 지원합니다.
 
 Appkey는 NHN Cloud의 각 서비스별로 발급되는 고유 인증 키로 API 요청 시 서비스 식별과 유효성 검증에 사용됩니다.<br>User Access Key 토큰은 User Access Key를 기반으로 발급되는 Bearer 타입의 일시적 액세스 토큰입니다.
 
-각 인증 방법의 확인 및 사용에 대한 자세한 내용은 각각 [Appkey](/nhncloud/ko/public-api/appkey-gov/)와 [User Access Key 토큰](/nhncloud/ko/public-api/user-access-key-token-gov/)을 참고하세요.
+각 인증 방법의 확인 및 사용에 대한 자세한 내용은 각각 [Appkey](/ko/nhncloud/ko/public-api/appkey-gov/)와 [User Access Key 토큰](/ko/nhncloud/ko/public-api/user-access-key-token-gov/)을 참고하세요.
 
 발급 받은 토큰은 요청 Header에 포함해야 합니다.
 
@@ -19,7 +22,8 @@ Appkey는 NHN Cloud의 각 서비스별로 발급되는 고유 인증 키로 API
 |---|---|---|---|---|
 | X-NHN-AUTHORIZATION | Header | String | O | Public API로 발급 받은 Bearer 유형 토큰 |
 
-### 응답 공통 정보
+<a id="response-common-information"></a>
+### 응답 공통 정보 { #response-common-information }
 
 - 모든 API 요청에 '200 OK'로 응답합니다. 자세한 응답 결과는 응답 본문의 헤더를 참고하세요.
 
@@ -48,9 +52,11 @@ Appkey는 NHN Cloud의 각 서비스별로 발급되는 고유 인증 키로 API
 ```
 
 
-## DNS Zone API
+<a id="dns-zone-api"></a>
+## DNS Zone API { #dns-zone-api }
 
-### DNS Zone 조회
+<a id="list-dns-zones"></a>
+### DNS Zone 조회 { #list-dns-zones }
 
 - DNS Zone 목록을 조회합니다.
 
@@ -124,7 +130,8 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 | zoneList[0].recordsetCount | long | 레코드 세트 개수 |
 
 
-### DNS Zone 생성
+<a id="create-dns-zone"></a>
+### DNS Zone 생성 { #create-dns-zone }
 
 - DNS Zone을 생성합니다.
 - **DNS Zone 이름**은 DNS 서버에서 유일해야 합니다.
@@ -181,7 +188,8 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 ```
 
 
-### DNS Zone 수정
+<a id="modify-dns-zone"></a>
+### DNS Zone 수정 { #modify-dns-zone }
 
 - DNS Zone을 수정합니다.
 
@@ -196,7 +204,7 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#dns-zone)에서 확인할 수 있습니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#list-dns-zones)에서 확인할 수 있습니다.
 
 ```
 curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}' \
@@ -236,7 +244,8 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 ```
 
 
-### DNS Zone 삭제 (비동기)
+<a id="delete-dns-zone-async"></a>
+### DNS Zone 삭제 (비동기) { #delete-dns-zone-async }
 
 - 여러 개의 DNS Zone을 삭제하며, DNS Zone의 레코드 세트도 함께 삭제합니다.
 - 실제 데이터 삭제는 비동기로 처리됩니다.
@@ -252,7 +261,7 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- DNS Zone ID는 [DNS Zone 조회](#dns-zone)에서 확인할 수 있습니다.
+- DNS Zone ID는 [DNS Zone 조회](#list-dns-zones)에서 확인할 수 있습니다.
 
 ```
 curl -X DELETE 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/async?
@@ -280,9 +289,11 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 ```
 
 
-## 레코드 세트 API
+<a id="record-set-api"></a>
+## 레코드 세트 API { #record-set-api }
 
-### 레코드 세트 조회
+<a id="query-record-set"></a>
+### 레코드 세트 조회 { #query-record-set }
 
 - 레코드 세트 목록을 조회합니다.
 
@@ -297,7 +308,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#dns-zone)에서 확인할 수 있습니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#list-dns-zones)에서 확인할 수 있습니다.
 
 ```
 curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
@@ -385,7 +396,8 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 | recordsetList[0].recordList[0].recordContent | String | 레코드값이며 레코드 세트 타입에 따른 상세 필드를 한 줄로 표시한 내용 |
 
 
-### 레코드 세트 생성
+<a id="create-record-set"></a>
+### 레코드 세트 생성 { #create-record-set }
 
 - 레코드 세트를 생성합니다.
 - **레코드 세트 타입**으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, SOA를 지원합니다.
@@ -406,7 +418,7 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#dns-zone)에서 확인할 수 있습니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#list-dns-zones)에서 확인할 수 있습니다.
 - 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
 - recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [레코드 세트 타입에 따른 상세 필드]에서 확인할 수 있습니다.
 - 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 생성됩니다.
@@ -597,7 +609,8 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 ```
 
 
-### 레코드 세트 대량 생성
+<a id="bulk-create-record-sets"></a>
+### 레코드 세트 대량 생성 { #bulk-create-record-sets }
 
 - 레코드 세트를 여러 개 생성합니다. 요청당 최대 2,000개까지 생성할 수 있습니다.
 - **레코드 세트 타입**으로 A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, SOA를 지원합니다.
@@ -618,9 +631,9 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#dns-zone)에서 확인할 수 있습니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#list-dns-zones)에서 확인할 수 있습니다.
 - 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
-- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [레코드 세트 생성](#_14)에 [레코드 세트 타입에 따른 상세 필드]에서 확인할 수 있습니다.
+- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [레코드 세트 생성](#create-record-set)에 [레코드 세트 타입에 따른 상세 필드]에서 확인할 수 있습니다.
 - 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 생성됩니다.
 
 ```
@@ -656,7 +669,8 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 ```
 
 
-### 레코드 세트 수정
+<a id="modify-record-set"></a>
+### 레코드 세트 수정 { #modify-record-set }
 
 - 레코드 세트를 수정합니다.
 - **레코드 세트 이름**은 수정할 수 없으며, **레코드 세트 타입**과 **TTL(초)**, **레코드값**은 수정할 수 있습니다.
@@ -675,10 +689,10 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#dns-zone)에서 확인할 수 있습니다.
-- {recordsetId}는 레코드 세트 ID이며 [레코드 세트 조회](#_11)에서 확인할 수 있습니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#list-dns-zones)에서 확인할 수 있습니다.
+- {recordsetId}는 레코드 세트 ID이며 [레코드 세트 조회](#query-record-set)에서 확인할 수 있습니다.
 - 레코드값은 필수이며 입력 방법으로 recordset.recordList[0].recordContent 필드 또는 상세 필드를 선택할 수 있습니다.
-- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [레코드 세트 생성](#_14)에 [레코드 세트 타입에 따른 상세 필드]에서 확인할 수 있습니다.
+- recordContent 필드는 공백을 구분 문자로 하여 상세 필드를 한 줄로 표시한 내용입니다. 상세 필드는 [레코드 세트 생성](#create-record-set)에 [레코드 세트 타입에 따른 상세 필드]에서 확인할 수 있습니다.
 - 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 수정됩니다.
 
 ```
@@ -730,7 +744,8 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 ```
 
 
-### 레코드 세트 삭제
+<a id="delete-record-set"></a>
+### 레코드 세트 삭제 { #delete-record-set }
 
 - 여러 개의 레코드 세트를 삭제하며, 레코드 세트의 레코드도 함께 삭제합니다.
 - SOA 레코드 세트는 생성, 수정, 삭제할 수 없으며, NS 레코드 세트는 **DNS Zone 이름**으로 생성, 수정, 삭제할 수 없습니다.
@@ -746,8 +761,8 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#dns-zone)에서 확인할 수 있습니다.
-- 레코드 세트 ID는 [레코드 세트 조회](#_11)에서 확인할 수 있습니다.
+- {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#list-dns-zones)에서 확인할 수 있습니다.
+- 레코드 세트 ID는 [레코드 세트 조회](#query-record-set)에서 확인할 수 있습니다.
 
 ```
 curl -X DELETE 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
@@ -774,9 +789,11 @@ recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092
 }
 ```
 
-## GSLB API
+<a id="gslb-api"></a>
+## GSLB API { #gslb-api }
 
-### GSLB 조회
+<a id="retrieve-gslb"></a>
+### GSLB 조회 { #retrieve-gslb }
 
 - GSLB 목록을 조회합니다.
 - Pool에 헬스 체크가 연결되어 있는 경우 GSLB 정상 상태와 Pool 정상 상태, 엔드포인트 정상 상태를 알 수 있습니다.
@@ -877,7 +894,8 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 | gslbList[0].updatedAt | DateTime | 수정일 |
 
 
-### GSLB 생성
+<a id="create-gslb"></a>
+### GSLB 생성 { #create-gslb }
 
 - GSLB와 Pool 연결 설정을 생성합니다.
 - **라우팅 규칙**은 GSLB 도메인에 대한 로드밸런싱 방법으로 FAILOVER, RANDOM, GEOLOCATION을 선택할 수 있습니다.
@@ -961,10 +979,11 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 ```
 
 
-### GSLB 수정
+<a id="modify-gslb"></a>
+### GSLB 수정 { #modify-gslb }
 
 - GSLB와 Pool 연결 설정을 수정합니다.
-- [GSLB 생성](#gslb_1)에서 입력한 항목을 수정합니다.
+- [GSLB 생성](#create-gslb)에서 입력한 항목을 수정합니다.
 
 #### 요청
 
@@ -977,7 +996,7 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {gslbId}는 GSLB ID이며 [GSLB 조회](#gslb)에서 확인할 수 있습니다.
+- {gslbId}는 GSLB ID이며 [GSLB 조회](#retrieve-gslb)에서 확인할 수 있습니다.
 - connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
 
 ```
@@ -1042,7 +1061,8 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 ```
 
 
-### GSLB 삭제
+<a id="delete-gslb"></a>
+### GSLB 삭제 { #delete-gslb }
 
 - 여러 개의 GSLB를 삭제합니다.
 
@@ -1084,7 +1104,8 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 ```
 
 
-### Pool 연결
+<a id="connect-pool"></a>
+### Pool 연결 { #connect-pool }
 
 - GSLB에 Pool을 연결합니다.
 - **연결된 Pool**의 **우선순위**는 작을수록 라우팅 순서가 높으며, 기존에 연결된 Pool과 동일한 우선순위를 입력한 경우 기존 Pool의 라우팅 순서가 낮아집니다.
@@ -1101,8 +1122,8 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {gslbId}는 GSLB ID이며 [GSLB 조회](#gslb)에서 확인할 수 있습니다.
-- {poolId}는 Pool ID이며 [Pool 조회](#pool_3)에서 확인할 수 있습니다.
+- {gslbId}는 GSLB ID이며 [GSLB 조회](#retrieve-gslb)에서 확인할 수 있습니다.
+- {poolId}는 Pool ID이며 [Pool 조회](#list-pools)에서 확인할 수 있습니다.
 - connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
 
 ```
@@ -1157,10 +1178,11 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 }
 ```
 
-### Pool 연결 수정
+<a id="modify-pool-connection"></a>
+### Pool 연결 수정 { #modify-pool-connection }
 
 - GSLB에 연결된 Pool 설정을 수정합니다.
-- [GSLB 생성](#gslb_1)의 Pool 설정 또는 [Pool 연결](#pool)에서 입력한 항목을 수정합니다.
+- [GSLB 생성](#create-gslb)의 Pool 설정 또는 [Pool 연결](#connect-pool)에서 입력한 항목을 수정합니다.
 
 #### 요청
 
@@ -1173,8 +1195,8 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {gslbId}는 GSLB ID이며 [GSLB 조회](#gslb)에서 확인할 수 있습니다.
-- {poolId}는 Pool ID이며 [Pool 조회](#pool_3)에서 확인할 수 있습니다.
+- {gslbId}는 GSLB ID이며 [GSLB 조회](#retrieve-gslb)에서 확인할 수 있습니다.
+- {poolId}는 Pool ID이며 [Pool 조회](#list-pools)에서 확인할 수 있습니다.
 - connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
 
 ```
@@ -1230,7 +1252,8 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 }
 ```
 
-### Pool 연결 해제
+<a id="detach-pool"></a>
+### Pool 연결 해제 { #detach-pool }
 
 - GSLB에 연결된 여러 개의 Pool을 해제합니다.
 
@@ -1245,7 +1268,7 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {gslbId}는 GSLB ID이며 [GSLB 조회](#gslb)에서 확인할 수 있습니다.
+- {gslbId}는 GSLB ID이며 [GSLB 조회](#retrieve-gslb)에서 확인할 수 있습니다.
 
 ```
 curl -X DELETE 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
@@ -1290,9 +1313,11 @@ poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1df
 ```
 
 
-## Pool API
+<a id="pool-api"></a>
+## Pool API { #pool-api }
 
-### Pool 조회
+<a id="list-pools"></a>
+### Pool 조회 { #list-pools }
 
 - Pool 목록을 조회합니다.
 - 헬스 체크가 연결되어 있는 경우 Pool 정상 상태와 엔드포인트 정상 상태를 알 수 있습니다.
@@ -1397,7 +1422,8 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 | poolList[0].updatedAt | DateTime | 수정일 |
 
 
-### Pool 생성
+<a id="create-pool"></a>
+### Pool 생성 { #create-pool }
 
 - Pool과 Pool 내에 엔드포인트를 생성합니다.
 - Pool 내의 엔드포인트의 접근성을 확인할 **헬스 체크**를 설정할 수 있습니다.
@@ -1474,10 +1500,11 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 ```
 
 
-### Pool 수정
+<a id="modify-pool"></a>
+### Pool 수정 { #modify-pool }
 
 - Pool과 Pool 내에 엔드포인트를 수정합니다.
-- [Pool 생성](#pool_4)에서 입력한 항목을 수정합니다.
+- [Pool 생성](#create-pool)에서 입력한 항목을 수정합니다.
 
 #### 요청
 
@@ -1490,7 +1517,7 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {poolId}는 Pool ID이며 [Pool 조회](#pool_3)에서 확인할 수 있습니다.
+- {poolId}는 Pool ID이며 [Pool 조회](#list-pools)에서 확인할 수 있습니다.
 
 ```
 curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools/{poolId}' \
@@ -1549,7 +1576,8 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 ```
 
 
-### Pool 삭제
+<a id="delete-pools"></a>
+### Pool 삭제 { #delete-pools }
 
 - 여러 개의 Pool을 삭제하며, Pool의 엔드포인트도 함께 삭제합니다.
 - GSLB에 연결되어 있는 Pool은 삭제할 수 없습니다.
@@ -1592,9 +1620,11 @@ poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c1
 ```
 
 
-## 헬스 체크 API
+<a id="health-check-api"></a>
+## 헬스 체크 API { #health-check-api }
 
-### 헬스 체크 조회
+<a id="list-health-checks"></a>
+### 헬스 체크 조회 { #list-health-checks }
 
 - 헬스 체크 목록을 조회합니다.
 
@@ -1683,7 +1713,8 @@ curl -X GET 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 | healthCheckList[0].updatedAt | DateTime | 수정일 |
 
 
-### 헬스 체크 생성
+<a id="create-health-check"></a>
+### 헬스 체크 생성 { #create-health-check }
 
 - 헬스 체크를 생성합니다.
 - 헬스 체크 **프로토콜**은 HTTPS, HTTP, TCP를 지원하며 선택한 프로토콜에 따라 입력할 수 있는 정보가 다릅니다.
@@ -1761,10 +1792,11 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 ```
 
 
-### 헬스 체크 수정
+<a id="modify-health-check"></a>
+### 헬스 체크 수정 { #modify-health-check }
 
 - 헬스 체크를 수정합니다.
-- [헬스 체크 생성](#_48)에서 입력한 항목을 수정합니다.
+- [헬스 체크 생성](#create-health-check)에서 입력한 항목을 수정합니다.
 
 #### 요청
 
@@ -1777,7 +1809,7 @@ curl -X POST 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
-- {healthCheckId}는 헬스 체크 ID이며 [헬스 체크 조회](#_45)에서 확인할 수 있습니다.
+- {healthCheckId}는 헬스 체크 ID이며 [헬스 체크 조회](#list-health-checks)에서 확인할 수 있습니다.
 
 ```
 curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
@@ -1834,7 +1866,8 @@ curl -X PUT 'https://dnsplus.api.gov-nhncloudservice.com/dnsplus/v2.0/appkeys/{a
 ```
 
 
-### 헬스 체크 삭제
+<a id="delete-health-checks"></a>
+### 헬스 체크 삭제 { #delete-health-checks }
 
 - 여러 개의 헬스 체크를 삭제합니다.
 - Pool에 연결되어 있는 헬스 체크는 삭제할 수 없습니다.
