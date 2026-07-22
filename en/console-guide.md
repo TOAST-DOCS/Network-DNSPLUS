@@ -22,7 +22,7 @@ You can manage DNS Zones on the **DNS** screen of the menu.
     - In **DNS Zone Name**, enter the domain or subdomain you own as [fully qualified domain name (FQDN)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name).
     - **DNS Zone Name** must be unique on the DNS server.
     - The same **DNS Zone Name** can be created as many as the number of DNS servers. There are 3 DNS servers.
-    - After the DNS Zone is created, you must set the name server information of the NS record set that is created by default to the domain. For the record sets created by default, see [Manage Record Sets](./console-guide/#manage-record-sets).
+    - After the DNS Zone is created, you must set the name server information of the NS record set that is created by default to the domain. For the record sets created by default, see [Manage Record Sets](#manage-record-sets).
         - If the DNS Zone was created with a newly registered domain, you must set the name server information to the corresponding name server in the domain registrar.
         - If the DNS Zone was created with a subdomain of a domain currently in operation, you must create an NS record set in your operating domain with the subdomain name and its name server.
 
@@ -241,7 +241,7 @@ You can search for the GSLB that you want by name.
 
     - All pools that contain the search term in **Pool Name**, **Priority**, and **Region** are searched and displayed.
 
-3. The GSLB status is displayed according to the rules below, and the status of the [Pool](./console-guide/#health-check-api) is displayed for the connected pool.
+3. The GSLB status is displayed according to the rules below, and the status of the [Pool](#search-pools-and-view-results) is displayed for the connected pool.
 
 | GSLB Status | GSLB Enabled/Disabled | Pool Status |
 | --- | --- | --- |
