@@ -17,14 +17,14 @@
 <a id="november-25-2025-feature-updates"></a>
 #### 기능 변경
 *  TXT 레코드 세트 타입의 레코드 값 최대 길이를 255바이트에서 4096바이트로 변경했습니다.
-
+{% if "gov" not in build_flags %}
 <a id="april-29-2025"></a>
 ### 2025. 04. 29. { #april-29-2025 }
 
 <a id="april-29-2025-feature-updates"></a>
 #### 기능 변경
 *  레코드 세트 TTL의 최솟값을 1에서 10으로 변경했습니다.
-
+{% endif %}
 <a id="may-28-2024"></a>
 ### 2024. 05. 28. { #may-28-2024 }
 
@@ -40,7 +40,37 @@
 
 * SPF 레코드 세트 타입 지원이 중단되었습니다. TXT 레코드 세트 타입으로 대신 사용할 수 있습니다.
     * 상세 내용은 [[RFC 7208#section-14.1]](https://datatracker.ietf.org/doc/html/rfc7208#section-14.1)에서 확인할 수 있습니다.
+{% if "gov" in build_flags %}
+<a id="december-07-2021"></a>
+### 2021. 12. 07. { #december-07-2021 }
 
+<a id="december-07-2021-added-features"></a>
+#### 기능 추가
+
+##### DNS Plus
+
+* 레코드 세트 대량 생성 기능이 추가되었습니다.
+
+
+<a id="november-03-2020"></a>
+### 2020. 11. 03. { #november-03-2020 }
+
+<a id="november-03-2020-feature-updates"></a>
+#### 기능 개선
+
+* 레코드 세트 수정 시 레코드 세트 타입 수정할 수 있도록 개선되었습니다.
+
+
+<a id="april-07-2020"></a>
+### 2020. 04. 07. { #april-07-2020 }
+
+<a id="april-07-2020-release-of-a-new-product"></a>
+#### 신규 상품 출시
+
+* DNS Plus는 도메인 관리 기능과 서버의 트래픽을 안정적으로 로드밸런싱하는 기능을 제공합니다.
+* DNS(Domain Name System)로 도메인을 간편하게 설정하고 관리할 수 있습니다.
+* GSLB(Global Server Load Balancing)로 라우팅 규칙에 따라 엔드포인트 서버를 DR(Disaster Recovery), 랜덤 로드밸런싱, 전 세계적인 로드밸런싱으로 구성할 수 있습니다.
+{% else %}
 <a id="august-24-2021"></a>
 ### 2021. 08. 24. { #august-24-2021 }
 
@@ -94,3 +124,4 @@
 
 * DNS Plus는 도메인 관리 기능을 제공하는 서비스입니다.
 * DNS 서버를 간편하게 설정할 수 있습니다.
+{%- endif %}

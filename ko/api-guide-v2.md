@@ -1,3 +1,6 @@
+{%- set api_host = "dnsplus.api.gov-nhncloudservice.com" if "gov" in build_flags else "dnsplus.api.nhncloudservice.com" -%}
+{%- set example_host = "gov-nhncloud.com" if "gov" in build_flags else "nhncloud.com" -%}
+{%- set inquiry_url = "https://www.gov-nhncloud.com/kr/support/inquiry" if "gov" in build_flags else "https://www.nhncloud.com/kr/support/inquiry" -%}
 <!-- pre-align:aligned sig=e20c06ac5822 -->
 
 <a id="network-dns-plus-api-v20-guide"></a>
@@ -68,14 +71,14 @@ Appkey는 NHN Cloud의 각 서비스별로 발급되는 고유 인증 키로 API
 
 | 메서드 | URI |
 |---|---|
-| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones |
+| GET | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones |
 
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones'
+curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones'
 ```
 
 [옵션]
@@ -147,14 +150,14 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 
 | 메서드 | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones |
 
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones' \
 -H 'Content-Type: application/json' \
 --data '{ "zone": { "zoneName": "test.dnsplus.com.", "description": "test" }}'
 ```
@@ -205,7 +208,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 
 | 메서드 | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId} |
 
 [요청 본문]
 
@@ -213,7 +216,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 - {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#list-dns-zones)에서 확인할 수 있습니다.
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}' \
 -H 'Content-Type: application/json' \
 --data '{ "zone": { "description": "test" }}'
 ```
@@ -264,7 +267,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 
 | 메서드 | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/async |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/async |
 
 [요청 본문]
 
@@ -272,7 +275,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 - DNS Zone ID는 [DNS Zone 조회](#list-dns-zones)에서 확인할 수 있습니다.
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/async?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/async?
 zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab24188dc4'
 ```
 
@@ -313,7 +316,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 
 | 메서드 | URI |
 |---|---|
-| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
+| GET | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
 [요청 본문]
 
@@ -321,7 +324,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 - {zoneId}는 DNS Zone ID이며 [DNS Zone 조회](#list-dns-zones)에서 확인할 수 있습니다.
 
 ```
-curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
+curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
 ```
 
 [옵션]
@@ -416,7 +419,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 - 레코드 세트 내의 레코드 목록의 길이는 최대 512바이트입니다.
   - TXT 레코드 세트는 최대 4096바이트입니다.
 - DNS Zone당 레코드 세트는 최대 5,000개까지 생성할 수 있습니다.
-- 레코드 세트 생성 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기](https://www.nhncloud.com/kr/support/inquiry)
+- 레코드 세트 생성 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기]($[ inquiry_url ]$)
 
 <a id="create-record-set-request"></a>
 #### 요청
@@ -425,7 +428,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 
 | 메서드 | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
 [요청 본문]
 
@@ -436,7 +439,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 - 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 생성됩니다.
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
 -H 'Content-Type: application/json' \
 --data '{ "recordset": { "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
@@ -631,7 +634,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 - 레코드 세트 내의 레코드 목록의 길이는 최대 512바이트입니다.
   - TXT 레코드 세트는 최대 4096바이트입니다.
 - DNS Zone당 레코드 세트는 최대 5,000개까지 생성할 수 있습니다.
-- 레코드 세트 생성 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기](https://www.nhncloud.com/kr/support/inquiry)
+- 레코드 세트 생성 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기]($[ inquiry_url ]$)
 
 <a id="bulk-create-record-sets-request"></a>
 #### 요청
@@ -640,7 +643,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 
 | 메서드 | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list |
 
 [요청 본문]
 
@@ -651,7 +654,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 - 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 생성됩니다.
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list' \
 -H 'Content-Type: application/json' \
 --data '{ "recordsetList": [{ "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }]}'
 ```
@@ -700,7 +703,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 
 | 메서드 | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId} |
 
 [요청 본문]
 
@@ -712,7 +715,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 - 상세 필드와 recordContent 필드를 동시에 입력하면 recordContent 필드를 기준으로 수정됩니다.
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
 -H 'Content-Type: application/json' \
 --data '{ "recordset": { "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
@@ -774,7 +777,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 
 | 메서드 | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
 [요청 본문]
 
@@ -783,7 +786,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 - 레코드 세트 ID는 [레코드 세트 조회](#query-record-set)에서 확인할 수 있습니다.
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
 recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092d340e0adf'
 ```
 
@@ -824,14 +827,14 @@ recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092
 
 | 메서드 | URI |
 |---|---|
-| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs |
+| GET | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs |
 
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs?showHealthy=true'
+curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs?showHealthy=true'
 ```
 
 [옵션]
@@ -924,7 +927,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
     - RANDOM: 연결된 Pool 중 사용 가능한 Pool을 무작위로 선택하여 라우팅합니다.
     - GEOLOCATION: 설정된 지역의 트래픽을 해당 연결된 Pool로 라우팅합니다. 지역 설정이 없는 경우 우선순위로 라우팅합니다.
 - **연결된 Pool**의 **우선순위**는 작을수록 라우팅 순서가 높으며, 중복될 수 없습니다.
-- GSLB 생성 개수와 Pool 연결 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기](https://www.nhncloud.com/kr/support/inquiry)
+- GSLB 생성 개수와 Pool 연결 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기]($[ inquiry_url ]$)
 
 <a id="create-gslb-request"></a>
 #### 요청
@@ -933,7 +936,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 
 | 메서드 | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs |
 
 [요청 본문]
 
@@ -941,7 +944,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 - connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs' \
 -H 'Content-Type: application/json' \
 --data '{ "gslb": { "gslbName": "GSLB-test", "gslbTtl": 300, "gslbRoutingRule": "FAILOVER", "connectedPoolList": [ { "poolId": "8e4326d4-3862-4b46-819e-83a786add570", "connectedPoolOrder": 1 }, { "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818", "connectedPoolOrder": 2 } ] }}'
 ```
@@ -1015,7 +1018,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 
 | 메서드 | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId} |
 
 [요청 본문]
 
@@ -1024,7 +1027,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 - connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}' \
 -H 'Content-Type: application/json' \
 --data '{ "gslb": { "gslbName": "GSLB-test", "gslbTtl": 300, "gslbDisabled": true, "gslbRoutingRule": "GEOLOCATION", "connectedPoolList": [ { "poolId": "8e4326d4-3862-4b46-819e-83a786add570", "connectedPoolOrder": 1 }, { "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818", "connectedPoolOrder": 2, "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA" } ] }}'
 ```
@@ -1098,14 +1101,14 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 
 | 메서드 | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs |
 
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs?
 gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c604bf'
 ```
 
@@ -1136,7 +1139,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 
 - GSLB에 Pool을 연결합니다.
 - **연결된 Pool**의 **우선순위**는 작을수록 라우팅 순서가 높으며, 기존에 연결된 Pool과 동일한 우선순위를 입력한 경우 기존 Pool의 라우팅 순서가 낮아집니다.
-- Pool 연결 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기](https://www.nhncloud.com/kr/support/inquiry)
+- Pool 연결 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기]($[ inquiry_url ]$)
 
 <a id="connect-pool-request"></a>
 #### 요청
@@ -1145,7 +1148,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 
 | 메서드 | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
 
 [요청 본문]
 
@@ -1155,7 +1158,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 - connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
 -H 'Content-Type: application/json' \
 --data '{ "connectedPool": { "connectedPoolOrder": 1 } }'
 ```
@@ -1220,7 +1223,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 
 | 메서드 | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
 
 [요청 본문]
 
@@ -1230,7 +1233,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 - connectedPoolRegionContent 필드는 쉼표(,)를 구분 문자로 하여 **지역**을 한 줄로 작성합니다.
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
 -H 'Content-Type: application/json' \
 --data '{ "connectedPool": { "connectedPoolOrder": 1, "connectedPoolRegionContent": "WESTERN_NORTH_AMERICA" } }'
 ```
@@ -1295,7 +1298,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 
 | 메서드 | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools |
 
 [요청 본문]
 
@@ -1303,7 +1306,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 - {gslbId}는 GSLB ID이며 [GSLB 조회](#retrieve-gslb)에서 확인할 수 있습니다.
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
 poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1dfb093'
 ```
 
@@ -1362,14 +1365,14 @@ poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1df
 
 | 메서드 | URI |
 |---|---|
-| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools |
+| GET | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools |
 
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools?showHealthy=true'
+curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools?showHealthy=true'
 ```
 
 [옵션]
@@ -1467,7 +1470,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
     - [예약된 IP 주소](https://en.wikipedia.org/wiki/Reserved_IP_addresses)는 입력할 수 없습니다.
     - Pool 내에서 중복될 수 없습니다.
 - 엔드포인트의 **가중치**는 Pool 내의 다른 엔드포인트 가중치와 상대적으로 동작합니다. 동일한 가중치는 Pool 내에서 동일한 비중을 가집니다.
-- Pool의 생성 개수, Pool 내의 엔드포인트 개수, 전체 엔드포인트의 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기](https://www.nhncloud.com/kr/support/inquiry)
+- Pool의 생성 개수, Pool 내의 엔드포인트 개수, 전체 엔드포인트의 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기]($[ inquiry_url ]$)
 
 <a id="create-pool-request"></a>
 #### 요청
@@ -1476,14 +1479,14 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 
 | 메서드 | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools |
 
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools' \
 -H 'Content-Type: application/json' \
 --data '{ "pool": { "poolName": "POOL-test", "endpointList": [ { "endpointAddress": "test.dnsplus.com" }, { "endpointAddress": "123.123.123.123" } ] }}'
 ```
@@ -1550,7 +1553,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 
 | 메서드 | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools/{poolId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools/{poolId} |
 
 [요청 본문]
 
@@ -1558,7 +1561,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 - {poolId}는 Pool ID이며 [Pool 조회](#list-pools)에서 확인할 수 있습니다.
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools/{poolId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools/{poolId}' \
 -H 'Content-Type: application/json' \
 --data '{ "pool": { "poolName": "POOL-test", "poolDisabled": true, "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17", "endpointList": [ { "endpointAddress": "test.dnsplus.com", "endpointWeight": 1.00, "endpointDisabled": true }, { "endpointAddress": "123.123.123.123", "endpointWeight": 0.5, "endpointDisabled": true } ] }}'
 ```
@@ -1628,14 +1631,14 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 
 | 메서드 | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools |
 
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools?
 poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c12818'
 ```
 
@@ -1676,14 +1679,14 @@ poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c1
 
 | 메서드 | URI |
 |---|---|
-| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks |
+| GET | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks |
 
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks'
+curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks'
 ```
 
 [옵션]
@@ -1724,7 +1727,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
             "expectedBody": "OK",
             "allowInsecure": false,
             "requestHeaderList": [
-                { "Host": "nhncloud.com" }
+                { "Host": "$[ example_host ]$" }
             ],
             "createdAt": "2019-12-18T12:31:34.000+09:00",
             "updatedAt": "2019-12-18T14:19:20.000+09:00"
@@ -1766,7 +1769,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
     - TCP 입력 가능 항목: 포트, 헬스 체크 주기, 최대 응답 대기 시간, 최대 재시도 횟수
 - **인증서 검증 안 함**을 사용하면 헬스 체크가 수행될 때 엔드포인트의 TLS/SSL 인증서가 유효하지 않아도 무시할 수 있습니다.
 - **예상 상태 코드**와 **예상 응답 본문**을 판단할 때 엔드포인트에서 리다이렉션된 페이지에 대해서는 지원하지 않습니다.
-- 헬스 체크 생성 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기](https://www.nhncloud.com/kr/support/inquiry)
+- 헬스 체크 생성 개수는 제한되어 있으며 연장이 필요한 경우 별도로 문의하세요. [문의하기]($[ inquiry_url ]$)
 
 <a id="create-health-check-request"></a>
 #### 요청
@@ -1775,16 +1778,16 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 
 | 메서드 | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks |
 
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks' \
 -H 'Content-Type: application/json' \
---data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "2xx", "allowInsecure": false, "requestHeaderList": [{ "Host": "nhncloud.com" }] }}'
+--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "2xx", "allowInsecure": false, "requestHeaderList": [{ "Host": "$[ example_host ]$" }] }}'
 ```
 
 [필드]
@@ -1828,7 +1831,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
         "expectedCodes": "2xx",
         "allowInsecure": false,
         "requestHeaderList": [
-            { "Host": "nhncloud.com" }
+            { "Host": "$[ example_host ]$" }
         ],
         "createdAt": "2019-12-18T12:31:34.000+09:00",
         "updatedAt": "2019-12-18T12:31:34.000+09:00"
@@ -1850,7 +1853,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 
 | 메서드 | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks/{healthCheckId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks/{healthCheckId} |
 
 [요청 본문]
 
@@ -1858,7 +1861,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 - {healthCheckId}는 헬스 체크 ID이며 [헬스 체크 조회](#list-health-checks)에서 확인할 수 있습니다.
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
 -H 'Content-Type: application/json' \
 --data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
 ```
@@ -1904,7 +1907,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
         "expectedCodes": "3xx",
         "allowInsecure": false,
         "requestHeaderList": [
-            { "Host": "nhncloud.com" }
+            { "Host": "$[ example_host ]$" }
         ],
         "createdAt": "2019-12-18T12:31:34.000+09:00",
         "updatedAt": "2019-12-18T12:36:20.000+09:00"
@@ -1926,14 +1929,14 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 
 | 메서드 | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks |
 
 [요청 본문]
 
 - {appkey}는 콘솔에서 확인한 값으로 변경합니다.
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks?
 healthCheckIdList=b9165853-7859-4309-8059-48f12ebdbc17,d2629d6b-9381-4645-9cf3-43d7ad491e2b'
 ```
 
