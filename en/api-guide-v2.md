@@ -1,5 +1,8 @@
+<!-- machine_translated: true -->
+
 {%- set api_host = "dnsplus.api.gov-nhncloudservice.com" if "gov" in build_flags else "dnsplus.api.nhncloudservice.com" -%}
 {%- set example_host = "gov-nhncloud.com" if "gov" in build_flags else "nhncloud.com" -%}
+{%- set inquiry_url = "https://www.gov-nhncloud.com/kr/support/inquiry" if "gov" in build_flags else "https://www.nhncloud.com/kr/support/inquiry" -%}
 <!-- pre-align:aligned sig=e20c06ac5822 -->
 
 <a id="network-dns-plus-api-v20-guide"></a>
@@ -414,12 +417,12 @@ curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}
 ### Create Record Set { #create-record-set }
 
 - Creates a record set.
-- The following **record set types** are supported: A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, and SOA.
-- SOA record sets cannot be created, modified, or deleted. NS record sets cannot be created, modified, or deleted using the **DNS zone name**.
-- The maximum length of the record list within a record set is 512 bytes.
+- Supports A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, and SOA as **record set types**.
+- SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
+- The maximum length of the record list within the record set is 512 bytes.
   - TXT record sets support up to 4,096 bytes.
-- Up to 5,000 record sets can be created per DNS zone.
-- The number of record sets that can be created is limited. Contact us if you need to increase the limit. [Contact Us](https://www.nhncloud.com/en/support/inquiry)
+- Up to 5,000 record sets can be created per DNS Zone.
+- The number of record sets that can be created is limited. If you need an extension, please contact us. [Contact Us]($[ inquiry_url ]$)
 
 <a id="create-record-set-request"></a>
 #### Request
@@ -630,11 +633,11 @@ curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId
 
 - You can create multiple record sets, up to 2,000 sets per request.
 - The following **record set types** are supported: A, AAAA, CAA, CNAME, MX, NAPTR, PTR, TXT, SRV, NS, and SOA.
-- The SOA record set cannot be created, modified, or deleted. The NS record set cannot be created, modified, or deleted using the **DNS zone name**.
+- SOA record set cannot be created, modified, or deleted. NS record set cannot be created, modified, or deleted using the **DNS Zone name**.
 - The maximum length of the record list within the record set is 512 bytes.
   - TXT record sets support up to 4,096 bytes.
-- Up to 5,000 record sets can be created per DNS zone.
-- The number of record sets to be created is limited, please contact us if you need an extension. [Contact us](https://www.nhncloud.com/en/support/inquiry)
+- Up to 5,000 record sets can be created per DNS Zone.
+- The number of record sets that can be created is limited. If you need an extension, contact us separately. [Contact Us]($[ inquiry_url ]$)
 
 <a id="bulk-create-record-sets-request"></a>
 #### Request
@@ -921,13 +924,13 @@ curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs?showHeal
 <a id="create-gslb"></a>
 ### Create GSLB { #create-gslb }
 
-- Creates GSLB and pool connection settings.
-- The **routing rule** is the load balancing method for the GSLB domain. FAILOVER, RANDOM, and GEOLOCATION are available.
-    - FAILOVER: Routes based on the priority of the connected pool.
-    - RANDOM: Routes by randomly selecting an available pool from the connected pools.
-    - GEOLOCATION: Routes traffic from the configured region to the corresponding connected pool. If no region is configured, routing is based on priority.
-- The lower the **priority** of a **connected pool**, the higher the routing order. Duplicate priorities are not allowed.
-- There are limits to the maximum number of GSLBs that can be created and to the maximum number of pools that can be connected. If you want to raise the limits, please contact us. [Contact us](https://www.nhncloud.com/en/support/inquiry)
+- Creates a connection configuration between GSLB and Pool.
+- **Routing Rule**: You can select FAILOVER, RANDOM, or GEOLOCATION as the load balancing method for the GSLB domain.
+    - FAILOVER: Performs routing based on the priorities of connected pools.
+    - RANDOM: Performs routing by randomly selecting an available pool among connected pools.
+    - GEOLOCATION: Routes the traffic of the configured region to the connected pool. When there is no configured region, performs routing based on the priorities of connected pools.
+- For **Connected Pools**, a lower **Priority** value means a higher routing order, and duplicate values are not allowed.
+- There are limits to the maximum number of GSLBs that can be created and to the maximum number of pools that can be connected. If you want to raise the limits, please contact us. [Contact Us]($[ inquiry_url ]$)
 
 <a id="create-gslb-request"></a>
 #### Request
@@ -1137,9 +1140,9 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 <a id="connect-pool"></a>
 ### Connect Pool { #connect-pool }
 
-- Connects a pool to a GSLB.
-- The lower the **priority** of a **connected pool**, the higher the routing order. If the same priority as an existing connected pool is entered, the routing order of the existing pool is lowered.
-- There is a limit to the maximum number of pools that can be connected. If you want to raise the limit, contact us. [Contact Us](https://www.nhncloud.com/en/support/inquiry)
+- Connects a pool to GSLB.
+- The smaller the **priority** of the **connected pool**, the higher the routing order. If the same priority as the previously connected pool is entered, the routing order of the existing pool is lowered.
+- There is a limit to the maximum number of pools that can be connected. If you want to raise the limit, please contact us. [Contact Us]($[ inquiry_url ]$)
 
 <a id="connect-pool-request"></a>
 #### Request
@@ -1464,13 +1467,13 @@ curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools?showHeal
 ### Create Pool { #create-pool }
 
 - Creates a pool and endpoints within the pool.
-- A **health check** can be configured to verify the accessibility of endpoints within the pool.
-- The **endpoint address** can be entered as a domain address or IPv4, with the following restrictions:
-    - Cannot start with a hyphen or period, and cannot end with a hyphen. Periods and hyphens cannot appear consecutively.
-    - [Reserved IP addresses](https://en.wikipedia.org/wiki/Reserved_IP_addresses) cannot be entered.
-    - Duplicate addresses are not allowed within the pool.
-- The **weight** of an endpoint operates relative to the weights of other endpoints in the pool. Endpoints with the same weight have equal priority within the pool.
-- The number of pools that can be created, the number of endpoints within a pool, and the total number of endpoints are limited. Contact us if you need to increase the limit. [Contact Us](https://www.nhncloud.com/en/support/inquiry)
+- You can set a **health check** to check the accessibility of endpoints in the pool.
+- The **endpoint address** can be a domain address or an IPv4 address, with the following restrictions:
+    - The endpoint address cannot start with a hyphen and a period, and cannot end with a hyphen. You cannot enter periods and hyphens consecutively.
+    - A [reserved IP address](https://en.wikipedia.org/wiki/Reserved_IP_addresses) cannot be entered.
+    - Endpoint addresses cannot be duplicated within a pool.
+- The **weight** for an endpoint is applied relative to the weights for other endpoints in the pool. Equal weights have the same priority in the pool.
+- There are limits to the maximum number of pools that can be created, the maximum number of endpoints in a pool, and the maximum total number of endpoints. If you want to raise the limits, please contact us. [Contact Us]($[ inquiry_url ]$)
 
 <a id="create-pool-request"></a>
 #### Request
@@ -1763,13 +1766,13 @@ curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks'
 ### Create Health Check { #create-health-check }
 
 - Creates a health check.
-- For the health check **protocol**, HTTPS, HTTP, and TCP are supported, and the information that can be entered differs depending on the selected protocol.
-    - HTTPS input items: Skip certificate verification, port, health check interval, maximum response wait time, maximum retry count, path, expected status code, expected response body, and request header
-    - HTTP input items: Port, health check interval, maximum response wait time, maximum retry count, path, expected status code, expected response body, and request header
-    - TCP input items: Port, health check interval, maximum response wait time, and maximum retry count
-- Enabling **Skip certificate verification** allows the health check to ignore invalid TLS/SSL certificates on endpoints.
-- Redirected pages from endpoints are not supported when evaluating **expected status codes** and **expected response bodies**.
-- The number of health checks that can be created is limited. Contact us if you need to increase the limit. [Contact Us](https://www.nhncloud.com/en/support/inquiry)
+- The health check **protocol** supports HTTPS, HTTP, and TCP, and the information that can be entered differs depending on the selected protocol.
+    - HTTPS input items: No certificate verification, port, health check cycle, maximum response latency, maximum retries, path, expected status code, expected response body, and request header
+    - HTTP input items: Port, health check cycle, maximum response latency, maximum retries, path, expected status code, expected response body, and request header
+    - TCP input items: Port, health check cycle, maximum response latency, maximum retries
+- Using **No certificate verification** allows the health check to ignore an invalid TLS/SSL certificate on the endpoint when the health check is performed.
+- Evaluating the **expected status code** and **expected response body** is not supported for pages redirected from the endpoint.
+- The number of health checks that can be created is limited. If you need to increase this limit, contact us separately. [Contact Us]($[ inquiry_url ]$)
 
 <a id="create-health-check-request"></a>
 #### Request
@@ -1838,7 +1841,6 @@ curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks
     }
 }
 ```
-
 
 <a id="modify-health-check"></a>
 ### Modify Health Check { #modify-health-check }
@@ -1914,7 +1916,6 @@ curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks/
     }
 }
 ```
-
 
 <a id="delete-health-checks"></a>
 ### Delete Health Checks { #delete-health-checks }
