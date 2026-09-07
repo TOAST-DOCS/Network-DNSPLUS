@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 {%- set api_host = "dnsplus.api.gov-nhncloudservice.com" if "gov" in build_flags else "dnsplus.api.nhncloudservice.com" -%}
 {%- set example_host = "gov-nhncloud.com" if "gov" in build_flags else "nhncloud.com" -%}
 <!-- pre-align:aligned sig=9ecb215b0160 -->
@@ -1778,7 +1780,7 @@ curl -X GET 'https://$[ api_host ]$/dnsplus/v1.0/appkeys/{appkey}/health-checks'
 ```
 curl -X POST 'https://$[ api_host ]$/dnsplus/v1.0/appkeys/{appkey}/health-checks' \
 -H 'Content-Type: application/json' \
-'--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "2xx", "allowInsecure": false, "requestHeaderList": [{ "Host": "$[ example_host ]$" }] }}'
+--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "2xx", "allowInsecure": false, "requestHeaderList": [{ "Host": "$[ example_host ]$" }] }}'
 ```
 
 [フィールド]
@@ -1830,7 +1832,6 @@ curl -X POST 'https://$[ api_host ]$/dnsplus/v1.0/appkeys/{appkey}/health-checks
 }
 ```
 
-
 <a id="update-health-check"></a>
 ### ヘルスチェックの修正 { #update-health-check }
 
@@ -1854,7 +1855,7 @@ curl -X POST 'https://$[ api_host ]$/dnsplus/v1.0/appkeys/{appkey}/health-checks
 ```
 curl -X PUT 'https://$[ api_host ]$/dnsplus/v1.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
 -H 'Content-Type: application/json' \
-'--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
+--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
 ```
 
 [フィールド]
@@ -1905,7 +1906,6 @@ curl -X PUT 'https://$[ api_host ]$/dnsplus/v1.0/appkeys/{appkey}/health-checks/
     }
 }
 ```
-
 
 <a id="delete-health-check"></a>
 ### ヘルスチェックの削除 { #delete-health-check }
