@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 {%- set api_host = "dnsplus.api.gov-nhncloudservice.com" if "gov" in build_flags else "dnsplus.api.nhncloudservice.com" -%}
 {%- set example_host = "gov-nhncloud.com" if "gov" in build_flags else "nhncloud.com" -%}
 <!-- pre-align:aligned sig=9ecb215b0160 -->
@@ -1709,6 +1711,7 @@ curl -X GET 'https://$[ api_host ]$/dnsplus/v1.0/appkeys/{appkey}/health-checks'
             "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17",
             "healthCheckName": "HTTPS-443",
             "protocol": "HTTPS",
+            "port": 443,
             "interval": 60,
             "timeout": 5,
             "retries": 2,
@@ -1829,7 +1832,6 @@ curl -X POST 'https://$[ api_host ]$/dnsplus/v1.0/appkeys/{appkey}/health-checks
 }
 ```
 
-
 <a id="update-health-check"></a>
 ### Update Health Check { #update-health-check }
 
@@ -1904,7 +1906,6 @@ curl -X PUT 'https://$[ api_host ]$/dnsplus/v1.0/appkeys/{appkey}/health-checks/
     }
 }
 ```
-
 
 <a id="delete-health-check"></a>
 ### Delete Health Check { #delete-health-check }
