@@ -645,7 +645,7 @@ curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId
 
 | メソッド | URI |
 |---|---|
-| POST | https://$[ api\_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list |
 
 [リクエスト本文]
 
