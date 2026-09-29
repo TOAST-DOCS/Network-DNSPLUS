@@ -11,20 +11,24 @@
 *  API v2.0 추가
     * User Access Key 토큰을 지원합니다.
 
+{% if "gov" in build_flags %}
+<a id="december-2-2025"></a>
+### 2025. 12. 02. { #december-2-2025 }
+{% else %}
 <a id="november-25-2025"></a>
 ### 2025. 11. 25. { #november-25-2025 }
-
+{% endif %}
 <a id="november-25-2025-feature-updates"></a>
 #### 기능 개선/변경
 *  TXT 레코드 세트 타입의 레코드 값 최대 길이를 255바이트에서 4096바이트로 변경했습니다.
-{% if "gov" not in build_flags %}
+
 <a id="april-29-2025"></a>
 ### 2025. 04. 29. { #april-29-2025 }
 
 <a id="april-29-2025-feature-updates"></a>
 #### 기능 개선/변경
 *  레코드 세트 TTL의 최솟값을 1에서 10으로 변경했습니다.
-{% endif %}
+
 <a id="may-28-2024"></a>
 ### 2024. 05. 28. { #may-28-2024 }
 

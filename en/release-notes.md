@@ -14,14 +14,17 @@
 * Added API v2.0
     * Added support for User Access Key tokens.
 
+{% if "gov" in build_flags %}
+<a id="december-2-2025"></a>
+### December 2, 2025 { #december-2-2025 }
+{% else %}
 <a id="november-25-2025"></a>
 ### November 25, 2025 { #november-25-2025 }
-
+{% endif %}
 <a id="november-25-2025-feature-updates"></a>
 #### Feature Updates
 
 *  Changed the maximum length of record values for TXT record set type from 255 bytes to 4,096 bytes.
-{% if "gov" not in build_flags %}
 
 <a id="april-29-2025"></a>
 ### April 29, 2025 { #april-29-2025 }
@@ -30,7 +33,6 @@
 #### Feature Updates
 
 *  Changed the minimum value of the Record Set TTL from 1 to 10.
-{% endif %}
 
 <a id="may-28-2024"></a>
 ### May 28, 2024 { #may-28-2024 }
