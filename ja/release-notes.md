@@ -15,12 +15,14 @@
     * User Access Keyトークンをサポートします。
     
 {% if "gov" in build_flags %}
+
 <a id="december-2-2025"></a>
 ### 2025. 12. 02. { #december-2-2025 }
 {% else %}
 <a id="november-25-2025"></a>
 ### 2025. 11. 25. { #november-25-2025 }
 {% endif %}
+
 <a id="november-25-2025-feature-updates"></a>
 #### 機能改善/変更
 
