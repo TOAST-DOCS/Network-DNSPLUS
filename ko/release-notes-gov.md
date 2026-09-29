@@ -1,50 +1,11 @@
 ## Network > DNS Plus > 릴리스 노트
 
-### 2026. 04. 14.
+{% include-markdown './release-notes-gov/2026.md' %}
 
-#### 기능 추가
-*  API v2.0 추가
-    * User Access Key 토큰을 지원합니다.
+{% include-markdown './release-notes-gov/2025.md' %}
 
+{% include-markdown './release-notes-gov/2024.md' %}
 
-### 2025. 11. 25.
+{% include-markdown './release-notes-gov/2021.md' %}
 
-#### 기능 변경
-*  TXT 레코드 세트 타입의 레코드 값 최대 길이를 255바이트에서 4096바이트로 변경했습니다.
-
-### 2024. 05. 28.
-
-#### 기능 추가 
-* GSLB 헬스 체크에서 헬스 체크 요청의 헤더, 헬스 체크 주기, 최대 응답 대기 시간, 최대 재시도 횟수 설정 기능이 추가되었습니다.
-
-### 2024. 03. 12.
-
-#### 기능 개선
-
-* SPF 레코드 세트 타입 지원이 중단되었습니다. TXT 레코드 세트 타입으로 대신 사용할 수 있습니다.
-    * 상세 내용은 [[RFC 7208#section-14.1]](https://datatracker.ietf.org/doc/html/rfc7208#section-14.1)에서 확인할 수 있습니다.
-
-
-### 2021. 12. 07.
-
-#### 기능 추가
-
-##### DNS Plus
-
-* 레코드 세트 대량 생성 기능이 추가되었습니다.
-
-
-### 2020. 11. 03.
-
-#### 기능 개선
-
-* 레코드 세트 수정 시 레코드 세트 타입 수정할 수 있도록 개선되었습니다.
-
-
-### 2020. 04. 07.
-
-#### 신규 상품 출시
-
-* DNS Plus는 도메인 관리 기능과 서버의 트래픽을 안정적으로 로드밸런싱하는 기능을 제공합니다.
-* DNS(Domain Name System)로 도메인을 간편하게 설정하고 관리할 수 있습니다.
-* GSLB(Global Server Load Balancing)로 라우팅 규칙에 따라 엔드포인트 서버를 DR(Disaster Recovery), 랜덤 로드밸런싱, 전 세계적인 로드밸런싱으로 구성할 수 있습니다.
+{% include-markdown './release-notes-gov/2020.md' %}
