@@ -14,14 +14,17 @@
 * API v2.0の追加
     * User Access Keyトークンをサポートします。
     
+{% if "gov" in build_flags %}
+<a id="december-2-2025"></a>
+### 2025. 12. 02. { #december-2-2025 }
+{% else %}
 <a id="november-25-2025"></a>
 ### 2025. 11. 25. { #november-25-2025 }
-
+{% endif %}
 <a id="november-25-2025-feature-updates"></a>
 #### 機能改善/変更
 
 *  TXTレコードセットタイプのレコード値の最大長を255バイトから4096バイトに変更しました。
-{% if "gov" not in build_flags %}
 
 <a id="april-29-2025"></a>
 ### 2025. 04. 29. { #april-29-2025 }
@@ -30,7 +33,6 @@
 #### 機能改善/変更
 
 *  レコードセット TTL の最小値を 1 から 10 に変更しました。
-{% endif %}
 
 <a id="may-28-2024"></a>
 ### 2024. 05. 28. { #may-28-2024 }
