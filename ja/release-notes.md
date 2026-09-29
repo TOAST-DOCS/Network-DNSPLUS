@@ -1,6 +1,6 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=fe9851c62a0b -->
+<!-- pre-align:aligned sig=4078051f07e3 -->
 
 <a id="network-dns-plus-release-notes"></a>
 ## Network > DNS Plus > リリースノート { #network-dns-plus-release-notes }
