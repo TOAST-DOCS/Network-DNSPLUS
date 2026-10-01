@@ -1,6 +1,6 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=fe9851c62a0b -->
+<!-- pre-align:aligned sig=4078051f07e3 -->
 
 <a id="network-dns-plus-release-notes"></a>
 ## Network > DNS Plus > Release Notes { #network-dns-plus-release-notes }
@@ -15,12 +15,14 @@
     * Added support for User Access Key tokens.
 
 {% if "gov" in build_flags %}
+
 <a id="december-2-2025"></a>
 ### December 2, 2025 { #december-2-2025 }
 {% else %}
 <a id="november-25-2025"></a>
 ### November 25, 2025 { #november-25-2025 }
 {% endif %}
+
 <a id="november-25-2025-feature-updates"></a>
 #### Feature Updates
 
