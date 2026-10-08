@@ -3,6 +3,8 @@
 {%- set api_host = "dnsplus.api.gov-nhncloudservice.com" if "gov" in build_flags else "dnsplus.api.nhncloudservice.com" -%}
 {%- set example_host = "gov-nhncloud.com" if "gov" in build_flags else "nhncloud.com" -%}
 {%- set inquiry_url = "https://www.gov-nhncloud.com/kr/support/inquiry" if "gov" in build_flags else "https://www.nhncloud.com/kr/support/inquiry" -%}
+{%- set appkey_url = "/nhncloud/ko/public-api/appkey-gov/" if "gov" in build_flags else "/nhncloud/ko/public-api/appkey/" -%}
+{%- set uak_token_url = "/nhncloud/ko/public-api/user-access-key-token-gov/" if "gov" in build_flags else "/nhncloud/ko/public-api/user-access-key-token/" -%}
 <!-- pre-align:aligned sig=e20c06ac5822 -->
 
 <a id="network-dns-plus-api-v20-guide"></a>
@@ -19,8 +21,8 @@ DNS PlusサービスのAPI v2.0について説明します。
 
 DNS Plus API v2.0は、APIの呼び出し及び認証のためにAppkeyとUser Access Keyトークンをサポートします。
 
-Appkeyは、NHN Cloudの各サービスに発行される固有の認証キーであり、APIリクエスト時のサービス識別と有効性検証に使用されます。<br>User Access Keyトークンは、User Access Keyを基に発行されるBearerタイプの一時的なアクセストークンです。
-各認証方法の確認及び使用方法の詳細については、それぞれ[Appkey](/nhncloud/ja/public-api/appkey/)と[User Access Keyトークン](/nhncloud/ja/public-api/user-access-key-token/)をご参照ください。
+Appkeyは、NHN Cloudの各サービスに発行される固有の認証キーであり、APIリクエスト時のサービス識別と有効性検証に使用されます。<br>User Access KeyトークンはUser Access Keyを基に発行されるBearerタイプの一時的なアクセストークンです。
+各認証方法の確認及び使用方法の詳細については、それぞれ[Appkey]($[ appkey_url ]$)と[User Access Keyトークン]($[ uak_token_url ]$)をご参照ください。
 
 発行されたトークンは、リクエストのHeaderに含める必要があります。
 
