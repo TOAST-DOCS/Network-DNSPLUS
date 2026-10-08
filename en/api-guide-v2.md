@@ -3,6 +3,8 @@
 {%- set api_host = "dnsplus.api.gov-nhncloudservice.com" if "gov" in build_flags else "dnsplus.api.nhncloudservice.com" -%}
 {%- set example_host = "gov-nhncloud.com" if "gov" in build_flags else "nhncloud.com" -%}
 {%- set inquiry_url = "https://www.gov-nhncloud.com/kr/support/inquiry" if "gov" in build_flags else "https://www.nhncloud.com/kr/support/inquiry" -%}
+{%- set appkey_url = "/nhncloud/ko/public-api/appkey-gov/" if "gov" in build_flags else "/nhncloud/ko/public-api/appkey/" -%}
+{%- set uak_token_url = "/nhncloud/ko/public-api/user-access-key-token-gov/" if "gov" in build_flags else "/nhncloud/ko/public-api/user-access-key-token/" -%}
 <!-- pre-align:aligned sig=e20c06ac5822 -->
 
 <a id="network-dns-plus-api-v20-guide"></a>
@@ -20,7 +22,7 @@ The guide describes API v2.0 of the DNS Plus service.
 DNS Plus API v2.0 supports Appkey and User Access Key tokens for API call authentication and authorization.
 
 An Appkey is a unique authentication key issued for each NHN Cloud service, used to identify the service and validate API requests.<br>The User Access Key token is a temporary, Bearer-type access token issued from a User Access Key.
-For more information on how to check and use each authentication method, see [Appkey](/nhncloud/en/public-api/appkey/) and [User Access Key Token](/nhncloud/en/public-api/user-access-key-token/).
+For more information on how to check and use each authentication method, see [Appkey]($[ appkey_url ]$) and [User Access Key Token]($[ uak_token_url ]$).
 
 The issued token must be included in the request header.
 
