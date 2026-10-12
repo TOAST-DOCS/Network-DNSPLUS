@@ -1,16 +1,26 @@
-## Network > DNS Plus > API v2.0 ガイド
+<!-- machine_translated: true -->
+
+{%- set api_host = "dnsplus.api.gov-nhncloudservice.com" if "gov" in build_flags else "dnsplus.api.nhncloudservice.com" -%}
+{%- set example_host = "gov-nhncloud.com" if "gov" in build_flags else "nhncloud.com" -%}
+{%- set inquiry_url = "https://www.gov-nhncloud.com/kr/support/inquiry" if "gov" in build_flags else "https://www.nhncloud.com/kr/support/inquiry" -%}
+<!-- pre-align:aligned sig=e20c06ac5822 -->
+
+<a id="network-dns-plus-api-v20-guide"></a>
+## Network > DNS Plus > API v2.0 ガイド { #network-dns-plus-api-v20-guide }
 
 DNS PlusサービスのAPI v2.0について説明します。
 
 
-## API共通情報
+<a id="api-common-information"></a>
+## API共通情報 { #api-common-information }
 
-### 認証及び権限
+<a id="authentication-and-authorization"></a>
+### 認証及び権限 { #authentication-and-authorization }
 
 DNS Plus API v2.0は、APIの呼び出し及び認証のためにAppkeyとUser Access Keyトークンをサポートします。
 
 Appkeyは、NHN Cloudの各サービスに発行される固有の認証キーであり、APIリクエスト時のサービス識別と有効性検証に使用されます。<br>User Access Keyトークンは、User Access Keyを基に発行されるBearerタイプの一時的なアクセストークンです。
-各認証方法の確認及び使用方法の詳細については、それぞれ[Appkey](/nhncloud/ja/public-api/appkey/)と[User Access Keyトークン](/nhncloud/ja/public-api/user-access-key-token)をご参照ください。
+各認証方法の確認及び使用方法の詳細については、それぞれ[Appkey](/nhncloud/ja/public-api/appkey/)と[User Access Keyトークン](/nhncloud/ja/public-api/user-access-key-token/)をご参照ください。
 
 発行されたトークンは、リクエストのHeaderに含める必要があります。
 
@@ -18,7 +28,8 @@ Appkeyは、NHN Cloudの各サービスに発行される固有の認証キー�
 |---|---|---|---|---|
 | X-NHN-AUTHORIZATION | Header | String | O | Public APIで発行されたBearerタイプのトークン |
 
-### レスポンス共通情報
+<a id="response-common-information"></a>
+### レスポンス共通情報 { #response-common-information }
 
 - 全てのAPIリクエストに対し「200 OK」で応答します。詳細なレスポンス結果は、レスポンス本文のヘッダをご参照ください。
 
@@ -47,26 +58,29 @@ Appkeyは、NHN Cloudの各サービスに発行される固有の認証キー�
 ```
 
 
-## DNS Zone API
+<a id="dns-zone-api"></a>
+## DNS Zone API { #dns-zone-api }
 
-### DNS Zoneの照会
+<a id="list-dns-zones"></a>
+### DNS Zoneの照会 { #list-dns-zones }
 
 - DNS Zone一覧を取得します。
 
+<a id="list-dns-zones-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones |
+| GET | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
 
 ```
-curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones'
+curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones'
 ```
 
 [オプション]
@@ -82,6 +96,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | sortDirection | String | DESC, ASC | 任意 | DESC | ソート方向(DESC: 降順、ASC: 昇順) |
 | sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>ZONE_NAME, <br>ZONE_STATUS, <br>RECORDSET_COUNT | 任意 | CREATED_AT | ソート対象 <br>(CREATED_AT: 作成日時、<br>UPDATED_AT: 更新日時、<br>ZONE_NAME: DNS Zone名、<br>ZONE_STATUS: DNS Zoneステータス、<br>RECORDSET_COUNT: レコードセット数) |
 
+<a id="list-dns-zones-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -123,26 +138,28 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | zoneList[0].recordsetCount | long | レコードセット数 |
 
 
-### DNS Zoneの作成
+<a id="create-dns-zone"></a>
+### DNS Zoneの作成 { #create-dns-zone }
 
 - DNS Zoneを作成します。
 - **DNS Zone名**は、DNSサーバー内で一意である必要があります。
 - 同一の**DNS Zone名**は、DNSサーバーの数だけ作成可能です。DNSサーバーは3台です。
 
+<a id="create-dns-zone-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones' \
 -H 'Content-Type: application/json' \
 --data '{ "zone": { "zoneName": "test.dnsplus.com.", "description": "test" }}'
 ```
@@ -155,6 +172,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 | zone.zoneName | String | 最大254文字<br>半角英小文字、数字、'.'、'-'、'_'<br>末尾の文字は'.' | 必須 |  | 作成するDNS Zone名。<br>ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
 | zone.description | String | 最大255文字 | 任意 |  | DNS Zoneの説明 |
 
+<a id="create-dns-zone-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -180,25 +198,27 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 ```
 
 
-### DNS Zoneの変更
+<a id="modify-dns-zone"></a>
+### DNS Zoneの変更 { #modify-dns-zone }
 
 - DNS Zoneを変更します。
 
+<a id="modify-dns-zone-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId} |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#list-dns-zones)で確認できます。
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}' \
 -H 'Content-Type: application/json' \
 --data '{ "zone": { "description": "test" }}'
 ```
@@ -210,6 +230,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | zone | Object |  | 必須 |  | DNS Zone |
 | zone.description | String | 最大255文字 | 任意 |  | DNS Zoneの説明 |
 
+<a id="modify-dns-zone-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -235,26 +256,28 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 ```
 
 
-### DNS Zoneの削除(非同期)
+<a id="delete-dns-zone-async"></a>
+### DNS Zoneの削除(非同期) { #delete-dns-zone-async }
 
 - 複数のDNS Zoneを一括削除します。DNS Zone内のレコードセットも同時に削除されます。
 - 実際のデータ削除は非同期で処理されます。
 
+<a id="delete-dns-zone-async-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/async |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/async |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- DNS Zone IDは[DNS Zoneの照会](#dns-zone)で確認できます。
+- DNS Zone IDは[DNS Zoneの照会](#list-dns-zones)で確認できます。
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/async?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/async?
 zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab24188dc4'
 ```
 
@@ -264,6 +287,7 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 |---|---|---|---|---|---|
 | zoneIdList | List | 最小1個、最大3,000個 | 必須 |  | DNS Zone ID一覧 |
 
+<a id="delete-dns-zone-async-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -279,27 +303,30 @@ zoneIdList=bff20a9a-24cf-4670-8b34-007622ec010e,52bc0031-37eb-4b82-b4d7-eaab2418
 ```
 
 
-## レコードセットAPI
+<a id="record-set-api"></a>
+## レコードセットAPI { #record-set-api }
 
-### レコードセットの照会
+<a id="query-record-set"></a>
+### レコードセットの照会 { #query-record-set }
 
 - レコードセット一覧を取得します。
 
+<a id="query-record-set-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
+| GET | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#list-dns-zones)で確認できます。
 
 ```
-curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
+curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets'
 ```
 
 [オプション]
@@ -314,6 +341,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | sortDirection | String | DESC, ASC | 任意 | DESC | ソート方向(DESC: 降順、ASC: 昇順) |
 | sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>RECORDSET_NAME, <br>RECORDSET_TYPE, <br>RECORDSET_TTL | 任意 | CREATED_AT | ソート対象 <br>(CREATED_AT: 作成日時、<br>UPDATED_AT: 更新日時、<br>RECORDSET_NAME: レコードセット名、<br>RECORDSET_TYPE: レコードセットタイプ、<br>RECORDSET_TTL: TTL(秒)) |
 
+<a id="query-record-set-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -384,34 +412,36 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | recordsetList[0].recordList[0].recordContent | String | レコード値。レコードセットのタイプに応じた詳細フィールドを1行で表示した内容 |
 
 
-### レコードセットの作成
+<a id="create-record-set"></a>
+### レコードセットの作成 { #create-record-set }
 
 - レコードセットを作成します。
-- **レコードセットのタイプ**は、A、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、NS、SOAをサポートしています。
-- SOAレコードセットは作成、変更、削除できません。また、NSレコードセットは**DNS Zone名**で作成、変更、削除できません。
-- レコードセット内のレコード一覧の長さは最大512バイトです。
-- TXTレコードセットは最大4096バイトです。
-- DNS Zoneごとに最大5,000個のレコードセットを作成できます。
-- レコードセットの作成数には上限があります。上限の引き上げをご希望の場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/jp/support/inquiry)
+- **レコードセットタイプ**として、A、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、NS、SOA をサポートします。
+- SOA レコードセットは作成、修正、削除することはできません。また、NS レコードセットは **DNS Zone 名**で作成、修正、削除することはできません。
+- レコードセット内のレコードリストの長さは最大 512 バイトです。
+  - TXT レコードセットは最大 4096 バイトです。
+- DNS Zone あたり、レコードセットは最大 5,000 個まで作成できます。
+- レコードセットの作成数には制限があります。延長が必要な場合は、別途お問い合わせください。[お問い合わせ]($[ inquiry_url ]$)
 
+<a id="create-record-set-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#list-dns-zones)で確認できます。
 - レコード値は必須です。入力方法として、recordset.recordList[0].recordContentフィールドまたは詳細フィールドのいずれかを指定できます。
 - recordContentフィールドは、半角スペースを区切り文字として詳細フィールドを1行で記述した内容です。詳細フィールドについては[レコードセットのタイプに応じた詳細フィールド]で確認できます。
 - 詳細フィールドとrecordContentフィールドを同時に入力した場合、recordContentフィールドが優先して適用されます。
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets' \
 -H 'Content-Type: application/json' \
 --data '{ "recordset": { "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
@@ -565,6 +595,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 | recordset.recordList[0].domainName | String | 最大255文字 | 必須 |  | ドメインを[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)で入力 |
 
 
+<a id="create-record-set-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -596,34 +627,36 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 ```
 
 
-### レコードセットの一括作成
+<a id="bulk-create-record-sets"></a>
+### レコードセットの一括作成 { #bulk-create-record-sets }
 
-- 複数のレコードセットを一括で作成します。1回のリクエストで最大2,000個まで作成できます。
-- **レコードセットのタイプ**は、A、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、NS、SOAをサポートしています。
-- SOAレコードセットは作成、変更、削除できません。また、NSレコードセットは**DNS Zone名**で作成、変更、削除できません。
-- レコードセット内のレコード一覧の長さは最大512バイトです。
-- TXTレコードセットは最大4096バイトです。
-- DNS Zoneごとに最大5,000個のレコードセットを作成できます。
-- レコードセットの作成数には上限があります。上限の引き上げをご希望の場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/jp/support/inquiry)
+- 複数のレコードセットを作成します。リクエストあたり最大2,000個まで作成できます。
+- **レコードセットタイプ**として、A、AAAA、CAA、CNAME、MX、NAPTR、PTR、TXT、SRV、NS、SOAをサポートしています。
+- SOAレコードセットは作成、修正、削除できません。また、NSレコードセットは**DNS Zone名**での作成、修正、削除はできません。
+- レコードセット内のレコードリストの長さは最大512バイトです。
+  - TXTレコードセットは最大4096バイトです。
+- DNS Zoneあたりのレコードセットは最大5,000個まで作成できます。
+- レコードセットの作成数には上限があります。延長が必要な場合は別途お問い合わせください。[お問い合わせ]($[ inquiry_url ]$)
 
+<a id="bulk-create-record-sets-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#list-dns-zones)で確認できます。
 - レコード値は必須です。入力方法として、recordset.recordList[0].recordContentフィールドまたは詳細フィールドのいずれかを指定できます。
-- recordContentフィールドは、半角スペースを区切り文字として詳細フィールドを1行で記述した内容です。詳細フィールドについては、[レコードセットの作成](#_14)の[レコードセットのタイプに応じた詳細フィールド]で確認できます。
+- recordContentフィールドは、半角スペースを区切り文字として詳細フィールドを1行で記述した内容です。詳細フィールドについては、[レコードセットの作成](#create-record-set)の[レコードセットのタイプに応じた詳細フィールド]で確認できます。
 - 詳細フィールドとrecordContentフィールドを同時に入力した場合、recordContentフィールドが優先して適用されます。
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/list' \
 -H 'Content-Type: application/json' \
 --data '{ "recordsetList": [{ "recordsetName": "sub.test.dnsplus.com.", "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }]}'
 ```
@@ -640,6 +673,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 | recordsetList[0].recordList[0].recordDisabled | boolean |  | 任意 | false | レコードの無効状態 |
 | recordsetList[0].recordList[0].recordContent | String |  | 必須 |  | レコードセットのタイプに応じた詳細フィールドを1行で記述した内容 |
 
+<a id="bulk-create-record-sets-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -655,7 +689,8 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 ```
 
 
-### レコードセットの変更
+<a id="modify-record-set"></a>
+### レコードセットの変更 { #modify-record-set }
 
 - レコードセットを変更します。
 - **レコードセット名**は変更できませんが、**レコードセットのタイプ**、**TTL(秒)**、**レコード値**は変更可能です。
@@ -663,25 +698,26 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 - レコードセット内のレコード一覧の長さは最大512バイトです。
 - TXTレコードセットは最大4096バイトです。
 
+<a id="modify-record-set-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId} |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
-- {recordsetId}はレコードセットIDであり、[レコードセットの照会](#_11)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#list-dns-zones)で確認できます。
+- {recordsetId}はレコードセットIDであり、[レコードセットの照会](#query-record-set)で確認できます。
 - レコード値は必須です。入力方法として、recordset.recordList[0].recordContentフィールドまたは詳細フィールドのいずれかを指定できます。
-- recordContentフィールドは、半角スペースを区切り文字として詳細フィールドを1行で記述した内容です。詳細フィールドについては、[レコードセットの作成](#_14)の[レコードセットのタイプに応じた詳細フィールド]で確認できます。
+- recordContentフィールドは、半角スペースを区切り文字として詳細フィールドを1行で記述した内容です。詳細フィールドについては、[レコードセットの作成](#create-record-set)の[レコードセットのタイプに応じた詳細フィールド]で確認できます。
 - 詳細フィールドとrecordContentフィールドを同時に入力した場合、recordContentフィールドが優先して適用されます。
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets/{recordsetId}' \
 -H 'Content-Type: application/json' \
 --data '{ "recordset": { "recordsetType": "A", "recordsetTtl": 86400, "recordList": [{ "recordDisabled": false, "recordContent": "1.1.1.1" }] }}'
 ```
@@ -698,6 +734,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | recordset.recordList[0].recordContent | String |  | 必須 |  | レコードセットのタイプに応じた詳細フィールドを1行で記述した内容 |
 
 
+<a id="modify-record-set-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -729,27 +766,29 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 ```
 
 
-### レコードセットの削除
+<a id="delete-record-set"></a>
+### レコードセットの削除 { #delete-record-set }
 
 - 複数のレコードセットを一括削除します。レコードセット内のレコードも同時に削除されます。
 - SOAレコードセットは作成、変更、削除できません。また、NSレコードセットは**DNS Zone名**で作成、変更、削除できません。
 
+<a id="delete-record-set-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#dns-zone)で確認できます。
-- レコードセットIDは[レコードセットの照会](#_11)で確認できます。
+- {zoneId}はDNS Zone IDであり、[DNS Zoneの照会](#list-dns-zones)で確認できます。
+- レコードセットIDは[レコードセットの照会](#query-record-set)で確認できます。
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/zones/{zoneId}/recordsets?
 recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092d340e0adf'
 ```
 
@@ -759,6 +798,7 @@ recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092
 |---|---|---|---|---|---|
 | recordsetIdList | List | 最小1個、最大3,000個 | 必須 |  | レコードセットID一覧 |
 
+<a id="delete-record-set-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -773,27 +813,30 @@ recordsetIdList=edb9512b-6e62-409c-99ee-092d340e0adf,edb9512b-6e62-409c-99ee-092
 }
 ```
 
-## GSLB API
+<a id="gslb-api"></a>
+## GSLB API { #gslb-api }
 
-### GSLBの照会
+<a id="retrieve-gslb"></a>
+### GSLBの照会 { #retrieve-gslb }
 
 - GSLB一覧を取得します。
 - Poolにヘルスチェックが紐付けられている場合、GSLB、Pool、エンドポイントそれぞれの正常ステータスを確認できます。
 
+<a id="retrieve-gslb-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs |
+| GET | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
 
 ```
-curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs?showHealthy=true'
+curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs?showHealthy=true'
 ```
 
 [オプション]
@@ -809,6 +852,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | sortDirection | String | DESC, ASC | 任意 | DESC | ソート方向(DESC: 降順、ASC: 昇順) |
 | sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>GSLB_NAME, <br>GSLB_DOMAIN, <br>GSLB_TTL, <br>GSLB_ROUTING_RULE, <br>GSLB_DISABLED | 任意 | CREATED_AT | ソート対象 <br>(CREATED_AT: 作成日時、<br>UPDATED_AT: 更新日時、<br>GSLB_NAME: GSLB名、<br>GSLB_DOMAIN: GSLBドメイン、<br>GSLB_TTL: GSLBドメインの更新間隔、<br>GSLB_ROUTING_RULE: ルーティングルール、<br>GSLB_DISABLED: GSLBの無効状態) |
 
+<a id="retrieve-gslb-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -876,23 +920,25 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | gslbList[0].updatedAt | DateTime | 修正日 |
 
 
-### GSLB作成
+<a id="create-gslb"></a>
+### GSLB作成 { #create-gslb }
 
-- GSLBとPoolの接続設定を作成します。
-- **ルーティングルール**は、GSLBドメインに対するロードバランシング方式であり、FAILOVER、RANDOM、GEOLOCATIONから選択できます。
-    - FAILOVER: 接続されたPoolの優先順位に従ってルーティングします。
-    - RANDOM: 接続されたPoolの中から、使用可能なPoolを無作為に選択してルーティングします。
-    - GEOLOCATION: 設定された地域のトラフィックを、該当する接続されたPoolへルーティングします。地域設定がない場合は、優先順位に従ってルーティングします。
-- **接続されたPool**の**優先順位**は、値が小さいほどルーティングの順序が高くなります。なお、値を重複させることはできません。
-- GSLBの作成数とPoolの接続数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/jp/support/inquiry)
+- GSLBとPool接続設定を作成します。
+- **ルーティングルール**はGSLBドメインに対するロードバランシング方法で、FAILOVER、RANDOM、GEOLOCATIONを選択できます。
+    - FAILOVER: 接続されたPoolの優先順位でルーティングします。
+    - RANDOM: 接続されたPoolの中から使用可能なPoolをランダムに選択してルーティングします。
+    - GEOLOCATION: 設定された地域のトラフィックを対応する接続済みPoolにルーティングします。地域設定がない場合は優先順位でルーティングします。
+- **接続されたPool**の**優先順位**は値が小さいほどルーティング順序が高くなり、重複することはできません。
+- GSLBの作成数およびPool接続数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ]($[ inquiry_url ]$)
 
+<a id="create-gslb-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs |
 
 [リクエスト本文]
 
@@ -900,7 +946,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 - connectedPoolRegionContentフィールドは、カンマ(,)を区切り文字として**地域**を1行で記述します。
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs' \
 -H 'Content-Type: application/json' \
 --data '{ "gslb": { "gslbName": "GSLB-test", "gslbTtl": 300, "gslbRoutingRule": "FAILOVER", "connectedPoolList": [ { "poolId": "8e4326d4-3862-4b46-819e-83a786add570", "connectedPoolOrder": 1 }, { "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818", "connectedPoolOrder": 2 } ] }}'
 ```
@@ -919,6 +965,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 | gslb.connectedPoolList[0].connectedPoolOrder | int | 最小1、最大2,147,483,647 | 必須 |  | 接続されたPoolの優先順位 |
 | gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 任意 |  | 接続されたPoolの地域設定 |
 
+<a id="create-gslb-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -960,27 +1007,29 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 ```
 
 
-### GSLB修正
+<a id="modify-gslb"></a>
+### GSLB修正 { #modify-gslb }
 
 - GSLBとPoolの接続設定を修正します。
-- [GSLB作成](#gslb_1)で入力した項目を修正します。
+- [GSLB作成](#create-gslb)で入力した項目を修正します。
 
+<a id="modify-gslb-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId} |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {gslbId}はGSLB IDであり、[GSLB照会](#gslb)で確認できます。
+- {gslbId}はGSLB IDであり、[GSLB照会](#retrieve-gslb)で確認できます。
 - connectedPoolRegionContentフィールドは、カンマ(,)を区切り文字として**地域**を1行で記述します。
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}' \
 -H 'Content-Type: application/json' \
 --data '{ "gslb": { "gslbName": "GSLB-test", "gslbTtl": 300, "gslbDisabled": true, "gslbRoutingRule": "GEOLOCATION", "connectedPoolList": [ { "poolId": "8e4326d4-3862-4b46-819e-83a786add570", "connectedPoolOrder": 1 }, { "poolId": "2f89d3fe-03bc-4711-826e-db2c89c12818", "connectedPoolOrder": 2, "connectedPoolRegionContent": "NORTHEAST_ASIA,SOUTHEAST_ASIA" } ] }}'
 ```
@@ -999,6 +1048,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | gslb.connectedPoolList[0].connectedPoolOrder | int | 最小1、最大2,147,483,647 | 必須 |  | 接続されたPoolの優先順位 |
 | gslb.connectedPoolList[0].connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 任意 |  | 接続されたPoolの地域設定 |
 
+<a id="modify-gslb-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1041,24 +1091,26 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 ```
 
 
-### GSLB削除
+<a id="delete-gslb"></a>
+### GSLB削除 { #delete-gslb }
 
 - 複数のGSLBを削除します。
 
+<a id="delete-gslb-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs?
 gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c604bf'
 ```
 
@@ -1068,6 +1120,7 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 |---|---|---|---|---|---|
 | gslbIdList | List | 最小1個、最大3,000個 | 必須 |  | GSLB ID一覧 |
 
+<a id="delete-gslb-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1083,29 +1136,31 @@ gslbIdList=91de0c6f-aeaa-44ec-b361-822acfcd5921,269eff10-f3c0-4b11-b072-ec53e7c6
 ```
 
 
-### Pool接続
+<a id="connect-pool"></a>
+### Pool接続 { #connect-pool }
 
 - GSLBにPoolを接続します。
-- **接続されたPool**の**優先順位**は、値が小さいほどルーティングの順序が高くなります。既存のPoolと同じ優先順位を入力した場合、既存のPoolのルーティング順序は下がります。
-- Poolの接続数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/jp/support/inquiry)
+- **接続済みPool**の**優先度**は値が小さいほどルーティング順位が高く、既存の接続済みPoolと同じ優先度を入力した場合は、既存PoolのルーティングI順位が下がります。
+- Pool接続数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ]($[ inquiry_url ]$)
 
+<a id="connect-pool-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {gslbId}はGSLB IDであり、[GSLB照会](#gslb)で確認できます。
-- {poolId}はPool IDであり、[Pool照会](#pool_3)で確認できます。
+- {gslbId}はGSLB IDであり、[GSLB照会](#retrieve-gslb)で確認できます。
+- {poolId}はPool IDであり、[Pool照会](#list-pools)で確認できます。
 - connectedPoolRegionContentフィールドは、カンマ(,)を区切り文字として**地域**を1行で記述します。
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
 -H 'Content-Type: application/json' \
 --data '{ "connectedPool": { "connectedPoolOrder": 1 } }'
 ```
@@ -1118,6 +1173,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 | connectedPool.connectedPoolOrder | int | 最小1、最大2,147,483,647 | 必須 |  | 接続されたPoolの優先順位 |
 | connectedPool.connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 任意 |  | 接続されたPoolの地域設定 |
 
+<a id="connect-pool-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1156,28 +1212,30 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 }
 ```
 
-### Pool接続の修正
+<a id="modify-pool-connection"></a>
+### Pool接続の修正 { #modify-pool-connection }
 
 - GSLBに接続されたPoolの設定を修正します。
-- [GSLB作成](#gslb_1)のPool設定、または[Pool接続](#pool)で入力した項目を修正します。
+- [GSLB作成](#create-gslb)のPool設定、または[Pool接続](#connect-pool)で入力した項目を修正します。
 
+<a id="modify-pool-connection-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId} |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {gslbId}はGSLB IDであり、[GSLB照会](#gslb)で確認できます。
-- {poolId}はPool IDであり、[Pool照会](#pool_3)で確認できます。
+- {gslbId}はGSLB IDであり、[GSLB照会](#retrieve-gslb)で確認できます。
+- {poolId}はPool IDであり、[Pool照会](#list-pools)で確認できます。
 - connectedPoolRegionContentフィールドは、カンマ(,)を区切り文字として**地域**を1行で記述します。
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools/{poolId}' \
 -H 'Content-Type: application/json' \
 --data '{ "connectedPool": { "connectedPoolOrder": 1, "connectedPoolRegionContent": "WESTERN_NORTH_AMERICA" } }'
 ```
@@ -1190,6 +1248,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | connectedPool.connectedPoolOrder | int | 最小1、最大2,147,483,647 | 必須 |  | 接続されたPoolの優先順位 |
 | connectedPool.connectedPoolRegionContent | String | WESTERN_NORTH_AMERICA,<br>EASTERN_NORTH_AMERICA,<br>WESTERN_EUROPE,<br>EASTERN_EUROPE,<br>NORTHERN_SOUTH_AMERICA,<br>SOUTHERN_SOUTH_AMERICA,<br>OCEANIA,<br>MIDDLE_EAST,<br>NORTHERN_AFRICA,<br>SOUTHERN_AFRICA,<br>INDIA,<br>SOUTHEAST_ASIA,<br>NORTHEAST_ASIA | 任意 |  | 接続されたPoolの地域設定 |
 
+<a id="modify-pool-connection-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1229,25 +1288,27 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 }
 ```
 
-### Pool接続の解除
+<a id="detach-pool"></a>
+### Pool接続の解除 { #detach-pool }
 
 - GSLBに接続された複数のPoolを解除します。
 
+<a id="detach-pool-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {gslbId}はGSLB IDであり、[GSLB照会](#gslb)で確認できます。
+- {gslbId}はGSLB IDであり、[GSLB照会](#retrieve-gslb)で確認できます。
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/gslbs/{gslbId}/connected-pools?
 poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1dfb093'
 ```
 
@@ -1257,6 +1318,7 @@ poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1df
 |---|---|---|---|---|---|
 | poolIdList | List | 最小1個、最大3,000個 | 必須 |  | Pool ID一覧 |
 
+<a id="detach-pool-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1289,27 +1351,30 @@ poolIdList=52da0e48-9062-43f7-bef8-8aec4b795bfe,12bc396a-eb97-4a6b-ab4c-73d1a1df
 ```
 
 
-## Pool API
+<a id="pool-api"></a>
+## Pool API { #pool-api }
 
-### Pool照会
+<a id="list-pools"></a>
+### Pool照会 { #list-pools }
 
 - Pool一覧を照会します。
 - ヘルスチェックが接続されている場合、Pool及びエンドポイントの正常ステータスを確認できます。
 
+<a id="list-pools-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools |
+| GET | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
 
 ```
-curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools?showHealthy=true'
+curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools?showHealthy=true'
 ```
 
 [オプション]
@@ -1325,6 +1390,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | sortDirection | String | DESC, ASC | 任意 | DESC | ソート方向(DESC: 降順、ASC: 昇順) |
 | sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>POOL_NAME, <br>POOL_DISABLED, <br>HEALTH_CHECK_ID | 任意 | CREATED_AT | ソート対象 <br>(CREATED_AT: 作成日、<br>UPDATED_AT: 修正日、<br>POOL_NAME: Pool名、<br>POOL_DISABLED: Poolの無効状態、<br>HEALTH_CHECK_ID: 接続されたヘルスチェックID) |
 
+<a id="list-pools-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1396,31 +1462,33 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | poolList[0].updatedAt | DateTime | 修正日 |
 
 
-### Pool作成
+<a id="create-pool"></a>
+### Pool作成 { #create-pool }
 
-- Pool、及びPool内にエンドポイントを作成します。
-- Pool内のエンドポイントへのアクセスを確認するための**ヘルスチェック**を設定できます。
-- **エンドポイントアドレス**は、ドメインアドレスまたはIPv4で入力できますが、入力には以下の制限があります。
-    - ハイフン(-)とピリオド(.)から開始することはできず、ハイフンで終了することもできません。また、ピリオドとハイフンを連続して入力することはできません。
-    - [予約済みIPアドレス](https://en.wikipedia.org/wiki/Reserved_IP_addresses)は入力できません。
-    - Pool内で値を重複させることはできません。
-- エンドポイントの**重み付け**は、Pool内の他のエンドポイントの重み付けに対して相対的に機能します。同一の重み付けを設定した場合、Pool内で均等な比重を持ちます。
-- Poolの作成数、Pool内のエンドポイント数、及び全体のエンドポイント数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/jp/support/inquiry)
+- Poolと、Pool内のエンドポイントを作成します。
+- Pool内のエンドポイントの疎通確認を行う**ヘルスチェック**を設定できます。
+- **エンドポイントアドレス**はドメインアドレスまたは IPv4 で入力でき、入力に制限があります。
+    - ハイフンとピリオドで始めることはできず、ハイフンで終わることもできません。ピリオドとハイフンを連続して入力することはできません。
+    - [予約済み IP アドレス](https://en.wikipedia.org/wiki/Reserved_IP_addresses)は入力できません。
+    - Pool 内で重複することはできません。
+- エンドポイントの**重み**は、Pool 内の他のエンドポイントの重みと相対的に動作します。同じ重みは Pool 内で同じ比重を持ちます。
+- Pool の作成数、Pool 内のエンドポイント数、全エンドポイントの数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ]($[ inquiry_url ]$)
 
+<a id="create-pool-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools' \
 -H 'Content-Type: application/json' \
 --data '{ "pool": { "poolName": "POOL-test", "endpointList": [ { "endpointAddress": "test.dnsplus.com" }, { "endpointAddress": "123.123.123.123" } ] }}'
 ```
@@ -1438,6 +1506,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 | pool.endpointList[0].endpointWeight | double | 最小0、最大1.00 | 任意 | 1.00 | エンドポイントの重み付け |
 | pool.endpointList[0].endpointDisabled | boolean |  | 任意 | false | エンドポイントの無効状態 |
 
+<a id="create-pool-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1473,26 +1542,28 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 ```
 
 
-### Pool修正
+<a id="modify-pool"></a>
+### Pool修正 { #modify-pool }
 
 - Pool、及びPool内のエンドポイントを修正します。
-- [Pool作成](#pool_4)で入力した項目を修正します。
+- [Pool作成](#create-pool)で入力した項目を修正します。
 
+<a id="modify-pool-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools/{poolId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools/{poolId} |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {poolId}はPool IDであり、[Pool照会](#pool_3)で確認できます。
+- {poolId}はPool IDであり、[Pool照会](#list-pools)で確認できます。
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools/{poolId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools/{poolId}' \
 -H 'Content-Type: application/json' \
 --data '{ "pool": { "poolName": "POOL-test", "poolDisabled": true, "healthCheckId": "b9165853-7859-4309-8059-48f12ebdbc17", "endpointList": [ { "endpointAddress": "test.dnsplus.com", "endpointWeight": 1.00, "endpointDisabled": true }, { "endpointAddress": "123.123.123.123", "endpointWeight": 0.5, "endpointDisabled": true } ] }}'
 ```
@@ -1510,6 +1581,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | pool.endpointList[0].endpointWeight | double | 最小0、最大1.00 | 任意 | 1.00 | エンドポイントの重み付け |
 | pool.endpointList[0].endpointDisabled | boolean |  | 任意 | false | エンドポイントの無効状態 |
 
+<a id="modify-pool-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1548,25 +1620,27 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 ```
 
 
-### Pool削除
+<a id="delete-pools"></a>
+### Pool削除 { #delete-pools }
 
 - 複数のPoolを削除します。Pool内のエンドポイントも同時に削除されます。
 - GSLBに接続されているPoolは削除できません。
 
+<a id="delete-pools-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/pools?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/pools?
 poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c12818'
 ```
 
@@ -1576,6 +1650,7 @@ poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c1
 |---|---|---|---|---|---|
 | poolIdList | List | 最小1個、最大3,000個 | 必須 |  | Pool ID一覧 |
 
+<a id="delete-pools-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1591,26 +1666,29 @@ poolIdList=8e4326d4-3862-4b46-819e-83a786add570,2f89d3fe-03bc-4711-826e-db2c89c1
 ```
 
 
-## ヘルスチェックAPI
+<a id="health-check-api"></a>
+## ヘルスチェックAPI { #health-check-api }
 
-### ヘルスチェック照会
+<a id="list-health-checks"></a>
+### ヘルスチェック照会 { #list-health-checks }
 
 - ヘルスチェック一覧を照会します。
 
+<a id="list-health-checks-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| GET | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks |
+| GET | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
 
 ```
-curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks'
+curl -X GET 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks'
 ```
 
 [オプション]
@@ -1624,6 +1702,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | sortDirection | String | DESC, ASC | 任意 | DESC | ソート方向(DESC: 降順、ASC: 昇順) |
 | sortKey | String | CREATED_AT, <br>UPDATED_AT, <br>HEALTH_CHECK_NAME, <br>PROTOCOL, <br>PORT | 任意 | CREATED_AT | ソート対象 <br>(CREATED_AT: 作成日、<br>UPDATED_AT: 修正日、<br>HEALTH_CHECK_NAME: ヘルスチェック名、<br>PROTOCOL: プロトコル、<br>PORT: ポート) |
 
+<a id="list-health-checks-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1650,7 +1729,7 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
             "expectedBody": "OK",
             "allowInsecure": false,
             "requestHeaderList": [
-                { "Host": "nhncloud.com" }
+                { "Host": "$[ example_host ]$" }
             ],
             "createdAt": "2019-12-18T12:31:34.000+09:00",
             "updatedAt": "2019-12-18T14:19:20.000+09:00"
@@ -1682,33 +1761,35 @@ curl -X GET 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | healthCheckList[0].updatedAt | DateTime | 修正日 |
 
 
-### ヘルスチェック作成
+<a id="create-health-check"></a>
+### ヘルスチェック作成 { #create-health-check }
 
 - ヘルスチェックを作成します。
-- ヘルスチェックの**プロトコル**は、HTTPS、HTTP、TCPをサポートしています。選択したプロトコルによって、入力可能な項目が異なります。
-    - HTTPSで入力可能な項目: 証明書の検証なし、ポート、ヘルスチェック周期、最大応答待機時間、最大再試行回数、パス、予想ステータスコード、予想レスポンス本文、リクエストヘッダ
-    - HTTPで入力可能な項目: ポート、ヘルスチェック周期、最大応答待機時間、最大再試行回数、パス、予想ステータスコード、予想レスポンス本文、リクエストヘッダ
-    - TCPで入力可能な項目: ポート、ヘルスチェック周期、最大応答待機時間、最大再試行回数
-- **証明書の検証なし**を有効にすると、ヘルスチェック実行時にエンドポイントのTLS/SSL証明書が無効であっても無視できます。
-- **予想ステータスコード**及び**予想レスポンス本文**の判定において、エンドポイントからリダイレクトされたページはサポートされません。
-- ヘルスチェックの作成数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ](https://www.nhncloud.com/jp/support/inquiry)
+- ヘルスチェックの**プロトコル**は HTTPS、HTTP、TCP をサポートしており、選択したプロトコルによって入力できる情報が異なります。
+    - HTTPS で入力可能な項目: 証明書検証なし、ポート、ヘルスチェック周期、最大レスポンス待機時間、最大再試行回数、パス、予想ステータスコード、予想レスポンス本文、リクエストヘッダ
+    - HTTP で入力可能な項目: ポート、ヘルスチェック周期、最大レスポンス待機時間、最大再試行回数、パス、予想ステータスコード、予想レスポンス本文、リクエストヘッダ
+    - TCP で入力可能な項目: ポート、ヘルスチェック周期、最大レスポンス待機時間、最大再試行回数
+- **[証明書検証なし]** を使用すると、ヘルスチェックの実行時にエンドポイントの TLS/SSL 証明書が無効であっても無視できます。
+- **[予想ステータスコード]** および **[予想レスポンス本文]** を判定する際、エンドポイントからリダイレクトされたページはサポートされていません。
+- ヘルスチェックの作成数には上限があります。上限の引き上げが必要な場合は、別途お問い合わせください。[お問い合わせ]($[ inquiry_url ]$)
 
+<a id="create-health-check-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| POST | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks |
+| POST | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
 
 ```
-curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks' \
+curl -X POST 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks' \
 -H 'Content-Type: application/json' \
---data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "2xx", "allowInsecure": false, "requestHeaderList": [{ "Host": "nhncloud.com" }] }}'
+--data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "2xx", "allowInsecure": false, "requestHeaderList": [{ "Host": "$[ example_host ]$" }] }}'
 ```
 
 [フィールド]
@@ -1728,6 +1809,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 | healthCheck.allowInsecure | boolean |  | 任意 |  | ヘルスチェック証明書の検証なし、<br>HTTPSの際に使用 |
 | healthCheck.requestHeaderList | List |  | 任意 |  | リクエストヘッダ一覧、<br>HTTPS、HTTPの際に使用。<br> 一覧内の項目は `{ "ヘッダ名": "ヘッダ値" }` の形式でリクエストします。 |
 
+<a id="create-health-check-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1751,7 +1833,7 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
         "expectedCodes": "2xx",
         "allowInsecure": false,
         "requestHeaderList": [
-            { "Host": "nhncloud.com" }
+            { "Host": "$[ example_host ]$" }
         ],
         "createdAt": "2019-12-18T12:31:34.000+09:00",
         "updatedAt": "2019-12-18T12:31:34.000+09:00"
@@ -1759,27 +1841,28 @@ curl -X POST 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appk
 }
 ```
 
-
-### ヘルスチェック修正
+<a id="modify-health-check"></a>
+### ヘルスチェック修正 { #modify-health-check }
 
 - ヘルスチェックを修正します。
-- [ヘルスチェック作成](#_48)で入力した項目を修正します。
+- [ヘルスチェック作成](#create-health-check)で入力した項目を修正します。
 
+<a id="modify-health-check-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| PUT | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks/{healthCheckId} |
+| PUT | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks/{healthCheckId} |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
-- {healthCheckId}はヘルスチェックIDであり、[ヘルスチェック照会](#_45)で確認できます。
+- {healthCheckId}はヘルスチェックIDであり、[ヘルスチェック照会](#list-health-checks)で確認できます。
 
 ```
-curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
+curl -X PUT 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks/{healthCheckId}' \
 -H 'Content-Type: application/json' \
 --data '{ "healthCheck": { "healthCheckName": "HTTPS-443", "protocol": "HTTPS", "port": 443, "interval": 60, "timeout": 5, "retries": 2, "path": "/", "expectedCodes": "3xx", "allowInsecure": false }}'
 ```
@@ -1801,6 +1884,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 | healthCheck.allowInsecure | boolean |  | 任意 |  | ヘルスチェック証明書の検証なし、<br>HTTPSの際に使用 |
 | healthCheck.requestHeaderList | List |  | 任意 |  | リクエストヘッダ一覧、<br>HTTPS、HTTPの際に使用。<br> 一覧内の項目は `{ "ヘッダ名": "ヘッダ値" }` の形式でリクエストします。 |
 
+<a id="modify-health-check-response"></a>
 #### レスポンス
 
 [レスポンス本文]
@@ -1824,7 +1908,7 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
         "expectedCodes": "3xx",
         "allowInsecure": false,
         "requestHeaderList": [
-            { "Host": "nhncloud.com" }
+            { "Host": "$[ example_host ]$" }
         ],
         "createdAt": "2019-12-18T12:31:34.000+09:00",
         "updatedAt": "2019-12-18T12:36:20.000+09:00"
@@ -1832,26 +1916,27 @@ curl -X PUT 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appke
 }
 ```
 
-
-### ヘルスチェック削除
+<a id="delete-health-checks"></a>
+### ヘルスチェック削除 { #delete-health-checks }
 
 - 複数のヘルスチェックを削除します。
 - Poolに接続されているヘルスチェックは削除できません。
 
+<a id="delete-health-checks-request"></a>
 #### リクエスト
 
 [URI]
 
 | メソッド | URI |
 |---|---|
-| DELETE | https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks |
+| DELETE | https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks |
 
 [リクエスト本文]
 
 - {appkey}はコンソールで確認した値に置き換えます。
 
 ```
-curl -X DELETE 'https://dnsplus.api.nhncloudservice.com/dnsplus/v2.0/appkeys/{appkey}/health-checks?
+curl -X DELETE 'https://$[ api_host ]$/dnsplus/v2.0/appkeys/{appkey}/health-checks?
 healthCheckIdList=b9165853-7859-4309-8059-48f12ebdbc17,d2629d6b-9381-4645-9cf3-43d7ad491e2b'
 ```
 
@@ -1861,6 +1946,7 @@ healthCheckIdList=b9165853-7859-4309-8059-48f12ebdbc17,d2629d6b-9381-4645-9cf3-4
 |---|---|---|---|---|---|
 | healthCheckIdList | List | 最小1個、最大3,000個 | 必須 |  | ヘルスチェックID一覧 |
 
+<a id="delete-health-checks-response"></a>
 #### レスポンス
 
 [レスポンス本文]

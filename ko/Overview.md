@@ -1,8 +1,12 @@
-## Network > DNS Plus > 개요
+<!-- pre-align:aligned sig=87b4655be4a9 -->
+
+<a id="network-dns-plus-overview"></a>
+## Network > DNS Plus > 개요 { #network-dns-plus-overview }
 
 DNS Plus는 전 세계 사용자들이 안정적이고 빠르게 접속할 수 있는 DNS입니다. 애니캐스트 네트워크를 지원해 어디서든 안정적이고 빠르게 DNS에 접속할 수 있으며, 별도의 DNS 솔루션이나 서버 없이 웹 콘솔에서 바로 DNS 서비스를 할 수 있습니다.
 
-## 주요 기능
+<a id="key-features"></a>
+## 주요 기능 { #key-features }
 
 - DNS
     - 별도의 DNS 서버를 설치하지 않고, 웹 콘솔에서 DNS 작업을 할 수 있습니다.
@@ -30,7 +34,8 @@ DNS Plus는 전 세계 사용자들이 안정적이고 빠르게 접속할 수 �
         - HTTP 헬스 체크의 경우 포트, 경로, 예상 상태 코드, 예상 응답 본문을 설정할 수 있습니다.
         - HTTPS 헬스 체크의 경우 인증서 유효성, 포트, 경로, 예상 상태 코드, 예상 응답 본문을 설정할 수 있습니다.
 
-## 서비스 대상
+<a id="service-targets"></a>
+## 서비스 대상 { #service-targets }
 
 - DNS
     - 글로벌 대상으로 서비스하는 애플리케이션을 개발하는 경우
@@ -41,7 +46,8 @@ DNS Plus는 전 세계 사용자들이 안정적이고 빠르게 접속할 수 �
     - 전 세계적인 서비스 트래픽 로드밸런싱을 원하는 경우
     - 로드밸런싱을 통한 DR(Disaster Recovery) 구성을 원하는 경우
 
-## 서비스 용어
+<a id="service-terms"></a>
+## 서비스 용어 { #service-terms }
 
 | 용어 | 설명 |
 |---|---|
@@ -55,7 +61,8 @@ DNS Plus는 전 세계 사용자들이 안정적이고 빠르게 접속할 수 �
 | 엔드포인트 | 실제 트래픽을 처리하는 서버를 말합니다. 엔드포인트는 IP 및 도메인 형태로 사용 가능합니다. |
 | 헬스 체크 | 설정한 값에 따라 Pool 내에 속한 엔드포인트에 대해 접근성을 확인하는 요소입니다. |
 
-## DNS 개념
+<a id="dns-concepts"></a>
+## DNS 개념 { #dns-concepts }
 DNS(domain name system)은 컴퓨터 네트워크에서 호스트 이름(예: www.example.com)과 IP 주소(예: 192.168.1.1) 간의 매핑을 담당하는 시스템입니다.
 
 DNS의 기본 작동 원리는 다음과 같습니다.

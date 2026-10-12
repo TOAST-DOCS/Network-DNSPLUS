@@ -1,8 +1,12 @@
-## Network > DNS Plus > Overview
+<!-- pre-align:aligned sig=87b4655be4a9 -->
+
+<a id="network-dns-plus-overview"></a>
+## Network > DNS Plus > Overview { #network-dns-plus-overview }
 
 DNS Plus is a DNS that users around the world can access fast and reliably. DNS Plus supports anycast networks so that users can access DNS fast and reliably from anywhere, and allows you to provide a DNS service directly from the web console without a separate DNS solution or server.
 
-## Key Features
+<a id="key-features"></a>
+## Key Features { #key-features }
 
 - DNS
     - You can perform DNS configuration in the web console without installing a separate DNS server.
@@ -30,7 +34,8 @@ DNS Plus is a DNS that users around the world can access fast and reliably. DNS 
         - For HTTP health checks, you can set the port, path, expected status code, and expected response body.
         - For HTTPS health checks, you can set the certificate validity, port, path, expected status code, and expected response body.
 
-## Service Targets
+<a id="service-targets"></a>
+## Service Targets { #service-targets }
 
 - DNS
     - If you're developing an application provided for global users
@@ -41,7 +46,8 @@ DNS Plus is a DNS that users around the world can access fast and reliably. DNS 
     - If you want load balancing of global service traffic
     - If you want to configure disaster recovery (DR) through load balancing
 
-## Service Terms
+<a id="service-terms"></a>
+## Service Terms { #service-terms }
 
 | Term | Description |
 |---|---|
@@ -55,7 +61,8 @@ DNS Plus is a DNS that users around the world can access fast and reliably. DNS 
 | Endpoint | Refers to the server that handles the actual traffic. Endpoints are available in the form of IP or domain. |
 | Health check | A component that checks accessibility for endpoints belonging to a pool according to the configured value. |
 
-## DNS Concepts
+<a id="dns-concepts"></a>
+## DNS Concepts { #dns-concepts }
 The domain name system (DNS) is the system responsible for mapping between host names (such as www.example.com) and IP addresses (such as 192.168.1.1) in a computer network.
 
 How DNS works is as follows.
