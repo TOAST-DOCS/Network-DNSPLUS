@@ -3,8 +3,8 @@
 {%- set api_host = "dnsplus.api.gov-nhncloudservice.com" if "gov" in build_flags else "dnsplus.api.nhncloudservice.com" -%}
 {%- set example_host = "gov-nhncloud.com" if "gov" in build_flags else "nhncloud.com" -%}
 {%- set inquiry_url = "https://www.gov-nhncloud.com/kr/support/inquiry" if "gov" in build_flags else "https://www.nhncloud.com/kr/support/inquiry" -%}
-{%- set appkey_url = "/nhncloud/ko/public-api/appkey-gov/" if "gov" in build_flags else "/nhncloud/ko/public-api/appkey/" -%}
-{%- set uak_token_url = "/nhncloud/ko/public-api/user-access-key-token-gov/" if "gov" in build_flags else "/nhncloud/ko/public-api/user-access-key-token/" -%}
+{%- set appkey_url = "/nhncloud/ko/public-api/appkey-gov/" if "gov" in build_flags else "/nhncloud/ja/public-api/appkey/" -%}
+{%- set uak_token_url = "/nhncloud/ko/public-api/user-access-key-token-gov/" if "gov" in build_flags else "/nhncloud/ja/public-api/user-access-key-token/" -%}
 <!-- pre-align:aligned sig=e20c06ac5822 -->
 
 <a id="network-dns-plus-api-v20-guide"></a>
